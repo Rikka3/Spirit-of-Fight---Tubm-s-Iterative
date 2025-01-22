@@ -9,9 +9,8 @@ object SOFClientEventRegister {
 
     @JvmStatic
     fun register() {
-        add(CameraAdjuster())
-        add(LockOnApplier())
-        add(PlayerLocalController)
+        add(CameraAdjuster)
+        add(LockOnApplier)
     }
 
     private fun add(event: Any) {

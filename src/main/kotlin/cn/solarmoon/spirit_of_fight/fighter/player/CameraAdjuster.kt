@@ -3,24 +3,23 @@ package cn.solarmoon.spirit_of_fight.fighter.player
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.event.EntityTurnEvent
 import cn.solarmoon.spark_core.event.PlayerRenderAnimInFirstPersonEvent
-import cn.solarmoon.spark_core.skill.getTypedSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.controller.FightSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.skill.AttackAnimSkill
+import cn.solarmoon.spark_core.flag.SparkFlags
+import cn.solarmoon.spark_core.flag.getFlag
+import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
+import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
 import cn.solarmoon.spirit_of_fight.feature.lock_on.LockOnController
 import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.util.Mth
-import net.minecraft.world.entity.player.Player
+import net.minecraft.world.entity.Entity
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.client.event.ViewportEvent
 import org.joml.Vector2f
 
-class CameraAdjuster {
+object CameraAdjuster {
 
-    companion object {
-        @JvmStatic
-        val CAMERA_TURN: Vector2f = Vector2f()
-    }
+    @JvmStatic
+    val CAMERA_TURN: Vector2f = Vector2f()
 
     @SubscribeEvent
     private fun lockHeadTurn(event: EntityTurnEvent) {
@@ -28,7 +27,7 @@ class CameraAdjuster {
         val xRot = event.xRot.toFloat()
         val yRot = event.yRot.toFloat()
         if (entity is IEntityAnimatable<*>) {
-            val flag1 = entity.getPatch().moveInputFreeze == true && entity.animController.getPlayingAnim()?.time != 0.0
+            val flag1 = entity.getFlag(SparkFlags.MOVE_INPUT_FREEZE) && entity.animController.getPlayingAnim()?.time != 0.0
             if (flag1) {
                 if (entity is LocalPlayer && !LockOnController.hasTarget) CAMERA_TURN.add(xRot, yRot)
                 event.isCanceled = true
@@ -55,8 +54,8 @@ class CameraAdjuster {
     @SubscribeEvent
     private fun renderAnimInFirstPersonWhenAttack(event: PlayerRenderAnimInFirstPersonEvent) {
         val player = event.player
-        val sc = player.getTypedSkillController<FightSkillController>()
-        event.shouldRender = sc?.allActiveSkills?.any { it is AttackAnimSkill } == true || sc?.getGuardSkill()?.isActive() == true
+        val sc = player.getTypedSkillController<FightSkillController<*>>()
+        event.shouldRender = sc?.isPlaying() == true
     }
 
 }

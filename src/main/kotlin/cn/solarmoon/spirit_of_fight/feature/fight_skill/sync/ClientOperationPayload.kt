@@ -1,29 +1,17 @@
 package cn.solarmoon.spirit_of_fight.feature.fight_skill.sync
 
-import cn.solarmoon.spark_core.SparkCore
-import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.data.SerializeHelper
-import cn.solarmoon.spark_core.skill.getTypedSkillController
-import cn.solarmoon.spark_core.util.MoveDirection
-import cn.solarmoon.spark_core.util.Side
+import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.controller.CommonFightSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.controller.FightSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.controller.HammerFightSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.controller.SwordFightSkillController
-import cn.solarmoon.spirit_of_fight.fighter.getPatch
+import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
 import net.neoforged.neoforge.network.PacketDistributor
 import net.neoforged.neoforge.network.handling.IPayloadContext
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
 
 data class ClientOperationPayload(
     val entityId: Int,
@@ -42,54 +30,26 @@ data class ClientOperationPayload(
             val player = context.player()
             val level = player.level()
             val entity = level.getEntity(payload.entityId) ?: return
-            val skillController = entity.getTypedSkillController<FightSkillController>() ?: return
-            when(payload.operation) {
-                "combo" -> {
-                    skillController.comboIndex.set(payload.id)
-                    skillController.getComboSkill().activate()
-                }
-                "combo_change" -> {
-                    skillController.setComboChange()
-                    skillController.getComboSkill().activate()
-                }
-                "special_attack" -> {
-                    skillController.getSpecialAttackSkill(payload.id).activate()
-                }
-                "sprinting_attack" -> {
-                    skillController.getSprintingAttackSkill().activate()
-                }
-                "jump_attack" -> {
-                    skillController.getJumpAttackSkill().activate()
-                }
-                "guard" -> {
-                    skillController.getGuardSkill().activate()
-                }
-                "guard_stop" -> {
-                    skillController.getGuardSkill().end()
-                }
-                "guard_hurt" -> {
-                    skillController.getGuardSkill().playHurtAnim()
-                }
-                "dodge" -> {
-                    val dodge = skillController.getDodgeSkill()
-                    dodge.direction = MoveDirection.getById(payload.id)
-                    dodge.moveVector = payload.moveVector
-                    dodge.activate()
-                }
-                "parry" -> {
-                    (skillController as? CommonFightSkillController)?.getParrySkill()?.activate()
-                }
-                "parried_left" -> {
-                    val attacker = level.getEntity(payload.id) ?: return
-                    if (attacker !is IEntityAnimatable<*>) return
-                    (skillController as? CommonFightSkillController)?.getParrySkill()?.playParriedAnim(Side.LEFT, attacker)
-                }
-                "parried_right" -> {
-                    val attacker = level.getEntity(payload.id) ?: return
-                    if (attacker !is IEntityAnimatable<*>) return
-                    (skillController as? CommonFightSkillController)?.getParrySkill()?.playParriedAnim(Side.RIGHT, attacker)
-                }
+            val skillController = entity.getTypedSkillController<FightSkillController<*>>() ?: return
+
+            skillController.allComponents.forEach {
+                if (payload.operation == it.name) it.serverControl(entity, payload, context)
             }
+
+            when(payload.operation) {
+//                "parried_left" -> {
+//                    val attacker = level.getEntity(payload.id) ?: return
+//                    if (attacker !is IEntityAnimatable<*>) return
+//                    skillController.skill<ParrySkill>(SkillId.PARRY)?.playParriedAnim(Side.LEFT, attacker)
+//                }
+//                "parried_right" -> {
+//                    val attacker = level.getEntity(payload.id) ?: return
+//                    if (attacker !is IEntityAnimatable<*>) return
+//                    skillController.skill<ParrySkill>(SkillId.PARRY)?.playParriedAnim(Side.RIGHT, attacker)
+//                }
+            }
+
+            // 由于技能默认不会强行覆盖正在进行中的技能，所以此处可以再发回原客户端以在某些情况下修正动画（暂时没这么做，因为还没碰到需要修正的情况）
             if (player is ServerPlayer) PacketDistributor.sendToPlayersNear(player.serverLevel(), player, player.x, player.y, player.z, 512.0, payload)
         }
 

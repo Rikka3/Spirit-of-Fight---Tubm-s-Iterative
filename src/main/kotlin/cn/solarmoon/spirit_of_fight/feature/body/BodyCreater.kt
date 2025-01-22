@@ -6,14 +6,21 @@ import cn.solarmoon.spark_core.phys.AttackCallBack
 import cn.solarmoon.spark_core.phys.BodyType
 import cn.solarmoon.spark_core.phys.createAnimatedPivotBody
 import cn.solarmoon.spark_core.phys.createEntityAnimatedAttackBody
-import cn.solarmoon.spark_core.skill.getSkillController
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.skill.AttackAnimSkill
+import cn.solarmoon.spark_core.phys.thread.getPhysLevel
+import cn.solarmoon.spark_core.phys.toDVector3
+import cn.solarmoon.spark_core.registry.common.SparkBodyTypes
+import cn.solarmoon.spark_core.skill.controller.getSkillController
+import cn.solarmoon.spirit_of_fight.registry.common.SOFBodyTypes
+import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.level.Level
+import org.ode4j.math.DVector3
 import org.ode4j.ode.DBody
 import org.ode4j.ode.DContactBuffer
 import org.ode4j.ode.DGeom
+import org.ode4j.ode.OdeHelper
 
-fun createGuardAnimBody(boneName: String, type: BodyType, owner: IEntityAnimatable<*>, level: Level, provider: DBody.() -> Unit = {}) =
+fun createGuardAnimBody(boneName: String, owner: IEntityAnimatable<*>, level: Level, type: BodyType = SOFBodyTypes.GUARD.get(), provider: DBody.() -> Unit = {}) =
     createAnimatedPivotBody(boneName, type, owner, level) {
 
         disable()
@@ -21,28 +28,36 @@ fun createGuardAnimBody(boneName: String, type: BodyType, owner: IEntityAnimatab
         provider.invoke(this)
     }
 
-fun createSkillAttackAnimBody(boneName: String, type: BodyType, owner: IEntityAnimatable<*>, level: Level, attackSystem: AttackSystem, provider: DBody.() -> Unit = {}) =
+fun createSkillAttackAnimBody(boneName: String, owner: IEntityAnimatable<*>, level: Level, attackSystem: AttackSystem, type: BodyType = SOFBodyTypes.ATTACK.get(), provider: DBody.() -> Unit = {}) =
     createEntityAnimatedAttackBody(boneName, type, owner, level, object : AttackCallBack(attackSystem) {
 
         val entity get() = owner.animatable
 
         override fun whenAboutToAttack(o1: DGeom, o2: DGeom, buffer: DContactBuffer) {
             entity.getSkillController()?.allActiveSkills?.forEach {
-                if (it is AttackAnimSkill) {
-                    it.whenAboutToAttack(o1, o2, buffer, attackSystem)
+                it.components.forEach {
+                    if (it is AnimBoxAttackComponent) it.whenAboutToAttack(o1, o2, buffer, attackSystem)
                 }
             }
         }
 
-        override fun whenTargetAttacked(firstAttack: Boolean, o1: DGeom, o2: DGeom, buffer: DContactBuffer) {
+        override fun whenTargetAttacked(o1: DGeom, o2: DGeom, buffer: DContactBuffer) {
             entity.getSkillController()?.allActiveSkills?.forEach {
-                if (it is AttackAnimSkill) {
-                    it.whenTargetAttacked(firstAttack, o1, o2, buffer, attackSystem)
+                it.components.forEach {
+                    if (it is AnimBoxAttackComponent) it.whenTargetAttacked(o1, o2, buffer, attackSystem)
                 }
             }
         }
     }) {
 
+
+        provider.invoke(this)
+    }
+
+fun createEmptyBody(owner: Entity, level: Level, provider: DBody.() -> Unit = {}) =
+    OdeHelper.createBody(SparkBodyTypes.CUSTOM.get(), owner, "NONE", false, level.getPhysLevel().world).apply {
+
+        disable()
 
         provider.invoke(this)
     }

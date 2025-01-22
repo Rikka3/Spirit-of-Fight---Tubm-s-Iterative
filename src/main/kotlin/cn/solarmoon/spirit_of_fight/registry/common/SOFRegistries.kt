@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.feature.hit.HitType
+import cn.solarmoon.spirit_of_fight.hit.type.HitType
 
 object SOFRegistries {
     @JvmStatic

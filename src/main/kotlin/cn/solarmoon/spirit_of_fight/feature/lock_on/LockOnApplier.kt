@@ -9,7 +9,7 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.client.event.InputEvent
 import net.neoforged.neoforge.client.event.ViewportEvent
 
-class LockOnApplier {
+object LockOnApplier {
 
     @SubscribeEvent
     private fun adjustTarget(event: InputEvent.Key) {

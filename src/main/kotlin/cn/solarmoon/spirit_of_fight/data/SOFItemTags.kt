@@ -24,7 +24,7 @@ class SOFItemTags(
     override fun addTags(provider: HolderLookup.Provider) {
         tag(FORGE_HAMMER).add(
             SOFItems.IRON_HAMMER.get()
-        ).replace(false)
+        )
     }
 
     companion object {

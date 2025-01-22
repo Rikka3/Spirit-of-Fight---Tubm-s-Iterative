@@ -1,9 +1,9 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spark_core.animation.anim.play.TypedAnimProvider
+import cn.solarmoon.spark_core.flag.SparkFlags
+import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.feature.hit.HitAnimationApplier
-import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.attributes.Attributes
@@ -22,6 +22,29 @@ object SOFTypedAnimations {
     val HAMMER_SPRINTING = createMoveStateAnim("hammer_sprinting")
     @JvmStatic
     val HAMMER_FALL = createStateAnim("hammer_fall")
+
+    @JvmStatic
+    val HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()
+        .id("hit_landing")
+        .animName("Hit/landing")
+        .provider {
+            onEnable {
+                val entity = holder.animatable as? Entity ?: return@onEnable
+                entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
+                entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, true)
+                entity.putFlag(SparkFlags.DISARM, true)
+                entity.putFlag(SparkFlags.SILENCE, true)
+            }
+
+            onEnd {
+                val entity = holder.animatable as? Entity ?: return@onEnd
+                entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, false)
+                entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, false)
+                entity.putFlag(SparkFlags.DISARM, false)
+                entity.putFlag(SparkFlags.SILENCE, false)
+            }
+        }
+        .build()
 
     fun createStateAnim(name: String, provider: TypedAnimProvider = {}) = SpiritOfFight.REGISTER.typedAnimation()
         .id(name)

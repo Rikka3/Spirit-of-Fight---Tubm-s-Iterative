@@ -1,11 +1,11 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.feature.hit.AttackStrength
-import cn.solarmoon.spirit_of_fight.feature.hit.Chop
-import cn.solarmoon.spirit_of_fight.feature.hit.Stab
-import cn.solarmoon.spirit_of_fight.feature.hit.Swipe
-import cn.solarmoon.spirit_of_fight.feature.hit.Upstroke
+import cn.solarmoon.spirit_of_fight.hit.AttackStrength
+import cn.solarmoon.spirit_of_fight.hit.type.Chop
+import cn.solarmoon.spirit_of_fight.hit.type.Stab
+import cn.solarmoon.spirit_of_fight.hit.type.Swipe
+import cn.solarmoon.spirit_of_fight.hit.type.Upstroke
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredRegister
 import java.util.function.Supplier

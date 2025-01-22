@@ -1,23 +1,32 @@
 package cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit
 
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.FightSpiritPayload
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.network.codec.ByteBufCodecs
+import net.minecraft.network.codec.StreamCodec
 import net.minecraft.util.Mth
 import net.neoforged.neoforge.network.PacketDistributor
 
-class FightSpirit {
-
-    var value = 0
-    var maxValue = 100
-    var fadeTick = 0
-    var maxTickToFade = 100
-    var baseGrowth = 20
+class FightSpirit(
+    var value: Int = 0,
+    var maxValue: Int = 100,
+    var fadeTick: Int = 0,
+    var maxTickToFade: Int = 100,
+    var baseGrowth: Int = 20,
+) {
 
     var valueCache = 0
 
     val shouldFade get() = value > 0 && fadeTick >= maxTickToFade
     val isFull get() = value >= maxValue
+
+    fun reset(spirit: FightSpirit) {
+        value = spirit.value
+        maxValue = spirit.maxValue
+        fadeTick = spirit.fadeTick
+        maxTickToFade = spirit.maxTickToFade
+        baseGrowth = spirit.baseGrowth
+    }
 
     fun getProgress(partialTicks: Float = 1f): Float {
         return (Mth.lerp(partialTicks, valueCache.toFloat(), value.toFloat()) / maxValue).coerceIn(0f, 1f)
@@ -53,8 +62,8 @@ class FightSpirit {
         }
     }
 
-    fun syncToClient(entityId: Int, operation: FightSpiritPayload.Type) {
-        PacketDistributor.sendToAllPlayers(FightSpiritPayload(entityId, value, operation.id))
+    fun syncToClient(entityId: Int) {
+        PacketDistributor.sendToAllPlayers(FightSpiritPayload(entityId, this))
     }
 
     companion object {
@@ -66,10 +75,18 @@ class FightSpirit {
                 Codec.INT.fieldOf("tick").forGetter { it.fadeTick },
                 Codec.INT.fieldOf("max_tick").forGetter { it.maxTickToFade },
                 Codec.INT.fieldOf("base_growth").forGetter { it.baseGrowth }
-            ).apply(it) { a,b,c,d,e ->
-                FightSpirit().apply { value = a; maxValue = b; fadeTick = c; maxTickToFade = d; baseGrowth = e }
-            }
+            ).apply(it, ::FightSpirit)
         }
+
+        @JvmStatic
+        val STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.INT, FightSpirit::value,
+            ByteBufCodecs.INT, FightSpirit::maxValue,
+            ByteBufCodecs.INT, FightSpirit::fadeTick,
+            ByteBufCodecs.INT, FightSpirit::maxTickToFade,
+            ByteBufCodecs.INT, FightSpirit::baseGrowth,
+            ::FightSpirit
+        )
     }
 
 }

@@ -2,7 +2,6 @@ package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.data.SOFBlockTags
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
-import cn.solarmoon.spirit_of_fight.data.SOFSkillTags
 import net.minecraft.data.DataProvider
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
@@ -22,7 +21,6 @@ object SOFDataGenerater {
 
         val blockTags = SOFBlockTags(output, lookupProvider, helper)
         addProvider(blockTags)
-        addProvider(SOFSkillTags(output, lookupProvider, helper))
         addProvider(SOFItemTags(output, lookupProvider, blockTags.contentsGetter(), helper))
     }
 
