@@ -1,8 +1,8 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.ClientOperationPayload
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.FightSpiritPayload
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.MovePayload
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
+import cn.solarmoon.spirit_of_fight.spirit.FightSpiritPayload
+import cn.solarmoon.spirit_of_fight.sync.MovePayload
 import cn.solarmoon.spirit_of_fight.hit.HitAnimPayload
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent

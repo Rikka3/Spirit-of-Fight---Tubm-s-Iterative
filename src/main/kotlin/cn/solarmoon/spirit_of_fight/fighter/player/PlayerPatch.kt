@@ -1,15 +1,15 @@
 package cn.solarmoon.spirit_of_fight.fighter.player
 
 import cn.solarmoon.spark_core.animation.vanilla.asAnimatable
-import cn.solarmoon.spark_core.entity.attack.AttackSystem
 import cn.solarmoon.spark_core.phys.createAnimatedCubeBody
 import cn.solarmoon.spark_core.skill.controller.getAllSkillControllers
-import cn.solarmoon.spirit_of_fight.feature.body.createGuardAnimBody
-import cn.solarmoon.spirit_of_fight.feature.body.createSkillAttackAnimBody
+import cn.solarmoon.spirit_of_fight.body.createGuardAnimBody
+import cn.solarmoon.spirit_of_fight.body.createSkillAttackAnimBody
 import cn.solarmoon.spirit_of_fight.fighter.EntityPatch
 import cn.solarmoon.spirit_of_fight.registry.common.SOFBodyTypes
 import cn.solarmoon.spirit_of_fight.skill.controller.AxeFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.BaimeiFightSkillController
+import cn.solarmoon.spirit_of_fight.skill.controller.BowFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.HammerFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.MaceFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.SwordFightSkillController
@@ -29,10 +29,6 @@ class PlayerPatch(
     val guardBodyRight = lazy { createGuardAnimBody("rightItem", animatable, level) }
     val guardBodyLeft = lazy { createGuardAnimBody("leftItem", animatable, level) }
 
-    init {
-
-    }
-
     override fun onJoinLevel(level: Level) {
         super.onJoinLevel(level)
 
@@ -50,6 +46,7 @@ class PlayerPatch(
         player.getAllSkillControllers().add(HammerFightSkillController(player, player.asAnimatable()))
         player.getAllSkillControllers().add(MaceFightSkillController(player, player.asAnimatable()))
         player.getAllSkillControllers().add(BaimeiFightSkillController(player, player.asAnimatable()))
+        player.getAllSkillControllers().add(BowFightSkillController(player, player.asAnimatable()))
     }
 
     override fun getMainAttackBody(): DBody? {

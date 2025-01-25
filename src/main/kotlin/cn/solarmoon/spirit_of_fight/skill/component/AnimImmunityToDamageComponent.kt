@@ -2,6 +2,9 @@ package cn.solarmoon.spirit_of_fight.skill.component
 
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
 import cn.solarmoon.spirit_of_fight.feature.fight_skill.skill.SkillComponent
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.damagesource.DamageType
+import net.minecraft.world.damagesource.DamageTypes
 import net.minecraft.world.entity.Entity
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent
 

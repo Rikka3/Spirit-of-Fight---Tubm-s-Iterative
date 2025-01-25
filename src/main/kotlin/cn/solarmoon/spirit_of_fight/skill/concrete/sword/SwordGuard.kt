@@ -6,5 +6,5 @@ import net.minecraft.world.entity.LivingEntity
 
 class SwordGuard(
     holder: IEntityAnimatable<out LivingEntity>
-): GuardSkill(holder, "sword:guard") {
+): GuardSkill(holder, "sword:guard", true) {
 }

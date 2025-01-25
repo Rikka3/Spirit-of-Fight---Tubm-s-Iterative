@@ -4,14 +4,12 @@ import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC1
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC2
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldGuardSkill
-import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldParrySkill
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordCombo0
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordCombo1
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordCombo2
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordDodge
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordGuard
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordJumpAttack
-import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordParry
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.SwordSprintingAttack
 import cn.solarmoon.spirit_of_fight.skill.concrete.sword.剑战技
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ChangeableComboControlComponent
@@ -19,10 +17,8 @@ import cn.solarmoon.spirit_of_fight.skill.controller.component.DodgeControlCompo
 import cn.solarmoon.spirit_of_fight.skill.controller.component.GuardControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.HoldReleaseSkillControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.JumpAttackControlComponent
-import cn.solarmoon.spirit_of_fight.skill.controller.component.ParryControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldComboControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldGuardControlComponent
-import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldParryControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.SprintAttackControlComponent
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.entity.LivingEntity
@@ -42,14 +38,12 @@ class SwordFightSkillController(
     val sprintingAttack = addSkill(SwordSprintingAttack(animatable))
     val jumpAttack = addSkill(SwordJumpAttack(animatable))
     val guard = addSkill(SwordGuard(animatable))
-    val parry = addSkill(SwordParry(animatable))
     val dodge = addSkill(SwordDodge(animatable))
     val special = addSkill(剑战技(animatable))
 
     val shieldComboC1 = addSkill(ShieldComboC1(animatable))
     val shieldComboC2 = addSkill(ShieldComboC2(animatable))
     val shieldGuard = addSkill(ShieldGuardSkill(animatable))
-    val shieldParry = addSkill(ShieldParrySkill(animatable))
 
     init {
         addComponent(ShieldComboControlComponent(combo0, shieldComboC1, shieldComboC2, combo2))
@@ -61,9 +55,7 @@ class SwordFightSkillController(
         addComponent(DodgeControlComponent(dodge))
 
         addComponent(ShieldGuardControlComponent(shieldGuard))
-        addComponent(ShieldParryControlComponent(shieldGuard, shieldParry))
         addComponent(GuardControlComponent(guard))
-        addComponent(ParryControlComponent(guard, parry))
     }
 
     override fun isAvailable(): Boolean {

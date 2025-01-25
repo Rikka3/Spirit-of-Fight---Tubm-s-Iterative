@@ -12,6 +12,9 @@ import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spirit_of_fight.skill.component.AnimImmunityToDamageComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.damagesource.DamageType
+import net.minecraft.world.damagesource.DamageTypes
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent
@@ -24,6 +27,13 @@ open class DodgeSkill(
     var direction: MoveDirection? = null
     var moveVector: Vec3 = Vec3.ZERO
     var check = true
+
+    open val unBlockedDamageType = mutableListOf<ResourceKey<DamageType>>(
+        DamageTypes.IN_FIRE,
+        DamageTypes.IN_WALL,
+        DamageTypes.DROWN,
+        DamageTypes.STARVE
+    )
 
     val dodgeAnimMap = buildMap {
         MoveDirection.entries.forEach {
@@ -58,7 +68,7 @@ open class DodgeSkill(
                         }
                     }
                 }
-            ) { getImmunityCondition(this) })
+            ) { event -> unBlockedDamageType.all { !event.source.typeHolder().`is`(it) } && getImmunityCondition(this) })
             addComponent(AnimMoveSetComponent(entity, it) { getMoveSet(this) })
         }
     }

@@ -13,6 +13,8 @@ class ShieldGuardControlComponent(
     private val isHoldingShield: LivingEntity.() -> Boolean = { offhandItem.`is`(Tags.Items.TOOLS_SHIELD) }
 ): GuardControlComponent(guard) {
 
+    override val name: String = "shieldGuard"
+
     fun isHoldingShield(entity: LivingEntity) = isHoldingShield.invoke(entity)
 
     override fun localControl(

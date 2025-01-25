@@ -1,18 +1,15 @@
 package cn.solarmoon.spirit_of_fight.skill.concrete.axe
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.phys.toRadians
 import cn.solarmoon.spark_core.skill.EntityAnimSkill
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.getFightSpirit
+import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
-import net.minecraft.world.effect.MobEffectInstance
-import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.div
@@ -37,6 +34,10 @@ class 斧子投技(
                 }
             }
         }
+
+        onSwitch {
+            if (it?.name !in listOf(pullAnim.name, hitAnim.name)) end()
+        }
     }
 
     val pullAnim = createAnimInstance("axe:skill_pull") {
@@ -54,6 +55,10 @@ class 斧子投技(
             grab?.putFlag(SparkFlags.SILENCE, true)
             grab?.putFlag(SparkFlags.DISARM, true)
             grab?.putFlag(SparkFlags.DISABLE_PRE_INPUT, true)
+        }
+
+        onEnd {
+            end()
         }
     }
 
@@ -75,6 +80,10 @@ class 斧子投技(
             // 玩家强击退霸体
             entity.deltaMovement = Vec3(0.0, entity.deltaMovement.y, 0.0)
         }
+
+        onEnd {
+            end()
+        }
     }
 
     init {
@@ -94,7 +103,7 @@ class 斧子投技(
 
         addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(), { 2.0 },
             fightSpiritModifier = null
-        ) { time in 0.8..1.1 })
+        ) { time in 0.75..1.15 })
     }
 
     override fun onActivate() {

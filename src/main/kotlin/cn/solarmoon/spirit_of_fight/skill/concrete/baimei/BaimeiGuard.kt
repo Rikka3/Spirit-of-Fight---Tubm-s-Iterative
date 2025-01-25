@@ -6,5 +6,5 @@ import net.minecraft.world.entity.LivingEntity
 
 class BaimeiGuard(
     holder: IEntityAnimatable<out LivingEntity>
-): GuardSkill(holder, "baimei:guard") {
+): GuardSkill(holder, "baimei:guard", false) {
 }

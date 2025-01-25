@@ -23,13 +23,23 @@ class SOFItemTags(
 
     override fun addTags(provider: HolderLookup.Provider) {
         tag(FORGE_HAMMER).add(
-            SOFItems.IRON_HAMMER.get()
+            SOFItems.WOODEN_WARHAMMER.get(),
+            SOFItems.STONE_WARHAMMER.get(),
+            SOFItems.IRON_WARHAMMER.get(),
+            SOFItems.GOLDEN_WARHAMMER.get(),
+            SOFItems.DIAMOND_WARHAMMER.get(),
+            SOFItems.NETHERITE_WARHAMMER.get()
+        )
+        tag(FORGE_GLOVES).add(
+            SOFItems.GLOVE.get()
         )
     }
 
     companion object {
         @JvmStatic
         val FORGE_HAMMER = forgeTag("hammer")
+        @JvmStatic
+        val FORGE_GLOVES = forgeTag("gloves")
 
         private fun modTag(path: String): TagKey<Item> {
             Tags.Items.BUDS

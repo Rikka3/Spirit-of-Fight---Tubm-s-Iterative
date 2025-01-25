@@ -1,10 +1,9 @@
 package cn.solarmoon.spirit_of_fight.fighter
 
 import cn.solarmoon.spark_core.entity.attack.AttackSystem
-import cn.solarmoon.spirit_of_fight.feature.body.createEmptyBody
+import cn.solarmoon.spirit_of_fight.body.createEmptyBody
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.level.Level
-import org.ode4j.ode.DBody
 
 open class EntityPatch(
     val entity: Entity

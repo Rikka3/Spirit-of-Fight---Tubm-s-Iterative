@@ -28,6 +28,7 @@ public class SpiritOfFight {
             SOFItemInHandModelRegister.register(modEventBus);
         }
 
+        SOFCreativeTab.register(modEventBus);
         SOFRegistries.register();
         SOFItems.register();
         SOFAttachments.register();

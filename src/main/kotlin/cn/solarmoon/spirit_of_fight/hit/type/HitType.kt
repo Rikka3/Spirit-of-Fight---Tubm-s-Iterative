@@ -53,6 +53,16 @@ interface HitType {
      */
     fun getHitAnimation(target: IAnimatable<*>, strength: AttackStrength, boneName: String, posSide: Side, hitSide: Side): AnimInstance?
 
+    /**
+     * 例：攻击者发造成攻击时，攻击者若在受击者的正前方，那么[posSide]会返回[Side.FRONT]，如果击打到了左腿，那么[boneName]大概会返回["leftLeg"]，如果攻击是从以受击者视角的左边袭来的，那么[hitSide]会返回[Side.LEFT]
+     * @param target 受击目标
+     * @param strength 受击力度
+     * @param boneName 受击骨骼
+     * @param posSide 攻击者所在的相对于受击者的四个朝向（前后左右）
+     * @param hitSide 攻击碰撞所在的相对于受击者的**左右**方向
+     */
+    fun getDeathAnimation(target: IAnimatable<*>, strength: AttackStrength, boneName: String, posSide: Side, hitSide: Side): AnimInstance?
+
     fun whenAttackEntry(body: DBody) {}
 
     fun whenAttacking(body: DBody) {}

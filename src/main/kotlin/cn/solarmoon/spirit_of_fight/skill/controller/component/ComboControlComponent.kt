@@ -1,11 +1,9 @@
 package cn.solarmoon.spirit_of_fight.skill.controller.component
 
 import cn.solarmoon.spark_core.entity.preinput.PreInput
-import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.skill.Skill
-import cn.solarmoon.spark_core.skill.controller.getSkillController
 import cn.solarmoon.spark_core.util.CycleIndex
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.ClientOperationPayload
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.SkillControlComponent

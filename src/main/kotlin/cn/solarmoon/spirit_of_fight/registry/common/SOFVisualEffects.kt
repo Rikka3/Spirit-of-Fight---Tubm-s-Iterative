@@ -1,6 +1,6 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
-import cn.solarmoon.spirit_of_fight.feature.lock_on.LockOnRenderer
+import cn.solarmoon.spirit_of_fight.lock_on.LockOnRenderer
 
 object SOFVisualEffects {
 

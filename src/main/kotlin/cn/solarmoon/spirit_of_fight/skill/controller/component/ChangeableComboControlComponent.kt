@@ -12,6 +12,8 @@ class ChangeableComboControlComponent(
     val inputWindow: IntRange = 1..4
 ): ComboControlComponent(*comboList) {
 
+    override val name: String = "changeableCombo"
+
     override fun localControl(
         controller: PlayerLocalController,
         player: LocalPlayer,

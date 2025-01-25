@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spark_core.SparkCore
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.FightSpirit
+import cn.solarmoon.spirit_of_fight.spirit.FightSpirit
 
 object SOFAttachments {
     @JvmStatic

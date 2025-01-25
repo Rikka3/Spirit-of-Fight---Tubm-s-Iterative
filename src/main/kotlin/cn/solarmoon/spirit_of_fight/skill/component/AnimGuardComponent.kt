@@ -35,6 +35,7 @@ class AnimGuardComponent(
 
     override fun start() {
         anim.shouldTurnBody = true
+        isEnabled = true
 
         if (enableGuard == null) {
             anim.onEnable {

@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.client
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.FightSpiritGui
+import cn.solarmoon.spirit_of_fight.spirit.FightSpiritGui
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent

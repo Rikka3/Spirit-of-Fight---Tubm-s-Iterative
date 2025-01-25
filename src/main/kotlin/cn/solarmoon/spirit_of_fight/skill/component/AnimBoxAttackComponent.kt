@@ -7,8 +7,8 @@ import cn.solarmoon.spark_core.entity.getAttackAnimSpeed
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
 import cn.solarmoon.spirit_of_fight.feature.fight_skill.skill.TriggeredSkillComponent
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.commonAdd
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.getFightSpirit
+import cn.solarmoon.spirit_of_fight.spirit.commonAdd
+import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
 import cn.solarmoon.spirit_of_fight.hit.type.HitType
 import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import cn.solarmoon.spirit_of_fight.flag.SOFFlags
@@ -67,9 +67,8 @@ class AnimBoxAttackComponent(
     }
 
     fun whenAttackExit() {
-        stop()
-
         hitType.whenAttackExit(body)
+        stop()
     }
 
     fun whenAboutToAttack(o1: DGeom, o2: DGeom, buffer: DContactBuffer, attackSystem: AttackSystem) {

@@ -4,25 +4,23 @@ import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC1
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC2
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldGuardSkill
-import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldParrySkill
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceCombo0
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceCombo1
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceCombo2
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceDodge
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceGuard
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceJumpAttack
-import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceParry
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.MaceSprintingAttack
+import cn.solarmoon.spirit_of_fight.skill.concrete.mace.天神下凡
 import cn.solarmoon.spirit_of_fight.skill.concrete.mace.锤战技
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ChangeableComboControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.DodgeControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.GuardControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.JumpAttackControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.HoldReleaseSkillControlComponent
-import cn.solarmoon.spirit_of_fight.skill.controller.component.ParryControlComponent
+import cn.solarmoon.spirit_of_fight.skill.controller.component.FallAttackControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldComboControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldGuardControlComponent
-import cn.solarmoon.spirit_of_fight.skill.controller.component.ShieldParryControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.SprintAttackControlComponent
 import net.minecraft.world.entity.LivingEntity
 import net.neoforged.neoforge.common.Tags
@@ -42,16 +40,16 @@ class MaceFightSkillController(
     val sprintingAttack = addSkill(MaceSprintingAttack(animatable))
     val jumpAttack = addSkill(MaceJumpAttack(animatable))
     val guard = addSkill(MaceGuard(animatable))
-    val parry = addSkill(MaceParry(animatable))
     val dodge = addSkill(MaceDodge(animatable))
     val special = addSkill(锤战技(animatable))
+    val jumpSpecial = addSkill(天神下凡(animatable))
 
     val shieldComboC1 = addSkill(ShieldComboC1(animatable))
     val shieldComboC2 = addSkill(ShieldComboC2(animatable))
     val shieldGuard = addSkill(ShieldGuardSkill(animatable))
-    val shieldParry = addSkill(ShieldParrySkill(animatable))
 
     init {
+        addComponent(FallAttackControlComponent(jumpSpecial))
         addComponent(ShieldComboControlComponent(combo0, shieldComboC1, shieldComboC2, combo2))
 
         addComponent(HoldReleaseSkillControlComponent(special))
@@ -61,9 +59,7 @@ class MaceFightSkillController(
         addComponent(DodgeControlComponent(dodge))
 
         addComponent(ShieldGuardControlComponent(shieldGuard))
-        addComponent(ShieldParryControlComponent(shieldGuard, shieldParry))
         addComponent(GuardControlComponent(guard))
-        addComponent(ParryControlComponent(guard, parry))
     }
 
     override fun isAvailable(): Boolean {

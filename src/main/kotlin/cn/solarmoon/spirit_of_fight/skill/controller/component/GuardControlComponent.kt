@@ -1,11 +1,12 @@
 package cn.solarmoon.spirit_of_fight.skill.controller.component
 
 import cn.solarmoon.spark_core.entity.preinput.PreInput
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.ClientOperationPayload
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.GuardSkill
 import cn.solarmoon.spirit_of_fight.skill.controller.SkillControlComponent
+import net.minecraft.client.Minecraft
 import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.world.entity.Entity
@@ -41,6 +42,9 @@ open class GuardControlComponent(
 
         return controller.onPress(SOFKeyMappings.GUARD) {
             if (guard.isActive()) return@onPress false
+
+            // 防止和使用物品冲突
+            Minecraft.getInstance().options.keyUse.isDown = false
 
             preInput.setInput("guard", 5) {
                 guard.activate()

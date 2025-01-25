@@ -1,14 +1,11 @@
 package cn.solarmoon.spirit_of_fight.skill.concrete.sword
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.entity.getForwardMoveVector
 import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.skill.EntityAnimSkill
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.commonAdd
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.getFightSpirit
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
@@ -32,10 +29,9 @@ class SwordSprintingAttack(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get(), { 1.25 }) { time in 0.25..0.55 }
-        )
-        addComponent(AnimPreInputAcceptComponent(0.75, entity.getPreInput(), comboAnim))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.25) entity.getForwardMoveVector(1/5f) else if (time in 0.25..0.55) entity.getForwardMoveVector(1/2.25f) else null })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get(), { 1.25 }) { time in 0.15..0.45 })
+        addComponent(AnimPreInputAcceptComponent(0.65, entity.getPreInput(), comboAnim))
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.15) entity.getForwardMoveVector(1/4f) else if (time in 0.15..0.55) entity.getForwardMoveVector(1/2f) else null })
     }
 
     override fun onActivate() {

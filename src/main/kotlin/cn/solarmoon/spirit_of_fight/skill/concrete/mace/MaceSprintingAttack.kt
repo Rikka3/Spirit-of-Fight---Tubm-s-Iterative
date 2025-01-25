@@ -1,14 +1,11 @@
 package cn.solarmoon.spirit_of_fight.skill.concrete.mace
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.entity.getForwardMoveVector
 import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.skill.EntityAnimSkill
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.commonAdd
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.getFightSpirit
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
@@ -32,9 +29,9 @@ class MaceSprintingAttack(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.KNOCKDOWN_STAB.get(), { 1.25 }) { time in 1.25..1.85 })
-        addComponent(AnimPreInputAcceptComponent(2.15, entity.getPreInput(), comboAnim))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.6) entity.getForwardMoveVector(1/5f) else if (time in 1.25..1.75) entity.getForwardMoveVector(1.5f - comboAnim.getProgress().toFloat()) else null })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.KNOCKDOWN_STAB.get(), { 1.25 }) { time in 0.25..1.0 })
+        addComponent(AnimPreInputAcceptComponent(1.25, entity.getPreInput(), comboAnim))
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.25..0.85) entity.getForwardMoveVector(1.35f - comboAnim.getProgress().toFloat()) else null })
     }
 
     override fun onActivate() {

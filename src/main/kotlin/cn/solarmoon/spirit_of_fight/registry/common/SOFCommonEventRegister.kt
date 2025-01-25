@@ -1,8 +1,8 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.attack.AttackModifier
+import cn.solarmoon.spirit_of_fight.hit.AttackModifier
 import cn.solarmoon.spirit_of_fight.skill.component.SkillComponentApplier
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.FightSpiritApplier
+import cn.solarmoon.spirit_of_fight.spirit.FightSpiritApplier
 import cn.solarmoon.spirit_of_fight.hit.HitAnimationApplier
 import cn.solarmoon.spirit_of_fight.fighter.PatchApplier
 import cn.solarmoon.spirit_of_fight.skill.controller.FightStateAnimModifier

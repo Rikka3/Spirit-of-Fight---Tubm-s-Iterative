@@ -62,7 +62,7 @@ abstract class FightSkillController<T: LivingEntity>(
 
     override fun onEntry() {
         super.onEntry()
-        (holder as? LocalPlayer)?.getStateMachine()?.processEventBlocking(PlayerStateAnimMachine.ResetEvent)
+        if (holder.level().isClientSide) (holder as? LocalPlayer)?.getStateMachine()?.processEventBlocking(PlayerStateAnimMachine.ResetEvent)
     }
 
     override fun onExit() {
@@ -71,7 +71,7 @@ abstract class FightSkillController<T: LivingEntity>(
         if (allActiveSkills.isNotEmpty()) {
             animatable.animController.setAnimation(null, 2)
         }
-        (holder as? LocalPlayer)?.getStateMachine()?.processEventBlocking(PlayerStateAnimMachine.ResetEvent)
+        if (holder.level().isClientSide) (holder as? LocalPlayer)?.getStateMachine()?.processEventBlocking(PlayerStateAnimMachine.ResetEvent)
     }
 
 }

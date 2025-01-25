@@ -19,7 +19,6 @@ object PlayerLocalController: LocalInputController() {
     override fun laterInit() {
         addTickingKey(attackKey)
         addTickingKey(SOFKeyMappings.GUARD)
-        addTickingKey(SOFKeyMappings.PARRY)
         addTickingKey(SOFKeyMappings.SPECIAL_ATTACK)
     }
 
@@ -28,6 +27,14 @@ object PlayerLocalController: LocalInputController() {
 
         skillController.allComponents.any {
             it.localControl(this, player, player.getPreInput(), input)
+        }
+
+        // 把跳跃加入预输入防止卡手
+        if (!player.mayFly() && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
+            player.getPreInput().setInput("jump") {
+                player.jumping = true
+                player.jumpFromGround()
+            }
         }
 
         // 不在进行任何技能时可释放预输入
@@ -42,12 +49,6 @@ object PlayerLocalController: LocalInputController() {
             event.isCanceled = true
         } else if (player.getTypedSkillController<FightSkillController<*>>()?.isPlaying() == true) {
             // 使用任何技能时都不能使用物品和交互
-            event.setSwingHand(false)
-            event.isCanceled = true
-        }
-
-        // 格挡按下一瞬阻止使用物品
-        if (player.getTypedSkillController<FightSkillController<*>>() != null && SOFKeyMappings.GUARD.isDown && Minecraft.getInstance().options.keyUse.isDown) {
             event.setSwingHand(false)
             event.isCanceled = true
         }

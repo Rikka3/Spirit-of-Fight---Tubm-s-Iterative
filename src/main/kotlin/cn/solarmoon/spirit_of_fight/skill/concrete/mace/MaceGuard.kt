@@ -6,5 +6,5 @@ import net.minecraft.world.entity.LivingEntity
 
 class MaceGuard(
     holder: IEntityAnimatable<out LivingEntity>
-): GuardSkill(holder, "mace:guard") {
+): GuardSkill(holder, "mace:guard", true) {
 }

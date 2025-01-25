@@ -6,5 +6,5 @@ import net.minecraft.world.entity.LivingEntity
 
 class AxeGuard(
     holder: IEntityAnimatable<out LivingEntity>
-): GuardSkill(holder, "axe:guard") {
+): GuardSkill(holder, "axe:guard", true) {
 }

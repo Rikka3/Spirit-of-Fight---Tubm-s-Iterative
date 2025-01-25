@@ -7,11 +7,9 @@ import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.getFlag
 import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
-import cn.solarmoon.spirit_of_fight.feature.lock_on.LockOnController
-import cn.solarmoon.spirit_of_fight.fighter.getPatch
+import cn.solarmoon.spirit_of_fight.lock_on.LockOnController
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.util.Mth
-import net.minecraft.world.entity.Entity
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.client.event.ViewportEvent
 import org.joml.Vector2f

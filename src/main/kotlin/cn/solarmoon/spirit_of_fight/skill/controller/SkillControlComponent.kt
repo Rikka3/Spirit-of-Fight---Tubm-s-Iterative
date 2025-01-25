@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.skill.controller
 
 import cn.solarmoon.spark_core.entity.preinput.PreInput
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.ClientOperationPayload
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer

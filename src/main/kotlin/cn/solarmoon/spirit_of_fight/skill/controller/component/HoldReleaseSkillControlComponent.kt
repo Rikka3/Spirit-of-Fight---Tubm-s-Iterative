@@ -2,8 +2,8 @@ package cn.solarmoon.spirit_of_fight.skill.controller.component
 
 import cn.solarmoon.spark_core.entity.preinput.PreInput
 import cn.solarmoon.spark_core.skill.Skill
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.spirit.getFightSpirit
-import cn.solarmoon.spirit_of_fight.feature.fight_skill.sync.ClientOperationPayload
+import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.skill.IHoldReleaseSkill
@@ -17,7 +17,7 @@ class HoldReleaseSkillControlComponent(
     val skill: IHoldReleaseSkill
 ): SkillControlComponent {
 
-    override val name: String = "maceSkill"
+    override val name: String = "holdRelease"
 
     override fun localControl(
         controller: PlayerLocalController,
