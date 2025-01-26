@@ -10,6 +10,7 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.world.entity.LivingEntity
 
 class AxeCombo0(
@@ -33,6 +34,7 @@ class AxeCombo0(
         addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_CHOP.get()) { time in 0.25..0.5 })
         addComponent(AnimPreInputAcceptComponent(0.5, entity.getPreInput(), comboAnim))
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.20..0.3) entity.getForwardMoveVector(1/8f) else null })
+        addComponent(StuckEffectComponent(10, 0.05) { true })
     }
 
     override fun onActivate() {

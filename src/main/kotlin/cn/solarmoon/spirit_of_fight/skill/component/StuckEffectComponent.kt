@@ -13,7 +13,7 @@ import org.ode4j.ode.DGeom
 class StuckEffectComponent(
     val time: Int = 5,
     val speed: Double = 0.05,
-    val enable: () -> Boolean
+    val enable: () -> Boolean = { true }
 ): SkillComponent {
 
     fun whenTargetAttacked(o1: DGeom, o2: DGeom, buffer: DContactBuffer, attackSystem: AttackSystem) {
