@@ -13,6 +13,9 @@ import cn.solarmoon.spirit_of_fight.hit.type.HitType
 import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import cn.solarmoon.spirit_of_fight.flag.SOFFlags
 import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
+import net.minecraft.sounds.SoundEvent
+import net.minecraft.sounds.SoundEvents
+import net.minecraft.sounds.SoundSource
 import net.minecraft.world.entity.Entity
 import org.ode4j.ode.DBody
 import org.ode4j.ode.DContactBuffer
@@ -26,6 +29,7 @@ class AnimBoxAttackComponent(
     private val damageMultiplier: AnimInstance.() -> Double = { 1.0 },
     val baseAttackSpeed: (() -> Double?)? = { entity.getTypedSkillController<FightSkillController<*>>()?.baseAttackSpeed },
     val body: DBody = entity.getPatch().getMainAttackBody(),
+    val soundEvent: SoundEvent = SoundEvents.PLAYER_ATTACK_SWEEP,
     val whenAboutToAttack: (DGeom, DGeom, DContactBuffer, AttackSystem, Double) -> Unit = { a,b,c,d,e -> },
     val whenTargetAttacked: (DGeom, DGeom, DContactBuffer, AttackSystem, Double) -> Unit = { a,b,c,d,e -> },
     val fightSpiritModifier: ((DGeom, DGeom, DContactBuffer, AttackSystem, Double) -> Unit)? = { o1, o2, buffer, attackSystem, dm -> entity.getFightSpirit().commonAdd(o1, o2, dm) },
@@ -62,6 +66,7 @@ class AnimBoxAttackComponent(
         body.enable()
         entity.putFlag(SOFFlags.ATTACKING, true)
         hitType.whenAttackEntry(body)
+        entity.level().playSound(null, entity.blockPosition().above(), soundEvent, SoundSource.PLAYERS, 0.75f, 1f - hitType.strength.value * 0.5f / 3f)
     }
 
     fun whenAttacking() {

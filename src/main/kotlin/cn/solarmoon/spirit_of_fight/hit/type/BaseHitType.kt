@@ -39,11 +39,6 @@ import java.awt.Color
 
 abstract class BaseHitType: HitType {
 
-    override fun whenAttackEntry(body: DBody) {
-        val entity = body.owner as? Entity ?: return
-        entity.level().playSound(null, entity.blockPosition().above(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.75f, 1f - strength.value * 0.5f / 3f)
-    }
-
     override fun whenAttacking(body: DBody) {
         val entity = body.owner as? Entity ?: return
         val animatable = entity as? IEntityAnimatable<*> ?: return
