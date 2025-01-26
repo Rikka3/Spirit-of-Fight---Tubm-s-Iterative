@@ -11,6 +11,7 @@ import cn.solarmoon.spark_core.registry.common.SparkBodyTypes
 import cn.solarmoon.spark_core.skill.controller.getSkillController
 import cn.solarmoon.spirit_of_fight.registry.common.SOFBodyTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.level.Level
 import org.ode4j.ode.DBody
@@ -45,6 +46,7 @@ fun createSkillAttackAnimBody(boneName: String, owner: IEntityAnimatable<*>, lev
             entity.getSkillController()?.allActiveSkills?.forEach {
                 it.components.forEach {
                     if (it is AnimBoxAttackComponent && it.isActive) it.whenTargetAttacked(o1, o2, buffer, attackSystem)
+                    if (it is StuckEffectComponent) it.whenTargetAttacked(o1, o2, buffer, attackSystem)
                 }
             }
         }

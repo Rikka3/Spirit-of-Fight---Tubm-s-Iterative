@@ -86,10 +86,9 @@ abstract class BaseHitType: HitType {
         attackSystem: AttackSystem,
         damageMultiply: Double
     ) {
-        val entity = o1.body.owner as? IEntityAnimatable<*> ?: return
-        entity.animController.changeSpeed(5, 0.05)
+        val entity = o1.body.owner as? Entity ?: return
 
-        if (FMLEnvironment.dist.isClient && entity.animatable == Minecraft.getInstance().player) {
+        if (FMLEnvironment.dist.isClient && entity == Minecraft.getInstance().player) {
             SparkVisualEffects.CAMERA_SHAKE.shake(1 + strength.value, 0.5f + 0.25f * strength.value, 0.5f + strength.value)
         }
     }
