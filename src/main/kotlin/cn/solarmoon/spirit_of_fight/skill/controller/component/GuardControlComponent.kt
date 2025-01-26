@@ -19,8 +19,6 @@ open class GuardControlComponent(
 
     override val name: String = "guard"
 
-    var guardContainTick = 0
-
     override fun localControl(
         controller: PlayerLocalController,
         player: LocalPlayer,
@@ -28,17 +26,14 @@ open class GuardControlComponent(
         input: Input
     ): Boolean {
         if (!SOFKeyMappings.GUARD.isDown) {
-            guardContainTick++
-            if (guardContainTick > 0) {
-                if (guard.isStanding) {
-                    preInput.setInput("guard_stop") {
-                        guard.end()
-                        sendPackage(player.id, 1)
-                    }
-                    return true
+            if (guard.isActive()) {
+                preInput.setInput("guard_stop") {
+                    guard.end()
+                    sendPackage(player.id, 1)
                 }
+                return true
             }
-        } else guardContainTick = -3
+        }
 
         return controller.onPress(SOFKeyMappings.GUARD) {
             if (guard.isActive()) return@onPress false

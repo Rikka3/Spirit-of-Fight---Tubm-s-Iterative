@@ -40,7 +40,9 @@ class AnimBoxAttackComponent(
     private var newAttackCheck by Delegates.observable(false) { _, old, new -> if (old != new) if (new) whenAttackEntry() else whenAttackExit() }
 
     override fun start() {
-        baseAttackSpeed?.let { it.invoke()?.toFloat()?.let { baseSpeedValue -> entity.getAttackAnimSpeed(baseSpeedValue) } }?.let { anim.speed = it.toDouble() }
+        anim.onEnable {
+            baseAttackSpeed?.let { it.invoke()?.toFloat()?.let { baseSpeedValue -> entity.getAttackAnimSpeed(baseSpeedValue) } }?.let { speed = it.toDouble() }
+        }
 
         anim.onTick {
             newAttackCheck = enableAttack.invoke(this)
@@ -64,6 +66,7 @@ class AnimBoxAttackComponent(
 
     fun whenAttacking() {
         hitType.whenAttacking(body)
+
     }
 
     fun whenAttackExit() {

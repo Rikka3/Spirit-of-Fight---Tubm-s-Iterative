@@ -1,5 +1,8 @@
 package cn.solarmoon.spirit_of_fight.fighter
 
+import cn.solarmoon.spark_core.animation.anim.play.KeyAnimData
+import cn.solarmoon.spark_core.event.BoneUpdateEvent
+import cn.solarmoon.spark_core.phys.toRadians
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.Vec3
 import net.neoforged.bus.api.EventPriority

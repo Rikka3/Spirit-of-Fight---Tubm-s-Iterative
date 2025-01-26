@@ -1,24 +1,15 @@
 package cn.solarmoon.spirit_of_fight.hit
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
-import cn.solarmoon.spark_core.entity.attack.getAttackedData
 import cn.solarmoon.spark_core.entity.attack.getExtraData
 import cn.solarmoon.spark_core.entity.getLateralSide
 import cn.solarmoon.spark_core.entity.getSide
-import cn.solarmoon.spark_core.flag.SparkFlags
-import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.phys.toVec3
-import cn.solarmoon.spirit_of_fight.fighter.getPatch
-import cn.solarmoon.spirit_of_fight.hit.type.HitType
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
-import net.minecraft.network.chat.Component
 import net.minecraft.world.damagesource.DamageTypes
-import net.minecraft.world.entity.Entity
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
-import net.neoforged.neoforge.event.entity.living.LivingFallEvent
 import net.neoforged.neoforge.network.PacketDistributor
 
 object HitAnimationApplier {
@@ -30,12 +21,14 @@ object HitAnimationApplier {
         if (victim !is IEntityAnimatable<*>) return
         val source = event.source
         val sourcePos = source.sourcePosition ?: return
-        val attackData = source.getExtraData() ?: return
+        val attackData = source.getExtraData() ?: let {
+            playRandomLightHitAnim(victim, source)
+            return
+        }
         val hitType = attackData.getHitType() ?: return
         val strength = hitType.strength
         val side = victim.getLateralSide(attackData.damageBox.position.toVec3())
         val posSide = victim.getSide(sourcePos)
-        SparkCore.LOGGER.info(hitType.toString())
         attackData.damagedBody?.let {
             val boneName = it.name
             val hitAnimation = hitType.getHitAnimation(victim, strength, boneName, posSide, side) ?: return

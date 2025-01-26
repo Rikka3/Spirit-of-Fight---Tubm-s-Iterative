@@ -1,6 +1,8 @@
 package cn.solarmoon.spirit_of_fight.skill.concrete.sword
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
+import cn.solarmoon.spark_core.entity.getAttackAnimSpeed
 import cn.solarmoon.spark_core.entity.getForwardMoveVector
 import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.flag.SparkFlags
@@ -30,8 +32,7 @@ class SwordCombo0(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_CHOP.get()) { time in 0.25..0.5 }
-        )
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_CHOP.get()) { time in 0.25..0.5 })
         addComponent(AnimPreInputAcceptComponent(0.5, entity.getPreInput(), comboAnim))
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.20..0.3) entity.getForwardMoveVector(1/8f) else null })
     }
