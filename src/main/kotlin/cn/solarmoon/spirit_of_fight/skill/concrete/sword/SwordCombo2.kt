@@ -27,14 +27,13 @@ class SwordCombo2(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 1.5 }) { time in 0.1..0.5 }
-        )
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 1.5 }) { time in 0.1..0.5 })
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.15..0.3) entity.getForwardMoveVector(1/6f) else null })
     }
 
     override fun onActivate() {
         super.onActivate()
-        holder.animController.setAnimation(comboAnim, 0)
+        holder.animController.setAnimation(comboAnim, 3)
         entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
     }
 

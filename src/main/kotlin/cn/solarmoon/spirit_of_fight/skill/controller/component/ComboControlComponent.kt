@@ -23,6 +23,7 @@ open class ComboControlComponent(
     val maxComboAmount = comboList.size
     val index = CycleIndex(maxComboAmount, maxComboAmount - 1)
     val combo get() = comboList[index.get()]
+    var indexRemain = 0
 
     override fun localControl(
         controller: PlayerLocalController,
@@ -51,9 +52,13 @@ open class ComboControlComponent(
 
     override fun tick(controller: FightSkillController<*>) {
         // 不在播放任意技能时重置连击
-        if (!controller.isPlaying()) {
+        if (!controller.isPlaying() && indexRemain == 0) {
             index.set(maxComboAmount - 1)
         }
+
+        if (combo.isActive()) {
+            indexRemain = 10
+        } else if (indexRemain > 0) indexRemain--
     }
 
     override fun updateMovement(player: LocalPlayer, input: Input, event: MovementInputUpdateEvent) {

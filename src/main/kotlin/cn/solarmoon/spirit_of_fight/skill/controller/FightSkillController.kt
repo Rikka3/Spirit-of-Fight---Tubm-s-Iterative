@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.controller
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.preset_anim.PlayerStateAnimMachine
 import cn.solarmoon.spark_core.animation.preset_anim.getStateMachine
@@ -68,9 +69,8 @@ abstract class FightSkillController<T: LivingEntity>(
     override fun onExit() {
         super.onExit()
         holder.getPreInput().clear()
-        if (allActiveSkills.isNotEmpty()) {
-            animatable.animController.setAnimation(null, 2)
-        }
+        animatable.animController.setAnimation(null, 5)
+        allActiveSkills.forEach { it.end() }
         if (holder.level().isClientSide) (holder as? LocalPlayer)?.getStateMachine()?.processEventBlocking(PlayerStateAnimMachine.ResetEvent)
     }
 

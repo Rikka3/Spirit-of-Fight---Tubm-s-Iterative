@@ -20,7 +20,6 @@ class ChangeableComboControlComponent(
         preInput: PreInput,
         input: Input
     ): Boolean {
-        // 对可变招技能管理器的预输入控制
         if (comboList[switchComboIndex].runTime in inputWindow) preInput.executeIfPresent("combo")
         return super.localControl(controller, player, preInput, input)
     }

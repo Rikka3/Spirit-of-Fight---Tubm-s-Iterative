@@ -37,7 +37,7 @@ class SwordCombo1(
 
     override fun onActivate() {
         super.onActivate()
-        holder.animController.setAnimation(comboAnim, 0)
+        holder.animController.setAnimation(comboAnim, 3)
         entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
     }
 

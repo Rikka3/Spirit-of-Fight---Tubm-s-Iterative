@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.sync
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.BlendAnimation
+import cn.solarmoon.spark_core.animation.vanilla.asAnimatable
 import cn.solarmoon.spark_core.data.SerializeHelper
 import cn.solarmoon.spark_core.registry.common.SparkTypedAnimations
 import cn.solarmoon.spark_core.skill.controller.getTypedSkillController

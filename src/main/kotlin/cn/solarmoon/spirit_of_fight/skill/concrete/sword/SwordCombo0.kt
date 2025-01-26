@@ -39,7 +39,7 @@ class SwordCombo0(
 
     override fun onActivate() {
         super.onActivate()
-        holder.animController.setAnimation(comboAnim, 0)
+        holder.animController.setAnimation(comboAnim, 3)
     }
 
 }

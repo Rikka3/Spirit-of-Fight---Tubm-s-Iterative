@@ -23,7 +23,7 @@ class 锤战技(
 
     val keepAnim = createAnimInstance("mace:skill_keeping") {
         shouldTurnBody = true
-        rejectNewAnim = { name != hitAnim.name }
+        rejectNewAnim = { isActive() && name != hitAnim.name }
         onEnable {
             keepTick = 0
             entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)

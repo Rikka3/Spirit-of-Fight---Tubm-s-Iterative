@@ -53,9 +53,9 @@ abstract class BaseHitType: HitType {
         if (level.isClientSide) {
             level.getPhysLevel().scope.launch {
                 SparkVisualEffects.TRAIL.refresh(box.uuid.toString()) {
-                    val physPT = (level.getPhysLevel() as ClientPhysLevel).partialTicks
-                    box.quaternion = animatable.getWorldBoneMatrix(body.name, physPT, it).getUnnormalizedRotation(Quaterniond()).toDQuaternion()
-                    box.position = animatable.getWorldBonePivot(body.name, physPT, it).add(Vector3f(0f, 0f, -box.lengths.get2().toFloat() / 2).rotate(box.quaternion.toQuaternionf())).toDVector3()
+                    val physPT = (level.getPhysLevel() as ClientPhysLevel).partialTicks.toFloat()
+                    box.quaternion = animatable.getWorldBoneMatrix(body.name, it, physPT).getUnnormalizedRotation(Quaterniond()).toDQuaternion()
+                    box.position = animatable.getWorldBonePivot(body.name, it, physPT).add(Vector3f(0f, 0f, -box.lengths.get2().toFloat() / 2).rotate(box.quaternion.toQuaternionf())).toDVector3()
                     Trail(box, Direction.Axis.Z, color).apply {
                         entity.weaponItem?.let { setTexture(it) }
                     }

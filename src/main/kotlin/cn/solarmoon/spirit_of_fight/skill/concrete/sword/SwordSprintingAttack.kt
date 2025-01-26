@@ -30,7 +30,7 @@ class SwordSprintingAttack(
 
     init {
         addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get(), { 1.25 }) { time in 0.15..0.45 })
-        addComponent(AnimPreInputAcceptComponent(0.65, entity.getPreInput(), comboAnim))
+        addComponent(AnimPreInputAcceptComponent(0.65, entity.getPreInput(), comboAnim, limit = { it != "move" }))
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.15) entity.getForwardMoveVector(1/4f) else if (time in 0.15..0.55) entity.getForwardMoveVector(1/2f) else null })
     }
 
