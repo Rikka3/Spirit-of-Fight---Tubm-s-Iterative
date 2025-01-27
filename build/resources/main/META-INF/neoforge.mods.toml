@@ -41,6 +41,6 @@ file="META-INF/accesstransformer.cfg"
 [[dependencies.spirit_of_fight]]
     modId="spark_core"
     type="required"
-    versionRange="[1.0.297,)"
+    versionRange="[1.0.299,)"
     ordering="NONE"
     side="BOTH"

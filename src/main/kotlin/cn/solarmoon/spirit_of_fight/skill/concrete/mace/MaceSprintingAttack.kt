@@ -32,7 +32,7 @@ class MaceSprintingAttack(
 
     init {
         addComponent(StuckEffectComponent(5, 0.05) { comboAnim.time in 0.25..1.0 })
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.KNOCKDOWN_STAB.get(), { 0.65 }, soundEvent = SoundEvents.PLAYER_ATTACK_KNOCKBACK) { time in 0.25..1.0 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 0.65 }, soundEvent = SoundEvents.PLAYER_ATTACK_KNOCKBACK, knockBack = { 0.5 }) { time in 0.25..1.0 })
         addComponent(AnimPreInputAcceptComponent(1.25, entity.getPreInput(), comboAnim))
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.25) entity.getForwardMoveVector(1/6f) else null })
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.25..0.95) entity.getForwardMoveVector(1.35f - comboAnim.getProgress().toFloat()) else null })

@@ -12,6 +12,7 @@ import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeGuard
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeJumpAttack
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.斧子投技
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeSprintingAttack
+import cn.solarmoon.spirit_of_fight.skill.controller.component.AxeSkillControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ChangeableComboControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.DodgeControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.GuardControlComponent
@@ -46,6 +47,7 @@ class AxeFightSkillController(
     val shieldGuard = addSkill(ShieldGuardSkill(animatable))
 
     init {
+        addComponent(AxeSkillControlComponent(special))
         addComponent(ShieldComboControlComponent(combo0, shieldComboC1, shieldComboC2, combo2))
 
         addComponent(SpecialSkillControlComponent(special, false))

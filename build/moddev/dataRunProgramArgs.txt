@@ -7,7 +7,7 @@ forgedatauserdev
 --assetIndex
 17
 --assetsDir
-C:\\Users\\Administrator\\.gradle\\caches\\neoformruntime\\assets
+C:\\Users\\曦月\\.gradle\\caches\\neoformruntime\\assets
 --gameDir
 .
 --fml.neoForgeVersion
@@ -24,6 +24,6 @@ C:\\Users\\Administrator\\.gradle\\caches\\neoformruntime\\assets
 spirit_of_fight
 --all
 --output
-E:\\Minecraft\\Materials\\Source\\Spirit-of-Fight-1.21.1_new\\src\\generated\\resources
+C:\\Users\\曦月\\Documents\\编程开发\\Minecraft\\Spirit-of-Fight\\1.21.1-neoforge\\src\\generated\\resources
 --existing
-E:\\Minecraft\\Materials\\Source\\Spirit-of-Fight-1.21.1_new\\src\\main\\resources
+C:\\Users\\曦月\\Documents\\编程开发\\Minecraft\\Spirit-of-Fight\\1.21.1-neoforge\\src\\main\\resources

@@ -11,8 +11,8 @@ import net.minecraft.client.player.LocalPlayer
 
 class HammerSecComboControlComponent(
     private val startCombo: Skill<*>,
-    comboC1: HammerComboC1,
-    comboC2: HammerComboC2,
+    val comboC1: HammerComboC1,
+    val comboC2: HammerComboC2,
     endCombo: Skill<*>,
 ): ComboControlComponent(comboC1, comboC2, endCombo) {
 
@@ -35,6 +35,7 @@ class HammerSecComboControlComponent(
             true
         }
 
+        if (index.get() == 0 && !comboC1.targetHitCheck) return false
         if (start) return true
         if (index.get() == maxComboAmount - 1 ) return false
 

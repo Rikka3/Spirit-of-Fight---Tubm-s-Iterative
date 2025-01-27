@@ -22,6 +22,14 @@ object SOFTypedAnimations {
     val HAMMER_SPRINTING = createMoveStateAnim("hammer_sprinting")
     @JvmStatic
     val HAMMER_FALL = createStateAnim("hammer_fall")
+    @JvmStatic
+    val BAIMEI_IDLE = createStateAnim("baimei_idle")
+    @JvmStatic
+    val BAIMEI_WALK = createMoveStateAnim("baimei_walk")
+    @JvmStatic
+    val BAIMEI_WALK_BACK = createMoveStateAnim("baimei_walk_back")
+    @JvmStatic
+    val BAIMEI_SPRINTING = createMoveStateAnim("baimei_sprinting")
 
     @JvmStatic
     val HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()

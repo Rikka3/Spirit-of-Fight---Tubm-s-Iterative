@@ -27,6 +27,15 @@ object FightStateAnimModifier {
                     EntityStates.Fall -> event.newAnim = SOFTypedAnimations.HAMMER_FALL.get()
                 }
             }
+
+            if (player.getSkillController() is BaimeiFightSkillController) {
+                when(event.state) {
+                    EntityStates.Idle -> event.newAnim = SOFTypedAnimations.BAIMEI_IDLE.get()
+                    EntityStates.Walk -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK.get()
+                    EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK_BACK.get()
+                    EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.BAIMEI_SPRINTING.get()
+                }
+            }
         }
     }
 

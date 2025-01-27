@@ -26,16 +26,6 @@ class 斧子投技(
 
     val startAnim = createAnimInstance("axe:skill") {
         shouldTurnBody = true
-        onTick {
-            if (time >= 0.45 && grab != null) {
-                val spirit = entity.getFightSpirit()
-                if (spirit.isFull) {
-                    holder.animController.setAnimation(hitAnim, 0)
-                } else {
-                    holder.animController.setAnimation(pullAnim, 0)
-                }
-            }
-        }
 
         onSwitch {
             if (it?.name !in listOf(pullAnim.name, hitAnim.name)) end()
@@ -107,7 +97,7 @@ class 斧子投技(
         addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.60..0.90 })
         addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(),soundEvent = SoundEvents.PLAYER_ATTACK_CRIT,
             fightSpiritModifier = null
-        ) { time in 0.60..0.90 })
+        ) { time in 0.5..0.90 })
     }
 
     override fun onActivate() {

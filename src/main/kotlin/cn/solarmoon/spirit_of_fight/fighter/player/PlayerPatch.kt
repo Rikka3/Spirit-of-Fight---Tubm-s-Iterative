@@ -10,6 +10,7 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFBodyTypes
 import cn.solarmoon.spirit_of_fight.skill.controller.AxeFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.BaimeiFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.BowFightSkillController
+import cn.solarmoon.spirit_of_fight.skill.controller.DefaultFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.HammerFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.MaceFightSkillController
 import cn.solarmoon.spirit_of_fight.skill.controller.SwordFightSkillController
@@ -47,6 +48,7 @@ class PlayerPatch(
         player.getAllSkillControllers().add(MaceFightSkillController(player, player.asAnimatable()))
         player.getAllSkillControllers().add(BaimeiFightSkillController(player, player.asAnimatable()))
         player.getAllSkillControllers().add(BowFightSkillController(player, player.asAnimatable()))
+        player.getAllSkillControllers().add(DefaultFightSkillController(player, player.asAnimatable()))
     }
 
     override fun getMainAttackBody(): DBody? {

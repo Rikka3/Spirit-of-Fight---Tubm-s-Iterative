@@ -13,8 +13,8 @@ import net.neoforged.neoforge.common.Tags
 
 class ShieldComboControlComponent(
     private val startCombo: Skill<*>,
-    comboC1: ShieldComboC1,
-    comboC2: ShieldComboC2,
+    val comboC1: ShieldComboC1,
+    val comboC2: ShieldComboC2,
     endCombo: Skill<*>,
     private val isHoldingShield: LivingEntity.() -> Boolean = { offhandItem.`is`(Tags.Items.TOOLS_SHIELD) }
 ): ComboControlComponent(comboC1, comboC2, endCombo) {
@@ -42,6 +42,7 @@ class ShieldComboControlComponent(
             true
         }
 
+        if (index.get() == 0 && !comboC1.targetHitCheck) return false
         if (start) return true
         if (index.get() == maxComboAmount - 1 ) return false
 
