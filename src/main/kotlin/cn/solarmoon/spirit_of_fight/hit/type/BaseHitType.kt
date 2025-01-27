@@ -6,6 +6,7 @@ import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
 import cn.solarmoon.spark_core.entity.attack.AttackSystem
 import cn.solarmoon.spark_core.entity.attack.getAttackedData
+import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.phys.thread.ClientPhysLevel
@@ -121,7 +122,9 @@ abstract class BaseHitType: HitType {
         } ?: "$simpleName:${boneName}_$posSide#$hitSide"
         val animName = suffix.let { "Hit/$it" }
         return target.animations.getAnimation(animName)?.let { AnimInstance.create(target, animName, it) {
-            rejectNewAnim = { indefensible || it?.name?.substringBefore("/") != "Hit" }
+            fun flag() = time >= origin.animationLength * 3 / 4
+
+            rejectNewAnim = { if (!flag()) (indefensible || it?.name?.substringBefore("/") != "Hit") else false }
 
             onTick {
                 val entity = (target.animatable as? Entity) ?: return@onTick
@@ -129,6 +132,9 @@ abstract class BaseHitType: HitType {
                 entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, true)
                 entity.putFlag(SparkFlags.DISARM, true)
                 entity.putFlag(SparkFlags.SILENCE, true)
+                if (flag()) {
+                    entity.getPreInput().executeIfPresent()
+                }
             }
 
             onEnd {

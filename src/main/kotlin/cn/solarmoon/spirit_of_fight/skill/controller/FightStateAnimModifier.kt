@@ -2,6 +2,8 @@ package cn.solarmoon.spirit_of_fight.skill.controller
 
 import cn.solarmoon.spark_core.animation.preset_anim.CommonState
 import cn.solarmoon.spark_core.animation.preset_anim.EntityStates
+import cn.solarmoon.spark_core.animation.preset_anim.PlayerStateAnimMachine
+import cn.solarmoon.spark_core.animation.preset_anim.getStateMachine
 import cn.solarmoon.spark_core.entity.moveCheck
 import cn.solarmoon.spark_core.event.ChangePresetAnimEvent
 import cn.solarmoon.spark_core.registry.common.SparkTypedAnimations
@@ -13,6 +15,7 @@ import net.minecraft.client.player.LocalPlayer
 import net.minecraft.world.item.Items
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.common.Tags
+import ru.nsk.kstatemachine.statemachine.processEventBlocking
 
 object FightStateAnimModifier {
 
@@ -52,6 +55,7 @@ object FightStateAnimModifier {
         val player = event.player
         if (player.isLocalPlayer && player is LocalPlayer) {
             if (event.state == EntityStates.Idle && PlayerLocalController.moveRemain > 0) {
+                player.getStateMachine().processEventBlocking(PlayerStateAnimMachine.ResetEvent)
                 event.isCanceled = true
             }
 

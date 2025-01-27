@@ -200,7 +200,7 @@ open class GuardSkill(
     }
 
     open fun doGuard(attackerPos: Vec3, event: LivingIncomingDamageEvent) {
-        val v = Vec3(entity.x - attackerPos.x, entity.y - attackerPos.y, entity.z - attackerPos.z).normalize().div(2.5)
+        val v = Vec3(entity.x - attackerPos.x, entity.y - attackerPos.y, entity.z - attackerPos.z).normalize().div(2.0)
         MovePayload.moveEntityInClient(entity.id, v)
         event.isCanceled = true
     }
