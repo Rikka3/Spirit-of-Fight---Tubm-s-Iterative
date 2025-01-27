@@ -22,7 +22,7 @@ class DefaultFightSkillController(
         get() = DVector3()
 
     override fun isAvailable(): Boolean {
-        return true
+        return false
     }
 
     val combo0 = addSkill(BareHandCombo0(animatable))
