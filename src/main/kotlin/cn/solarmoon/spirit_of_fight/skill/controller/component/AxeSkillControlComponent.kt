@@ -30,16 +30,10 @@ class AxeSkillControlComponent(
     ): Boolean {
         if (skill.isActive()) {
             return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
-                player.getPreInput().setInput("axe_skill") {
+                player.getPreInput().setInput("axe_skill", 5) {
                     if (skill.startAnim.time >= 0.45 && skill.grab != null) {
-                        val spirit = entity.getFightSpirit()
-                        if (spirit.isFull) {
-                            holder.animController.setAnimation(skill.hitAnim, 0)
-                            sendPackage(player.id, 0)
-                        } else {
-                            holder.animController.setAnimation(skill.pullAnim, 0)
-                            sendPackage(player.id, 1)
-                        }
+                        holder.animController.setAnimation(skill.hitAnim, 2)
+                        sendPackage(player.id, 0)
                     }
                 }
                 true
@@ -55,7 +49,6 @@ class AxeSkillControlComponent(
     ) {
         when(payload.id) {
             0 -> holder.animController.setAnimation(skill.hitAnim, 0)
-            1 -> holder.animController.setAnimation(skill.pullAnim, 0)
         }
     }
 }

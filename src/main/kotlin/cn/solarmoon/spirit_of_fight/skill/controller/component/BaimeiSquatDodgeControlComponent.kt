@@ -24,7 +24,7 @@ class BaimeiSquatDodgeControlComponent(
         input: Input
     ): Boolean {
         return controller.onPressOnce(Minecraft.getInstance().options.keyShift) {
-            preInput.setInput("dodge") {
+            preInput.setInput("dodge", 5) {
                 dodge.activate()
                 sendPackage(player.id)
             }

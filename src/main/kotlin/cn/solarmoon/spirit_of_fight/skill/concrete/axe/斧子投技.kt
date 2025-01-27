@@ -27,6 +27,12 @@ class 斧子投技(
     val startAnim = createAnimInstance("axe:skill") {
         shouldTurnBody = true
 
+        onTick {
+            if (time >= 0.45 && grab != null) {
+                holder.animController.setAnimation(pullAnim, 0)
+            }
+        }
+
         onSwitch {
             if (it?.name !in listOf(pullAnim.name, hitAnim.name)) end()
         }
@@ -50,7 +56,9 @@ class 斧子投技(
         }
 
         onEnd {
-            end()
+            if (hitAnim.isCancelled) {
+                end()
+            }
         }
     }
 
@@ -67,7 +75,7 @@ class 斧子投技(
 
         onTick {
             // 保证生物不动
-            grab!!.deltaMovement = Vec3.ZERO
+            grab?.deltaMovement = Vec3.ZERO
 
             // 玩家强击退霸体
             entity.deltaMovement = Vec3(0.0, entity.deltaMovement.y, 0.0)
@@ -93,6 +101,8 @@ class 斧子投技(
         addComponent(AnimPreInputAcceptComponent(0.7, entity.getPreInput(), startAnim))
 
         addComponent(AnimPreInputAcceptComponent(0.75, entity.getPreInput(), pullAnim))
+
+        addComponent(AnimPreInputAcceptComponent(0.0, entity.getPreInput(), pullAnim, limit = { it == "axe_skill" }))
 
         addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.60..0.90 })
         addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(),soundEvent = SoundEvents.PLAYER_ATTACK_CRIT,

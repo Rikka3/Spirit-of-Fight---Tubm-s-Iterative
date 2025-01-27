@@ -1,156 +1,156 @@
-[271月2025 21:37:10.084] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, 21.1.65, --assetIndex, 17, --assetsDir, C:\\Users\\曦月\\.gradle\\caches\\neoformruntime\\assets, --gameDir, ., --fml.neoForgeVersion, 21.1.65, --fml.fmlVersion, 4.0.24, --fml.mcVersion, 1.21.1, --fml.neoFormVersion, 20240808.144430]
-[271月2025 21:37:10.086] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.4+8-LTS-274
-[271月2025 21:37:10.087] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.4+main.d2e20e43 starting: java version 21.0.4 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[271月2025 21:37:10.183] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[271月2025 21:37:10.268] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[271月2025 21:37:10.385] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[271月2025 21:37:10.453] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/曦月/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23131!/ Service=ModLauncher Env=CLIENT
-[271月2025 21:37:10.630] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 560.94, NVIDIA Corporation
-[271月2025 21:37:10.910] [main/WARN] [net.neoforged.jarjar.selection.JarSelector/]: Attempted to select two dependency jars from JarJar which have the same identification: Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar and Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar. Using Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar
-[271月2025 21:37:10.911] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 10 dependencies adding them to mods collection
-[271月2025 21:37:11.620] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
-[271月2025 21:37:11.644] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, 21.1.65, --gameDir, ., --assetsDir, C:\Users\曦月\.gradle\caches\neoformruntime\assets, --assetIndex, 17]
-[271月2025 21:37:11.706] [main/WARN] [mixin/]: Reference map 'geckolib.refmap.json' for geckolib.mixins.json could not be read. If this is a development environment you can ignore this message
-[271月2025 21:37:11.709] [main/WARN] [mixin/]: Reference map 'curios.refmap.json' for curios.neoforge.mixins.json could not be read. If this is a development environment you can ignore this message
-[271月2025 21:37:11.709] [main/WARN] [mixin/]: Reference map 'curios.refmap.json' for curios.mixins.json could not be read. If this is a development environment you can ignore this message
-[271月2025 21:37:11.715] [main/INFO] [Embeddium/]: Loaded configuration file for Embeddium: 62 options available, 0 override(s) found
-[271月2025 21:37:11.717] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Searching for graphics cards...
-[271月2025 21:37:12.004] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=AMD, name=AMD Radeon(TM) Graphics, version=31.0.24002.92]
-[271月2025 21:37:12.004] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=NVIDIA, name=NVIDIA GeForce RTX 4070 SUPER, version=32.0.15.6094]
-[271月2025 21:37:12.009] [main/WARN] [Embeddium-Workarounds/]: Embeddium has attempted to apply one or more workarounds to prevent crashes or other issues on your system: [NVIDIA_THREADED_OPTIMIZATIONS]
-[271月2025 21:37:12.009] [main/WARN] [Embeddium-Workarounds/]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
-[271月2025 21:37:12.023] [main/WARN] [mixin/]: Reference map 'embeddium-refmap.json' for embeddium.mixins.json could not be read. If this is a development environment you can ignore this message
-[271月2025 21:37:12.444] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
-[271月2025 21:37:13.446] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 229 Datafixer optimizations took 187 milliseconds
-[271月2025 21:37:16.576] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[271月2025 21:37:16.577] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
-[271月2025 21:37:16.578] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[271月2025 21:37:16.579] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[271月2025 21:37:16.579] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[271月2025 21:37:16.672] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/曦月/Documents/编程开发/Minecraft/Spirit-of-Fight/1.21.1-neoforge/build/moddev/artifacts/neoforge-21.1.65-minecraft-merged.jar%23183!/assets/.mcassetsroot' uses unexpected schema
-[271月2025 21:37:16.672] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/曦月/Documents/编程开发/Minecraft/Spirit-of-Fight/1.21.1-neoforge/build/moddev/artifacts/neoforge-21.1.65-minecraft-merged.jar%23183!/data/.mcassetsroot' uses unexpected schema
-[271月2025 21:37:16.692] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[271月2025 21:37:16.697] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[271月2025 21:37:16.754] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
-[271月2025 21:37:16.824] [Render thread/WARN] [Embeddium-NvidiaWorkarounds/]: Applying workaround: Prevent the NVIDIA OpenGL driver from using broken optimizations (NVIDIA_THREADED_OPTIMIZATIONS)
-[271月2025 21:37:16.841] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Vendor: NVIDIA Corporation
-[271月2025 21:37:16.841] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Renderer: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
-[271月2025 21:37:16.841] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Version: 4.6.0 NVIDIA 560.94
-[271月2025 21:37:16.841] [Render thread/WARN] [Embeddium-PostlaunchChecks/]: Enabling secondary workaround for NVIDIA threaded optimizations
-[271月2025 21:37:17.064] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.65, for MC 1.21.1
-[271月2025 21:37:17.098] [modloading-worker-0/INFO] [azurelib/FileWatching]: Registered azurelib config for auto-sync function
-[271月2025 21:37:17.188] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
-[271月2025 21:37:17.192] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 2.275 ms
-[271月2025 21:37:17.341] [modloading-worker-0/INFO] [thedarkcolour.kotlinforforge.neoforge.test.KotlinForForge/]: Kotlin For Forge Enabled!
-[271月2025 21:37:17.442] [modloading-sync-worker/INFO] [Moonlight/]: Initialized block sets in 6ms
-[271月2025 21:37:17.623] [modloading-sync-worker/WARN] [net.neoforged.fml.config.ConfigTracker/]: Opening a config that was already loaded with value LoadedConfig[config=SynchronizedConfig{DataHolder:{general=SynchronizedConfig{DataHolder:{merge_dynamic_packs=true, lazy_map_upload=true, maps_mipmap=3, consistent_entity_renderer_shading=NO_GUI}}}}, path=C:\Users\曦月\Documents\编程开发\Minecraft\Spirit-of-Fight\1.21.1-neoforge\run\config\moonlight-client.toml, modConfig=net.neoforged.fml.config.ModConfig@6f81277b] at path moonlight-client.toml
-[271月2025 21:37:17.626] [modloading-sync-worker/WARN] [net.neoforged.fml.config.ConfigTracker/]: Opening a config that was already loaded with value LoadedConfig[config=SynchronizedConfig{DataHolder:{scarecrow=SynchronizedConfig{DataHolder:{mobs_whitelist=[], mobs_blacklist=[], scare_radius=12}}, general=SynchronizedConfig{DataHolder:{DPS_mode=DYNAMIC, disable_equipment_damage=true, dummy_decoy=false, boss_health_bar_color=YELLOW, xp_per_damage_on_hit=0.0, boss_health=200}}, mobs_damage_numbers=SynchronizedConfig{DataHolder:{damage_mode=NONE, healing_mode=NONE}}}}, path=C:\Users\曦月\Documents\编程开发\Minecraft\Spirit-of-Fight\1.21.1-neoforge\run\config\dummmmmmy-common.toml, modConfig=net.neoforged.fml.config.ModConfig@7047eb88] at path dummmmmmy-common.toml
-[271月2025 21:37:18.012] [Render thread/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [spirit_of_fight]
-[271月2025 21:37:18.235] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources, mod/spirit_of_fight, mod/moonlight, mod/spark_core, mod/jade, mod/geckolib, mod/architectury, mod/jei, mod/azurelib, mod/samurai_dynasty, mod/cloth_config, mod/kotlinforforge, mod/caelus, mod/dummmmmmy, mod/curios, mod/embeddium, mod/neoforge, moonlight:mods_dynamic_assets
-[271月2025 21:37:18.242] [Render thread/INFO] [Moonlight/]: Generated runtime CLIENT_RESOURCES for pack moonlight:mods_dynamic_assets (Moonlight) in: 1 ms (debug resource dump on)
-[271月2025 21:37:18.243] [Render thread/INFO] [Moonlight/]: Generated runtime CLIENT_RESOURCES for pack moonlight:mods_dynamic_assets (Moonlight) in: 0 ms (debug resource dump on)
-[271月2025 21:37:18.252] [Worker-Main-11/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO FROM COMMON SETUP
-[271月2025 21:37:18.363] [Render thread/INFO] [Moonlight/]: Initialized color sets in 11ms
-[271月2025 21:37:18.437] [Worker-Main-8/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.1.05.hex, loading
-[271月2025 21:37:18.516] [Worker-Main-10/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-15.1.05.hex, loading
-[271月2025 21:37:18.518] [Worker-Main-14/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO FROM CLIENT SETUP
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:tanuki_statue' referenced from: samurai_dynasty:block/tanuki_statue_lower: java.io.FileNotFoundException: minecraft:models/tanuki_statue.json
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:komainu_statue' referenced from: samurai_dynasty:block/komainu_statue_lower: java.io.FileNotFoundException: minecraft:models/komainu_statue.json
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:kawauso_statue' referenced from: samurai_dynasty:block/kawauso_statue_lower: java.io.FileNotFoundException: minecraft:models/kawauso_statue.json
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof' referenced from: samurai_dynasty:block/stone_roof: java.io.FileNotFoundException: minecraft:models/stone_roof.json
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof_corner' referenced from: samurai_dynasty:block/stone_roof_corner: java.io.FileNotFoundException: minecraft:models/stone_roof_corner.json
-[271月2025 21:37:18.912] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof_top' referenced from: samurai_dynasty:block/stone_roof_top: java.io.FileNotFoundException: minecraft:models/stone_roof_top.json
-[271月2025 21:37:18.916] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'samurai_dynasty:item/handheld' referenced from: samurai_dynasty:item/oni_mask: java.io.FileNotFoundException: samurai_dynasty:models/item/handheld.json
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:tonbukiri_netherite#inventory:
+[271月2025 22:12:51.141] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, 21.1.65, --assetIndex, 17, --assetsDir, C:\\Users\\曦月\\.gradle\\caches\\neoformruntime\\assets, --gameDir, ., --fml.neoForgeVersion, 21.1.65, --fml.fmlVersion, 4.0.24, --fml.mcVersion, 1.21.1, --fml.neoFormVersion, 20240808.144430]
+[271月2025 22:12:51.143] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.4+8-LTS-274
+[271月2025 22:12:51.144] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.4+main.d2e20e43 starting: java version 21.0.4 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[271月2025 22:12:51.238] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[271月2025 22:12:51.324] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[271月2025 22:12:51.448] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[271月2025 22:12:51.518] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/曦月/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23131!/ Service=ModLauncher Env=CLIENT
+[271月2025 22:12:51.691] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 560.94, NVIDIA Corporation
+[271月2025 22:12:51.986] [main/WARN] [net.neoforged.jarjar.selection.JarSelector/]: Attempted to select two dependency jars from JarJar which have the same identification: Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar and Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar. Using Nested Mod File  in Mod File: C:\Users\曦月\.gradle\caches\modules-2\files-2.1\thedarkcolour\kotlinforforge-neoforge\5.6.0\faa274002f55b90a77024ef0049342238df2344f\kotlinforforge-neoforge-5.6.0-all.jar
+[271月2025 22:12:51.986] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 10 dependencies adding them to mods collection
+[271月2025 22:12:52.814] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[271月2025 22:12:52.838] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, 21.1.65, --gameDir, ., --assetsDir, C:\Users\曦月\.gradle\caches\neoformruntime\assets, --assetIndex, 17]
+[271月2025 22:12:52.896] [main/WARN] [mixin/]: Reference map 'geckolib.refmap.json' for geckolib.mixins.json could not be read. If this is a development environment you can ignore this message
+[271月2025 22:12:52.899] [main/WARN] [mixin/]: Reference map 'curios.refmap.json' for curios.neoforge.mixins.json could not be read. If this is a development environment you can ignore this message
+[271月2025 22:12:52.899] [main/WARN] [mixin/]: Reference map 'curios.refmap.json' for curios.mixins.json could not be read. If this is a development environment you can ignore this message
+[271月2025 22:12:52.905] [main/INFO] [Embeddium/]: Loaded configuration file for Embeddium: 62 options available, 0 override(s) found
+[271月2025 22:12:52.906] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Searching for graphics cards...
+[271月2025 22:12:53.171] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=AMD, name=AMD Radeon(TM) Graphics, version=31.0.24002.92]
+[271月2025 22:12:53.171] [main/INFO] [Embeddium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=NVIDIA, name=NVIDIA GeForce RTX 4070 SUPER, version=32.0.15.6094]
+[271月2025 22:12:53.175] [main/WARN] [Embeddium-Workarounds/]: Embeddium has attempted to apply one or more workarounds to prevent crashes or other issues on your system: [NVIDIA_THREADED_OPTIMIZATIONS]
+[271月2025 22:12:53.175] [main/WARN] [Embeddium-Workarounds/]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
+[271月2025 22:12:53.186] [main/WARN] [mixin/]: Reference map 'embeddium-refmap.json' for embeddium.mixins.json could not be read. If this is a development environment you can ignore this message
+[271月2025 22:12:53.612] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[271月2025 22:12:54.663] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 229 Datafixer optimizations took 157 milliseconds
+[271月2025 22:12:57.972] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[271月2025 22:12:57.973] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[271月2025 22:12:57.974] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[271月2025 22:12:57.975] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[271月2025 22:12:57.976] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[271月2025 22:12:58.069] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/曦月/Documents/编程开发/Minecraft/Spirit-of-Fight/1.21.1-neoforge/build/moddev/artifacts/neoforge-21.1.65-minecraft-merged.jar%23183!/assets/.mcassetsroot' uses unexpected schema
+[271月2025 22:12:58.069] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/曦月/Documents/编程开发/Minecraft/Spirit-of-Fight/1.21.1-neoforge/build/moddev/artifacts/neoforge-21.1.65-minecraft-merged.jar%23183!/data/.mcassetsroot' uses unexpected schema
+[271月2025 22:12:58.094] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[271月2025 22:12:58.098] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[271月2025 22:12:58.154] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
+[271月2025 22:12:58.199] [Render thread/WARN] [Embeddium-NvidiaWorkarounds/]: Applying workaround: Prevent the NVIDIA OpenGL driver from using broken optimizations (NVIDIA_THREADED_OPTIMIZATIONS)
+[271月2025 22:12:58.213] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Vendor: NVIDIA Corporation
+[271月2025 22:12:58.213] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Renderer: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+[271月2025 22:12:58.213] [Render thread/INFO] [Embeddium-PostlaunchChecks/]: OpenGL Version: 4.6.0 NVIDIA 560.94
+[271月2025 22:12:58.213] [Render thread/WARN] [Embeddium-PostlaunchChecks/]: Enabling secondary workaround for NVIDIA threaded optimizations
+[271月2025 22:12:58.471] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.65, for MC 1.21.1
+[271月2025 22:12:58.511] [modloading-worker-0/INFO] [azurelib/FileWatching]: Registered azurelib config for auto-sync function
+[271月2025 22:12:58.616] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[271月2025 22:12:58.621] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 2.384 ms
+[271月2025 22:12:58.762] [modloading-worker-0/INFO] [thedarkcolour.kotlinforforge.neoforge.test.KotlinForForge/]: Kotlin For Forge Enabled!
+[271月2025 22:12:58.838] [modloading-sync-worker/INFO] [Moonlight/]: Initialized block sets in 6ms
+[271月2025 22:12:59.035] [modloading-sync-worker/WARN] [net.neoforged.fml.config.ConfigTracker/]: Opening a config that was already loaded with value LoadedConfig[config=SynchronizedConfig{DataHolder:{general=SynchronizedConfig{DataHolder:{merge_dynamic_packs=true, lazy_map_upload=true, maps_mipmap=3, consistent_entity_renderer_shading=NO_GUI}}}}, path=C:\Users\曦月\Documents\编程开发\Minecraft\Spirit-of-Fight\1.21.1-neoforge\run\config\moonlight-client.toml, modConfig=net.neoforged.fml.config.ModConfig@1fc23e9e] at path moonlight-client.toml
+[271月2025 22:12:59.037] [modloading-sync-worker/WARN] [net.neoforged.fml.config.ConfigTracker/]: Opening a config that was already loaded with value LoadedConfig[config=SynchronizedConfig{DataHolder:{scarecrow=SynchronizedConfig{DataHolder:{mobs_whitelist=[], mobs_blacklist=[], scare_radius=12}}, general=SynchronizedConfig{DataHolder:{DPS_mode=DYNAMIC, disable_equipment_damage=true, dummy_decoy=false, boss_health_bar_color=YELLOW, xp_per_damage_on_hit=0.0, boss_health=200}}, mobs_damage_numbers=SynchronizedConfig{DataHolder:{damage_mode=NONE, healing_mode=NONE}}}}, path=C:\Users\曦月\Documents\编程开发\Minecraft\Spirit-of-Fight\1.21.1-neoforge\run\config\dummmmmmy-common.toml, modConfig=net.neoforged.fml.config.ModConfig@7a0dfd65] at path dummmmmmy-common.toml
+[271月2025 22:12:59.387] [Render thread/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [spirit_of_fight]
+[271月2025 22:12:59.557] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources, mod/spirit_of_fight, mod/moonlight, mod/spark_core, mod/jade, mod/geckolib, mod/architectury, mod/jei, mod/azurelib, mod/samurai_dynasty, mod/cloth_config, mod/kotlinforforge, mod/caelus, mod/dummmmmmy, mod/curios, mod/embeddium, mod/neoforge, moonlight:mods_dynamic_assets
+[271月2025 22:12:59.564] [Render thread/INFO] [Moonlight/]: Generated runtime CLIENT_RESOURCES for pack moonlight:mods_dynamic_assets (Moonlight) in: 0 ms (debug resource dump on)
+[271月2025 22:12:59.564] [Render thread/INFO] [Moonlight/]: Generated runtime CLIENT_RESOURCES for pack moonlight:mods_dynamic_assets (Moonlight) in: 0 ms (debug resource dump on)
+[271月2025 22:12:59.594] [Worker-Main-10/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO FROM COMMON SETUP
+[271月2025 22:12:59.666] [Render thread/INFO] [Moonlight/]: Initialized color sets in 10ms
+[271月2025 22:12:59.670] [Worker-Main-15/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO FROM CLIENT SETUP
+[271月2025 22:12:59.733] [Worker-Main-7/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.1.05.hex, loading
+[271月2025 22:12:59.769] [Worker-Main-15/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-15.1.05.hex, loading
+[271月2025 22:13:00.228] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:tanuki_statue' referenced from: samurai_dynasty:block/tanuki_statue_lower: java.io.FileNotFoundException: minecraft:models/tanuki_statue.json
+[271月2025 22:13:00.229] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:komainu_statue' referenced from: samurai_dynasty:block/komainu_statue_lower: java.io.FileNotFoundException: minecraft:models/komainu_statue.json
+[271月2025 22:13:00.229] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:kawauso_statue' referenced from: samurai_dynasty:block/kawauso_statue_lower: java.io.FileNotFoundException: minecraft:models/kawauso_statue.json
+[271月2025 22:13:00.229] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof' referenced from: samurai_dynasty:block/stone_roof: java.io.FileNotFoundException: minecraft:models/stone_roof.json
+[271月2025 22:13:00.229] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof_corner' referenced from: samurai_dynasty:block/stone_roof_corner: java.io.FileNotFoundException: minecraft:models/stone_roof_corner.json
+[271月2025 22:13:00.229] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'minecraft:stone_roof_top' referenced from: samurai_dynasty:block/stone_roof_top: java.io.FileNotFoundException: minecraft:models/stone_roof_top.json
+[271月2025 22:13:00.231] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'samurai_dynasty:item/handheld' referenced from: samurai_dynasty:item/oni_mask: java.io.FileNotFoundException: samurai_dynasty:models/item/handheld.json
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:tonbukiri_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/tonbukiri
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kamayari_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kamayari_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/kamayari
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:wakizashi_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:wakizashi_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/katana
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:nagamaki_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:nagamaki_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/nagamaki
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:katana#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:katana#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/katana
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:shuko_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:shuko_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/tekko_kagi
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kabutowari#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kabutowari#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/kabutowari
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:masakari#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:masakari#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/masakari
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:tonbukiri#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:tonbukiri#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/tonbukiri
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:katana_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:katana_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/katana
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:nagamaki#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:nagamaki#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/nagamaki
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:masakari_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:masakari_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/masakari
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:wakizashi#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:wakizashi#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/katana
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:odachi_netherite#inventory:
+[271月2025 22:13:00.577] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:odachi_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/odachi
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model spirit_of_fight:item/wooden_warhammer_in_hand#standalone:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model spirit_of_fight:item/wooden_warhammer_in_hand#standalone:
     minecraft:textures/atlas/blocks.png:spirit_of_fight:item/wooden_warhammer_in_hand
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:naginata#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:naginata#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/naginata
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:odachi#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:odachi#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/odachi
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:shuko#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:shuko#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/tekko_kagi
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kamayari#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kamayari#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/kamayari
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:naginata_netherite#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:naginata_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/naginata
-[271月2025 21:37:19.309] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kabutowari_netherite#inventory:
+[271月2025 22:13:00.578] [Worker-Main-1/WARN] [net.minecraft.client.resources.model.ModelManager/]: Missing textures in model samurai_dynasty:kabutowari_netherite#inventory:
     minecraft:textures/atlas/blocks.png:minecraft:item/kabutowari
-[271月2025 21:37:19.418] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.vanilla.VanillaPlugin
-[271月2025 21:37:19.447] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.vanilla.VanillaPlugin in 27.67 ms
-[271月2025 21:37:19.450] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.vanilla.VanillaPlugin in 31.61 ms
-[271月2025 21:37:19.450] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.universal.UniversalPlugin
-[271月2025 21:37:19.456] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.universal.UniversalPlugin in 3.375 ms
-[271月2025 21:37:19.456] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.universal.UniversalPlugin in 3.591 ms
-[271月2025 21:37:19.456] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.debug.DebugPlugin
-[271月2025 21:37:19.458] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.debug.DebugPlugin in 1.427 ms
-[271月2025 21:37:19.458] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.debug.DebugPlugin in 1.565 ms
-[271月2025 21:37:19.458] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.core.CorePlugin
-[271月2025 21:37:19.463] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.core.CorePlugin in 4.461 ms
-[271月2025 21:37:19.463] [Worker-Main-5/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.core.CorePlugin in 4.594 ms
-[271月2025 21:37:19.640] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.sharp_block', args=[]} for sound event: spirit_of_fight:sharp_block
-[271月2025 21:37:19.642] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.soft_block', args=[]} for sound event: spirit_of_fight:soft_block
-[271月2025 21:37:19.642] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.hard_block', args=[]} for sound event: spirit_of_fight:hard_block
-[271月2025 21:37:19.642] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.sharp_parry', args=[]} for sound event: spirit_of_fight:sharp_parry
-[271月2025 21:37:19.642] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[271月2025 21:37:19.642] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[271月2025 21:37:19.679] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (High Definition Audio Device)
-[271月2025 21:37:19.680] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[271月2025 21:37:19.760] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/blocks.png-atlas
-[271月2025 21:37:19.773] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[271月2025 21:37:19.773] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[271月2025 21:37:19.774] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[271月2025 21:37:19.774] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[271月2025 21:37:19.779] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[271月2025 21:37:19.780] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[271月2025 21:37:19.780] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[271月2025 21:37:19.780] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[271月2025 21:37:19.849] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[271月2025 21:37:19.851] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[271月2025 21:37:19.851] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[271月2025 21:37:19.851] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/map_decorations.png-atlas
-[271月2025 21:37:19.851] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
-[271月2025 21:37:19.864] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[271月2025 21:37:19.892] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find sampler named Sampler2 in the specified shader program.
-[271月2025 21:37:19.892] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named IViewRotMat in the specified shader program.
-[271月2025 21:37:19.892] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogStart in the specified shader program.
-[271月2025 21:37:19.892] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogEnd in the specified shader program.
-[271月2025 21:37:19.892] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogColor in the specified shader program.
-[271月2025 21:37:19.893] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find sampler named Sampler2 in the specified shader program.
-[271月2025 21:37:19.893] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named IViewRotMat in the specified shader program.
-[271月2025 21:37:19.893] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogStart in the specified shader program.
-[271月2025 21:37:19.893] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogEnd in the specified shader program.
-[271月2025 21:37:19.893] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogColor in the specified shader program.
-[271月2025 21:37:19.902] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 jei:textures/atlas/gui.png-atlas
-[271月2025 21:37:19.903] [Render thread/INFO] [net.neoforged.neoforge.client.entity.animation.json.AnimationLoader/]: Loaded 0 entity animations
-[271月2025 21:37:22.240] [Worker-Main-12/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (84)\level.dat
+[271月2025 22:13:00.699] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.vanilla.VanillaPlugin
+[271月2025 22:13:00.732] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.vanilla.VanillaPlugin in 30.60 ms
+[271月2025 22:13:00.738] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.vanilla.VanillaPlugin in 36.18 ms
+[271月2025 22:13:00.738] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.universal.UniversalPlugin
+[271月2025 22:13:00.740] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.universal.UniversalPlugin in 2.491 ms
+[271月2025 22:13:00.741] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.universal.UniversalPlugin in 2.675 ms
+[271月2025 22:13:00.741] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.debug.DebugPlugin
+[271月2025 22:13:00.742] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.debug.DebugPlugin in 1.157 ms
+[271月2025 22:13:00.742] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.debug.DebugPlugin in 1.278 ms
+[271月2025 22:13:00.742] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.core.CorePlugin
+[271月2025 22:13:00.746] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Bootstrapped plugin from snownee.jade.addon.core.CorePlugin in 2.723 ms
+[271月2025 22:13:00.746] [Worker-Main-14/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.core.CorePlugin in 2.856 ms
+[271月2025 22:13:00.890] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.sharp_block', args=[]} for sound event: spirit_of_fight:sharp_block
+[271月2025 22:13:00.890] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.soft_block', args=[]} for sound event: spirit_of_fight:soft_block
+[271月2025 22:13:00.890] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.hard_block', args=[]} for sound event: spirit_of_fight:hard_block
+[271月2025 22:13:00.890] [Render thread/ERROR] [net.minecraft.client.sounds.SoundManager/]: Missing subtitle translation{key='sound.spirit_of_fight.sharp_parry', args=[]} for sound event: spirit_of_fight:sharp_parry
+[271月2025 22:13:00.890] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[271月2025 22:13:00.890] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[271月2025 22:13:00.927] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (High Definition Audio Device)
+[271月2025 22:13:00.928] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[271月2025 22:13:00.991] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[271月2025 22:13:01.004] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[271月2025 22:13:01.004] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[271月2025 22:13:01.005] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[271月2025 22:13:01.005] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[271月2025 22:13:01.008] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[271月2025 22:13:01.008] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[271月2025 22:13:01.008] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[271月2025 22:13:01.009] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[271月2025 22:13:01.070] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[271月2025 22:13:01.080] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[271月2025 22:13:01.081] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[271月2025 22:13:01.081] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/map_decorations.png-atlas
+[271月2025 22:13:01.081] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[271月2025 22:13:01.093] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find sampler named Sampler2 in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named IViewRotMat in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogStart in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogEnd in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogColor in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find sampler named Sampler2 in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named IViewRotMat in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogStart in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogEnd in the specified shader program.
+[271月2025 22:13:01.116] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader moonlight:text_alpha_color could not find uniform named FogColor in the specified shader program.
+[271月2025 22:13:01.126] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 jei:textures/atlas/gui.png-atlas
+[271月2025 22:13:01.127] [Render thread/INFO] [net.neoforged.neoforge.client.entity.animation.json.AnimationLoader/]: Loaded 0 entity animations
+[271月2025 22:13:03.541] [Worker-Main-9/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (85)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -170,7 +170,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.241] [Worker-Main-14/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (86)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-5/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (87)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -190,7 +190,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.241] [Worker-Main-9/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (85)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-4/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (90)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -210,7 +210,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.241] [Worker-Main-4/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (87)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-12/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (89)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -230,7 +230,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.241] [Worker-Main-6/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (89)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-11/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (88)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -250,7 +250,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.241] [Worker-Main-7/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (88)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-15/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (86)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -270,7 +270,7 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.242] [Worker-Main-1/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (90)\level.dat
+[271月2025 22:13:03.541] [Worker-Main-10/ERROR] [net.minecraft.world.level.storage.LevelStorageSource/]: Exception reading .\saves\新的世界 (84)\level.dat
 java.io.EOFException: null
 	at java.base/java.util.zip.GZIPInputStream.readUByte(GZIPInputStream.java:279) ~[?:?]
 	at java.base/java.util.zip.GZIPInputStream.readUShort(GZIPInputStream.java:269) ~[?:?]
@@ -290,17 +290,17 @@ java.io.EOFException: null
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
-[271月2025 21:37:22.932] [Worker-Main-15/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/tanuki_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:tanuki_statue
-[271月2025 21:37:22.943] [Worker-Main-15/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/kawauso_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:kawauso_statue
-[271月2025 21:37:22.958] [Worker-Main-15/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/komainu_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:komainu_statue
-[271月2025 21:37:23.051] [Worker-Main-3/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:storage_blocks as it is missing following references: 
+[271月2025 22:13:04.327] [Worker-Main-4/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/tanuki_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:tanuki_statue
+[271月2025 22:13:04.339] [Worker-Main-4/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/kawauso_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:kawauso_statue
+[271月2025 22:13:04.353] [Worker-Main-4/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:samurai_dynasty:blocks/komainu_statue - Failed to parse either. First: No key block in MapLike[{"condition":"minecraft:block_state_property","properties":{"half":"lower"}}]; Second: Not a json array: {"condition":"minecraft:block_state_property","properties":{"half":"lower"}}; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: minecraft:komainu_statue
+[271月2025 22:13:04.449] [Worker-Main-10/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:storage_blocks as it is missing following references: 
 	#neoforge:storage_blocks/jade (from mod/samurai_dynasty)
 	#neoforge:storage_blocks/steel (from mod/samurai_dynasty)
-[271月2025 21:37:23.054] [Worker-Main-3/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ores as it is missing following references: 
+[271月2025 22:13:04.453] [Worker-Main-10/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ores as it is missing following references: 
 	#neoforge:ores/jade (from mod/samurai_dynasty)
-[271月2025 21:37:23.054] [Worker-Main-13/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:nuggets as it is missing following references: 
+[271月2025 22:13:04.454] [Worker-Main-2/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:nuggets as it is missing following references: 
 	#neoforge:nuggets/steel (from mod/samurai_dynasty)
-[271月2025 21:37:23.054] [Worker-Main-13/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:gems as it is missing following references: 
+[271月2025 22:13:04.454] [Worker-Main-2/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:gems as it is missing following references: 
 	#neoforge:gems/amethyst (from mod/samurai_dynasty)
 	#neoforge:gems/diamond (from mod/samurai_dynasty)
 	#neoforge:gems/emerald (from mod/samurai_dynasty)
@@ -311,116 +311,117 @@ java.io.EOFException: null
 	#neoforge:gems/jade (from mod/samurai_dynasty)
 	#neoforge:gems/onyx (from mod/samurai_dynasty)
 	#neoforge:gems/aquamarine (from mod/samurai_dynasty)
-[271月2025 21:37:23.054] [Worker-Main-13/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ingots as it is missing following references: 
+[271月2025 22:13:04.454] [Worker-Main-2/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ingots as it is missing following references: 
 	#neoforge:ingots/steel (from mod/samurai_dynasty)
-[271月2025 21:37:23.056] [Worker-Main-13/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ores as it is missing following references: 
+[271月2025 22:13:04.454] [Worker-Main-2/ERROR] [net.minecraft.tags.TagLoader/]: Couldn't load tag c:ores as it is missing following references: 
 	#neoforge:ores/jade (from mod/samurai_dynasty)
-[271月2025 21:37:23.130] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 1538 recipes
-[271月2025 21:37:23.210] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1399 advancements
-[271月2025 21:37:23.216] [Render thread/INFO] [Curios API/]: Loaded 11 curio slots
-[271月2025 21:37:23.217] [Render thread/INFO] [Curios API/]: Loaded 1 curio entities
-[271月2025 21:37:23.221] [Render thread/INFO] [星火核心/]: 已加载 1 种类型的模型
-[271月2025 21:37:23.306] [Render thread/INFO] [星火核心/]: 已加载 1 种类型的动画文件，并在其中加载了 279 个玩家动画
-[271月2025 21:37:23.560] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.event.TagsUpdatedEvent too early, ignoring
-[271月2025 21:37:23.563] [Render thread/INFO] [snownee.jade.Jade/]: LootTableMineableCollector took 2.950 ms
-[271月2025 21:37:23.618] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.21.1
-[271月2025 21:37:23.618] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[271月2025 21:37:23.789] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[271月2025 21:37:23.902] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[271月2025 21:37:23.934] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
-[271月2025 21:37:23.935] [Server thread/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO from server starting
-[271月2025 21:37:23.942] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 146 ms
-[271月2025 21:37:23.967] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[271月2025 21:37:23.967] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
-[271月2025 21:37:24.304] [Render thread/INFO] [星火核心/]: 已从服务器接收所有模型动画数据
-[271月2025 21:37:24.383] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.event.TagsUpdatedEvent
-[271月2025 21:37:24.533] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:a7a92025] logged in with entity id 5 at (20.614100154893496, -60.0, -2.090409084206837)
-[271月2025 21:37:24.606] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
-[271月2025 21:37:24.656] [Render thread/WARN] [mixin/]: Error loading class: net/fabricmc/fabric/api/blockview/v2/FabricBlockView (java.lang.ClassNotFoundException: net.fabricmc.fabric.api.blockview.v2.FabricBlockView)
-[271月2025 21:37:24.657] [Render thread/WARN] [mixin/]: Error loading class: net/fabricmc/fabric/api/rendering/data/v1/RenderAttachedBlockView (java.lang.ClassNotFoundException: net.fabricmc.fabric.api.rendering.data.v1.RenderAttachedBlockView)
-[271月2025 21:37:24.701] [Render thread/INFO] [ChunkBuilder/]: Started 10 worker threads
-[271月2025 21:37:24.849] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.client.event.RecipesUpdatedEvent
-[271月2025 21:37:24.849] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver transitioning state from LISTENING to JEI_STARTED
-[271月2025 21:37:24.850] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Starting JEI...
-[271月2025 21:37:24.858] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering item subtypes...
-[271月2025 21:37:24.866] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering item subtypes took 7.940 ms
-[271月2025 21:37:24.867] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering fluid subtypes...
-[271月2025 21:37:24.870] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering fluid subtypes took 2.664 ms
-[271月2025 21:37:24.872] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering ingredients...
-[271月2025 21:37:24.942] [Render thread/WARN] [mezz.jei.library.plugins.vanilla.ingredients.ItemStackListFactory/]: Item Group has no display items and no search tab display items. Items from this group will be missing from the JEI ingredient list. 管理员用品
-[271月2025 21:37:24.977] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering ingredients: jei:minecraft took 104.6 milliseconds
-[271月2025 21:37:24.978] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering ingredients took 105.3 ms
-[271月2025 21:37:24.978] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering extra ingredients...
-[271月2025 21:37:24.980] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering extra ingredients took 445.7 μs
-[271月2025 21:37:24.980] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering search ingredient aliases...
-[271月2025 21:37:24.981] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering search ingredient aliases took 632.1 μs
-[271月2025 21:37:25.005] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Mod Info...
-[271月2025 21:37:25.007] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Mod Info took 424.4 μs
-[271月2025 21:37:25.029] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering categories...
-[271月2025 21:37:25.055] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering categories: jei:minecraft took 24.81 milliseconds
-[271月2025 21:37:25.068] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering categories: jei:internal took 12.39 milliseconds
-[271月2025 21:37:25.068] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering categories took 38.09 ms
-[271月2025 21:37:25.069] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering vanilla category extensions...
-[271月2025 21:37:25.072] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering vanilla category extensions took 3.314 ms
-[271月2025 21:37:25.073] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipe catalysts...
-[271月2025 21:37:25.074] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipe catalysts took 978.4 μs
-[271月2025 21:37:25.074] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building recipe registry...
-[271月2025 21:37:25.090] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building recipe registry took 14.40 ms
-[271月2025 21:37:25.091] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering advanced plugins...
-[271月2025 21:37:25.092] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering advanced plugins took 340.5 μs
-[271月2025 21:37:25.093] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes...
-[271月2025 21:37:25.255] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering recipes: jei:minecraft took 161.4 milliseconds
-[271月2025 21:37:25.292] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering recipes: jei:internal took 36.84 milliseconds
-[271月2025 21:37:25.293] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes took 198.9 ms
-[271月2025 21:37:25.301] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes transfer handlers...
-[271月2025 21:37:25.303] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes transfer handlers took 2.696 ms
-[271月2025 21:37:25.313] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building runtime...
-[271月2025 21:37:25.315] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering gui handlers...
-[271月2025 21:37:25.324] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering gui handlers took 7.744 ms
-[271月2025 21:37:25.328] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Runtime...
-[271月2025 21:37:25.329] [Render thread/INFO] [mezz.jei.gui.startup.JeiGuiStarter/]: Starting JEI GUI
-[271月2025 21:37:25.330] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient list...
-[271月2025 21:37:25.348] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient list took 18.22 ms
-[271月2025 21:37:25.349] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient filter...
-[271月2025 21:37:25.388] [Render thread/INFO] [mezz.jei.gui.ingredients.IngredientFilter/]: Adding 1811 ingredients
-[271月2025 21:37:25.487] [Render thread/INFO] [mezz.jei.gui.ingredients.IngredientFilter/]: Added 1811 ingredients
-[271月2025 21:37:25.488] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient filter took 139.6 ms
-[271月2025 21:37:25.563] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering Runtime: jei:neoforge_gui took 234.4 milliseconds
-[271月2025 21:37:25.563] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Runtime took 234.9 ms
-[271月2025 21:37:25.564] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building runtime took 250.7 ms
-[271月2025 21:37:25.565] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime...
-[271月2025 21:37:25.565] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime took 493.6 μs
-[271月2025 21:37:25.565] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Starting JEI took 715.2 ms
-[271月2025 21:37:25.576] [Render thread/INFO] [snownee.jade.Jade/]: Received config from the server: 
-[271月2025 21:37:25.577] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 141 advancements
-[271月2025 21:37:36.239] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev被尸壳杀死了
-[271月2025 21:37:36.255] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Dev被尸壳杀死了
-[271月2025 21:37:55.437] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev被尸壳杀死了
-[271月2025 21:37:55.440] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Dev被尸壳杀死了
-[271月2025 21:38:10.987] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev被尸壳杀死了
-[271月2025 21:38:10.990] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Dev被尸壳杀死了
-[271月2025 21:38:13.436] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[271月2025 21:38:13.459] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[271月2025 21:38:13.475] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[271月2025 21:38:13.484] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[271月2025 21:38:14.146] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
-[271月2025 21:38:14.148] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent$LoggingOut
-[271月2025 21:38:14.148] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver transitioning state from JEI_STARTED to LISTENING
-[271月2025 21:38:14.148] [Render thread/INFO] [mezz.jei.library.startup.JeiStarter/]: Stopping JEI
-[271月2025 21:38:14.148] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime Unavailable...
-[271月2025 21:38:14.148] [Render thread/INFO] [mezz.jei.neoforge.plugins.neoforge.NeoForgeGuiPlugin/]: Stopping JEI GUI
-[271月2025 21:38:14.151] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime Unavailable took 2.005 ms
-[271月2025 21:38:14.189] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
-[271月2025 21:38:14.189] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
-[271月2025 21:38:14.206] [Server thread/INFO] [net.minecraft.server.network.ServerCommonPacketListenerImpl/]: Stopping singleplayer server as player logged out
-[271月2025 21:38:14.236] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[271月2025 21:38:14.236] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[271月2025 21:38:14.236] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[271月2025 21:38:14.253] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[271月2025 21:38:14.279] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[271月2025 21:38:14.282] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[271月2025 21:38:14.292] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界 (91)): All chunks are saved
-[271月2025 21:38:14.292] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[271月2025 21:38:14.292] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[271月2025 21:38:14.292] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
-[271月2025 21:38:14.332] [Render thread/INFO] [ChunkBuilder/]: Stopping worker threads
+[271月2025 22:13:04.531] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 1538 recipes
+[271月2025 22:13:04.617] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1399 advancements
+[271月2025 22:13:04.622] [Render thread/INFO] [Curios API/]: Loaded 11 curio slots
+[271月2025 22:13:04.623] [Render thread/INFO] [Curios API/]: Loaded 1 curio entities
+[271月2025 22:13:04.628] [Render thread/INFO] [星火核心/]: 已加载 1 种类型的模型
+[271月2025 22:13:04.701] [Render thread/INFO] [星火核心/]: 已加载 1 种类型的动画文件，并在其中加载了 280 个玩家动画
+[271月2025 22:13:04.957] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.event.TagsUpdatedEvent too early, ignoring
+[271月2025 22:13:04.960] [Render thread/INFO] [snownee.jade.Jade/]: LootTableMineableCollector took 3.125 ms
+[271月2025 22:13:05.013] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.21.1
+[271月2025 22:13:05.013] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[271月2025 22:13:05.201] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[271月2025 22:13:05.319] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[271月2025 22:13:05.346] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[271月2025 22:13:05.347] [Server thread/INFO] [net.veroxuniverse.samurai_dynasty.SamuraiDynastyMod/]: HELLO from server starting
+[271月2025 22:13:05.359] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 147 ms
+[271月2025 22:13:05.377] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[271月2025 22:13:05.377] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
+[271月2025 22:13:05.734] [Render thread/INFO] [星火核心/]: 已从服务器接收所有模型动画数据
+[271月2025 22:13:05.809] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.event.TagsUpdatedEvent
+[271月2025 22:13:05.956] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:d26efcfc] logged in with entity id 4 at (15.621878375823485, -60.0, 1.8672421093517286)
+[271月2025 22:13:06.028] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
+[271月2025 22:13:06.073] [Render thread/WARN] [mixin/]: Error loading class: net/fabricmc/fabric/api/blockview/v2/FabricBlockView (java.lang.ClassNotFoundException: net.fabricmc.fabric.api.blockview.v2.FabricBlockView)
+[271月2025 22:13:06.073] [Render thread/WARN] [mixin/]: Error loading class: net/fabricmc/fabric/api/rendering/data/v1/RenderAttachedBlockView (java.lang.ClassNotFoundException: net.fabricmc.fabric.api.rendering.data.v1.RenderAttachedBlockView)
+[271月2025 22:13:06.124] [Render thread/INFO] [ChunkBuilder/]: Started 10 worker threads
+[271月2025 22:13:06.224] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.client.event.RecipesUpdatedEvent
+[271月2025 22:13:06.224] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver transitioning state from LISTENING to JEI_STARTED
+[271月2025 22:13:06.225] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Starting JEI...
+[271月2025 22:13:06.233] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering item subtypes...
+[271月2025 22:13:06.242] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering item subtypes took 8.494 ms
+[271月2025 22:13:06.242] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering fluid subtypes...
+[271月2025 22:13:06.244] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering fluid subtypes took 2.420 ms
+[271月2025 22:13:06.247] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering ingredients...
+[271月2025 22:13:06.312] [Render thread/WARN] [mezz.jei.library.plugins.vanilla.ingredients.ItemStackListFactory/]: Item Group has no display items and no search tab display items. Items from this group will be missing from the JEI ingredient list. 管理员用品
+[271月2025 22:13:06.344] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering ingredients: jei:minecraft took 96.95 milliseconds
+[271月2025 22:13:06.345] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering ingredients took 97.67 ms
+[271月2025 22:13:06.345] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering extra ingredients...
+[271月2025 22:13:06.345] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering extra ingredients took 358.7 μs
+[271月2025 22:13:06.345] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering search ingredient aliases...
+[271月2025 22:13:06.347] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering search ingredient aliases took 613.5 μs
+[271月2025 22:13:06.373] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Mod Info...
+[271月2025 22:13:06.374] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Mod Info took 419.0 μs
+[271月2025 22:13:06.396] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering categories...
+[271月2025 22:13:06.429] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering categories: jei:minecraft took 32.68 milliseconds
+[271月2025 22:13:06.440] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering categories took 44.43 ms
+[271月2025 22:13:06.441] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering vanilla category extensions...
+[271月2025 22:13:06.445] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering vanilla category extensions took 3.124 ms
+[271月2025 22:13:06.445] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipe catalysts...
+[271月2025 22:13:06.446] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipe catalysts took 840.1 μs
+[271月2025 22:13:06.446] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building recipe registry...
+[271月2025 22:13:06.474] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building recipe registry took 27.14 ms
+[271月2025 22:13:06.476] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering advanced plugins...
+[271月2025 22:13:06.476] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering advanced plugins took 357.0 μs
+[271月2025 22:13:06.478] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes...
+[271月2025 22:13:06.605] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering recipes: jei:minecraft took 127.1 milliseconds
+[271月2025 22:13:06.646] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering recipes: jei:internal took 41.20 milliseconds
+[271月2025 22:13:06.646] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes took 168.9 ms
+[271月2025 22:13:06.653] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes transfer handlers...
+[271月2025 22:13:06.656] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering recipes transfer handlers took 3.227 ms
+[271月2025 22:13:06.666] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building runtime...
+[271月2025 22:13:06.669] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering gui handlers...
+[271月2025 22:13:06.678] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering gui handlers took 9.414 ms
+[271月2025 22:13:06.683] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Runtime...
+[271月2025 22:13:06.685] [Render thread/INFO] [mezz.jei.gui.startup.JeiGuiStarter/]: Starting JEI GUI
+[271月2025 22:13:06.685] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient list...
+[271月2025 22:13:06.704] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient list took 18.22 ms
+[271月2025 22:13:06.704] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient filter...
+[271月2025 22:13:06.740] [Render thread/INFO] [mezz.jei.gui.ingredients.IngredientFilter/]: Adding 1811 ingredients
+[271月2025 22:13:06.857] [Render thread/INFO] [mezz.jei.gui.ingredients.IngredientFilter/]: Added 1811 ingredients
+[271月2025 22:13:06.858] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building ingredient filter took 154.5 ms
+[271月2025 22:13:06.932] [Render thread/INFO] [mezz.jei.library.load.PluginCallerTimerRunnable/]: Registering Runtime: jei:neoforge_gui took 247.9 milliseconds
+[271月2025 22:13:06.932] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Registering Runtime took 248.4 ms
+[271月2025 22:13:06.933] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Building runtime took 266.7 ms
+[271月2025 22:13:06.933] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime...
+[271月2025 22:13:06.933] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime took 272.8 μs
+[271月2025 22:13:06.933] [Render thread/INFO] [mezz.jei.core.util.LoggedTimer/]: Starting JEI took 708.7 ms
+[271月2025 22:13:06.945] [Render thread/INFO] [snownee.jade.Jade/]: Received config from the server: 
+[271月2025 22:13:06.946] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 141 advancements
+[271月2025 22:13:27.098] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[271月2025 22:13:27.120] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[271月2025 22:13:27.131] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[271月2025 22:13:27.141] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[271月2025 22:13:29.849] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[271月2025 22:13:29.866] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[271月2025 22:13:29.870] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[271月2025 22:13:29.875] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[271月2025 22:13:40.898] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[271月2025 22:13:40.907] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[271月2025 22:13:40.918] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[271月2025 22:13:40.927] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[271月2025 22:13:41.524] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[271月2025 22:13:41.526] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver received class net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent$LoggingOut
+[271月2025 22:13:41.526] [Render thread/INFO] [mezz.jei.neoforge.startup.StartEventObserver/]: JEI StartEventObserver transitioning state from JEI_STARTED to LISTENING
+[271月2025 22:13:41.526] [Render thread/INFO] [mezz.jei.library.startup.JeiStarter/]: Stopping JEI
+[271月2025 22:13:41.526] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime Unavailable...
+[271月2025 22:13:41.526] [Render thread/INFO] [mezz.jei.neoforge.plugins.neoforge.NeoForgeGuiPlugin/]: Stopping JEI GUI
+[271月2025 22:13:41.528] [Render thread/INFO] [mezz.jei.library.load.PluginCaller/]: Sending Runtime Unavailable took 1.854 ms
+[271月2025 22:13:41.550] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
+[271月2025 22:13:41.550] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
+[271月2025 22:13:41.570] [Server thread/INFO] [net.minecraft.server.network.ServerCommonPacketListenerImpl/]: Stopping singleplayer server as player logged out
+[271月2025 22:13:41.601] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[271月2025 22:13:41.602] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[271月2025 22:13:41.602] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[271月2025 22:13:41.621] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[271月2025 22:13:41.646] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[271月2025 22:13:41.651] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[271月2025 22:13:41.664] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界 (91)): All chunks are saved
+[271月2025 22:13:41.664] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[271月2025 22:13:41.664] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[271月2025 22:13:41.664] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[271月2025 22:13:41.703] [Render thread/INFO] [ChunkBuilder/]: Stopping worker threads

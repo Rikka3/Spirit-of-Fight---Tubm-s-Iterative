@@ -43,7 +43,7 @@ open class BaimeiSquatDodge(
     }
 
     init {
-        addComponent(AnimPreInputAcceptComponent(0.25, entity.getPreInput(), dodgeAnim,
+        addComponent(AnimPreInputAcceptComponent(0.3, entity.getPreInput(), dodgeAnim,
             limit = { it != "dodge" },
             extraInputNode = { onEnd { entity.level().laterConsume { it.executeIfPresent("dodge") } } }
         ))
