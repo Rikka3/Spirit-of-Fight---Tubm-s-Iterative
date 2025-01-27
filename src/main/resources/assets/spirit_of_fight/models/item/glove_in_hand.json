@@ -1,0 +1,72 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "spirit_of_fight:item/glove_in_hand",
+		"particle": "spirit_of_fight:item/glove"
+	},
+	"elements": [
+		{
+			"from": [5.8, 0.8, 5.8],
+			"to": [10.1, 5.2, 10.2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [4, 4, 8, 8], "texture": "#1"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#1"},
+				"south": {"uv": [12, 4, 16, 8], "texture": "#1"},
+				"west": {"uv": [8, 4, 12, 8], "texture": "#1"},
+				"up": {"uv": [8, 4, 4, 0], "texture": "#1"},
+				"down": {"uv": [12, 0, 8, 4], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5.9, 0.9, 5.9],
+			"to": [10.1, 5.1, 10.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [4, 12, 8, 16], "texture": "#1"},
+				"east": {"uv": [0, 12, 4, 16], "texture": "#1"},
+				"south": {"uv": [12, 12, 16, 16], "texture": "#1"},
+				"west": {"uv": [8, 12, 12, 16], "texture": "#1"},
+				"up": {"uv": [8, 12, 4, 8], "texture": "#1"},
+				"down": {"uv": [12, 8, 8, 12], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [90, 180, 0],
+			"translation": [0, -1.5, 5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [90, 0, 0],
+			"translation": [0, -1.5, 5.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [135, 180, 0],
+			"translation": [0.75, -3, 3.25],
+			"scale": [1, 1.25, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [135, 0, 0],
+			"translation": [0.75, -3, 3.25],
+			"scale": [1, 1.25, 1]
+		},
+		"ground": {
+			"rotation": [90, 0, 0],
+			"translation": [0, 0.25, 5]
+		},
+		"gui": {
+			"rotation": [-13, 60, -130],
+			"translation": [3.75, -7.5, 0],
+			"scale": [2, 2, 2]
+		}
+	},
+	"groups": [
+		{
+			"name": "root",
+			"origin": [8, 3, 8],
+			"color": 5,
+			"children": [0, 1]
+		}
+	]
+}

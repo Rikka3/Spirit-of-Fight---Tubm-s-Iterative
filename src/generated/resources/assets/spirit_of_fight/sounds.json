@@ -1,0 +1,46 @@
+{
+  "hard_block": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "spirit_of_fight:hard_block",
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "sound.spirit_of_fight.hard_block"
+  },
+  "sharp_block": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "spirit_of_fight:sharp_block",
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "sound.spirit_of_fight.sharp_block"
+  },
+  "sharp_parry": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "spirit_of_fight:sharp_parry",
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "sound.spirit_of_fight.sharp_parry"
+  },
+  "soft_block": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "spirit_of_fight:soft_block",
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "sound.spirit_of_fight.soft_block"
+  }
+}
