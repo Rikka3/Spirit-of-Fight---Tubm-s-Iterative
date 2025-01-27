@@ -10,6 +10,8 @@ import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.phys.Vec3
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.div
@@ -87,8 +89,9 @@ class 斧子投技(
     }
 
     init {
+        addComponent(StuckEffectComponent(2, 0.05) { startAnim.time in 0.4..0.60 })
         addComponent(
-            AnimBoxAttackComponent(entity, startAnim, SOFHitTypes.LIGHT_CHOP.get(),
+            AnimBoxAttackComponent(entity, startAnim, SOFHitTypes.LIGHT_CHOP.get(),{0.25},soundEvent = SoundEvents.PLAYER_ATTACK_STRONG,
                 whenTargetAttacked =  { o1, o2, buffer, attackSystem, _ ->
                     val target = o2.body.owner as? LivingEntity ?: return@AnimBoxAttackComponent
                     grab = target
@@ -101,9 +104,10 @@ class 斧子投技(
 
         addComponent(AnimPreInputAcceptComponent(0.75, entity.getPreInput(), pullAnim))
 
-        addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(), { 2.0 },
+        addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.60..0.90 })
+        addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(),soundEvent = SoundEvents.PLAYER_ATTACK_CRIT,
             fightSpiritModifier = null
-        ) { time in 0.75..1.15 })
+        ) { time in 0.60..0.90 })
     }
 
     override fun onActivate() {

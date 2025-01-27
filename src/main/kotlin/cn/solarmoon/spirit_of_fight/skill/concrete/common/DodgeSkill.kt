@@ -60,9 +60,9 @@ open class DodgeSkill(
             addComponent(AnimImmunityToDamageComponent(entity, it,
                 onSuccessImmunity = {
                     direction?.let { d ->
-                        holder.animController.getPlayingAnim(getAnimName(d))?.let {
-                            if (it.time in 0.0..0.2 && check) {
-                                onPerfectDodge(it, this)
+                        holder.animController.getPlayingAnim(getAnimName(d))?.let {anim ->
+                            if (enableDodge(anim) && check) {
+                                onPerfectDodge(anim, this)
                                 check = false
                             }
                         }
@@ -73,15 +73,19 @@ open class DodgeSkill(
         }
     }
 
+    open fun enableDodge(anim: AnimInstance): Boolean {
+        return anim.time in 0.0..0.2
+    }
+
     open fun getSwitchNode(): Double = 0.35
 
     open fun getMoveSet(anim: AnimInstance): Vec3? {
-        val mul = 0.65 * (1 - anim.getProgress())
+        val mul = 0.42 * (1 - anim.getProgress())
         return Vec3(moveVector.x * mul, entity.deltaMovement.y, moveVector.z * mul)
     }
 
     open fun getImmunityCondition(anim: AnimInstance): Boolean {
-        return anim.time in 0.0..0.35
+        return anim.time in 0.0..0.25
     }
 
     open fun onPerfectDodge(anim: AnimInstance, event: LivingIncomingDamageEvent) {

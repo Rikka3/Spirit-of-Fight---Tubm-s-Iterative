@@ -46,6 +46,7 @@ abstract class BaseHitType: HitType {
         val color = if (strength == AttackStrength.SUPER_HEAVY) Color.RED else Color.WHITE
         val level = entity.level()
         if (level.isClientSide) {
+            if (!animatable.model.hasBone(body.name)) return
             level.getPhysLevel().scope.launch {
                 SparkVisualEffects.TRAIL.refresh(box.uuid.toString()) {
                     val physPT = (level.getPhysLevel() as ClientPhysLevel).partialTicks.toFloat()

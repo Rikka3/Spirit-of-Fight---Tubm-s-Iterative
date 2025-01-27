@@ -18,7 +18,7 @@ class FightSpirit(
     var valueCache = 0
 
     val shouldFade get() = value > 0 && fadeTick >= maxTickToFade
-    val isFull get() = value >= maxValue
+    val isFull get() = true
 
     fun reset(spirit: FightSpirit) {
         value = spirit.value

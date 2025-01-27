@@ -8,6 +8,7 @@ import cn.solarmoon.spark_core.skill.EntityAnimSkill
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.world.entity.LivingEntity
 
 class SwordJumpAttack(
@@ -27,9 +28,9 @@ class SwordJumpAttack(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_CHOP.get(), { 1.25 }) { time in 0.15..0.45 }
+        addComponent(StuckEffectComponent(3, 0.05) { comboAnim.time in 0.2..0.5 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_CHOP.get(), { 0.85 }) { time in 0.2..0.5 }
         )
-        addComponent(AnimPreInputAcceptComponent(0.55, entity.getPreInput(), comboAnim))
     }
 
     override fun onActivate() {

@@ -10,6 +10,8 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 
 class MaceCombo1(
@@ -29,9 +31,10 @@ class MaceCombo1(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_SWIPE.get()) { time in 0.20..0.45 })
-        addComponent(AnimPreInputAcceptComponent(0.45, entity.getPreInput(), comboAnim))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.20..0.3) entity.getForwardMoveVector(1/10f) else null })
+        addComponent(StuckEffectComponent(4, 0.05) { comboAnim.time in 0.20..0.45 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_SWIPE.get(), soundEvent = SoundEvents.PLAYER_ATTACK_STRONG) { time in 0.20..0.45 })
+        addComponent(AnimPreInputAcceptComponent(0.60, entity.getPreInput(), comboAnim))
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.20..0.3) entity.getForwardMoveVector(1/6f) else null })
     }
 
     override fun onActivate() {

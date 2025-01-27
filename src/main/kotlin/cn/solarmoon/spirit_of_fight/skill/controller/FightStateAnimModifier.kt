@@ -37,6 +37,10 @@ object FightStateAnimModifier {
             if (event.state == EntityStates.Idle && PlayerLocalController.moveRemain > 0) {
                 event.isCanceled = true
             }
+
+            if (PlayerLocalController.moveRemain > 0) {
+                event.transitionTime = 7
+            }
         }
     }
 

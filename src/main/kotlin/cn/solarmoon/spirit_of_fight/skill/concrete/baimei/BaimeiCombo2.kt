@@ -9,6 +9,8 @@ import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 
 class BaimeiCombo2(
@@ -28,9 +30,11 @@ class BaimeiCombo2(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get(), { 1.5 }) { time in 0.1..0.25 })
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_CHOP.get(), { 1.5 }, body = entity.getPatch().getOffAttackBody()) { time in 0.4..0.6 })
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.4..0.55) entity.getForwardMoveVector(1/6f) else null })
+        addComponent(StuckEffectComponent(5, 0.05) { comboAnim.time in 0.50..0.70 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_CHOP.get(), { 1.2 }, body = entity.getPatch().getOffAttackBody(),
+                soundEvent = SoundEvents.PLAYER_ATTACK_CRIT
+        ) { time in 0.50..0.70 })
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.15..0.55) entity.getForwardMoveVector(1/4f) else null })
     }
 
     override fun onActivate() {

@@ -1,0 +1,146 @@
+---- Minecraft Crash Report ----
+// I let you down. Sorry :(
+
+Time: 2025-01-27 08:59:30
+Description: Exception ticking world
+
+java.lang.NullPointerException: Trying to access unbound value: ResourceKey[neoforge:attachment_types / spark_core:model_index]
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.attachment.IAttachmentHolder.setData(IAttachmentHolder.java:79) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:computing_frames,re:mixin,re:classloading}
+	at TRANSFORMER/spark_core@1.0.297/cn.solarmoon.spark_core.animation.anim.play.AnimApplier.entityJoin(AnimApplier.kt:21) ~[spark-core-neoforge-1.21.1-1.0.297.jar%23187!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.SubscribeEventListener.invoke(SubscribeEventListener.java:49) ~[bus-8.0.2.jar%23141!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:350) ~[bus-8.0.2.jar%23141!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:315) ~[bus-8.0.2.jar%23141!/:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.addEntity(PersistentEntitySectionManager.java:79) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.lambda$processPendingLoads$11(PersistentEntitySectionManager.java:247) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) ~[?:?] {}
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[?:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.processPendingLoads(PersistentEntitySectionManager.java:246) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.tick(PersistentEntitySectionManager.java:255) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:435) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1052) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:932) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:113) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:713) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:267) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.registries.DeferredHolder.value(DeferredHolder.java:103) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.registries.DeferredHolder.get(DeferredHolder.java:117) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:classloading}
+	at TRANSFORMER/neoforge@21.1.65/net.neoforged.neoforge.attachment.IAttachmentHolder.setData(IAttachmentHolder.java:79) ~[neoforge-21.1.65-minecraft-merged.jar%23184!/:?] {re:computing_frames,re:mixin,re:classloading}
+	at TRANSFORMER/spark_core@1.0.297/cn.solarmoon.spark_core.animation.anim.play.AnimApplier.entityJoin(AnimApplier.kt:21) ~[spark-core-neoforge-1.21.1-1.0.297.jar%23187!/:?] {re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.SubscribeEventListener.invoke(SubscribeEventListener.java:49) ~[bus-8.0.2.jar%23141!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:350) ~[bus-8.0.2.jar%23141!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:315) ~[bus-8.0.2.jar%23141!/:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.addEntity(PersistentEntitySectionManager.java:79) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.lambda$processPendingLoads$11(PersistentEntitySectionManager.java:247) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) ~[?:?] {}
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[?:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.processPendingLoads(PersistentEntitySectionManager.java:246) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.world.level.entity.PersistentEntitySectionManager.tick(PersistentEntitySectionManager.java:255) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading}
+-- Affected level --
+Details:
+	All players: 0 total; []
+	Chunk stats: 841
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Level time: 20845 game time, 8494 day time
+	Level name: 新的世界
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Commands: true
+	Level weather: Rain time: 106711 (now: false), thunder time: 81518 (now: false)
+	Known server brands: neoforge
+	Removed feature flags: 
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+	Loaded entity count: 0
+Stacktrace:
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.level.ServerLevel.fillReportDetails(ServerLevel.java:1742) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1055) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:932) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:113) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:713) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:267) ~[neoforge-21.1.65-minecraft-merged.jar%23183!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.1
+	Minecraft Version ID: 1.21.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 21.0.6, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 222474728 bytes (212 MiB) / 1136656384 bytes (1084 MiB) up to 4246732800 bytes (4050 MiB)
+	CPUs: 16
+	Processor Vendor: GenuineIntel
+	Processor Name: 13th Gen Intel(R) Core(TM) i5-13490F
+	Identifier: Intel64 Family 6 Model 191 Stepping 2
+	Microarchitecture: unknown
+	Frequency (GHz): 2.50
+	Number of physical packages: 1
+	Number of physical CPUs: 10
+	Number of logical CPUs: 16
+	Graphics card #0 name: NVIDIA GeForce RTX 3070 Ti
+	Graphics card #0 vendor: NVIDIA
+	Graphics card #0 VRAM (MiB): 8192.00
+	Graphics card #0 deviceId: VideoController1
+	Graphics card #0 versionInfo: 32.0.15.6081
+	Memory slot #0 capacity (MiB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.40
+	Memory slot #0 type: DDR4
+	Virtual memory max (MiB): 24900.99
+	Virtual memory used (MiB): 18217.34
+	Swap memory total (MiB): 8704.00
+	Swap memory used (MiB): 1509.99
+	Space in storage for jna.tmpdir (MiB): <path not set>
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): <path not set>
+	Space in storage for io.netty.native.workdir (MiB): <path not set>
+	Space in storage for java.io.tmpdir (MiB): available: 15108.09, total: 102402.00
+	Space in storage for workdir (MiB): available: 18798.41, total: 515640.31
+	JVM Flags: 0 total; 
+	Server Running: true
+	Player Count: 0 / 8; []
+	Active Data Packs: vanilla, mod_data, mod/azurelib (incompatible), mod/spirit_of_fight (incompatible), mod/kotlinforforge, mod/spark_core (incompatible), mod/jade (incompatible), mod/geckolib, mod/neoforge, mod/jei (incompatible)
+	Available Data Packs: bundle, trade_rebalance, vanilla, mod/azurelib (incompatible), mod/geckolib, mod/jade (incompatible), mod/jei (incompatible), mod/kotlinforforge, mod/neoforge, mod/spark_core (incompatible), mod/spirit_of_fight (incompatible), mod_data
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Stable
+	World Seed: 1657695299239901939
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'neoforge'; Server brand changed to 'neoforge'
+	Launched Version: 21.1.65
+	ModLauncher: 11.0.4+main.d2e20e43
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher services: 
+		sponge-mixin-0.15.2+mixin.0.8.7.jar mixin PLUGINSERVICE 
+		loader-4.0.24.jar slf4jfixer PLUGINSERVICE 
+		loader-4.0.24.jar runtime_enum_extender PLUGINSERVICE 
+		at-modlauncher-10.0.1.jar accesstransformer PLUGINSERVICE 
+		loader-4.0.24.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-11.0.4.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-11.0.4.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		kotlinforforge@5.6.0
+		javafml@4.0
+		lowcodefml@4.0
+		minecraft@4.0
+	Mod List: 
+		neoforge-21.1.65-minecraft-merged.jar             |Minecraft                     |minecraft                     |1.21.1              |Manifest: NOSIGNATURE
+		azurelib-neo-1.21.1-2.3.27.jar                    |AzureLib                      |azurelib                      |2.3.27              |Manifest: NOSIGNATURE
+		main                                              |Spirit of Fight               |spirit_of_fight               |1.0.0               |Manifest: NOSIGNATURE
+		kffmod-neoforge-5.6.0.jar                         |Kotlin For Forge              |kotlinforforge                |5.6.0               |Manifest: NOSIGNATURE
+		spark-core-neoforge-1.21.1-1.0.297.jar            |Spark Core                    |spark_core                    |1.0.297             |Manifest: NOSIGNATURE
+		jade-15.1.6+neoforge.jar                          |Jade                          |jade                          |15.1.6+neoforge     |Manifest: NOSIGNATURE
+		geckolib-neoforge-1.21.1-4.7.jar                  |GeckoLib 4                    |geckolib                      |4.7                 |Manifest: NOSIGNATURE
+		neoforge-21.1.65-minecraft-merged.jar             |NeoForge                      |neoforge                      |21.1.65             |Manifest: NOSIGNATURE
+		jei-1.21.1-neoforge-19.18.8.216.jar               |Just Enough Items             |jei                           |19.18.8.216         |Manifest: NOSIGNATURE
+	Crash Report UUID: 26191f32-c5e7-4498-931a-2b4f0e808b85
+	FML: 4.0.24
+	NeoForge: 21.1.65

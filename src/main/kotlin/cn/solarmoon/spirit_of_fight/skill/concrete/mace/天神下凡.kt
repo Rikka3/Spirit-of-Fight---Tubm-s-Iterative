@@ -1,7 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.concrete.mace
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
-import cn.solarmoon.spark_core.entity.isFalling
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spark_core.skill.EntityAnimSkill
@@ -17,19 +16,8 @@ class 天神下凡(
 
     val fallAttackAnim = createAnimInstance("mace:attack_jump_special") {
         shouldTurnBody = true
-
-        onPhysTick {
-            if (time >= 1.0) {
-                if (entity.isFalling()) {
-                    time = 1.0
-                } else {
-                    end()
-                }
-            }
-        }
-
-        onTick {
-            if (!entity.isFalling()) entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
+        onEnable {
+            entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
         }
 
         onEnd {
@@ -39,9 +27,9 @@ class 天神下凡(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, fallAttackAnim, SOFHitTypes.KNOCKDOWN_CHOP.get(), { 1.0 }) { time in 0.65..1.3 })
+        addComponent(AnimBoxAttackComponent(entity, fallAttackAnim, SOFHitTypes.KNOCKDOWN_CHOP.get(), { 1.25 }) { time in 0.65..1.3 })
         addComponent(AnimMoveSetComponent(entity, fallAttackAnim) {
-            if (time in 0.0..0.2) Vec3(0.0, 1.0, 0.0) else if (time in 0.2..0.6) Vec3.ZERO else null
+            if (time in 0.0..0.2) Vec3(0.0, 1.0, 0.0) else if (time in 0.2..0.6) Vec3.ZERO else entity.deltaMovement.add(0.0, -0.05, 0.0)
         })
     }
 

@@ -1,0 +1,124 @@
+---- Minecraft Crash Report ----
+// You should try our sister game, Minceraft!
+
+Time: 2025-01-26 20:49:24
+Description: Mod loading failures have occurred; consult the issue messages for more details
+
+net.neoforged.neoforge.logging.CrashReportExtender$ModLoadingCrashException: Mod loading has failed
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at TRANSFORMER/spark_core@1.0.285/cn.solarmoon.spark_core.entry_builder.ObjectRegister.keyMapping(ObjectRegister.kt:114) ~[spark-core-neoforge-1.21.1-1.0.285.jar%23187!/:?] {re:classloading}
+-- Mod loading issue for: spirit_of_fight --
+Details:
+	Caused by 0: java.lang.ExceptionInInitializerError
+		at TRANSFORMER/spirit_of_fight@1.0.0/cn.solarmoon.spirit_of_fight.SpiritOfFight.<init>(SpiritOfFight.java:25) ~[%23185!/:?] {re:classloading}
+		at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?] {}
+		at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?] {}
+		at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.javafmlmod.FMLModContainer.constructMod(FMLModContainer.java:115) ~[loader-4.0.24.jar%23139!/:4.0] {}
+		at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.ModLoader.lambda$constructMods$3(ModLoader.java:153) ~[loader-4.0.24.jar%23139!/:4.0] {re:mixin}
+		at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.ModLoader.lambda$dispatchParallelTask$7(ModLoader.java:231) ~[loader-4.0.24.jar%23139!/:4.0] {re:mixin}
+		at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[?:?] {}
+		at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1310) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1841) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1806) ~[?:?] {}
+		at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[?:?] {}
+
+	Mod file: /E:/Minecraft/Materials/Source/Spirit-of-Fight-1.21.1-neoforge/build/classes/java/main/
+	Failure message: Spirit of Fight (spirit_of_fight) has failed to load correctly
+		java.lang.ExceptionInInitializerError: null
+	Mod version: 1.0.0
+	Mod issues URL: <No issues URL found>
+	Exception message: java.lang.NullPointerException
+Stacktrace:
+	at TRANSFORMER/spark_core@1.0.285/cn.solarmoon.spark_core.entry_builder.ObjectRegister.keyMapping(ObjectRegister.kt:114) ~[spark-core-neoforge-1.21.1-1.0.285.jar%23187!/:?] {re:classloading}
+	at TRANSFORMER/spirit_of_fight@1.0.0/cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings.<clinit>(SOFKeyMappings.kt:13) ~[%23185!/:?] {re:classloading}
+	at TRANSFORMER/spirit_of_fight@1.0.0/cn.solarmoon.spirit_of_fight.SpiritOfFight.<init>(SpiritOfFight.java:25) ~[%23185!/:?] {re:classloading}
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?] {}
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?] {}
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.javafmlmod.FMLModContainer.constructMod(FMLModContainer.java:115) ~[loader-4.0.24.jar%23139!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.ModLoader.lambda$constructMods$3(ModLoader.java:153) ~[loader-4.0.24.jar%23139!/:4.0] {re:mixin}
+	at MC-BOOTSTRAP/fml_loader@4.0.24/net.neoforged.fml.ModLoader.lambda$dispatchParallelTask$7(ModLoader.java:231) ~[loader-4.0.24.jar%23139!/:4.0] {re:mixin}
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[?:?] {}
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1310) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1841) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1806) ~[?:?] {}
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.1
+	Minecraft Version ID: 1.21.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 21.0.6, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 108617688 bytes (103 MiB) / 597688320 bytes (570 MiB) up to 4246732800 bytes (4050 MiB)
+	CPUs: 16
+	Processor Vendor: GenuineIntel
+	Processor Name: 13th Gen Intel(R) Core(TM) i5-13490F
+	Identifier: Intel64 Family 6 Model 191 Stepping 2
+	Microarchitecture: unknown
+	Frequency (GHz): 2.50
+	Number of physical packages: 1
+	Number of physical CPUs: 10
+	Number of logical CPUs: 16
+	Graphics card #0 name: NVIDIA GeForce RTX 3070 Ti
+	Graphics card #0 vendor: NVIDIA
+	Graphics card #0 VRAM (MiB): 8192.00
+	Graphics card #0 deviceId: VideoController1
+	Graphics card #0 versionInfo: 32.0.15.6081
+	Memory slot #0 capacity (MiB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.40
+	Memory slot #0 type: DDR4
+	Virtual memory max (MiB): 24900.99
+	Virtual memory used (MiB): 18289.73
+	Swap memory total (MiB): 8704.00
+	Swap memory used (MiB): 956.56
+	Space in storage for jna.tmpdir (MiB): <path not set>
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): <path not set>
+	Space in storage for io.netty.native.workdir (MiB): <path not set>
+	Space in storage for java.io.tmpdir (MiB): available: 15018.73, total: 102402.00
+	Space in storage for workdir (MiB): available: 19690.66, total: 515640.31
+	JVM Flags: 0 total; 
+	ModLauncher: 11.0.4+main.d2e20e43
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher services: 
+		sponge-mixin-0.15.2+mixin.0.8.7.jar mixin PLUGINSERVICE 
+		loader-4.0.24.jar slf4jfixer PLUGINSERVICE 
+		loader-4.0.24.jar runtime_enum_extender PLUGINSERVICE 
+		at-modlauncher-10.0.1.jar accesstransformer PLUGINSERVICE 
+		loader-4.0.24.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-11.0.4.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-11.0.4.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		kotlinforforge@5.6.0
+		javafml@4.0
+		lowcodefml@4.0
+		minecraft@4.0
+	Mod List: 
+		neoforge-21.1.65-minecraft-merged.jar             |Minecraft                     |minecraft                     |1.21.1              |Manifest: NOSIGNATURE
+		azurelib-neo-1.21.1-2.3.27.jar                    |AzureLib                      |azurelib                      |2.3.27              |Manifest: NOSIGNATURE
+		main                                              |Spirit of Fight               |spirit_of_fight               |1.0.0               |Manifest: NOSIGNATURE
+		kffmod-neoforge-5.6.0.jar                         |Kotlin For Forge              |kotlinforforge                |5.6.0               |Manifest: NOSIGNATURE
+		spark-core-neoforge-1.21.1-1.0.285.jar            |Spark Core                    |spark_core                    |1.0.285             |Manifest: NOSIGNATURE
+		jade-15.1.6+neoforge.jar                          |Jade                          |jade                          |15.1.6+neoforge     |Manifest: NOSIGNATURE
+		geckolib-neoforge-1.21.1-4.7.jar                  |GeckoLib 4                    |geckolib                      |4.7                 |Manifest: NOSIGNATURE
+		neoforge-21.1.65-minecraft-merged.jar             |NeoForge                      |neoforge                      |21.1.65             |Manifest: NOSIGNATURE
+		jei-1.21.1-neoforge-19.18.8.216.jar               |Just Enough Items             |jei                           |19.18.8.216         |Manifest: NOSIGNATURE
+	Crash Report UUID: 46efa883-2595-4d9f-85d2-911c7810d470
+	FML: 4.0.24
+	NeoForge: 21.1.65

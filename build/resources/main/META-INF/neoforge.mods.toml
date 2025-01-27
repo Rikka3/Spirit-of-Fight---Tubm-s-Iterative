@@ -1,0 +1,46 @@
+modLoader="javafml"
+
+loaderVersion="[4,)"
+license="GPL-3.0 license"
+
+[[mods]]
+modId="spirit_of_fight"
+version="1.0.0"
+displayName="Spirit of Fight"
+logoFile="logo.png"
+authors="SolarMoon"
+description='''Base lib for SolarMoon's mods.'''
+
+[[mixins]]
+config="spirit_of_fight.mixins.json"
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+
+[[dependencies.spirit_of_fight]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.spirit_of_fight]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21,1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.spirit_of_fight]]
+    modId="kotlinforforge"
+    type="required"
+    versionRange="[5.6.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.spirit_of_fight]]
+    modId="spark_core"
+    type="required"
+    versionRange="[1.0.297,)"
+    ordering="NONE"
+    side="BOTH"

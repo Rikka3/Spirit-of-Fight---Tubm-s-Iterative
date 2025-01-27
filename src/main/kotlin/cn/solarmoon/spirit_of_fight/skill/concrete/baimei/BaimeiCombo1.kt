@@ -11,6 +11,7 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.world.entity.LivingEntity
 
 class BaimeiCombo1(
@@ -30,10 +31,12 @@ class BaimeiCombo1(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_UPSTROKE.get()) { time in 0.15..0.35 })
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_CHOP.get(), body = entity.getPatch().getOffAttackBody()) { time in 0.55..0.7 })
-        addComponent(AnimPreInputAcceptComponent(0.8, entity.getPreInput(), comboAnim))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.45..0.6) entity.getForwardMoveVector(1/8f) else null })
+        addComponent(StuckEffectComponent(2, 0.1) { comboAnim.time in 0.15..0.30 })
+        addComponent(StuckEffectComponent(3, 0.1) { comboAnim.time in 0.35..0.45 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_UPSTROKE.get(), { 0.7 }) { time in 0.15..0.30 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_CHOP.get(), { 0.5 }, body = entity.getPatch().getOffAttackBody()) { time in 0.35..0.45 })
+        addComponent(AnimPreInputAcceptComponent(0.45, entity.getPreInput(), comboAnim))
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.05..0.20) entity.getForwardMoveVector(1/6f) else if (time in 0.35..0.50) entity.getForwardMoveVector(1/3f) else null })
     }
 
     override fun onActivate() {

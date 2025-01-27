@@ -57,7 +57,7 @@ open class ComboControlComponent(
         }
 
         if (combo.isActive()) {
-            indexRemain = 10
+            indexRemain = 11
         } else if (indexRemain > 0) indexRemain--
     }
 

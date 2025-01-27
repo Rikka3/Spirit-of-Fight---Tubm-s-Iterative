@@ -38,7 +38,7 @@ object PlayerLocalController: LocalInputController() {
 
         if (input.moveVector.length() > 0 && !player.getPreInput().hasInput() && skillController.isPlaying()) {
             player.getPreInput().setInput("move") {
-                moveRemain = 5
+                moveRemain = 10
                 player.asAnimatable().animController.stopAnimation()
             }
         }

@@ -13,6 +13,7 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.LivingEntity
@@ -52,9 +53,10 @@ class 滑铲(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.KNOCKDOWN_STAB.get(), { 1.25 }, body = legBody) { time in 0.05..0.7 })
+        addComponent(StuckEffectComponent(7, 0.02) { comboAnim.time in 0.05..0.40 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.KNOCKDOWN_STAB.get(), { 0.6 }, body = legBody) { time in 0.05..0.60 })
         addComponent(AnimPreInputAcceptComponent(0.95, entity.getPreInput(), comboAnim))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.8) entity.getForwardMoveVector(1/1.5f) else null })
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.0..0.65) entity.getForwardMoveVector(1/2f) else null })
     }
 
     override fun onActivate() {

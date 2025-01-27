@@ -12,6 +12,8 @@ import cn.solarmoon.spirit_of_fight.skill.IHoldReleaseSkill
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 
 class 锤战技(
@@ -23,7 +25,7 @@ class 锤战技(
 
     val keepAnim = createAnimInstance("mace:skill_keeping") {
         shouldTurnBody = true
-        rejectNewAnim = { isActive() && name != hitAnim.name }
+        rejectNewAnim = { name != hitAnim.name }
         onEnable {
             keepTick = 0
             entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
@@ -52,16 +54,17 @@ class 锤战技(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_UPSTROKE.get(), { 2.0 },
+        addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.1..0.7 })
+        addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_UPSTROKE.get(), { 0.8 }, soundEvent = SoundEvents.PLAYER_ATTACK_STRONG,
             fightSpiritModifier = null
         ) { time in 0.1..0.7 })
         addComponent(AnimPreInputAcceptComponent(0.0, entity.getPreInput(), keepAnim, limit = { it == "special_attack" }))
-        addComponent(AnimMoveSetComponent(entity, hitAnim) { if (time in 0.05..0.95) entity.getForwardMoveVector(0.5f + keepTick / 40f - hitAnim.getProgress().toFloat()) else null })
+        addComponent(AnimMoveSetComponent(entity, hitAnim) { if (time in 0.05..0.8) entity.getForwardMoveVector(0.5f + keepTick / 40f - hitAnim.getProgress().toFloat()) else null })
     }
 
     override fun onActivate() {
         super.onActivate()
-        holder.animController.setAnimation(keepAnim, 5)
+        holder.animController.setAnimation(keepAnim, 0)
     }
 
     override fun onEnd() {

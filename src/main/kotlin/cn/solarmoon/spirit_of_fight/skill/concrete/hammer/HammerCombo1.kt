@@ -10,6 +10,8 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 
 class HammerCombo1(
@@ -29,8 +31,9 @@ class HammerCombo1(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get()) { time in 0.35..0.75 })
-        addComponent(AnimPreInputAcceptComponent(0.75, entity.getPreInput(), comboAnim))
+        addComponent(StuckEffectComponent(5, 0.03) { comboAnim.time in 0.35..0.75 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_SWIPE.get() , soundEvent = SoundEvents.PLAYER_ATTACK_SWEEP) { time in 0.35..0.75 })
+        addComponent(AnimPreInputAcceptComponent(0.90, entity.getPreInput(), comboAnim))
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.35..0.6) entity.getForwardMoveVector(1/5f) else null })
     }
 
