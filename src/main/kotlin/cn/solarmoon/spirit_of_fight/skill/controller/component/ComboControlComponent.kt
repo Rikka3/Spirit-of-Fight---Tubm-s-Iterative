@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.controller.component
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.entity.preinput.PreInput
 import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spark_core.util.CycleIndex
@@ -58,8 +59,12 @@ open class ComboControlComponent(
 
         if (combo.isActive()) {
             indexRemain = 11
-        } else if (indexRemain > 0) indexRemain--
+        } else if (indexRemain > 0) {
+            indexRemain--
+        }
     }
+
+
 
     override fun updateMovement(player: LocalPlayer, input: Input, event: MovementInputUpdateEvent) {
         // 在普通连招过程中可以按住s阻止前移

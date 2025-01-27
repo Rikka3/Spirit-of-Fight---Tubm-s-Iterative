@@ -35,7 +35,7 @@ class ShieldComboControlComponent(
             if (!startCombo.isActive()) return@onPressOnce false
 
             preInput.setInput("combo", 5) {
-                index.increment()
+                index.set(0)
                 combo.activate()
                 sendPackage(player.id, index.get())
             }
