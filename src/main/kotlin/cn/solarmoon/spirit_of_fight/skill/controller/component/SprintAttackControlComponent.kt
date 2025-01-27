@@ -24,6 +24,7 @@ class SprintAttackControlComponent(
         input: Input
     ): Boolean {
         return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+            if (it >= 5) return@onRelease false
             if (player.isSprinting) {
                 preInput.setInput("sprinting_attack", 5) {
                     sprintingAttack.activate()

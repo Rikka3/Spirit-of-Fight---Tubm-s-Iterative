@@ -29,6 +29,7 @@ class JumpAttackControlComponent(
         } else jumpContainTick++
 
         return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+            if (it >= 5) return@onRelease false
             if (jumpContainTick < 0 && !player.onGround()) {
                 jumpContainTick = 0
                 preInput.setInput("jump_attack", 5) {

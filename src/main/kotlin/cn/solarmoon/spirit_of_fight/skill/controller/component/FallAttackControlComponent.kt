@@ -25,6 +25,7 @@ class FallAttackControlComponent(
         input: Input
     ): Boolean {
         return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+            if (it >= 5) return@onRelease false
             if (player.isFalling() && player.fallDistance > 4) {
                 preInput.setInput("fall_attack", 5) {
                     skill.activate()

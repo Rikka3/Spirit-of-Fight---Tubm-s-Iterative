@@ -33,6 +33,7 @@ open class ComboControlComponent(
         input: Input
     ): Boolean {
         return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+            if (it >= 5) return@onRelease false
             preInput.setInput("combo", 5) {
                 index.increment()
                 combo.activate()

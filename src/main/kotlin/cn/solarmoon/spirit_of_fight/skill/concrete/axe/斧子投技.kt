@@ -104,10 +104,10 @@ class 斧子投技(
 
         addComponent(AnimPreInputAcceptComponent(0.0, entity.getPreInput(), pullAnim, limit = { it == "axe_skill" }))
 
-        addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.60..0.90 })
+        addComponent(StuckEffectComponent(5, 0.05) { hitAnim.time in 0.25..0.60 })
         addComponent(AnimBoxAttackComponent(entity, hitAnim, SOFHitTypes.KNOCKDOWN_SWIPE.get(),soundEvent = SoundEvents.PLAYER_ATTACK_CRIT,
             fightSpiritModifier = null
-        ) { time in 0.5..0.90 })
+        ) { time in 0.25..0.60 })
     }
 
     override fun onActivate() {

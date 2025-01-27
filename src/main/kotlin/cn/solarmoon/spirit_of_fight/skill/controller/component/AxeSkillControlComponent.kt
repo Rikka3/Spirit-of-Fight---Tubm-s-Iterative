@@ -30,6 +30,7 @@ class AxeSkillControlComponent(
     ): Boolean {
         if (skill.isActive()) {
             return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+                if (it >= 5) return@onRelease false
                 player.getPreInput().setInput("axe_skill", 5) {
                     if (skill.startAnim.time >= 0.45 && skill.grab != null) {
                         holder.animController.setAnimation(skill.hitAnim, 2)
