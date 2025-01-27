@@ -7,6 +7,12 @@
   "item.spirit_of_fight.diamond_warhammer": "Diamond Warhammer",
   "item.spirit_of_fight.netherite_warhammer": "Netherite Warhammer",
 
+  "key.categories.spirit_of_fight": "Spirit of Fight",
+  "key.spirit_of_fight.dodge": "Dodge",
+  "key.spirit_of_fight.guard": "Guard",
+  "key.spirit_of_fight.special_attack": "Special Attack",
+  "key.spirit_of_fight.lock_on": "Lock On（Not yet completed）",
+
   "item.spirit_of_fight.glove": "glove"
 
 }

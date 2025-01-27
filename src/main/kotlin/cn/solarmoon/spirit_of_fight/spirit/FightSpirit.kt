@@ -12,7 +12,7 @@ class FightSpirit(
     var maxValue: Int = 100,
     var fadeTick: Int = 0,
     var maxTickToFade: Int = 300,
-    var baseGrowth: Int = 20,
+    var baseGrowth: Int = 40,
 ) {
 
     var valueCache = 0
