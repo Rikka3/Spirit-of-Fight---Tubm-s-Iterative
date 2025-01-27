@@ -14,20 +14,24 @@ import cn.solarmoon.spark_core.phys.thread.laterConsume
 import cn.solarmoon.spark_core.phys.toDQuaternion
 import cn.solarmoon.spark_core.phys.toDVector3
 import cn.solarmoon.spark_core.phys.toQuaternionf
+import cn.solarmoon.spark_core.phys.toVec3
 import cn.solarmoon.spark_core.registry.common.SparkVisualEffects
 import cn.solarmoon.spark_core.util.Side
 import cn.solarmoon.spark_core.visual_effect.common.trail.Trail
 import cn.solarmoon.spirit_of_fight.fighter.getPatch
 import cn.solarmoon.spirit_of_fight.hit.AttackStrength
 import cn.solarmoon.spirit_of_fight.hit.setHitType
+import cn.solarmoon.spirit_of_fight.registry.common.SOFBodyTypes
 import kotlinx.coroutines.launch
 import net.minecraft.client.Minecraft
 import net.minecraft.core.Direction
+import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.network.chat.Component
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.level.block.Blocks
 import net.neoforged.fml.loading.FMLEnvironment
 import org.joml.Quaterniond
 import org.joml.Vector3f
@@ -36,6 +40,7 @@ import org.ode4j.ode.DBox
 import org.ode4j.ode.DContactBuffer
 import org.ode4j.ode.DGeom
 import java.awt.Color
+import kotlin.random.Random
 
 abstract class BaseHitType: HitType {
 
@@ -68,8 +73,13 @@ abstract class BaseHitType: HitType {
         damageMultiply: Double
     ) {
         val entity = o1.body.owner as? Entity ?: return
-        val contactPoint = buffer[0].contactGeom.pos
-        entity.level().addParticle(ParticleTypes.SWEEP_ATTACK, contactPoint.get0(), contactPoint.get1(), contactPoint.get2(), 0.0, 0.0, 0.0)
+        buffer.forEach { g ->
+            repeat(3) {
+                val pos = g.contactGeom.pos.toVec3()
+                val type = if (o2.body.type == SOFBodyTypes.GUARD) ParticleTypes.CRIT else BlockParticleOption(ParticleTypes.BLOCK, Blocks.RED_WOOL.defaultBlockState())
+                entity.level().addParticle(type, pos.x, pos.y, pos.z, Random.nextDouble() / 10, Random.nextDouble() / 10, Random.nextDouble() / 10)
+            }
+        }
 
         val target = o2.body.owner as? Entity ?: return
         target.getAttackedData()?.setHitType(this)

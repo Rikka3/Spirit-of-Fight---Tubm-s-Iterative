@@ -2,3 +2,4 @@
 /summon minecraft:husk
 /summon minecraft:iron_golem
 /time set day
+/summon minecraft:husk

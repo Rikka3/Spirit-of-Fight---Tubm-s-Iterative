@@ -38,6 +38,7 @@ public class SpiritOfFight {
         SOFDataGenerater.register(modEventBus);
         SOFPayloadRegister.register(modEventBus);
         SOFBodyTypes.register();
+        SOFSounds.register();
         SOFHitTypes.register(modEventBus);
     }
 

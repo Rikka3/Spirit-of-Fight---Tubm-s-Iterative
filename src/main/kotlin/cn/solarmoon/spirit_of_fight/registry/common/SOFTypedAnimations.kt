@@ -30,6 +30,8 @@ object SOFTypedAnimations {
     val BAIMEI_WALK_BACK = createMoveStateAnim("baimei_walk_back")
     @JvmStatic
     val BAIMEI_SPRINTING = createMoveStateAnim("baimei_sprinting")
+    @JvmStatic
+    val SHIELD_SPRINTING = createMoveStateAnim("shield_sprinting")
 
     @JvmStatic
     val HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()

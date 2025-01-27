@@ -1,6 +1,7 @@
 package cn.solarmoon.spirit_of_fight.skill.controller
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
+import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC1
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldComboC2
 import cn.solarmoon.spirit_of_fight.skill.concrete.common.ShieldGuardSkill
@@ -10,6 +11,7 @@ import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeCombo2
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeDodge
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeGuard
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeJumpAttack
+import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeShieldCombo2
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.斧子投技
 import cn.solarmoon.spirit_of_fight.skill.concrete.axe.AxeSprintingAttack
 import cn.solarmoon.spirit_of_fight.skill.controller.component.AxeSkillControlComponent
@@ -36,6 +38,7 @@ class AxeFightSkillController(
     val combo0 = addSkill(AxeCombo0(animatable))
     val combo1 = addSkill(AxeCombo1(animatable))
     val combo2 = addSkill(AxeCombo2(animatable))
+    val shieldCombo2 = addSkill(AxeShieldCombo2(animatable))
     val sprintingAttack = addSkill(AxeSprintingAttack(animatable))
     val jumpAttack = addSkill(AxeJumpAttack(animatable))
     val guard = addSkill(AxeGuard(animatable))
@@ -48,12 +51,15 @@ class AxeFightSkillController(
 
     init {
         addComponent(AxeSkillControlComponent(special))
-        addComponent(ShieldComboControlComponent(combo0, shieldComboC1, shieldComboC2, combo2))
+        val sh = addComponent(ShieldComboControlComponent(combo0, shieldComboC1, shieldComboC2, shieldCombo2))
 
         addComponent(SpecialSkillControlComponent(special, false))
         addComponent(JumpAttackControlComponent(jumpAttack))
         addComponent(SprintAttackControlComponent(sprintingAttack))
-        addComponent(ChangeableComboControlComponent(combo0, combo1, combo2))
+        addComponent(object : ChangeableComboControlComponent(combo0, combo1, combo2) {
+            override val combo: Skill<*>
+                get() = if (sh.isHoldingShield(holder) && index.get() == maxComboAmount - 1) shieldCombo2 else super.combo
+        })
         addComponent(DodgeControlComponent(dodge))
         addComponent(ShieldGuardControlComponent(shieldGuard))
         addComponent(GuardControlComponent(guard))

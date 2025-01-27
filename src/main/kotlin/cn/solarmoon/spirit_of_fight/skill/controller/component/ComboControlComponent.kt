@@ -22,7 +22,7 @@ open class ComboControlComponent(
     override val name: String = "combo"
     val maxComboAmount = comboList.size
     val index = CycleIndex(maxComboAmount, maxComboAmount - 1)
-    val combo get() = comboList[index.get()]
+    open val combo get() = comboList[index.get()]
     var indexRemain = 0
 
     override fun localControl(

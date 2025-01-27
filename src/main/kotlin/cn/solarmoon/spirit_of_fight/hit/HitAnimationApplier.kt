@@ -6,7 +6,12 @@ import cn.solarmoon.spark_core.entity.getLateralSide
 import cn.solarmoon.spark_core.entity.getSide
 import cn.solarmoon.spark_core.phys.toVec3
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
+import net.minecraft.core.particles.BlockParticleOption
+import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.damagesource.DamageTypes
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent
@@ -17,6 +22,7 @@ object HitAnimationApplier {
     @SubscribeEvent
     private fun onHit(event: LivingDamageEvent.Post) {
         val victim = event.entity
+
         if (event.newDamage <= 0f) return
         if (victim !is IEntityAnimatable<*>) return
         val source = event.source
@@ -25,6 +31,7 @@ object HitAnimationApplier {
             playRandomLightHitAnim(victim, source)
             return
         }
+
         val hitType = attackData.getHitType() ?: return
         val strength = hitType.strength
         val side = victim.getLateralSide(attackData.damageBox.position.toVec3())

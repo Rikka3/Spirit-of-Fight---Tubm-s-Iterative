@@ -65,13 +65,13 @@ class HammerComboC1(
 
     override fun onActivate() {
         super.onActivate()
+        targetHitCheck = false
         holder.animController.setAnimation(comboAnim, 0)
     }
 
     override fun onEnd() {
         super.onEnd()
         entity.getPreInput().clear()
-        targetHitCheck = false
     }
 
 }

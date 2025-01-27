@@ -1,11 +1,11 @@
 {
 
-  "item.spirit_of_fight.wooden_hammer": "木锤",
-  "item.spirit_of_fight.stone_hammer": "石锤",
-  "item.spirit_of_fight.stone_hammer": "铁锤",
-  "item.spirit_of_fight.golden_hammer": "金锤",
-  "item.spirit_of_fight.diamond_hammer": "钻石锤",
-  "item.spirit_of_fight.netherite_hammer": "下界合金锤",
+  "item.spirit_of_fight.wooden_warhammer": "木锤",
+  "item.spirit_of_fight.stone_warhammer": "石锤",
+  "item.spirit_of_fight.iron_warhammer": "铁锤",
+  "item.spirit_of_fight.golden_warhammer": "金锤",
+  "item.spirit_of_fight.diamond_warhammer": "钻石锤",
+  "item.spirit_of_fight.netherite_warhammer": "下界合金锤",
 
   "item.spirit_of_fight.glove": "拳套"
 

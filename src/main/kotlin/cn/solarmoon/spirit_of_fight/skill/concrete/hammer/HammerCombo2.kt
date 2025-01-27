@@ -52,7 +52,7 @@ class HammerCombo2(
             val pos = aoe.firstGeom.position.toVec3().subtract(0.0, 1.0, 0.0)
 
             val particleCount = 20
-            val speed = 0.5
+            val speed = 0.45
 
             if (time >= 0.55 && !doParticle) {
                 doParticle = true

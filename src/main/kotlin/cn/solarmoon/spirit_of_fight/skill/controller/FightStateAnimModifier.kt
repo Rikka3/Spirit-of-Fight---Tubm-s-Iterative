@@ -10,7 +10,9 @@ import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
 import net.minecraft.client.player.LocalPlayer
+import net.minecraft.world.item.Items
 import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.neoforge.common.Tags
 
 object FightStateAnimModifier {
 
@@ -28,12 +30,18 @@ object FightStateAnimModifier {
                 }
             }
 
-            if (player.getSkillController() is BaimeiFightSkillController) {
+            else if (player.getSkillController() is BaimeiFightSkillController) {
                 when(event.state) {
                     EntityStates.Idle -> event.newAnim = SOFTypedAnimations.BAIMEI_IDLE.get()
                     EntityStates.Walk -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK.get()
                     EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK_BACK.get()
                     EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.BAIMEI_SPRINTING.get()
+                }
+            }
+
+            else if (player.offhandItem.`is`(Tags.Items.TOOLS_SHIELD)) {
+                when(event.state) {
+                    EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.SHIELD_SPRINTING.get()
                 }
             }
         }

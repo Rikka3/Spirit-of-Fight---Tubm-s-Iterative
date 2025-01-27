@@ -12,6 +12,7 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFHitTypes
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
+import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.effect.MobEffectInstance
@@ -48,7 +49,8 @@ class ShieldComboC1(
     }
 
     init {
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 0.5 },
+        addComponent(StuckEffectComponent(5, 0.03) { comboAnim.time in 0.20..0.40 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 0.25 },
             body = shieldBody,
             whenTargetAttacked = { o1, o2, buffer, system, dMul ->
                 val target = o2.body.owner
@@ -57,19 +59,19 @@ class ShieldComboC1(
                 entity.level().playSound(null, entity.onPos.above(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.0f, 0.75f)
             }
         ) { time in 0.3..0.5 })
-        addComponent(AnimPreInputAcceptComponent(0.0, entity.getPreInput(), comboAnim, limit = { targetHitCheck && it != "special_attack" }))
-        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.2..0.5) entity.getForwardMoveVector(1/8f) else null })
+        addComponent(AnimPreInputAcceptComponent(0.0, entity.getPreInput(), comboAnim, limit = { targetHitCheck && it == "combo" }))
+        addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.2..0.4) entity.getForwardMoveVector(1/4f) else null })
     }
 
     override fun onActivate() {
         super.onActivate()
+        targetHitCheck = false
         holder.animController.setAnimation(comboAnim, 0)
     }
 
     override fun onEnd() {
         super.onEnd()
         entity.getPreInput().clear()
-        targetHitCheck = false
     }
 
 }

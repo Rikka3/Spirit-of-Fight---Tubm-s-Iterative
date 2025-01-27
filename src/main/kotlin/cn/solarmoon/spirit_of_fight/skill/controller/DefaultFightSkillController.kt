@@ -31,8 +31,8 @@ class DefaultFightSkillController(
     val dodge = addSkill(BareHandDodge(animatable))
 
     init {
-        addComponent(ComboControlComponent(combo0, combo1))
         addComponent(SprintAttackControlComponent(sprintAttack))
+        addComponent(ComboControlComponent(combo0, combo1))
         addComponent(DodgeControlComponent(dodge))
     }
 

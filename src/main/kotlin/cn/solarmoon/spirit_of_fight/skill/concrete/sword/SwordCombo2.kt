@@ -30,8 +30,7 @@ class SwordCombo2(
 
     init {
         addComponent(StuckEffectComponent(5, 0.1) { comboAnim.time in 0.25..0.50 })
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 1.2 }, soundEvent = SoundEvents.PLAYER_ATTACK_CRIT) { time in 0.25..0.50 }
-        )
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.HEAVY_STAB.get(), { 1.2 }, soundEvent = SoundEvents.PLAYER_ATTACK_CRIT) { time in 0.25..0.50 })
         addComponent(AnimMoveSetComponent(entity, comboAnim) { if (time in 0.20..0.3) entity.getForwardMoveVector(1/3f) else null })
     }
 

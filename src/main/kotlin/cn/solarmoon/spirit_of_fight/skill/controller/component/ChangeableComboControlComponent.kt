@@ -6,7 +6,7 @@ import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
 import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer
 
-class ChangeableComboControlComponent(
+open class ChangeableComboControlComponent(
     vararg comboList: Skill<*>,
     val switchComboIndex: Int = 0,
     val inputWindow: IntRange = 1..4

@@ -14,6 +14,7 @@ import cn.solarmoon.spirit_of_fight.skill.component.AnimMoveSetComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
 import cn.solarmoon.spirit_of_fight.skill.component.StuckEffectComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.LivingEntity
 
 class BareHandCombo1(
@@ -33,8 +34,9 @@ class BareHandCombo1(
     }
 
     init {
-        addComponent(StuckEffectComponent(3, 0.05) { comboAnim.time in 0.20..0.45 })
-        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_STAB.get(), { 0.85 },
+        addComponent(StuckEffectComponent(2, 0.05) { comboAnim.time in 0.25..0.5 })
+        addComponent(AnimBoxAttackComponent(entity, comboAnim, SOFHitTypes.LIGHT_STAB.get(), { 0.5 },
+                soundEvent = SoundEvents.PLAYER_ATTACK_WEAK,
             body = entity.getPatch().getOffAttackBody(),
             baseAttackSpeed = null
         ) { time in 0.25..0.5 })

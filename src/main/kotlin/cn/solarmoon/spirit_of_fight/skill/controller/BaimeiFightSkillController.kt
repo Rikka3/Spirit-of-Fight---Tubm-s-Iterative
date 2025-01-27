@@ -8,8 +8,10 @@ import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.BaimeiCombo2
 import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.BaimeiDodge
 import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.BaimeiGuard
 import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.BaimeiJumpAttack
+import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.BaimeiSquatDodge
 import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.滑铲
 import cn.solarmoon.spirit_of_fight.skill.concrete.baimei.白眉战技
+import cn.solarmoon.spirit_of_fight.skill.controller.component.BaimeiSquatDodgeControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.ChangeableComboControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.DodgeControlComponent
 import cn.solarmoon.spirit_of_fight.skill.controller.component.GuardControlComponent
@@ -34,6 +36,7 @@ class BaimeiFightSkillController(
     val jumpAttack = addSkill(BaimeiJumpAttack(animatable))
     val guard = addSkill(BaimeiGuard(animatable))
     val dodge = addSkill(BaimeiDodge(animatable))
+    val dodgeShift = addSkill(BaimeiSquatDodge(animatable))
     val special = addSkill(白眉战技(animatable))
 
     init {
@@ -41,6 +44,7 @@ class BaimeiFightSkillController(
         addComponent(JumpAttackControlComponent(jumpAttack))
         addComponent(SprintAttackControlComponent(sprintingAttack))
         addComponent(ChangeableComboControlComponent(combo0, combo1, combo2))
+        addComponent(BaimeiSquatDodgeControlComponent(dodgeShift))
         addComponent(DodgeControlComponent(dodge))
         addComponent(GuardControlComponent(guard))
     }

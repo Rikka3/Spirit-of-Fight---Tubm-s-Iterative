@@ -29,7 +29,7 @@ abstract class FightSkillController<T: LivingEntity>(
 
     val allComponents get() = changeableComponents.values.toMutableList().apply { addAll(commonComponents) }.toList()
 
-    fun addComponent(component: SkillControlComponent) = component.apply { commonComponents.add(this) }
+    fun <T: SkillControlComponent> addComponent(component: T) = component.apply { commonComponents.add(this) }
 
     override fun physTick() {
         super.physTick()

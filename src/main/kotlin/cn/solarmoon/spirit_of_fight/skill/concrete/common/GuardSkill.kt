@@ -21,6 +21,8 @@ import cn.solarmoon.spirit_of_fight.skill.component.AnimGuardComponent
 import cn.solarmoon.spirit_of_fight.skill.component.AnimPreInputAcceptComponent
 import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import net.minecraft.nbt.CompoundTag
+import net.minecraft.sounds.SoundEvents
+import net.minecraft.sounds.SoundSource
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
@@ -43,6 +45,9 @@ open class GuardSkill(
         private set
     var isBacking = false
         private set
+
+    open val guardSound = SoundEvents.SHIELD_BLOCK
+    open val parrySound = SoundEvents.SHIELD_BLOCK
 
     val guardAnim = createAnimInstance(animNamePre) {
         shouldTurnBody = true
@@ -71,6 +76,10 @@ open class GuardSkill(
             isStanding = false
             holder.animController.blendSpace.remove("guardMix")
         }
+
+        onSwitch {
+            if (it?.name !in listOf(hurtAnim.name, parryAnimName)) end()
+        }
     }
 
     val hurtAnim: AnimInstance = createAnimInstance("${animNamePre}_hurt") {
@@ -87,12 +96,14 @@ open class GuardSkill(
 
         // 防止意外情况进入别的动画但未停止该技能
         onSwitch {
-            if (isActive() && it?.name != guardAnim.name) end()
+            if (it?.name != guardAnim.name) end()
         }
     }
 
+    val parryAnimName = animNamePre + "_parry"
+
     val parryAnim = lazy {
-        createAnimInstance(animNamePre + "_parry") {
+        createAnimInstance(parryAnimName) {
             shouldTurnBody = true
 
             onEnable {
@@ -113,6 +124,7 @@ open class GuardSkill(
                 if (shouldPreventGuard(event)) return@AnimGuardComponent
 
                 if (guardAnim.time in 0.0..0.15 && enableParry) {
+                    entity.level().playSound(null, entity.onPos.above(), parrySound, SoundSource.PLAYERS)
                     holder.animController.setAnimation(parryAnim.value, 0)
                     PacketDistributor.sendToAllPlayers(SkillPayload(entity.id, name, CompoundTag().apply { putBoolean("parry", true) }))
                     event.source.directEntity?.let {
@@ -121,6 +133,7 @@ open class GuardSkill(
                     }
                 } else {
                     // 未在播放击退动画续上击退动画
+                    entity.level().playSound(null, entity.onPos.above(), guardSound, SoundSource.PLAYERS)
                     playHurtAnim()
                     PacketDistributor.sendToAllPlayers(SkillPayload(entity.id, name, CompoundTag()))
 
