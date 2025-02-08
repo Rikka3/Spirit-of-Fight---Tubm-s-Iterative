@@ -1,13 +1,7 @@
 package cn.solarmoon.spirit_of_fight.sync
 
-import cn.solarmoon.spark_core.animation.IEntityAnimatable
-import cn.solarmoon.spark_core.animation.anim.play.BlendAnimation
-import cn.solarmoon.spark_core.animation.vanilla.asAnimatable
 import cn.solarmoon.spark_core.data.SerializeHelper
-import cn.solarmoon.spark_core.registry.common.SparkTypedAnimations
-import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
@@ -34,10 +28,9 @@ data class ClientOperationPayload(
             val player = context.player()
             val level = player.level()
             val entity = level.getEntity(payload.entityId) ?: return
-            val skillController = entity.getTypedSkillController<FightSkillController<*>>() ?: return
 
-            skillController.allComponents.forEach {
-                if (payload.operation == it.name) it.serverControl(entity, payload, context)
+            entity.activeSkillGroup?.controllers?.forEach {
+
             }
 
             if (player is ServerPlayer) PacketDistributor.sendToPlayersNear(player.serverLevel(), player, player.x, player.y, player.z, 512.0, payload)

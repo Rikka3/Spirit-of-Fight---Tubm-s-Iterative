@@ -1,0 +1,27 @@
+{
+  "binders": {
+    "minecraft:entity": [
+      "minecraft:player"
+    ]
+  },
+  "conditions": [
+    {
+      "type": "spark_core:hold_item",
+      "hand": "main_hand",
+      "hold": {
+        "tag": "minecraft:swords"
+      }
+    }
+  ],
+  "controllers": [
+    {
+      "type": "spirit_of_fight:preinput_common_release"
+    },
+    {
+      "type": "spirit_of_fight:combo",
+      "skills": [
+        "spirit_of_fight:sword_combo_0"
+      ]
+    }
+  ]
+}

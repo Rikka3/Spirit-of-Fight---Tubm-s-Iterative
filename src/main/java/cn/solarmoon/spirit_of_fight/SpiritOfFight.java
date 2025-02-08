@@ -15,7 +15,7 @@ public class SpiritOfFight {
 
     public static final String MOD_ID = "spirit_of_fight";
     public static final Logger LOGGER = LoggerFactory.getLogger("战魂");
-    public static final ObjectRegister REGISTER = new ObjectRegister(MOD_ID, true);
+    public static final ObjectRegister REGISTER = new ObjectRegister(MOD_ID, false);
 
     public SpiritOfFight(IEventBus modEventBus, ModContainer modContainer) {
         REGISTER.register(modEventBus);
@@ -28,8 +28,8 @@ public class SpiritOfFight {
             SOFItemInHandModelRegister.register(modEventBus);
         }
 
-        SOFCreativeTab.register(modEventBus);
         SOFRegistries.register();
+        SOFCreativeTab.register(modEventBus);
         SOFItems.register();
         SOFAttachments.register();
         SOFCommonEventRegister.register();
@@ -37,9 +37,8 @@ public class SpiritOfFight {
         SOFTypedAnimations.register();
         SOFDataGenerater.register(modEventBus);
         SOFPayloadRegister.register(modEventBus);
-        SOFBodyTypes.register();
         SOFSounds.register();
-        SOFHitTypes.register(modEventBus);
+        SOFCodecRegister.register(modEventBus);
     }
 
 

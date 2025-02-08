@@ -5,8 +5,6 @@ import cn.solarmoon.spark_core.event.EntityTurnEvent
 import cn.solarmoon.spark_core.event.PlayerRenderAnimInFirstPersonEvent
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.getFlag
-import cn.solarmoon.spark_core.skill.controller.getTypedSkillController
-import cn.solarmoon.spirit_of_fight.skill.controller.FightSkillController
 import cn.solarmoon.spirit_of_fight.lock_on.LockOnController
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.util.Mth
@@ -51,9 +49,9 @@ object CameraAdjuster {
 
     @SubscribeEvent
     private fun renderAnimInFirstPersonWhenAttack(event: PlayerRenderAnimInFirstPersonEvent) {
-        val player = event.player
-        val sc = player.getTypedSkillController<FightSkillController<*>>()
-        event.shouldRender = sc?.isPlaying() == true
+//        val player = event.player
+//        val sc = player.getTypedSkillController<FightSkillController<*>>()
+//        event.shouldRender = sc?.isPlaying() == true
     }
 
 }
