@@ -5,7 +5,7 @@ import cn.solarmoon.spark_core.registry.common.SparkRegistries
 import cn.solarmoon.spark_core.skill.SkillType
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.skill.component.AnimBoxAttackComponent
-import cn.solarmoon.spirit_of_fight.skill.component.box.BoxFollowAnimatedBone
+import cn.solarmoon.spirit_of_fight.skill.component.sub.box.BoxFollowAnimatedBoneSubcomponent
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
@@ -26,7 +26,7 @@ class SOFSkillTypes(
         add(SWORD_COMBO_0, SkillType(listOf(
             AnimBoxAttackComponent(
                 AnimIndex(ResourceLocation.withDefaultNamespace("player"), "sword:combo_0"),
-                BoxFollowAnimatedBone("rightItem", Vector3f(0.75f, 0.75f, 1.25f), Vector3f(0f, 0f, -1.25f/2), listOf(Vec2(0.8f, 1.1f)))
+                BoxFollowAnimatedBoneSubcomponent("rightItem", Vector3f(0.75f, 0.75f, 1.25f), Vector3f(0f, 0f, -1.25f/2), listOf(Vec2(0.8f, 1.1f)))
             )
         )))
     }

@@ -1,4 +1,4 @@
-package cn.solarmoon.spirit_of_fight.skill.component.attack
+package cn.solarmoon.spirit_of_fight.phys.attack
 
 import cn.solarmoon.spark_core.entity.attack.AttackSystem
 import cn.solarmoon.spark_core.physics.presets.AttackContactListener
