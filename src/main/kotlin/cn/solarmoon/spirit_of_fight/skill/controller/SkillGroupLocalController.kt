@@ -22,6 +22,14 @@ interface SkillGroupLocalController: SkillGroupController {
         input: Input
     ): Boolean
 
+    fun localTick(
+        controller: PlayerLocalController,
+        level: ClientLevel,
+        player: LocalPlayer,
+        preInput: PreInput,
+        input: Input
+    ) {}
+
     override fun sync(host: SkillHost, data: CompoundTag, context: IPayloadContext)
 
     fun sendServerPackage(host: SkillHost, data: CompoundTag = CompoundTag()) = PacketDistributor.sendToServer(SkillGroupControlPayload(host, id, data))

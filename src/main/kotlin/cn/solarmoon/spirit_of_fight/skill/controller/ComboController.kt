@@ -1,14 +1,12 @@
 package cn.solarmoon.spirit_of_fight.skill.controller
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.entity.preinput.PreInput
-import cn.solarmoon.spark_core.registry.common.SparkRegistries
 import cn.solarmoon.spark_core.skill.SkillGroupController
 import cn.solarmoon.spark_core.skill.SkillHost
+import cn.solarmoon.spark_core.skill.SkillInstance
 import cn.solarmoon.spark_core.skill.getSkillType
 import cn.solarmoon.spark_core.util.CycleIndex
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
-import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.client.Minecraft
@@ -17,8 +15,6 @@ import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.server.level.ServerLevel
-import net.neoforged.neoforge.network.PacketDistributor
 import net.neoforged.neoforge.network.handling.IPayloadContext
 
 class ComboController(
@@ -27,7 +23,9 @@ class ComboController(
 
     val maxComboAmount = skills.size
     val index = CycleIndex(maxComboAmount, maxComboAmount - 1)
-    val presentComboSkill get() = skills[index.get()]
+    val presentComboSkillId get() = skills[index.get()]
+    var tickRemain = 0
+    var presentCombo: SkillInstance? = null
 
     override val codec: MapCodec<out SkillGroupController> = CODEC
 
@@ -39,18 +37,32 @@ class ComboController(
         input: Input
     ): Boolean {
         return controller.onRelease(Minecraft.getInstance().options.keyAttack) {
+            if (tickRemain == 0) index.set(maxComboAmount - 1)
+            if (it > 3) return@onRelease false
+            tickRemain = 20
             preInput.setInput("combo", 5) {
                 index.increment()
-                getSkillType(level, presentComboSkill).createSkill(player).activate()
+                presentCombo = getSkillType(level, presentComboSkillId).createSkill(player, level)
+                presentCombo!!.activate()
                 sendServerPackage(player, CompoundTag().apply { putInt("ComboIndex", index.get()) })
             }
             true
         }
     }
 
+    override fun localTick(
+        controller: PlayerLocalController,
+        level: ClientLevel,
+        player: LocalPlayer,
+        preInput: PreInput,
+        input: Input
+    ) {
+        if (tickRemain > 0 && presentCombo?.isActive == false) tickRemain--
+    }
+
     override fun sync(host: SkillHost, data: CompoundTag, context: IPayloadContext) {
         index.set(data.getInt("ComboIndex"))
-        getSkillType(context.player().level(), presentComboSkill).createSkill(host).activate()
+        getSkillType(context.player().level(), presentComboSkillId).createSkill(host, context.player().level()).activate()
     }
 
     companion object {

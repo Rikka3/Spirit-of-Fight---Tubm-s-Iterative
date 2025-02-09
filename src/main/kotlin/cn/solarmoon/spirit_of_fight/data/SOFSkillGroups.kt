@@ -41,7 +41,9 @@ class SOFSkillGroups(
                 listOf(
                     PreInputCommonReleaseController(),
                     ComboController(listOf(
-                        SOFSkillTypes.SWORD_COMBO_0.location()
+                        SOFSkillTypes.SWORD_COMBO_0.location(),
+                        SOFSkillTypes.SWORD_COMBO_1.location(),
+                        SOFSkillTypes.SWORD_COMBO_2.location()
                     ))
                 )
             )

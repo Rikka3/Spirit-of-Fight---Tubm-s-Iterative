@@ -4,15 +4,15 @@
       "type": "spark_core:play_animation",
       "anim_index": {
         "index": "minecraft:player",
-        "name": "sword:combo_0"
+        "name": "sword:combo_1"
       },
       "children": [
         {
           "type": "spark_core:box_follow_animated_bone",
           "active_time": [
             [
-              0.3,
-              0.45
+              0.25,
+              0.4
             ]
           ],
           "bone_name": "rightItem",

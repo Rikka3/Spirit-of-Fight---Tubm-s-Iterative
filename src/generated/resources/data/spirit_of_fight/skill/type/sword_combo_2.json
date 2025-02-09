@@ -4,15 +4,15 @@
       "type": "spark_core:play_animation",
       "anim_index": {
         "index": "minecraft:player",
-        "name": "sword:combo_0"
+        "name": "sword:combo_2"
       },
       "children": [
         {
           "type": "spark_core:box_follow_animated_bone",
           "active_time": [
             [
-              0.3,
-              0.45
+              0.25,
+              0.5
             ]
           ],
           "bone_name": "rightItem",
@@ -25,14 +25,15 @@
                 },
                 {
                   "type": "spark_core:camera_shake",
-                  "frequency": 2.0,
-                  "strength": 1.0,
-                  "time": 2
+                  "frequency": 3.0,
+                  "strength": 1.5,
+                  "time": 3
                 }
               ]
             },
             {
-              "type": "spark_core:attack_damage_modifier"
+              "type": "spark_core:attack_damage_modifier",
+              "damage_multiply": 1.25
             }
           ],
           "offset": [
@@ -58,19 +59,9 @@
               "move": [
                 0.0,
                 0.0,
-                0.2
+                0.33
               ]
             }
-          ],
-          "time_type": "anim"
-        },
-        {
-          "type": "spark_core:preinput_release",
-          "nodes": [
-            [
-              0.4,
-              3.4028235E38
-            ]
           ],
           "time_type": "anim"
         },
