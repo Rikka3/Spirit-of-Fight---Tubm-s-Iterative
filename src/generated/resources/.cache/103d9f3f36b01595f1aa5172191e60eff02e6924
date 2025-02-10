@@ -1,5 +1,6 @@
-// 1.21.1	2025-02-10T03:01:21.5595773	Registries
-7381831aa64d1c65850df98f83fc7718c52055fc data/spirit_of_fight/skill/group/sword.json
-6764424ba48a175e4dfdc7f78506835f1277ad4e data/spirit_of_fight/skill/type/sword_combo_0.json
-643d1ba691ecb72477d160a418e9ea6d32931a48 data/spirit_of_fight/skill/type/sword_combo_1.json
-d8fc1a32b6f6c125ab07d328f95a67f09f9ab81e data/spirit_of_fight/skill/type/sword_combo_2.json
+// 1.21.1	2025-02-10T22:51:41.9052537	Registries
+63c6d4eaf3ea471a63067d291d76922b1bd68a9e data/spirit_of_fight/skill/group/sword.json
+7c9e3d5e032af5d252687660a4420423cd5b6982 data/spirit_of_fight/skill/type/sword_combo_0.json
+a37ea350cf382e3b132b3c836c3c2db3ffcde442 data/spirit_of_fight/skill/type/sword_combo_1.json
+d5e2d6cbacaf51ceeab6dc5f3ed7d2dd519efc2a data/spirit_of_fight/skill/type/sword_combo_2.json
+e01d831ec075f202042e41a1aa99d3e2eea99715 data/spirit_of_fight/skill/type/sword_dodge.json

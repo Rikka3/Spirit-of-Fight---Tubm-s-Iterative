@@ -24,6 +24,12 @@
         "spirit_of_fight:sword_combo_1",
         "spirit_of_fight:sword_combo_2"
       ]
+    },
+    {
+      "type": "spirit_of_fight:dodge",
+      "skills": [
+        "spirit_of_fight:sword_dodge"
+      ]
     }
   ]
 }

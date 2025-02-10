@@ -21,13 +21,19 @@
               "type": "spirit_of_fight:common_attack",
               "on_pre_attack": [
                 {
-                  "type": "spark_core:anim_speed_modifier"
+                  "component": {
+                    "type": "spark_core:anim_speed_modifier"
+                  },
+                  "only_when_attack_first_target": true
                 },
                 {
-                  "type": "spark_core:camera_shake",
-                  "frequency": 2.0,
-                  "strength": 1.0,
-                  "time": 2
+                  "component": {
+                    "type": "spark_core:camera_shake",
+                    "frequency": 2.0,
+                    "strength": 1.0,
+                    "time": 2
+                  },
+                  "only_when_attack_first_target": true
                 }
               ]
             },
@@ -44,8 +50,7 @@
             0.75,
             0.75,
             1.35
-          ],
-          "time_type": "anim"
+          ]
         },
         {
           "type": "spark_core:moveset",
@@ -61,8 +66,7 @@
                 0.2
               ]
             }
-          ],
-          "time_type": "anim"
+          ]
         },
         {
           "type": "spark_core:preinput_release",
@@ -71,8 +75,7 @@
               0.4,
               3.4028235E38
             ]
-          ],
-          "time_type": "anim"
+          ]
         },
         {
           "type": "spark_core:prevent_local_input"

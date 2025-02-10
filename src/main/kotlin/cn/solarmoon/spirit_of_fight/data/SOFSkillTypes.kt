@@ -6,15 +6,19 @@ import cn.solarmoon.spark_core.skill.SkillType
 import cn.solarmoon.spark_core.skill.component.AnimSpeedModifierComponent
 import cn.solarmoon.spark_core.skill.component.AttackDamageModifierComponent
 import cn.solarmoon.spark_core.skill.component.CameraShakeComponent
+import cn.solarmoon.spark_core.skill.component.InvincibilityComponent
 import cn.solarmoon.spark_core.skill.component.MoveSetComponent
 import cn.solarmoon.spark_core.skill.component.PlayAnimationComponent
 import cn.solarmoon.spark_core.skill.component.PreInputReleaseComponent
 import cn.solarmoon.spark_core.skill.component.PreventLocalInputComponent
 import cn.solarmoon.spark_core.skill.component.PreventYRotComponent
+import cn.solarmoon.spark_core.skill.component.SummonShadowComponent
 import cn.solarmoon.spark_core.skill.component.collision.BoxFollowAnimatedBoneComponent
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
+import cn.solarmoon.spirit_of_fight.skill.component.PerfectDodgeComponent
 import cn.solarmoon.spirit_of_fight.skill.component.PreventMoveWithBackComponent
 import cn.solarmoon.spirit_of_fight.skill.component.collision.CommonAttackCollisionComponent
+import com.mojang.datafixers.util.Either
 import com.mojang.datafixers.util.Pair
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.resources.ResourceKey
@@ -31,6 +35,7 @@ class SOFSkillTypes(
         val SWORD_COMBO_0 = sofKey("sword_combo_0")
         val SWORD_COMBO_1 = sofKey("sword_combo_1")
         val SWORD_COMBO_2 = sofKey("sword_combo_2")
+        val SWORD_DODGE = sofKey("sword_dodge")
 
         fun sofKey(id: String) = ResourceKey.create(SparkRegistries.SKILL_TYPE, ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, id))
     }
@@ -44,21 +49,20 @@ class SOFSkillTypes(
                     listOf(
                         PlayAnimationComponent(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "sword:combo_0"), 2, true,
                             children = listOf(
-                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, "anim", listOf(Vec2(0.3f, 0.45f)), listOf(
+                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, listOf(Vec2(0.3f, 0.45f)), listOf(
                                     CommonAttackCollisionComponent(preAttackComponents = listOf(
-                                        AnimSpeedModifierComponent(),
-                                        CameraShakeComponent(2, 1f, 2f)
+                                        Pair(true, AnimSpeedModifierComponent()),
+                                        Pair(true, CameraShakeComponent(2, 1f, 2f))
                                     )),
                                     AttackDamageModifierComponent()
                                 )),
-                                MoveSetComponent(listOf(Pair(Vec2(0.2f, 0.3f), Vec3(0.0, 0.0, 0.2))), "anim"),
-                                PreInputReleaseComponent("anim", listOf(Vec2(0.40f, Float.MAX_VALUE))),
+                                MoveSetComponent(listOf(Pair(Vec2(0.2f, 0.3f), Vec3(0.0, 0.0, 0.2)))),
+                                PreInputReleaseComponent(listOf(Vec2(0.40f, Float.MAX_VALUE))),
                                 PreventLocalInputComponent(),
                                 PreventYRotComponent(),
                                 PreventMoveWithBackComponent(),
                             )),
-                    ),
-                    setOf()
+                    )
                 )
             )
             it.register(SWORD_COMBO_1,
@@ -66,22 +70,21 @@ class SOFSkillTypes(
                     listOf(
                         PlayAnimationComponent(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "sword:combo_1"), 2, true,
                             children = listOf(
-                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, "anim", listOf(Vec2(0.25f, 0.40f)), listOf(
+                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, listOf(Vec2(0.25f, 0.40f)), listOf(
                                     CommonAttackCollisionComponent(preAttackComponents = listOf(
-                                        AnimSpeedModifierComponent(),
-                                        CameraShakeComponent(2, 1f, 2f)
+                                        Pair(true, AnimSpeedModifierComponent()),
+                                        Pair(true, CameraShakeComponent(2, 1f, 2f))
                                     )),
                                     AttackDamageModifierComponent()
                                 )),
-                                MoveSetComponent(listOf(Pair(Vec2(0.2f, 0.3f), Vec3(0.0, 0.0, 0.2))), "anim"),
-                                PreInputReleaseComponent("anim", listOf(Vec2(0.40f, Float.MAX_VALUE))),
+                                MoveSetComponent(listOf(Pair(Vec2(0.2f, 0.3f), Vec3(0.0, 0.0, 0.2)))),
+                                PreInputReleaseComponent(listOf(Vec2(0.40f, Float.MAX_VALUE))),
                                 PreventLocalInputComponent(),
                                 PreventYRotComponent(),
                                 PreventMoveWithBackComponent(),
 
                             )),
-                    ),
-                    setOf()
+                    )
                 )
             )
             it.register(SWORD_COMBO_2,
@@ -89,20 +92,37 @@ class SOFSkillTypes(
                     listOf(
                         PlayAnimationComponent(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "sword:combo_2"), 2, true,
                             children = listOf(
-                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, "anim", listOf(Vec2(0.25f, 0.5f)), listOf(
+                                BoxFollowAnimatedBoneComponent("rightItem", swordBoxSize, swordBoxOffset, listOf(Vec2(0.25f, 0.5f)), listOf(
                                     CommonAttackCollisionComponent(preAttackComponents = listOf(
-                                        AnimSpeedModifierComponent(),
-                                        CameraShakeComponent(3, 1.5f, 3f)
+                                        Pair(true, AnimSpeedModifierComponent()),
+                                        Pair(true, CameraShakeComponent(3, 1.5f, 3f))
                                     )),
                                     AttackDamageModifierComponent(1.25f)
                                 )),
-                                MoveSetComponent(listOf(Pair(Vec2(0.2f, 0.3f), Vec3(0.0, 0.0, 0.33))), "anim"),
+                                MoveSetComponent(listOf(Pair(Vec2(0.0f, 0.3f), Vec3(0.0, 0.0, 0.33)))),
                                 PreventLocalInputComponent(),
                                 PreventYRotComponent(),
                                 PreventMoveWithBackComponent()
                             )),
-                    ),
-                    setOf()
+                    )
+                )
+            )
+            it.register(SWORD_DODGE,
+                SkillType(
+                    listOf(
+                        PlayAnimationComponent(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "sword:dodge_forward"), 2, true,
+                            children = listOf(
+                                InvincibilityComponent(listOf(Vec2(0.0f, 0.3f)), onImmuneToDamage = listOf(
+                                    PerfectDodgeComponent(true, listOf(Vec2(0f, 0.2f)), onPerfectDodge = listOf(
+                                        SummonShadowComponent()
+                                    ))
+                                )),
+                                MoveSetComponent(listOf(Pair(Vec2(0.0f, 0.1f), Vec3(0.0, 0.0, 1.0))), true),
+                                PreInputReleaseComponent(listOf(Vec2(0.35f, Float.MAX_VALUE)), Either.right(setOf("dodge", "move"))),
+                                PreventLocalInputComponent(),
+                                PreventYRotComponent()
+                            )),
+                    )
                 )
             )
         }
