@@ -7,6 +7,7 @@ import cn.solarmoon.spark_core.skill.condition.HoldItemCondition
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.skill.controller.ComboController
 import cn.solarmoon.spirit_of_fight.skill.controller.DodgeController
+import cn.solarmoon.spirit_of_fight.skill.controller.GuardController
 import cn.solarmoon.spirit_of_fight.skill.controller.PreInputCommonReleaseController
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.BuiltInRegistries
@@ -48,6 +49,9 @@ class SOFSkillGroups(
                     )),
                     DodgeController(
                         listOf(SOFSkillTypes.SWORD_DODGE.location())
+                    ),
+                    GuardController(
+                        listOf(SOFSkillTypes.SWORD_GUARD.location())
                     )
                 )
             )

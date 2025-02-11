@@ -30,6 +30,12 @@
       "skills": [
         "spirit_of_fight:sword_dodge"
       ]
+    },
+    {
+      "type": "spirit_of_fight:guard",
+      "skills": [
+        "spirit_of_fight:sword_guard"
+      ]
     }
   ]
 }

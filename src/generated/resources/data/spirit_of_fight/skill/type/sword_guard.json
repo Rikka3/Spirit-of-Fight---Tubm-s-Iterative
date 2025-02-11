@@ -1,0 +1,57 @@
+{
+  "components": [
+    {
+      "type": "spark_core:play_animation",
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "sword:guard"
+      },
+      "transition_time": 10
+    },
+    {
+      "type": "spark_core:box_follow_animated_bone",
+      "active_time": [
+        [
+          0.0,
+          3.4028235E38
+        ]
+      ],
+      "bone_name": "rightItem",
+      "flag": "guard",
+      "offset": [
+        0.0,
+        0.0,
+        -0.675
+      ],
+      "size": [
+        0.75,
+        0.75,
+        1.35
+      ]
+    },
+    {
+      "type": "spirit_of_fight:guard"
+    },
+    {
+      "type": "spark_core:preinput_release",
+      "condition": {
+        "whitelist": [
+          "dodge",
+          "guard_stop"
+        ]
+      },
+      "nodes": [
+        [
+          0.0,
+          3.4028235E38
+        ]
+      ]
+    },
+    {
+      "type": "spark_core:prevent_local_input"
+    },
+    {
+      "type": "spark_core:prevent_yrot"
+    }
+  ]
+}

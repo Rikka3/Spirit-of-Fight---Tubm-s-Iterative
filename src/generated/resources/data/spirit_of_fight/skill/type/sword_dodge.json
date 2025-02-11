@@ -6,72 +6,70 @@
         "index": "minecraft:player",
         "name": "sword:dodge_forward"
       },
-      "children": [
+      "transition_time": 2
+    },
+    {
+      "type": "spark_core:invincibility",
+      "active_time": [
+        [
+          0.0,
+          0.3
+        ]
+      ],
+      "on_immune_to_damage": [
         {
-          "type": "spark_core:invincibility",
+          "type": "spirit_of_fight:perfect_dodge",
           "active_time": [
             [
               0.0,
-              0.3
+              0.2
             ]
           ],
-          "on_immune_to_damage": [
+          "on_perfect_dodge": [
             {
-              "type": "spirit_of_fight:perfect_dodge",
-              "active_time": [
-                [
-                  0.0,
-                  0.2
-                ]
-              ],
-              "on_perfect_dodge": [
-                {
-                  "type": "spark_core:summon_shadow"
-                }
-              ]
+              "type": "spark_core:summon_shadow"
             }
           ]
-        },
-        {
-          "type": "spark_core:moveset",
-          "orientation_by_input": true,
-          "sets": [
-            {
-              "active_time": [
-                0.0,
-                0.1
-              ],
-              "move": [
-                0.0,
-                0.0,
-                1.0
-              ]
-            }
-          ]
-        },
-        {
-          "type": "spark_core:preinput_release",
-          "condition": {
-            "blacklist": [
-              "dodge",
-              "move"
-            ]
-          },
-          "nodes": [
-            [
-              0.35,
-              3.4028235E38
-            ]
-          ]
-        },
-        {
-          "type": "spark_core:prevent_local_input"
-        },
-        {
-          "type": "spark_core:prevent_yrot"
         }
-      ],
-      "transition_time": 2
+      ]
+    },
+    {
+      "type": "spark_core:moveset",
+      "orientation_by_input": true,
+      "sets": [
+        {
+          "active_time": [
+            0.0,
+            0.1
+          ],
+          "move": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spark_core:preinput_release",
+      "condition": {
+        "blacklist": [
+          "dodge",
+          "move"
+        ]
+      },
+      "nodes": [
+        [
+          0.35,
+          3.4028235E38
+        ]
+      ]
+    },
+    {
+      "type": "spark_core:prevent_local_input"
+    },
+    {
+      "type": "spark_core:prevent_yrot"
     }
   ]
 }

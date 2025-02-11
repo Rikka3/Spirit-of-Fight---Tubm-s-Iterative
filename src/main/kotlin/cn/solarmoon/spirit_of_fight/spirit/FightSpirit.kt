@@ -11,8 +11,7 @@ class FightSpirit(
     var value: Int = 0,
     var maxValue: Int = 100,
     var fadeTick: Int = 0,
-    var maxTickToFade: Int = 300,
-    var baseGrowth: Int = 40,
+    var maxTickToFade: Int = 300
 ) {
 
     var valueCache = 0
@@ -25,7 +24,6 @@ class FightSpirit(
         maxValue = spirit.maxValue
         fadeTick = spirit.fadeTick
         maxTickToFade = spirit.maxTickToFade
-        baseGrowth = spirit.baseGrowth
     }
 
     fun getProgress(partialTicks: Float = 1f): Float {
@@ -43,8 +41,6 @@ class FightSpirit(
             value = (value + amount).coerceIn(0, maxValue)
         }
     }
-
-    fun addStage(multiplier: Double) = addStage((baseGrowth * multiplier).toInt())
 
     fun clear() {
         valueCache = value
@@ -73,8 +69,7 @@ class FightSpirit(
                 Codec.INT.fieldOf("value").forGetter { it.value },
                 Codec.INT.fieldOf("max_value").forGetter { it.maxValue },
                 Codec.INT.fieldOf("tick").forGetter { it.fadeTick },
-                Codec.INT.fieldOf("max_tick").forGetter { it.maxTickToFade },
-                Codec.INT.fieldOf("base_growth").forGetter { it.baseGrowth }
+                Codec.INT.fieldOf("max_tick").forGetter { it.maxTickToFade }
             ).apply(it, ::FightSpirit)
         }
 
@@ -84,7 +79,6 @@ class FightSpirit(
             ByteBufCodecs.INT, FightSpirit::maxValue,
             ByteBufCodecs.INT, FightSpirit::fadeTick,
             ByteBufCodecs.INT, FightSpirit::maxTickToFade,
-            ByteBufCodecs.INT, FightSpirit::baseGrowth,
             ::FightSpirit
         )
     }

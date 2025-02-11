@@ -13,44 +13,35 @@ import net.minecraft.world.phys.Vec2
 import net.minecraft.world.phys.Vec3
 
 class PreventMoveWithBackComponent(
-    val timeType: String = "skill",
-    val activeTime: List<Vec2> = listOf(),
-    children: List<SkillComponent> = listOf()
-): SkillComponent(children) {
+    val activeTime: List<Vec2> = listOf()
+): SkillComponent() {
 
     override val codec: MapCodec<out SkillComponent> = CODEC
 
     override fun copy(): SkillComponent {
-        return PreventMoveWithBackComponent(timeType, activeTime, children)
+        return PreventMoveWithBackComponent(activeTime)
     }
 
-    override fun onActive(): Boolean {
-        return true
-    }
+    override fun onActive() {}
 
-    override fun onUpdate(): Boolean {
-        val time = query<AnimInstance>("animation")?.time ?: skill.runTime.toDouble()
+    override fun onUpdate() {
+        val time = requireQuery<() -> Double>("time").invoke()
         if (activeTime.any { time in it.x..it.y } || activeTime.isEmpty()) {
-            val player = skill.holder as? Player ?: return true
+            val player = skill.holder as? Player ?: return
             if (player.isLocalPlayer) {
                 if ((player as LocalPlayer).savedInput.forwardImpulse < 0) {
                     player.deltaMovement = Vec3(0.0, player.deltaMovement.y, 0.0)
                 }
             }
         }
-        return true
     }
 
-    override fun onEnd(): Boolean {
-        return true
-    }
+    override fun onEnd() {}
 
     companion object {
         val CODEC: MapCodec<PreventMoveWithBackComponent> = RecordCodecBuilder.mapCodec {
             it.group(
-                Codec.STRING.optionalFieldOf("time_type", "skill").forGetter { it.timeType },
-                SerializeHelper.VEC2_CODEC.listOf().optionalFieldOf("active_time", listOf()).forGetter { it.activeTime },
-                SkillComponent.CODEC.listOf().optionalFieldOf("children", listOf()).forGetter { it.children }
+                SerializeHelper.VEC2_CODEC.listOf().optionalFieldOf("active_time", listOf()).forGetter { it.activeTime }
             ).apply(it, ::PreventMoveWithBackComponent)
         }
     }

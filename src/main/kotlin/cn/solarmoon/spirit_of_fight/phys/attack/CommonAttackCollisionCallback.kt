@@ -1,14 +1,13 @@
 package cn.solarmoon.spirit_of_fight.phys.attack
 
 import cn.solarmoon.spark_core.entity.attack.AttackSystem
-import cn.solarmoon.spark_core.physics.presets.AttackContactListener
-import com.jme3.bullet.collision.PersistentManifolds
+import cn.solarmoon.spark_core.physics.presets.AttackCollisionCallback
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 
-open class CommonAttackContactListener: AttackContactListener {
+open class CommonAttackCollisionCallback: AttackCollisionCallback {
 
     override val attackSystem: AttackSystem = AttackSystem()
 
@@ -34,8 +33,7 @@ open class CommonAttackContactListener: AttackContactListener {
             attacker.attack(target)
             return true
         } else if (attacker is LivingEntity) {
-            attacker.doHurtTarget(target)
-            return true
+            return attacker.doHurtTarget(target)
         }
         return false
     }
@@ -50,15 +48,15 @@ open class CommonAttackContactListener: AttackContactListener {
 
     }
 
-    override fun onContactEnded(manifoldId: Long) {
+    override fun onProcessed(
+        o1: PhysicsCollisionObject,
+        o2: PhysicsCollisionObject,
+        manifoldId: Long
+    ) {
 
     }
 
-    override fun onContactProcessed(
-        pcoA: PhysicsCollisionObject?,
-        pcoB: PhysicsCollisionObject?,
-        manifoldPointId: Long
-    ) {
+    override fun onEnded(o1: PhysicsCollisionObject, o2: PhysicsCollisionObject, manifoldId: Long) {
 
     }
 

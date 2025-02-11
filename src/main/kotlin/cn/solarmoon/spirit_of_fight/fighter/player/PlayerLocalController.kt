@@ -49,7 +49,7 @@ object PlayerLocalController: LocalInputController() {
         if (moveRemain > 0) moveRemain--
 
         // 把跳跃加入预输入防止卡手
-        if (!player.mayFly() && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
+        if (player.isPlayingSkill && !player.mayFly() && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
             player.getPreInput().setInput("jump", 5) {
                 player.jumping = true
                 player.jumpFromGround()
