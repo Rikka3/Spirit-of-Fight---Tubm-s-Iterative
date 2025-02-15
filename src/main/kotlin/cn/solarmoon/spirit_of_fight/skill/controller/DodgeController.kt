@@ -34,8 +34,7 @@ class DodgeController(
         return controller.onPressOnce(SOFKeyMappings.DODGE) {
             if (player.onGround()) {
                 preInput.setInput("dodge", 5) {
-                    getSkillType(level, dodge).createSkill(player, level).activate()
-                    sendServerPackage(player)
+                    getSkillType(level, dodge).createSkill(player, level, true)
                 }
                 return@onPressOnce true
             }
@@ -48,8 +47,6 @@ class DodgeController(
         data: CompoundTag,
         context: IPayloadContext
     ) {
-        val level = context.player().level()
-        getSkillType(level, dodge).createSkill(host, level).activate()
     }
 
     companion object {

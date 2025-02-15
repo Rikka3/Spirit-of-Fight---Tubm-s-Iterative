@@ -9,23 +9,24 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.world.phys.Vec2
+import kotlin.ranges.contains
 
-class PerfectDodgeComponent(
+class PerfectGuardComponent(
     val triggerOnlyOnce: Boolean = true,
     val activeTime: List<Vec2> = listOf(),
-    val onPerfectDodge: BehaviorNode = EmptyNode.Success
+    val onPerfectGuard: BehaviorNode = EmptyNode.Success
 ): BehaviorNode() {
 
     init {
-        dynamicContainer.addChild(onPerfectDodge)
+        dynamicContainer.addChild(onPerfectGuard)
     }
 
     override fun onStart(skill: SkillInstance) {
-        if (read<Boolean>("perfect_dodge_check") == true && triggerOnlyOnce) return
+        if (read<Boolean>("perfect_guard_check") == true && triggerOnlyOnce) return
         val immuneTime = require<Double>("on_hurt.time")
         if (activeTime.any { immuneTime in it.x..it.y } || activeTime.isEmpty()) {
-            onPerfectDodge.tick(skill)
-            write("perfect_dodge_check", true)
+            onPerfectGuard.tick(skill)
+            write("perfect_guard_check", true)
         }
     }
 
@@ -36,16 +37,16 @@ class PerfectDodgeComponent(
     override val codec: MapCodec<out BehaviorNode> = CODEC
 
     override fun copy(): BehaviorNode {
-        return PerfectDodgeComponent(triggerOnlyOnce, activeTime, onPerfectDodge.copy())
+        return PerfectGuardComponent(triggerOnlyOnce, activeTime, onPerfectGuard.copy())
     }
 
     companion object {
-        val CODEC: MapCodec<PerfectDodgeComponent> = RecordCodecBuilder.mapCodec {
+        val CODEC: MapCodec<PerfectGuardComponent> = RecordCodecBuilder.mapCodec {
             it.group(
                 Codec.BOOL.optionalFieldOf("trigger_only_once", true).forGetter { it.triggerOnlyOnce },
                 SerializeHelper.VEC2_CODEC.listOf().optionalFieldOf("active_time", listOf()).forGetter { it.activeTime },
-                BehaviorNode.CODEC.optionalFieldOf("on_perfect_dodge", EmptyNode.Success).forGetter { it.onPerfectDodge }
-            ).apply(it, ::PerfectDodgeComponent)
+                BehaviorNode.CODEC.optionalFieldOf("on_perfect_dodge", EmptyNode.Success).forGetter { it.onPerfectGuard }
+            ).apply(it, ::PerfectGuardComponent)
         }
     }
 

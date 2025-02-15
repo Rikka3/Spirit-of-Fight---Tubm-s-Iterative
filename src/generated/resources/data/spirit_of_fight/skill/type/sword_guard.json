@@ -1,57 +1,75 @@
 {
-  "components": [
-    {
-      "type": "spark_core:play_animation",
-      "anim_index": {
-        "index": "minecraft:player",
-        "name": "sword:guard"
+  "behavior_tree": {
+    "type": "spark_core:parallel",
+    "children": [
+      {
+        "type": "spark_core:play_animation",
+        "anim_index": {
+          "index": "minecraft:player",
+          "name": "sword:guard"
+        },
+        "on_anim_end": {
+          "type": "spark_core:empty_running"
+        },
+        "on_anim_tick": {
+          "type": "spark_core:parallel",
+          "children": [
+            {
+              "type": "spirit_of_fight:guard",
+              "on_success_guard": {
+                "type": "spark_core:parallel",
+                "children": [
+                  {
+                    "type": "spark_core:knock_back",
+                    "fly": false,
+                    "strength": 0.5
+                  }
+                ]
+              }
+            },
+            {
+              "type": "spark_core:preinput_release",
+              "condition": {
+                "whitelist": [
+                  "dodge",
+                  "guard_stop"
+                ]
+              },
+              "nodes": [
+                [
+                  0.0,
+                  3.4028235E38
+                ]
+              ]
+            },
+            {
+              "type": "spark_core:prevent_local_input"
+            }
+          ]
+        },
+        "transition_time": 10
       },
-      "transition_time": 10
-    },
-    {
-      "type": "spark_core:box_follow_animated_bone",
-      "active_time": [
-        [
+      {
+        "type": "spark_core:box_follow_animated_bone",
+        "active_time": [
+          [
+            0.0,
+            3.4028235E38
+          ]
+        ],
+        "bone_name": "rightItem",
+        "flag": "guard",
+        "offset": [
           0.0,
-          3.4028235E38
-        ]
-      ],
-      "bone_name": "rightItem",
-      "flag": "guard",
-      "offset": [
-        0.0,
-        0.0,
-        -0.675
-      ],
-      "size": [
-        0.75,
-        0.75,
-        1.35
-      ]
-    },
-    {
-      "type": "spirit_of_fight:guard"
-    },
-    {
-      "type": "spark_core:preinput_release",
-      "condition": {
-        "whitelist": [
-          "dodge",
-          "guard_stop"
-        ]
-      },
-      "nodes": [
-        [
           0.0,
-          3.4028235E38
+          -0.675
+        ],
+        "size": [
+          0.75,
+          0.75,
+          1.35
         ]
-      ]
-    },
-    {
-      "type": "spark_core:prevent_local_input"
-    },
-    {
-      "type": "spark_core:prevent_yrot"
-    }
-  ]
+      }
+    ]
+  }
 }

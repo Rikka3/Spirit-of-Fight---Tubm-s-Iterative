@@ -33,10 +33,11 @@ class GuardController(
         input: Input
     ): Boolean {
         if (!SOFKeyMappings.GUARD.isDown) {
-            if (guard?.isActive == true) {
+            val guard = guard
+            if (guard != null && guard.isActive == true && guard.id > 0) {
                 preInput.setInput("guard_stop") {
-                    guard?.end()
-                    sendServerPackage(player, CompoundTag().apply { putInt("op", 1) })
+                    guard.end()
+                    sendServerPackage(player, CompoundTag().apply { putInt("id", guard.id) })
                 }
                 return true
             }
@@ -46,12 +47,11 @@ class GuardController(
             if (guard?.isActive == true) return@onPress false
 
             // 防止和使用物品冲突
-            Minecraft.getInstance().options.keyUse.isDown = false
+            val keyUse = Minecraft.getInstance().options.keyUse
+            if (keyUse.key.value == SOFKeyMappings.GUARD.key.value) keyUse.isDown = false
 
             preInput.setInput("guard", 5) {
-                guard = getSkillType(level, guardIndex).createSkill(player, level)
-                guard?.activate()
-                sendServerPackage(player, CompoundTag().apply { putInt("op", 0) })
+                guard = getSkillType(level, guardIndex).createSkill(player, level, true)
             }
             true
         }
@@ -62,14 +62,8 @@ class GuardController(
         data: CompoundTag,
         context: IPayloadContext
     ) {
-        val level = context.player().level()
-        when(data.getInt("op")) {
-            0 -> {
-                guard = getSkillType(level, guardIndex).createSkill(host, level)
-                guard?.activate()
-            }
-            1 -> guard?.end()
-        }
+        val id = data.getInt("id")
+        host.allSkills[id]?.end()
     }
 
     override val codec: MapCodec<out SkillGroupController> = CODEC

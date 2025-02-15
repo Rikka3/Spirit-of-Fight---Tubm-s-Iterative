@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.sync
 
+import cn.solarmoon.spark_core.animation.vanilla.asAnimatable
 import cn.solarmoon.spark_core.data.SerializeHelper
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import net.minecraft.network.RegistryFriendlyByteBuf
@@ -28,6 +29,8 @@ data class ClientOperationPayload(
             val player = context.player()
             val level = player.level()
             val entity = level.getEntity(payload.entityId) ?: return
+
+            player.asAnimatable().animController.stopAnimation()
 
             entity.activeSkillGroup?.controllers?.forEach {
 

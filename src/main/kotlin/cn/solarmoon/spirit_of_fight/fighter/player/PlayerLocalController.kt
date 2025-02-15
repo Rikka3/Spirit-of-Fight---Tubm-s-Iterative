@@ -5,10 +5,12 @@ import cn.solarmoon.spark_core.entity.preinput.getPreInput
 import cn.solarmoon.spark_core.local_control.LocalInputController
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.skill.controller.SkillGroupLocalController
+import cn.solarmoon.spirit_of_fight.sync.ClientOperationPayload
 import net.minecraft.client.Minecraft
 import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.world.phys.HitResult
+import net.minecraft.world.phys.Vec3
 import net.neoforged.neoforge.client.event.InputEvent
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent
 
@@ -44,6 +46,7 @@ object PlayerLocalController: LocalInputController() {
             player.getPreInput().setInput("move", 1) {
                 moveRemain = 5
                 player.asAnimatable().animController.stopAnimation()
+                sendPackage(ClientOperationPayload(player.id, "none", Vec3.ZERO, 0))
             }
         }
         if (moveRemain > 0) moveRemain--

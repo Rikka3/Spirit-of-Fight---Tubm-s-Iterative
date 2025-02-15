@@ -1,6 +1,9 @@
 package cn.solarmoon.spirit_of_fight.skill.component
 
-import cn.solarmoon.spark_core.skill.component.SkillComponent
+import cn.solarmoon.spark_core.skill.SkillInstance
+import cn.solarmoon.spark_core.skill.node.BehaviorNode
+import cn.solarmoon.spark_core.skill.node.NodeStatus
+import cn.solarmoon.spark_core.skill.node.leaves.EmptyNode
 import cn.solarmoon.spirit_of_fight.phys.attack.CommonAttackCollisionCallback
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.bullet.objects.PhysicsRigidBody
@@ -9,18 +12,17 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.world.entity.Entity
 
 class CommonAttackComponent(
-    val preFirstAttackComponents: List<SkillComponent> = listOf(),
-    val preAttackComponents: List<SkillComponent> = listOf()
-): SkillComponent() {
+    val preFirstAttackComponents: BehaviorNode = EmptyNode.Success,
+    val preAttackComponents:BehaviorNode = EmptyNode.Success
+): BehaviorNode() {
 
-    override val codec: MapCodec<out SkillComponent> = CODEC
-
-    override fun copy(): SkillComponent {
-        return CommonAttackComponent(preFirstAttackComponents.map { it.copy() }, preAttackComponents.map { it.copy() })
+    init {
+        dynamicContainer.addChild(preFirstAttackComponents)
+        dynamicContainer.addChild(preAttackComponents)
     }
 
-    override fun onActive() {
-        requireQuery<MutableList<PhysicsRigidBody>>("rigid_body.attack").forEach {
+    override fun onStart(skill: SkillInstance) {
+        require<MutableList<PhysicsRigidBody>>("rigid_body.attack").forEach {
             it.addCollisionCallback(object : CommonAttackCollisionCallback() {
                 override fun preAttack(
                     attacker: Entity,
@@ -32,23 +34,29 @@ class CommonAttackComponent(
                     super.preAttack(attacker, target, aBody, bBody, manifoldId)
                     if (skill.level.isClientSide) return
                     if (attackSystem.attackedEntities.isEmpty()) {
-                        setCustomActive(preFirstAttackComponents)
+                        preFirstAttackComponents.tick(skill)
                     }
-                    setCustomActive(preAttackComponents)
+                    preAttackComponents.tick(skill)
                 }
             })
         }
     }
 
-    override fun onUpdate() {}
+    override fun onTick(skill: SkillInstance): NodeStatus {
+        return NodeStatus.SUCCESS
+    }
 
-    override fun onEnd() {}
+    override val codec: MapCodec<out BehaviorNode> = CODEC
+
+    override fun copy(): BehaviorNode {
+        return CommonAttackComponent(preFirstAttackComponents.copy(), preAttackComponents.copy())
+    }
 
     companion object {
         val CODEC: MapCodec<CommonAttackComponent> = RecordCodecBuilder.mapCodec {
             it.group(
-                SkillComponent.CODEC.listOf().optionalFieldOf("on_pre_first_attack", listOf()).forGetter { it.preFirstAttackComponents },
-                SkillComponent.CODEC.listOf().optionalFieldOf("on_pre_attack", listOf()).forGetter { it.preAttackComponents }
+                BehaviorNode.CODEC.optionalFieldOf("on_pre_first_attack", EmptyNode.Success).forGetter { it.preFirstAttackComponents },
+                BehaviorNode.CODEC.optionalFieldOf("on_pre_attack", EmptyNode.Success).forGetter { it.preAttackComponents }
             ).apply(it, ::CommonAttackComponent)
         }
     }

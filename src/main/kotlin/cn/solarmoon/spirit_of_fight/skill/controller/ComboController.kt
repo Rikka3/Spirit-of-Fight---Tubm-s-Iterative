@@ -42,8 +42,7 @@ class ComboController(
             tickRemain = 20
             preInput.setInput("combo", 5) {
                 index.increment()
-                presentCombo = getSkillType(level, presentComboSkillId).createSkill(player, level)
-                presentCombo!!.activate()
+                presentCombo = getSkillType(level, presentComboSkillId).createSkill(player, level, true)
                 sendServerPackage(player, CompoundTag().apply { putInt("ComboIndex", index.get()) })
             }
             true
@@ -62,7 +61,6 @@ class ComboController(
 
     override fun sync(host: SkillHost, data: CompoundTag, context: IPayloadContext) {
         index.set(data.getInt("ComboIndex"))
-        getSkillType(context.player().level(), presentComboSkillId).createSkill(host, context.player().level()).activate()
     }
 
     companion object {

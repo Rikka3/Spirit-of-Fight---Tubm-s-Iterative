@@ -20,11 +20,11 @@ import net.neoforged.neoforge.registries.RegisterEvent
 object SOFCodecRegister {
 
     private fun reg(event: RegisterEvent) {
-        event.register(SparkRegistries.SKILL_COMPONENT_CODEC.key(), id("common_attack")) { CommonAttackComponent.CODEC }
-        event.register(SparkRegistries.SKILL_COMPONENT_CODEC.key(), id("prevent_move_with_back")) { PreventMoveWithBackComponent.CODEC }
-        event.register(SparkRegistries.SKILL_COMPONENT_CODEC.key(), id("perfect_dodge")) { PerfectDodgeComponent.CODEC }
-        event.register(SparkRegistries.SKILL_COMPONENT_CODEC.key(), id("add_fight_spirit")) { AddFightSpiritComponent.CODEC }
-        event.register(SparkRegistries.SKILL_COMPONENT_CODEC.key(), id("guard")) { GuardComponent.CODEC }
+        event.register(SparkRegistries.BEHAVIOR_NODE_CODEC.key(), id("common_attack")) { CommonAttackComponent.CODEC }
+        event.register(SparkRegistries.BEHAVIOR_NODE_CODEC.key(), id("prevent_move_with_back")) { PreventMoveWithBackComponent.CODEC }
+        event.register(SparkRegistries.BEHAVIOR_NODE_CODEC.key(), id("perfect_dodge")) { PerfectDodgeComponent.CODEC }
+        event.register(SparkRegistries.BEHAVIOR_NODE_CODEC.key(), id("add_fight_spirit")) { AddFightSpiritComponent.CODEC }
+        event.register(SparkRegistries.BEHAVIOR_NODE_CODEC.key(), id("guard")) { GuardComponent.CODEC }
 
         fun registerSkillGroupController(id: String, codec: () -> MapCodec<out SkillGroupController>) = event.register(SparkRegistries.SKILL_GROUP_CONTROLLER_CODEC.key(), id(id), codec)
         registerSkillGroupController("combo") { ComboController.CODEC }

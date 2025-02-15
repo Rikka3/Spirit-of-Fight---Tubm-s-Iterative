@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.fighter.player
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.physics.presets.MoveWithAnimatedBoneTicker
 import cn.solarmoon.spark_core.physics.presets.initWithAnimatedBone
