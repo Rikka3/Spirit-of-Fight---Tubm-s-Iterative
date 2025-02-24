@@ -1,0 +1,62 @@
+{
+  "skill": {
+    "type": "spirit_of_fight:super_armor_block",
+    "accessible_anims": [
+      "sword:skill_hit"
+    ],
+    "anim_index": {
+      "index": "minecraft:player",
+      "name": "sword:skill_keeping"
+    },
+    "bodies": [
+      {
+        "type": "spark_core:box_follow_animated_bone",
+        "active_time": [],
+        "bone_name": "rightItem",
+        "offset": [
+          0.0,
+          0.0,
+          -0.675
+        ],
+        "size": [
+          0.75,
+          0.75,
+          1.35
+        ]
+      }
+    ],
+    "on_block": [
+      {
+        "type": "spark_core:play_sound",
+        "sounds": [
+          {
+            "sound_id": "spirit_of_fight:sharp_block"
+          }
+        ]
+      },
+      {
+        "type": "spirit_of_fight:quadratic_particle",
+        "particle": {
+          "type": "minecraft:crit"
+        }
+      }
+    ],
+    "on_skill_life_cycle": [
+      {
+        "type": "spark_core:preinput_controller",
+        "condition": {
+          "whitelist": [
+            "special_attack_release"
+          ]
+        }
+      },
+      {
+        "type": "spark_core:prevent_local_input"
+      },
+      {
+        "type": "spirit_of_fight:charging_particle"
+      }
+    ],
+    "transition_time": 7
+  }
+}

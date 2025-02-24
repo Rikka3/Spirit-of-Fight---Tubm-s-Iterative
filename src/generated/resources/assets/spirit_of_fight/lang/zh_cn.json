@@ -1,0 +1,9 @@
+{
+  "skill.spirit_of_fight.hammer_combo_0.name": "战锤:连招1",
+  "skill.spirit_of_fight.hammer_combo_02.name": "战锤:变招2",
+  "skill.spirit_of_fight.hammer_combo_1.name": "战锤:连招2",
+  "skill.spirit_of_fight.hammer_combo_2.name": "战锤:连招3",
+  "skill.spirit_of_fight.hammer_combo_c0.name": "战锤:铁山靠",
+  "skill.spirit_of_fight.hammer_sprinting_attack.name": "战锤:大旋风",
+  "skill_tree_condition.spirit_of_fight.key_input": "需要按键：[%s]"
+}

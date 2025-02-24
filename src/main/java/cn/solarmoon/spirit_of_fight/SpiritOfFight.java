@@ -24,7 +24,6 @@ public class SpiritOfFight {
             SOFClientEventRegister.register();
             SOFKeyMappings.register();
             SOFGuiRegister.register(modEventBus);
-            SOFLocalControllerRegister.register(modEventBus);
             SOFItemInHandModelRegister.register(modEventBus);
         }
 
@@ -38,6 +37,9 @@ public class SpiritOfFight {
         SOFDataGenerater.register(modEventBus);
         SOFPayloadRegister.register(modEventBus);
         SOFSounds.register();
+        SOFDataComponents.register();
+        SOFCapabilities.register(modEventBus);
+        SOFDataRegistryRegister.register(modEventBus);
         SOFCodecRegister.register(modEventBus);
     }
 

@@ -7,12 +7,16 @@
     "cn/solarmoon/spark_core/physics/host/PhysicsHost",
     "cn/solarmoon/spark_core/entity/attack/HurtDataHolder",
     "cn/solarmoon/spark_core/skill/SkillHost",
-    "cn/solarmoon/spark_core/sync/Syncer"
+    "cn/solarmoon/spark_core/sync/Syncer",
+    "cn/solarmoon/spirit_of_fight/fighter/IEntityPatch"
   ],
   "net/minecraft/client/player/LocalPlayer": [
     "cn/solarmoon/spark_core/entity/player/ILocalPlayerPatch"
   ],
   "net/minecraft/world/damagesource/DamageSource": [
     "cn/solarmoon/spark_core/entity/attack/IDamageSourceExtraData"
+  ],
+  "net/minecraft/world/entity/player/Player": [
+    "cn/solarmoon/spirit_of_fight/fighter/player/IPlayerPatch"
   ]
 }

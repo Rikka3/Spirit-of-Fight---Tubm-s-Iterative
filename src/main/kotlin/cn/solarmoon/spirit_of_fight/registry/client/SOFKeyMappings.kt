@@ -1,6 +1,5 @@
 package cn.solarmoon.spirit_of_fight.registry.client
 
-import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import com.mojang.blaze3d.platform.InputConstants
 import org.lwjgl.glfw.GLFW
@@ -32,8 +31,7 @@ object SOFKeyMappings {
     @JvmStatic
     val SWITCH_ATTACK = SpiritOfFight.REGISTER.keyMapping()
         .id("switch_attack")
-        .bound(GLFW.GLFW_MOUSE_BUTTON_LEFT)
-        .type(InputConstants.Type.MOUSE)
+        .bound(GLFW.GLFW_KEY_K)
         .build()
 
     @JvmStatic

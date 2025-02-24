@@ -1,0 +1,122 @@
+{
+  "item": {
+    "tag": "c:hammer"
+  },
+  "node": {
+    "type": "spirit_of_fight:node",
+    "children": [
+      {
+        "type": "spirit_of_fight:node",
+        "children": [
+          {
+            "type": "spirit_of_fight:node",
+            "conditions": [
+              {
+                "type": "spirit_of_fight:key_input",
+                "active_time": [
+                  [
+                    0,
+                    3
+                  ]
+                ],
+                "map": {
+                  "key.attack": "release"
+                }
+              }
+            ],
+            "skill": "spirit_of_fight:hammer_combo_2"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "spirit_of_fight:key_input",
+            "active_time": [
+              [
+                0,
+                3
+              ]
+            ],
+            "map": {
+              "key.attack": "release"
+            }
+          }
+        ],
+        "reserve_time": 10,
+        "skill": "spirit_of_fight:hammer_combo_1"
+      },
+      {
+        "type": "spirit_of_fight:node",
+        "children": [
+          {
+            "type": "spirit_of_fight:node",
+            "children": [
+              {
+                "type": "spirit_of_fight:node",
+                "conditions": [
+                  {
+                    "type": "spirit_of_fight:key_input",
+                    "active_time": [
+                      [
+                        0,
+                        3
+                      ]
+                    ],
+                    "map": {
+                      "key.attack": "release"
+                    }
+                  }
+                ],
+                "skill": "spirit_of_fight:hammer_combo_2"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "spirit_of_fight:key_input",
+                "active_time": [
+                  [
+                    0,
+                    3
+                  ]
+                ],
+                "map": {
+                  "key.attack": "release"
+                }
+              },
+              {
+                "type": "spirit_of_fight:hit_target"
+              }
+            ],
+            "reserve_time": 10,
+            "skill": "spirit_of_fight:hammer_combo_c1"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "spirit_of_fight:key_input",
+            "map": {
+              "key.spirit_of_fight.special_attack": "press_once"
+            }
+          }
+        ],
+        "reserve_time": 10,
+        "skill": "spirit_of_fight:hammer_combo_c0"
+      }
+    ],
+    "conditions": [
+      {
+        "type": "spirit_of_fight:key_input",
+        "active_time": [
+          [
+            0,
+            3
+          ]
+        ],
+        "map": {
+          "key.attack": "release"
+        }
+      }
+    ],
+    "reserve_time": 10,
+    "skill": "spirit_of_fight:hammer_combo_0"
+  }
+}

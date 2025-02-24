@@ -1,0 +1,21 @@
+{
+  "item": {
+    "tag": "minecraft:swords"
+  },
+  "node": {
+    "type": "spirit_of_fight:node",
+    "conditions": [
+      {
+        "type": "spirit_of_fight:sprinting"
+      },
+      {
+        "type": "spirit_of_fight:key_input",
+        "map": {
+          "key.attack": "release"
+        }
+      }
+    ],
+    "skill": "spirit_of_fight:sword_sprinting_attack"
+  },
+  "priority": 1
+}

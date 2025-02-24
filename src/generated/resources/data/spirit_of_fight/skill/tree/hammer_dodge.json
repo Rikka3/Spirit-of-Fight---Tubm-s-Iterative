@@ -1,0 +1,17 @@
+{
+  "item": {
+    "tag": "c:hammer"
+  },
+  "node": {
+    "type": "spirit_of_fight:node",
+    "conditions": [
+      {
+        "type": "spirit_of_fight:key_input",
+        "map": {
+          "key.spirit_of_fight.dodge": "press_once"
+        }
+      }
+    ],
+    "skill": "spirit_of_fight:hammer_dodge"
+  }
+}

@@ -2,7 +2,8 @@ package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.fighter.StateAnimApplier
 import cn.solarmoon.spirit_of_fight.fighter.player.PlayerBodyApplier
-import cn.solarmoon.spirit_of_fight.skill.controller.SkillGroupControllerApplier
+import cn.solarmoon.spirit_of_fight.hit.EntityHitApplier
+import cn.solarmoon.spirit_of_fight.skill.tree.SkillTreeTooltipApplier
 import cn.solarmoon.spirit_of_fight.spirit.FightSpiritApplier
 import net.neoforged.neoforge.common.NeoForge
 
@@ -11,9 +12,10 @@ object SOFCommonEventRegister {
     @JvmStatic
     fun register() {
         add(FightSpiritApplier)
-        add(SkillGroupControllerApplier)
         add(PlayerBodyApplier)
         add(StateAnimApplier)
+        add(EntityHitApplier)
+        add(SkillTreeTooltipApplier)
     }
 
     private fun add(event: Any) {

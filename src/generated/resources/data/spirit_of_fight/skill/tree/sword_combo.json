@@ -1,0 +1,65 @@
+{
+  "item": {
+    "tag": "minecraft:swords"
+  },
+  "node": {
+    "type": "spirit_of_fight:node",
+    "children": [
+      {
+        "type": "spirit_of_fight:node",
+        "children": [
+          {
+            "type": "spirit_of_fight:node",
+            "conditions": [
+              {
+                "type": "spirit_of_fight:key_input",
+                "active_time": [
+                  [
+                    0,
+                    3
+                  ]
+                ],
+                "map": {
+                  "key.attack": "release"
+                }
+              }
+            ],
+            "skill": "spirit_of_fight:sword_combo_2"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "spirit_of_fight:key_input",
+            "active_time": [
+              [
+                0,
+                3
+              ]
+            ],
+            "map": {
+              "key.attack": "release"
+            }
+          }
+        ],
+        "reserve_time": 10,
+        "skill": "spirit_of_fight:sword_combo_1"
+      }
+    ],
+    "conditions": [
+      {
+        "type": "spirit_of_fight:key_input",
+        "active_time": [
+          [
+            0,
+            3
+          ]
+        ],
+        "map": {
+          "key.attack": "release"
+        }
+      }
+    ],
+    "reserve_time": 10,
+    "skill": "spirit_of_fight:sword_combo_0"
+  }
+}

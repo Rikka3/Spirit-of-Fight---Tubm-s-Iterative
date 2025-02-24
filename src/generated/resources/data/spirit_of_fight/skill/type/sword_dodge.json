@@ -1,71 +1,75 @@
 {
-  "behavior_tree": {
-    "type": "spark_core:play_animation",
+  "skill": {
+    "type": "spirit_of_fight:dodge",
     "anim_index": {
       "index": "minecraft:player",
-      "name": "sword:dodge_forward"
+      "name": "sword:dodge"
     },
-    "on_anim_end": {
-      "type": "spark_core:end_skill"
-    },
-    "on_anim_tick": {
-      "type": "spark_core:parallel",
-      "children": [
-        {
-          "type": "spark_core:invincibility",
-          "on_immune_to_damage": {
-            "type": "spirit_of_fight:perfect_dodge",
-            "active_time": [
-              [
-                0.0,
-                0.2
-              ]
-            ],
-            "on_perfect_dodge": {
-              "type": "spark_core:summon_shadow"
-            }
-          }
-        },
-        {
-          "type": "spark_core:moveset",
-          "orientation_by_input": true,
-          "sets": [
-            {
-              "active_time": [
-                0.0,
-                0.1
-              ],
-              "move": [
-                0.0,
-                0.0,
-                1.0
-              ]
-            }
-          ]
-        },
-        {
-          "type": "spark_core:preinput_release",
-          "condition": {
-            "blacklist": [
-              "dodge",
-              "move"
-            ]
-          },
-          "nodes": [
-            [
-              0.35,
-              3.4028235E38
-            ]
-          ]
-        },
-        {
-          "type": "spark_core:prevent_local_input"
-        },
-        {
-          "type": "spark_core:prevent_yrot"
-        }
+    "invincible_time": [
+      [
+        0.0,
+        0.4
       ]
-    },
-    "transition_time": 2
+    ],
+    "on_anim_life_cycle": [
+      {
+        "type": "spark_core:moveset",
+        "orientation_by_input": true,
+        "sets": [
+          {
+            "active_time": [
+              0.0,
+              0.1
+            ],
+            "move": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      {
+        "type": "spark_core:preinput_controller",
+        "condition": {
+          "blacklist": [
+            "dodge",
+            "move"
+          ]
+        },
+        "nodes": [
+          [
+            0.35,
+            3.4028235E38
+          ]
+        ]
+      },
+      {
+        "type": "spark_core:prevent_local_input"
+      },
+      {
+        "type": "spark_core:prevent_yrot"
+      }
+    ],
+    "on_perfect_dodge": [
+      {
+        "type": "spark_core:summon_shadow"
+      },
+      {
+        "type": "spark_core:play_sound",
+        "sounds": [
+          {
+            "sound_id": "spirit_of_fight:perfect_dodge"
+          }
+        ]
+      }
+    ],
+    "perfect_dodge_time": [
+      [
+        0.0,
+        0.2
+      ]
+    ],
+    "transition_time": 0
   }
 }

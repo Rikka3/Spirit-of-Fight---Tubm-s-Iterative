@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
+import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.TypedAnimProvider
 import cn.solarmoon.spark_core.flag.SparkFlags
 import cn.solarmoon.spark_core.flag.putFlag
@@ -38,16 +39,16 @@ object SOFTypedAnimations {
         .id("hit_landing")
         .animName("Hit/landing")
         .provider {
-            onEnable {
-                val entity = holder.animatable as? Entity ?: return@onEnable
+            onEvent<AnimEvent.SwitchIn> {
+                val entity = holder.animatable as? Entity ?: return@onEvent
                 entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
                 entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, true)
                 entity.putFlag(SparkFlags.DISARM, true)
                 entity.putFlag(SparkFlags.SILENCE, true)
             }
 
-            onEnd {
-                val entity = holder.animatable as? Entity ?: return@onEnd
+            onEvent<AnimEvent.End> {
+                val entity = holder.animatable as? Entity ?: return@onEvent
                 entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, false)
                 entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, false)
                 entity.putFlag(SparkFlags.DISARM, false)
@@ -63,7 +64,7 @@ object SOFTypedAnimations {
         .build()
 
     fun createMoveStateAnim(name: String, provider: TypedAnimProvider = {}) = createStateAnim(name) {
-        onTick {
+        onEvent<AnimEvent.Tick> {
             val holder = this.holder
             if (holder is LivingEntity) {
                 speed = holder.getAttributeValue(Attributes.MOVEMENT_SPEED) / (if (holder.isSprinting) 0.13 else 0.1)

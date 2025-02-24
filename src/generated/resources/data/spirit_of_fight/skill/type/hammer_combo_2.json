@@ -1,0 +1,131 @@
+{
+  "skill": {
+    "type": "spirit_of_fight:common_attack",
+    "anim_index": {
+      "index": "minecraft:player",
+      "name": "hammer:combo_2"
+    },
+    "bodies": [
+      {
+        "type": "spark_core:box_around_holder",
+        "active_time": [
+          [
+            0.55,
+            0.65
+          ]
+        ],
+        "offset": [
+          0.0,
+          1.0,
+          1.25
+        ],
+        "size": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      }
+    ],
+    "hit_sound": [
+      {
+        "sound_id": "spirit_of_fight:hard_under_attack_2"
+      }
+    ],
+    "on_anim_life_cycle": [
+      {
+        "type": "spark_core:attack_damage_modifier",
+        "damage_multiply": 1.25
+      },
+      {
+        "type": "spark_core:moveset",
+        "sets": [
+          {
+            "active_time": [
+              0.0,
+              0.65
+            ],
+            "move": [
+              0.0,
+              0.0,
+              0.2
+            ]
+          }
+        ]
+      },
+      {
+        "type": "spark_core:preinput_controller",
+        "condition": {
+          "whitelist": []
+        }
+      },
+      {
+        "type": "spark_core:prevent_local_input"
+      },
+      {
+        "type": "spark_core:prevent_yrot",
+        "active_time": [
+          [
+            0.45,
+            3.4028235E38
+          ]
+        ]
+      },
+      {
+        "type": "spirit_of_fight:prevent_move_with_back",
+        "active_time": []
+      }
+    ],
+    "on_box_active": [
+      {
+        "type": "spirit_of_fight:gale_particle",
+        "offset": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "particle": {
+          "type": "minecraft:campfire_cosy_smoke"
+        }
+      },
+      {
+        "type": "spark_core:play_sound",
+        "pitch": 0.8,
+        "sounds": [
+          {
+            "sound_id": "spirit_of_fight:hard_under_attack_1"
+          }
+        ]
+      }
+    ],
+    "on_pre_attack": [
+      {
+        "type": "spark_core:add_target_movement"
+      },
+      {
+        "type": "spirit_of_fight:increase_fight_spirit",
+        "value": 60
+      }
+    ],
+    "on_pre_first_attack": [
+      {
+        "type": "spark_core:shake_camera",
+        "frequency": 3.0,
+        "range": 5.0,
+        "strength": 2.0,
+        "time": 3
+      },
+      {
+        "type": "spark_core:change_anim_speed"
+      }
+    ],
+    "on_success_hit": [
+      {
+        "type": "spirit_of_fight:quadratic_particle",
+        "particle": {
+          "type": "minecraft:crit"
+        }
+      }
+    ],
+    "transition_time": 2
+  }
+}

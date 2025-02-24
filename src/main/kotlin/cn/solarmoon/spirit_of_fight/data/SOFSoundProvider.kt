@@ -17,8 +17,17 @@ class SOFSoundProvider(
     override fun registerSounds() {
         addDefault(SOFSounds.SOFT_BLOCK)
         addDefault(SOFSounds.SHARP_BLOCK)
-        addDefault(SOFSounds.SHARP_PARRY)
+        addDefault(SOFSounds.SHARP_PARRY_1)
+        addDefault(SOFSounds.SHARP_PARRY_2)
+        addDefault(SOFSounds.SHARP_PARRY_3)
+        addDefault(SOFSounds.SHARP_WIELD_1)
+        addDefault(SOFSounds.SHARP_UNDER_ATTACK_1)
+        addDefault(SOFSounds.SHARP_UNDER_ATTACK_2)
         addDefault(SOFSounds.HARD_BLOCK)
+        addDefault(SOFSounds.HARD_WIELD_1)
+        addDefault(SOFSounds.HARD_UNDER_ATTACK_1)
+        addDefault(SOFSounds.HARD_UNDER_ATTACK_2)
+        addDefault(SOFSounds.PERFECT_DODGE)
     }
 
     fun addDefault(event: DeferredHolder<SoundEvent, SoundEvent>) {
@@ -26,8 +35,6 @@ class SOFSoundProvider(
         add(event.get(), SoundDefinition.definition()
             .with(
                 sound("${SpiritOfFight.MOD_ID}:$id", SoundDefinition.SoundType.SOUND)
-                    .stream(true)
-                    .preload(true)
             )
             .subtitle("sound.${SpiritOfFight.MOD_ID}.$id")
             .replace(true))

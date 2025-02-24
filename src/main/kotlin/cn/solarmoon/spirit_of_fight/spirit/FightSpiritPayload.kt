@@ -12,15 +12,6 @@ data class FightSpiritPayload(
     val spirit: FightSpirit
 ): CustomPacketPayload {
 
-    enum class Type(val id: Int) {
-        ADD(0), SYNC(1);
-
-        companion object {
-            @JvmStatic
-            fun getById(id: Int) = Type.entries.first { it.id == id }
-        }
-    }
-
     override fun type(): CustomPacketPayload.Type<out CustomPacketPayload?> {
         return TYPE
     }
