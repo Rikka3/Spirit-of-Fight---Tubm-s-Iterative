@@ -8,7 +8,9 @@
     "cn/solarmoon/spark_core/entity/attack/HurtDataHolder",
     "cn/solarmoon/spark_core/skill/SkillHost",
     "cn/solarmoon/spark_core/sync/Syncer",
-    "cn/solarmoon/spirit_of_fight/fighter/IEntityPatch"
+    "cn/solarmoon/spark_core/preinput/IPreInputHolder",
+    "cn/solarmoon/spark_core/entity/IEntityPatch",
+    "cn/solarmoon/spirit_of_fight/entity/IEntityPatch"
   ],
   "net/minecraft/client/player/LocalPlayer": [
     "cn/solarmoon/spark_core/entity/player/ILocalPlayerPatch"
@@ -17,6 +19,10 @@
     "cn/solarmoon/spark_core/entity/attack/IDamageSourceExtraData"
   ],
   "net/minecraft/world/entity/player/Player": [
-    "cn/solarmoon/spirit_of_fight/fighter/player/IPlayerPatch"
+    "cn/solarmoon/spark_core/animation/IEntityAnimatable",
+    "cn/solarmoon/spirit_of_fight/entity/player/IPlayerPatch"
+  ],
+  "net/minecraft/world/entity/monster/Zombie": [
+    "cn/solarmoon/spark_core/animation/IEntityAnimatable"
   ]
 }

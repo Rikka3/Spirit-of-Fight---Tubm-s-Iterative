@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.client
 
-import cn.solarmoon.spirit_of_fight.fighter.player.CameraAdjuster
-import cn.solarmoon.spirit_of_fight.fighter.player.PlayerLocalController
+import cn.solarmoon.spirit_of_fight.entity.player.CameraAdjuster
+import cn.solarmoon.spirit_of_fight.entity.player.PlayerLocalController
 import cn.solarmoon.spirit_of_fight.lock_on.LockOnApplier
 import net.neoforged.neoforge.common.NeoForge
 

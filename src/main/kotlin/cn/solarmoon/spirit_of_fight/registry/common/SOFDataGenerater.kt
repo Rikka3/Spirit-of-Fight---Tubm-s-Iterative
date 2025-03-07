@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.data.SOFBlockTags
+import cn.solarmoon.spirit_of_fight.data.SOFItemModelProvider
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.data.SOFLanguageProvider
 import cn.solarmoon.spirit_of_fight.data.SOFSkillTrees
@@ -30,6 +31,7 @@ object SOFDataGenerater {
         addProvider(blockTags)
         addProvider(SOFItemTags(output, lookupProvider, blockTags.contentsGetter(), helper))
         addProvider(SOFLanguageProvider(output))
+        generator.addProvider(event.includeClient(), SOFItemModelProvider(output, helper))
         generator.addProvider(event.includeClient(), SOFSoundProvider(output, helper))
 
         val builder = RegistrySetBuilder().apply {

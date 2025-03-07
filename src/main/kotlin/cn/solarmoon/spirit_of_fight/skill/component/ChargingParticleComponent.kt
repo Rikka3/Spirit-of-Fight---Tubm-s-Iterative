@@ -1,6 +1,5 @@
 package cn.solarmoon.spirit_of_fight.skill.component
 
-import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spark_core.skill.component.SkillComponent
 import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
 import com.mojang.serialization.Codec
@@ -13,12 +12,11 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class ChargingParticleComponent(
+    val maxCount: Int = 1024,
     val particleType: ParticleOptions = ParticleTypes.WHITE_SMOKE
 ): SkillComponent() {
 
-    override fun onAttach() {
-        onTick()
-    }
+    var count = 0
 
     override fun onTick() {
         val entity = skill.holder as? Entity ?: return
@@ -26,7 +24,7 @@ class ChargingParticleComponent(
         val fs = entity.getFightSpirit()
         val particleCount = 30
         val radius = 2.5
-        if (skill.runTime % 5 == 0) {
+        if (skill.timeline.runTime % 5 == 0) {
             repeat(particleCount) {
                 val angle = (it * 2 * Math.PI / particleCount)
                 val center = entity.position()
@@ -38,7 +36,10 @@ class ChargingParticleComponent(
                 val speedZ = if (fs.isFull) (center.z - particleZ) * 0.1 else 0.0
                 level.addParticle(particleType, particleX, particleY, particleZ, speedX, speedY, speedZ)
             }
+            count++
         }
+
+        if (count >= maxCount) detach()
     }
 
     override val codec: MapCodec<out SkillComponent> = CODEC
@@ -46,6 +47,7 @@ class ChargingParticleComponent(
     companion object {
         val CODEC: MapCodec<ChargingParticleComponent> = RecordCodecBuilder.mapCodec {
             it.group(
+                Codec.INT.optionalFieldOf("max_count", 1024).forGetter { it.maxCount },
                 ParticleTypes.CODEC.optionalFieldOf("particle", ParticleTypes.WHITE_SMOKE).forGetter { it.particleType }
             ).apply(it, ::ChargingParticleComponent)
         }

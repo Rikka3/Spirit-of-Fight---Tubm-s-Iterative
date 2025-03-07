@@ -1,56 +1,66 @@
 {
   "skill": {
     "type": "spirit_of_fight:dodge",
-    "anim_index": {
-      "index": "minecraft:player",
-      "name": "hammer:dodge"
-    },
-    "invincible_time": [
-      [
-        0.0,
-        0.4
-      ]
-    ],
-    "on_anim_life_cycle": [
-      {
-        "type": "spark_core:moveset",
-        "orientation_by_input": true,
-        "sets": [
-          {
-            "active_time": [
-              0.0,
-              0.1
-            ],
-            "move": [
-              0.0,
-              0.0,
-              1.0
-            ]
-          }
-        ]
+    "animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "hammer:dodge"
       },
-      {
-        "type": "spark_core:preinput_controller",
-        "condition": {
-          "blacklist": [
-            "dodge",
-            "move"
+      "on_anim_start": [
+        {
+          "type": "spark_core:movement",
+          "orientation_by_input": true,
+          "sets": [
+            {
+              "active_time": {
+                "stamp": [
+                  0.0,
+                  0.1
+                ]
+              },
+              "move": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ]
         },
-        "nodes": [
-          [
-            0.35,
-            3.4028235E38
-          ]
+        {
+          "type": "spark_core:preinput_controller",
+          "active_time": [
+            {
+              "stamp": [
+                0.35,
+                100.0
+              ]
+            }
+          ],
+          "condition": {
+            "blacklist": [
+              "dodge",
+              "move"
+            ]
+          }
+        },
+        {
+          "type": "spark_core:prevent_local_input"
+        },
+        {
+          "type": "spark_core:prevent_yrot"
+        }
+      ],
+      "transition_time": 0
+    },
+    "invincible_time": [
+      {
+        "stamp": [
+          0.0,
+          0.4
         ]
-      },
-      {
-        "type": "spark_core:prevent_local_input"
-      },
-      {
-        "type": "spark_core:prevent_yrot"
       }
     ],
+    "on_anim_life_cycle": [],
     "on_perfect_dodge": [
       {
         "type": "spark_core:summon_shadow"
@@ -65,11 +75,12 @@
       }
     ],
     "perfect_dodge_time": [
-      [
-        0.0,
-        0.2
-      ]
-    ],
-    "transition_time": 0
+      {
+        "stamp": [
+          0.0,
+          0.2
+        ]
+      }
+    ]
   }
 }

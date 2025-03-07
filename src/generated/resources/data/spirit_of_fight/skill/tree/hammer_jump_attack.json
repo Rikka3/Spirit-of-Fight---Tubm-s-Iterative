@@ -2,20 +2,25 @@
   "item": {
     "tag": "c:hammer"
   },
-  "node": {
-    "type": "spirit_of_fight:node",
-    "conditions": [
-      {
-        "type": "spirit_of_fight:jumping"
-      },
-      {
-        "type": "spirit_of_fight:key_input",
-        "map": {
-          "key.attack": "release"
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "conditions": [
+        {
+          "type": "spirit_of_fight:jumping"
+        },
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.attack": "release"
+          }
         }
-      }
-    ],
-    "skill": "spirit_of_fight:hammer_jump_attack"
-  },
+      ],
+      "pre_input_id": {
+        "name": "attack"
+      },
+      "skill": "spirit_of_fight:hammer_jump_attack"
+    }
+  ],
   "priority": 2
 }

@@ -2,32 +2,37 @@
   "item": {
     "tag": "c:hammer"
   },
-  "node": {
-    "type": "spirit_of_fight:node",
-    "children": [
-      {
-        "type": "spirit_of_fight:stop",
-        "conditions": [
-          {
-            "type": "spirit_of_fight:reverse",
-            "condition": {
-              "type": "spirit_of_fight:key_input",
-              "map": {
-                "key.spirit_of_fight.guard": "press"
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "children": [
+        {
+          "type": "spirit_of_fight:stop",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:reverse",
+              "condition": {
+                "type": "spirit_of_fight:key_input",
+                "map": {
+                  "key.spirit_of_fight.guard": "press"
+                }
               }
             }
-          }
-        ]
-      }
-    ],
-    "conditions": [
-      {
-        "type": "spirit_of_fight:key_input",
-        "map": {
-          "key.spirit_of_fight.guard": "press"
+          ]
         }
-      }
-    ],
-    "skill": "spirit_of_fight:hammer_guard"
-  }
+      ],
+      "conditions": [
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.spirit_of_fight.guard": "press"
+          }
+        }
+      ],
+      "pre_input_id": {
+        "name": "guard"
+      },
+      "skill": "spirit_of_fight:hammer_guard"
+    }
+  ]
 }

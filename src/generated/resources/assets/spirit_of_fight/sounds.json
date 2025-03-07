@@ -76,6 +76,27 @@
     ],
     "subtitle": "sound.spirit_of_fight.sharp_under_attack_2"
   },
+  "sharp_under_attack_3": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:sharp_under_attack_3"
+    ],
+    "subtitle": "sound.spirit_of_fight.sharp_under_attack_3"
+  },
+  "sharp_under_attack_4": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:sharp_under_attack_4"
+    ],
+    "subtitle": "sound.spirit_of_fight.sharp_under_attack_4"
+  },
+  "sharp_under_attack_5": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:sharp_under_attack_5"
+    ],
+    "subtitle": "sound.spirit_of_fight.sharp_under_attack_5"
+  },
   "sharp_wield_1": {
     "replace": true,
     "sounds": [
@@ -89,5 +110,33 @@
       "spirit_of_fight:soft_block"
     ],
     "subtitle": "sound.spirit_of_fight.soft_block"
+  },
+  "soft_under_attack_1": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:soft_under_attack_1"
+    ],
+    "subtitle": "sound.spirit_of_fight.soft_under_attack_1"
+  },
+  "soft_under_attack_2": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:soft_under_attack_2"
+    ],
+    "subtitle": "sound.spirit_of_fight.soft_under_attack_2"
+  },
+  "soft_under_attack_3": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:soft_under_attack_3"
+    ],
+    "subtitle": "sound.spirit_of_fight.soft_under_attack_3"
+  },
+  "soft_under_attack_4": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:soft_under_attack_4"
+    ],
+    "subtitle": "sound.spirit_of_fight.soft_under_attack_4"
   }
 }

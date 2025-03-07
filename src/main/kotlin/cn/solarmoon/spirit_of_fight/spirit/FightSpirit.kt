@@ -30,20 +30,18 @@ class FightSpirit(
         return (Mth.lerp(partialTicks, valueCache.toFloat(), value.toFloat()) / maxValue).coerceIn(0f, 1f)
     }
 
-    fun updateCache() {
+    private fun updateCache() {
         valueCache = value
     }
 
     fun addStage(amount: Int) {
         fadeTick = 0
         if (value < maxValue) {
-            updateCache()
             value = (value + amount).coerceIn(0, maxValue)
         }
     }
 
     fun clear() {
-        valueCache = value
         value = 0
         fadeTick = 0
     }

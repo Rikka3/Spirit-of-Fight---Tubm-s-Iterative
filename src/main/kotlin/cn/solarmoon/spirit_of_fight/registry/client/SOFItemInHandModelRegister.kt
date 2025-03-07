@@ -13,7 +13,7 @@ object SOFItemInHandModelRegister {
         event.addInHandModel(SOFItems.GOLDEN_WARHAMMER.get())
         event.addInHandModel(SOFItems.DIAMOND_WARHAMMER.get())
         event.addInHandModel(SOFItems.NETHERITE_WARHAMMER.get())
-        event.addInHandModel(SOFItems.GLOVE.get())
+        event.addInHandModel(SOFItems.GLOVES.get())
     }
 
     @JvmStatic

@@ -18,6 +18,9 @@ class ReverseCondition(
         return !condition.test(host, skill)
     }
 
+    override val description: Component
+        get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", condition.description)
+
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 
     companion object {

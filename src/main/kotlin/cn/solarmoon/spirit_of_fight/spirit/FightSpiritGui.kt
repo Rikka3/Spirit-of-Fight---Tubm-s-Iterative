@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.spirit
 
 import cn.solarmoon.spark_core.util.blitTransparent
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
+import com.mojang.blaze3d.systems.RenderSystem
 import net.minecraft.client.DeltaTracker
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
@@ -21,15 +22,24 @@ class FightSpiritGui: LayeredDraw.Layer {
         deltaTracker: DeltaTracker
     ) {
         val partialTicks = deltaTracker.getGameTimeDeltaPartialTick(true)
+        val poseStack = guiGraphics.pose()
         val player = Minecraft.getInstance().player ?: return
         val fs = player.getFightSpirit()
 
-        val x = guiGraphics.guiWidth() / 2 - 8f
-        val y = guiGraphics.guiHeight() - 48f
+        val x = guiGraphics.guiWidth() / 2 - 8
+        val y = guiGraphics.guiHeight() - 48
         val progress = fs.getProgress(partialTicks)
-        val turn = player.tickCount % 20 / 4 // 从0-4反复循环的数
-        guiGraphics.blitTransparent(EMPTY, x, y, 1f, 1f, 16f, 10f, Color.WHITE.rgb)
-        guiGraphics.blitTransparent(FULL, x, y + 10f, 0f, 1f, 0f + turn/5f, -progress * 1f / 5 + turn/5f, 16f, -progress * 10f, Color.WHITE.rgb)
+        val turn = if (fs.isFull) player.tickCount % 20 / 4 else 0 // 从0-4反复循环的数
+        RenderSystem.enableBlend()
+        RenderSystem.defaultBlendFunc()
+
+        poseStack.pushPose()
+        guiGraphics.blit(FULL, x, y, 0f, turn.toFloat() * 10, 16, 10, 16, 50)
+        poseStack.translate(0f, -progress * 10, 0f)
+        guiGraphics.blit(EMPTY, x, y, 0f, -progress * 10, 16, 10, 16, 20)
+        poseStack.popPose()
+
+        RenderSystem.disableBlend()
     }
 
 }

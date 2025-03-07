@@ -1,9 +1,8 @@
 package cn.solarmoon.spirit_of_fight.skill.component
 
-import cn.solarmoon.spark_core.physics.collision.BodyPhysicsTicker
+import cn.solarmoon.spark_core.physics.collision.PhysicsCollisionObjectTicker
 import cn.solarmoon.spark_core.physics.toVec3
 import cn.solarmoon.spark_core.skill.component.SkillComponent
-import cn.solarmoon.spirit_of_fight.registry.common.SOFSkillContext
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.bullet.objects.PhysicsRigidBody
 import com.jme3.math.Vector3f
@@ -17,10 +16,9 @@ class BodyFollowParticleComponent(
     val particle: ParticleOptions
 ): SkillComponent() {
 
-    override fun onAttach() {
-        val bodies = skill.blackBoard.require(SOFSkillContext.RIGID_BODIES, this)
-        bodies.forEach {
-            it.addPhysicsTicker(object : BodyPhysicsTicker{
+    override fun onAttach(): Boolean {
+        skill.physicsBodies.forEach {
+            it.addPhysicsTicker(object : PhysicsCollisionObjectTicker{
                 override fun mcTick(
                     body: PhysicsCollisionObject,
                     level: Level
@@ -32,6 +30,7 @@ class BodyFollowParticleComponent(
                 }
             })
         }
+        return true
     }
 
     override val codec: MapCodec<out SkillComponent> = CODEC

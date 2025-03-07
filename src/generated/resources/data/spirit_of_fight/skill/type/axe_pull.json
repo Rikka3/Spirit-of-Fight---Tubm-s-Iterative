@@ -1,0 +1,50 @@
+{
+  "skill": {
+    "type": "spirit_of_fight:anim",
+    "animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "axe:skill_pull"
+      },
+      "on_anim_end": [
+        {
+          "type": "spirit_of_fight:set_grab_remove"
+        }
+      ],
+      "on_anim_start": [
+        {
+          "type": "spirit_of_fight:grab",
+          "bone": "rightItem",
+          "offset": [
+            0.0,
+            -0.65,
+            -0.65
+          ]
+        },
+        {
+          "type": "spark_core:prevent_local_input"
+        },
+        {
+          "type": "spark_core:prevent_yrot"
+        },
+        {
+          "type": "spark_core:preinput_controller",
+          "active_time": [
+            {
+              "stamp": [
+                0.0,
+                0.25
+              ]
+            }
+          ],
+          "condition": {
+            "whitelist": [
+              "special_attack"
+            ]
+          }
+        }
+      ],
+      "transition_time": 0
+    }
+  }
+}

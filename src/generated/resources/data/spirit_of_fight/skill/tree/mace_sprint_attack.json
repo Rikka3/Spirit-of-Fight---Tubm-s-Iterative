@@ -1,0 +1,26 @@
+{
+  "item": {
+    "tag": "c:tools/mace"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "conditions": [
+        {
+          "type": "spirit_of_fight:sprinting"
+        },
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.attack": "release"
+          }
+        }
+      ],
+      "pre_input_id": {
+        "name": "attack"
+      },
+      "skill": "spirit_of_fight:mace_sprint_attack"
+    }
+  ],
+  "priority": 1
+}

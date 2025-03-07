@@ -1,6 +1,8 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.node
 
+import cn.solarmoon.spark_core.preinput.PreInputId
 import cn.solarmoon.spark_core.skill.getSkillType
+import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition
 import com.mojang.serialization.Codec
@@ -17,14 +19,14 @@ import net.minecraft.world.level.Level
 open class CommonNode(
     override val conditions: List<SkillTreeCondition>,
     var skillLocation: ResourceLocation,
+    override val preInputId: PreInputId,
     override val children: List<SkillTreeNode> = listOf(),
-    override val reserveTime: Int = 0,
-    override val preInputId: String = "combo",
+    override val reserveTime: Int = 2,
     override val preInputDuration: Int = 5
 ): SkillTreeNode {
 
-    override val name: Component = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.name")
-    override val description: Component = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.description")
+    override val name = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.name")
+    override val description = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.description")
     override val icon: ResourceLocation = ResourceLocation.fromNamespaceAndPath(skillLocation.namespace, "textures/skill/${skillLocation.path}.png")
 
     override fun onEntry(host: Player, level: Level, tree: SkillTree) {
@@ -38,9 +40,9 @@ open class CommonNode(
             instance.group(
                 SkillTreeCondition.CODEC.listOf().fieldOf("conditions").forGetter { it.conditions },
                 ResourceLocation.CODEC.fieldOf("skill").forGetter { it.skillLocation },
+                PreInputId.CODEC.fieldOf("pre_input_id").forGetter { it.preInputId },
                 SkillTreeNode.CODEC.listOf().optionalFieldOf("children", listOf()).forGetter { it.children },
-                Codec.INT.optionalFieldOf("reserve_time", 0).forGetter { it.reserveTime },
-                Codec.STRING.optionalFieldOf("pre_input_id", "combo").forGetter { it.preInputId },
+                Codec.INT.optionalFieldOf("reserve_time", 2).forGetter { it.reserveTime },
                 Codec.INT.optionalFieldOf("pre_input_duration", 5).forGetter { it.preInputDuration }
             ).apply(instance, ::CommonNode)
         }

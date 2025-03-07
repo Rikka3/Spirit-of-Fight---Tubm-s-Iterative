@@ -1,0 +1,120 @@
+{
+  "skill": {
+    "type": "spirit_of_fight:guard",
+    "block_animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "shield:guard"
+      },
+      "on_anim_start": [
+        {
+          "type": "spark_core:preinput_controller",
+          "condition": {
+            "blacklist": [
+              "move"
+            ]
+          }
+        }
+      ],
+      "transition_time": 7
+    },
+    "block_hurt_animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "shield:guard_hurt"
+      },
+      "on_anim_start": [
+        {
+          "type": "spark_core:self_knockback",
+          "fly": false,
+          "strength": 0.5
+        },
+        {
+          "type": "spark_core:prevent_yrot"
+        },
+        {
+          "type": "spark_core:shake_camera",
+          "frequency": 2.0,
+          "strength": 1.0,
+          "time": 2
+        },
+        {
+          "type": "spark_core:play_sound",
+          "sounds": [
+            {
+              "sound_id": "minecraft:item.shield.block"
+            }
+          ]
+        }
+      ],
+      "transition_time": 0
+    },
+    "bodies": [
+      {
+        "type": "spark_core:box_follow_animated_bone",
+        "active_time": [],
+        "bone_name": "leftItem",
+        "offset": [
+          -0.25,
+          0.0,
+          -0.25
+        ],
+        "size": [
+          0.5,
+          1.0,
+          1.55
+        ]
+      }
+    ],
+    "on_parry_anim_life_cycle": [
+      {
+        "type": "spark_core:add_target_movement",
+        "value": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "type": "spark_core:preinput_controller",
+        "active_time": [
+          {
+            "stamp": [
+              0.2,
+              100.0
+            ]
+          }
+        ]
+      },
+      {
+        "type": "spark_core:play_sound",
+        "pitch": 0.8,
+        "sounds": [
+          {
+            "sound_id": "minecraft:item.shield.block"
+          }
+        ]
+      }
+    ],
+    "on_skill_life_cycle": [
+      {
+        "type": "spark_core:prevent_local_input"
+      }
+    ],
+    "parry_active_time": [
+      {
+        "type": "run",
+        "stamp": [
+          0.0,
+          5.0
+        ]
+      }
+    ],
+    "parry_anim_indexes": [
+      {
+        "index": "minecraft:player",
+        "name": "shield:guard_parry"
+      }
+    ]
+  }
+}

@@ -30,7 +30,7 @@ object SOFCapabilities {
                     level.registryAccess().registry(SOFRegistries.SKILL_TREE).get().forEach { tree ->
                         if (tree.ingredient.test(stack)) set.add(tree)
                     }
-                    set.get()
+                    if (set.isEmpty) null else set.get().apply { forEach { it.root = this } }
                 },
                 it
             )

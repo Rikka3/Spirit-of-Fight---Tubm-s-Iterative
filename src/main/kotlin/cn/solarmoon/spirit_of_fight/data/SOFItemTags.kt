@@ -18,7 +18,7 @@ class SOFItemTags(
     output: PackOutput,
     lookupProvider: CompletableFuture<HolderLookup.Provider>,
     blockTags: CompletableFuture<TagLookup<Block>>,
-    existingFileHelper: ExistingFileHelper?
+    existingFileHelper: ExistingFileHelper
 ): ItemTagsProvider(output, lookupProvider, blockTags, SpiritOfFight.MOD_ID, existingFileHelper) {
 
     override fun addTags(provider: HolderLookup.Provider) {
@@ -31,7 +31,7 @@ class SOFItemTags(
             SOFItems.NETHERITE_WARHAMMER.get()
         )
         tag(FORGE_GLOVES).add(
-            SOFItems.GLOVE.get()
+            SOFItems.GLOVES.get()
         )
     }
 

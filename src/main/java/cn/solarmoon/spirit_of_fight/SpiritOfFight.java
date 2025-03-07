@@ -25,9 +25,12 @@ public class SpiritOfFight {
             SOFKeyMappings.register();
             SOFGuiRegister.register(modEventBus);
             SOFItemInHandModelRegister.register(modEventBus);
+            SOFItemBakedModelModifier.register(modEventBus);
+            SOFClientExtensionsRegister.register(modEventBus);
         }
 
         SOFRegistries.register();
+        SOFCodecRegister.register(modEventBus);
         SOFCreativeTab.register(modEventBus);
         SOFItems.register();
         SOFAttachments.register();
@@ -40,7 +43,6 @@ public class SpiritOfFight {
         SOFDataComponents.register();
         SOFCapabilities.register(modEventBus);
         SOFDataRegistryRegister.register(modEventBus);
-        SOFCodecRegister.register(modEventBus);
     }
 
 

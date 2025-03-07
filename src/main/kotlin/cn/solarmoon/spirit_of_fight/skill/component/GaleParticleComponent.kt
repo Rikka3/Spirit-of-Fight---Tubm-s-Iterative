@@ -19,8 +19,8 @@ class GaleParticleComponent(
     val offset: Vec3 = Vec3.ZERO
 ): SkillComponent() {
 
-    override fun onAttach() {
-        val entity = skill.holder as? Entity ?: return
+    override fun onAttach(): Boolean {
+        val entity = skill.holder as? Entity ?: return false
         val level = skill.level
         val particleCount = 30
         repeat(particleCount) {
@@ -35,6 +35,7 @@ class GaleParticleComponent(
             val speedZ = -speedFactor * sin(angle)
             level.addParticle(particleType, particleX, particleY, particleZ, speedX, speedY, speedZ)
         }
+        return true
     }
 
     override val codec: MapCodec<out SkillComponent> = CODEC

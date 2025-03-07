@@ -1,11 +1,13 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.node
 
+import cn.solarmoon.spark_core.preinput.PreInputId
 import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spirit_of_fight.registry.common.SOFRegistries
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition
 import com.mojang.serialization.MapCodec
 import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.MutableComponent
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.Level
@@ -19,19 +21,23 @@ interface SkillTreeNode {
 
     val reserveTime: Int
 
-    val preInputId: String
+    val preInputId: PreInputId
 
     val preInputDuration: Int
 
-    val name: Component
+    val name: MutableComponent
 
-    val description: Component
+    val description: MutableComponent
 
     val icon: ResourceLocation
 
+    fun nextNode(index: Int) = children.getOrNull(index)
+
     fun match(player: Player, skill: Skill?) = conditions.all { it.test(player, skill) }
 
-    fun onEntry(player: Player, level: Level, tree: SkillTree)
+    fun onEntry(player: Player, level: Level, tree: SkillTree) {}
+
+    fun onReadyEntry(player: Player, level: Level, tree: SkillTree) {}
 
     val registryKey get() = SOFRegistries.SKILL_TREE_NODE_CODEC.getKey(codec) ?: throw NullPointerException("${javaClass.simpleName} 尚未注册其codec")
 

@@ -6,9 +6,11 @@
   "mixins": [
     "fighter.EntityMixin",
     "fighter.LivingEntityMixin",
-    "fighter.PlayerMixin"
+    "fighter.PlayerMixin",
+    "fighter.ZombieMixin"
   ],
   "client": [
+    "ItemInHandLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -15,7 +15,6 @@ class SOFSoundProvider(
 ): SoundDefinitionsProvider(output, SpiritOfFight.MOD_ID, helper) {
 
     override fun registerSounds() {
-        addDefault(SOFSounds.SOFT_BLOCK)
         addDefault(SOFSounds.SHARP_BLOCK)
         addDefault(SOFSounds.SHARP_PARRY_1)
         addDefault(SOFSounds.SHARP_PARRY_2)
@@ -23,18 +22,27 @@ class SOFSoundProvider(
         addDefault(SOFSounds.SHARP_WIELD_1)
         addDefault(SOFSounds.SHARP_UNDER_ATTACK_1)
         addDefault(SOFSounds.SHARP_UNDER_ATTACK_2)
+        addDefault(SOFSounds.SHARP_UNDER_ATTACK_3)
+        addDefault(SOFSounds.SHARP_UNDER_ATTACK_4)
+        addDefault(SOFSounds.SHARP_UNDER_ATTACK_5)
         addDefault(SOFSounds.HARD_BLOCK)
         addDefault(SOFSounds.HARD_WIELD_1)
         addDefault(SOFSounds.HARD_UNDER_ATTACK_1)
         addDefault(SOFSounds.HARD_UNDER_ATTACK_2)
+        addDefault(SOFSounds.SOFT_BLOCK)
+        addDefault(SOFSounds.SOFT_UNDER_ATTACK_1)
+        addDefault(SOFSounds.SOFT_UNDER_ATTACK_2)
+        addDefault(SOFSounds.SOFT_UNDER_ATTACK_3)
+        addDefault(SOFSounds.SOFT_UNDER_ATTACK_4)
         addDefault(SOFSounds.PERFECT_DODGE)
     }
 
-    fun addDefault(event: DeferredHolder<SoundEvent, SoundEvent>) {
+    fun addDefault(event: DeferredHolder<SoundEvent, SoundEvent>, volume: Float = 1.0f) {
         val id = event.id.path
         add(event.get(), SoundDefinition.definition()
             .with(
                 sound("${SpiritOfFight.MOD_ID}:$id", SoundDefinition.SoundType.SOUND)
+                    .volume(volume)
             )
             .subtitle("sound.${SpiritOfFight.MOD_ID}.$id")
             .replace(true))

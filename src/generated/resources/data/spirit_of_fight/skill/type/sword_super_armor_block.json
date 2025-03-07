@@ -4,9 +4,29 @@
     "accessible_anims": [
       "sword:skill_hit"
     ],
-    "anim_index": {
-      "index": "minecraft:player",
-      "name": "sword:skill_keeping"
+    "animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "sword:skill_keeping"
+      },
+      "on_anim_start": [
+        {
+          "type": "spark_core:preinput_controller",
+          "condition": {
+            "whitelist": [
+              "special_attack",
+              "stop"
+            ]
+          }
+        },
+        {
+          "type": "spark_core:prevent_local_input"
+        },
+        {
+          "type": "spirit_of_fight:charging_particle"
+        }
+      ],
+      "transition_time": 7
     },
     "bodies": [
       {
@@ -33,30 +53,7 @@
             "sound_id": "spirit_of_fight:sharp_block"
           }
         ]
-      },
-      {
-        "type": "spirit_of_fight:quadratic_particle",
-        "particle": {
-          "type": "minecraft:crit"
-        }
       }
-    ],
-    "on_skill_life_cycle": [
-      {
-        "type": "spark_core:preinput_controller",
-        "condition": {
-          "whitelist": [
-            "special_attack_release"
-          ]
-        }
-      },
-      {
-        "type": "spark_core:prevent_local_input"
-      },
-      {
-        "type": "spirit_of_fight:charging_particle"
-      }
-    ],
-    "transition_time": 7
+    ]
   }
 }

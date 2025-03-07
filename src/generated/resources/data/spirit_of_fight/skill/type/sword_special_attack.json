@@ -1,125 +1,146 @@
 {
   "skill": {
-    "type": "spirit_of_fight:common_attack",
-    "anim_index": {
-      "index": "minecraft:player",
-      "name": "sword:skill_hit"
-    },
-    "bodies": [
-      {
-        "type": "spark_core:box_follow_animated_bone",
-        "active_time": [
-          [
-            0.25,
-            0.55
+    "type": "spirit_of_fight:attack",
+    "animation": {
+      "anim_index": {
+        "index": "minecraft:player",
+        "name": "sword:skill_hit"
+      },
+      "on_anim_start": [
+        {
+          "type": "spark_core:attack_damage_modifier",
+          "damage_multiply": 1.5
+        },
+        {
+          "type": "spark_core:movement",
+          "sets": [
+            {
+              "active_time": {
+                "stamp": [
+                  0.0,
+                  0.3
+                ]
+              },
+              "move": [
+                0.0,
+                0.0,
+                0.25
+              ]
+            }
           ]
-        ],
-        "bone_name": "rightItem",
-        "offset": [
-          0.0,
-          0.0,
-          -0.675
-        ],
-        "size": [
-          0.75,
-          0.75,
-          1.35
-        ]
-      }
-    ],
-    "hit_sound": [
-      {
-        "sound_id": "spirit_of_fight:sharp_under_attack_2"
-      }
-    ],
-    "on_anim_life_cycle": [
-      {
-        "type": "spark_core:attack_damage_modifier",
-        "damage_multiply": 1.5
-      },
-      {
-        "type": "spark_core:moveset",
-        "sets": [
-          {
-            "active_time": [
-              0.0,
-              0.3
-            ],
-            "move": [
-              0.0,
-              0.0,
-              0.25
-            ]
+        },
+        {
+          "type": "spark_core:preinput_controller",
+          "condition": {
+            "whitelist": []
           }
-        ]
-      },
-      {
-        "type": "spark_core:preinput_controller",
-        "condition": {
-          "whitelist": []
-        }
-      },
-      {
-        "type": "spark_core:prevent_local_input"
-      },
-      {
-        "type": "spark_core:prevent_yrot"
-      },
-      {
-        "type": "spirit_of_fight:prevent_move_with_back",
-        "active_time": []
-      },
-      {
-        "type": "spirit_of_fight:body_follow_particle",
-        "particle": {
-          "type": "minecraft:crit"
-        }
-      }
-    ],
-    "on_box_active": [
-      {
-        "type": "spark_core:play_sound",
-        "pitch": 0.8,
-        "sounds": [
-          {
-            "sound_id": "spirit_of_fight:sharp_wield_1"
+        },
+        {
+          "type": "spark_core:prevent_local_input"
+        },
+        {
+          "type": "spark_core:prevent_yrot"
+        },
+        {
+          "type": "spirit_of_fight:prevent_move_with_back"
+        },
+        {
+          "type": "spirit_of_fight:body_follow_particle",
+          "particle": {
+            "type": "minecraft:crit"
           }
-        ]
-      }
-    ],
-    "on_pre_attack": [
-      {
-        "type": "spark_core:add_target_movement",
-        "value": [
-          0.0,
-          0.75,
-          0.0
-        ]
-      },
-      {
-        "type": "spirit_of_fight:increase_fight_spirit",
-        "value": 0
-      }
-    ],
-    "on_pre_first_attack": [
-      {
-        "type": "spark_core:shake_camera",
-        "frequency": 3.0,
-        "strength": 2.0,
-        "time": 5
-      },
-      {
-        "type": "spark_core:change_anim_speed"
-      }
-    ],
-    "on_success_hit": [
-      {
-        "type": "spirit_of_fight:quadratic_particle",
-        "particle": {
-          "type": "minecraft:firework"
         }
-      }
-    ],
-    "transition_time": 0
+      ],
+      "transition_time": 0
+    },
+    "hit_type": "heavy_upstroke",
+    "physics_attack": {
+      "bodies": [
+        {
+          "type": "spark_core:box_follow_animated_bone",
+          "active_time": [
+            {
+              "stamp": [
+                0.25,
+                0.55
+              ]
+            }
+          ],
+          "bone_name": "rightItem",
+          "offset": [
+            0.0,
+            0.0,
+            -0.675
+          ],
+          "on_body_active": [
+            {
+              "type": "spark_core:play_sound",
+              "pitch": 0.8,
+              "sounds": [
+                {
+                  "sound_id": "spirit_of_fight:sharp_wield_1"
+                }
+              ]
+            }
+          ],
+          "size": [
+            0.75,
+            0.75,
+            1.35
+          ]
+        }
+      ],
+      "on_actual_hit": [
+        {
+          "type": "spirit_of_fight:quadratic_hit_particle",
+          "particle": {
+            "type": "minecraft:block",
+            "block_state": {
+              "Name": "minecraft:redstone_block"
+            }
+          }
+        },
+        {
+          "type": "spark_core:play_sound",
+          "sounds": [
+            {
+              "sound_id": "spirit_of_fight:sharp_under_attack_2"
+            }
+          ]
+        }
+      ],
+      "on_pre_attack": [
+        {
+          "type": "spark_core:add_target_movement",
+          "value": [
+            0.0,
+            0.75,
+            0.0
+          ]
+        },
+        {
+          "type": "spirit_of_fight:increase_fight_spirit",
+          "value": 0
+        }
+      ],
+      "on_pre_first_attack": [
+        {
+          "type": "spark_core:shake_camera",
+          "frequency": 3.0,
+          "strength": 2.0,
+          "time": 5
+        },
+        {
+          "type": "spark_core:change_anim_speed"
+        },
+        {
+          "type": "spirit_of_fight:quadratic_hit_particle",
+          "actual_hit": false,
+          "particle": {
+            "type": "minecraft:firework"
+          }
+        }
+      ]
+    }
   }
 }

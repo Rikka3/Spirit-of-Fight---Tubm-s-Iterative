@@ -1,15 +1,20 @@
 package cn.solarmoon.spirit_of_fight.skill.tree
 
-import cn.solarmoon.spark_core.entity.preinput.PreInput
-import cn.solarmoon.spark_core.entity.preinput.getPreInput
+import cn.solarmoon.spark_core.preinput.PreInput
 import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spark_core.util.MoveDirection
+import cn.solarmoon.spirit_of_fight.registry.common.SOFRegistries
 import cn.solarmoon.spirit_of_fight.skill.tree.node.SkillTreeNode
 import cn.solarmoon.spirit_of_fight.sync.MoveDirectionPayload
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.client.KeyMapping
+import net.minecraft.client.gui.components.WidgetSprites
 import net.minecraft.client.player.Input
 import net.minecraft.client.player.LocalPlayer
+import net.minecraft.core.RegistryAccess
+import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.Level
@@ -17,11 +22,13 @@ import net.neoforged.neoforge.network.PacketDistributor
 
 class SkillTree(
     val ingredient: Ingredient,
-    val rootNode: SkillTreeNode,
+    val rootNodes: List<SkillTreeNode>,
     val priority: Int = 0
 ) {
 
-    private val path: MutableList<Int> = mutableListOf()
+    lateinit var root: SkillTreeSet
+
+    private val path = ArrayDeque<Int>()
 
     var currentSkill: Skill? = null
     var currentNode: SkillTreeNode? = null
@@ -30,17 +37,15 @@ class SkillTree(
         private set
     private var inputCooldown = 0
 
-    fun tryAdvance(player: Player, input: Input): Boolean {
+    fun tryAdvance(player: Player, input: Input, simulate: Boolean = false): Boolean {
         val cNode = currentNode
         val level = player.level()
-        val preInput = player.getPreInput()
-
-        if (!player.isPlayingSkill) preInput.executeIfPresent()
+        val preInput = player.preInput
 
         val ps = currentSkill
         if (ps != null && !ps.isActive) {
             if (reserveTime > 0) reserveTime--
-            else reset()
+            else reset(player)
         }
 
         // 防连击缓冲
@@ -51,16 +56,18 @@ class SkillTree(
 
         // 阶段1：首次触发根节点
         if (cNode == null) {
-            if (rootNode.match(player, currentSkill)) {
-                activateNode(rootNode, -1, player, level, preInput, input)
-                return true
+            rootNodes.forEachIndexed { index, rootNode ->
+                if (rootNode.match(player, currentSkill)) {
+                    if (!simulate) activateNode(rootNode, index, player, level, preInput, input)
+                    return true
+                }
             }
         }
         // 阶段2：触发子节点
         else {
             cNode.children.forEachIndexed { index, child ->
                 if (child.match(player, currentSkill)) {
-                    activateNode(child, index, player, level, preInput, input)
+                    if (!simulate) activateNode(child, index, player, level, preInput, input)
                     return true
                 }
             }
@@ -79,16 +86,10 @@ class SkillTree(
     ) {
         preInput.setInput(node.preInputId, node.preInputDuration) {
             inputCooldown = 1
-
             reserveTime = node.reserveTime
 
-            // 根节点特殊处理（index = -1 表示根节点）
-            if (index == -1) {
-                currentNode = rootNode
-            } else {
-                path.add(index)
-                currentNode = currentNode?.children?.getOrNull(index)
-            }
+            path.add(index)
+            currentNode = currentNode?.nextNode(index) ?: rootNodes.getOrNull(index)
 
             // 存储移动方向信息
             val direction = MoveDirection.getByInput((player as LocalPlayer).savedInput)
@@ -99,18 +100,42 @@ class SkillTree(
         }
     }
 
-    fun reset() {
+    fun reset(player: Player) {
         path.clear()
         reserveTime = 0
         currentSkill = null
         currentNode = null
+        player.preInput.clear()
     }
+
+    fun getNodeByPath(path: MutableList<Int>): SkillTreeNode? {
+        if (path.isEmpty()) return null
+
+        var result = rootNodes.getOrNull(path.removeFirst())
+        while (path.isNotEmpty()) {
+            result = result?.children?.getOrNull(path.removeFirst())
+        }
+
+        return result
+    }
+
+    fun getName(registryAccess: RegistryAccess): Component {
+        val key = getRegistryKey(registryAccess)
+        return Component.translatable("skill_tree.${key.namespace}.${key.path}")
+    }
+
+    fun getIcon(registryAccess: RegistryAccess): ResourceLocation {
+        val key = getRegistryKey(registryAccess)
+        return ResourceLocation.fromNamespaceAndPath(key.namespace, "textures/skill/tree/${key.path}.png")
+    }
+
+    fun getRegistryKey(registryAccess: RegistryAccess) = registryAccess.registry(SOFRegistries.SKILL_TREE).get().getKey(this) ?: throw NullPointerException("技能树尚未注册")
 
     companion object {
         val CODEC: Codec<SkillTree> = RecordCodecBuilder.create {
             it.group(
                 Ingredient.CODEC.fieldOf("item").forGetter { it.ingredient },
-                SkillTreeNode.CODEC.fieldOf("node").forGetter { it.rootNode },
+                SkillTreeNode.CODEC.listOf().fieldOf("nodes").forGetter { it.rootNodes },
                 Codec.INT.optionalFieldOf("priority", 0).forGetter { it.priority }
             ).apply(it, ::SkillTree)
         }

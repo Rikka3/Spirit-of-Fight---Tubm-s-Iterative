@@ -1,11 +1,12 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
+import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.TypedAnimProvider
-import cn.solarmoon.spark_core.flag.SparkFlags
-import cn.solarmoon.spark_core.flag.putFlag
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import net.minecraft.world.entity.Entity
+import cn.solarmoon.spirit_of_fight.hit.EntityHitApplier
+import cn.solarmoon.spirit_of_fight.hit.SOFHitTypes
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.attributes.Attributes
 
@@ -35,35 +36,37 @@ object SOFTypedAnimations {
     val SHIELD_SPRINTING = createMoveStateAnim("shield_sprinting")
 
     @JvmStatic
-    val HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()
-        .id("hit_landing")
-        .animName("Hit/landing")
-        .provider {
-            onEvent<AnimEvent.SwitchIn> {
-                val entity = holder.animatable as? Entity ?: return@onEvent
-                entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, true)
-                entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, true)
-                entity.putFlag(SparkFlags.DISARM, true)
-                entity.putFlag(SparkFlags.SILENCE, true)
-            }
+    val HIT_ANIMS = createHitAnim()
 
-            onEvent<AnimEvent.End> {
-                val entity = holder.animatable as? Entity ?: return@onEvent
-                entity.putFlag(SparkFlags.MOVE_INPUT_FREEZE, false)
-                entity.putFlag(SparkFlags.DISABLE_PRE_INPUT, false)
-                entity.putFlag(SparkFlags.DISARM, false)
-                entity.putFlag(SparkFlags.SILENCE, false)
-            }
+    @JvmStatic
+    val PLAYER_HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()
+        .id("hit_landing")
+        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "Hit/landing"))
+        .provider {
+            EntityHitApplier.hitAnimDoFreeze(this)
         }
         .build()
 
-    fun createStateAnim(name: String, provider: TypedAnimProvider = {}) = SpiritOfFight.REGISTER.typedAnimation()
+    fun createHitAnim(index: ResourceLocation = ResourceLocation.withDefaultNamespace("player")) = SOFHitTypes.HIT_ANIM_NAMES.mapValues { (animName, _) ->
+        SpiritOfFight.REGISTER.typedAnimation()
+            .id(animName
+                .split("/").last()
+                .replace(Regex("[^A-Za-z0-9]"), "_") // 替换所有非字母数字字符为下划线
+                .lowercase())
+            .animIndex(AnimIndex(index, animName))
+            .provider {
+                EntityHitApplier.hitAnimDoFreeze(this)
+            }
+            .build()
+    }
+
+    fun createStateAnim(name: String, index: ResourceLocation = ResourceLocation.withDefaultNamespace("player"), provider: TypedAnimProvider = {}) = SpiritOfFight.REGISTER.typedAnimation()
         .id(name)
-        .animName("EntityState/$name")
+        .animIndex(AnimIndex(index, "EntityState/$name"))
         .provider(provider)
         .build()
 
-    fun createMoveStateAnim(name: String, provider: TypedAnimProvider = {}) = createStateAnim(name) {
+    fun createMoveStateAnim(name: String, index: ResourceLocation = ResourceLocation.withDefaultNamespace("player"), provider: TypedAnimProvider = {}) = createStateAnim(name, index) {
         onEvent<AnimEvent.Tick> {
             val holder = this.holder
             if (holder is LivingEntity) {

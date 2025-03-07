@@ -1,22 +1,118 @@
 package cn.solarmoon.spirit_of_fight.hit
 
-import net.minecraft.core.Holder
-import net.minecraft.sounds.SoundEvent
-import net.minecraft.sounds.SoundSource
+import cn.solarmoon.spark_core.animation.IEntityAnimatable
+import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
+import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
+import cn.solarmoon.spark_core.camera.setCameraLock
+import cn.solarmoon.spark_core.entity.getLateralSide
+import cn.solarmoon.spark_core.entity.getSide
+import cn.solarmoon.spark_core.event.NeedsCollisionEvent
+import cn.solarmoon.spark_core.physics.collision.CollisionCallback
+import cn.solarmoon.spark_core.physics.toVec3
+import cn.solarmoon.spark_core.util.Key
+import cn.solarmoon.spirit_of_fight.event.GetHitAnimationEvent
+import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
+import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
+import com.jme3.bullet.collision.PhysicsCollisionEvent
+import com.jme3.bullet.collision.PhysicsCollisionListener
+import com.jme3.math.Vector3f
+import net.minecraft.world.damagesource.DamageTypes
+import net.minecraft.world.entity.Entity
 import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent
-import kotlin.random.Random
 
 object EntityHitApplier {
 
-    @SubscribeEvent
-    private fun onHurtEffect(event: LivingDamageEvent.Post) {
-        val entity = event.entity
-        val level = entity.level()
-        val data = event.source.extraData ?: return
-        val hitSound = data.read<List<SoundEvent>>("hitSound") ?: return
+    val HIT_TYPE = Key.create<String>("hit_type")
 
-        level.playSound(null, entity.onPos.above(), hitSound.random(), SoundSource.PLAYERS, 1f, 0.9f + Random.nextFloat() / 5)
+    @SubscribeEvent
+    private fun onHit(event: LivingDamageEvent.Post) {
+        val victim = event.entity
+
+        if (event.newDamage <= 0f) return
+        if (victim !is IEntityAnimatable<*>) return
+        val source = event.source
+        val sourcePos = source.sourcePosition ?: return
+        val attackData = source.extraData ?: return
+
+        val hitType = attackData.blackBoard.read(HIT_TYPE) ?: return
+        val hitSide = victim.getLateralSide(attackData.damagedBody.getPhysicsLocation(Vector3f()).toVec3())
+        val posSide = victim.getSide(sourcePos)
+        attackData.damagedBody.let {
+            val boneName = it.name
+            NeoForge.EVENT_BUS.post(GetHitAnimationEvent(victim, hitType, boneName, posSide, hitSide)).resultHitAnim?.apply {
+                play(victim, 0)
+                syncToClient(victim.id, 0)
+            }
+        }
+    }
+
+    @SubscribeEvent
+    private fun getHitAnim(event: GetHitAnimationEvent) {
+        val animName = SOFHitTypes.getHitAnimation(event.hitType, event.boneName, event.posSide, event.hitSide)
+        SOFTypedAnimations.HIT_ANIMS[animName]?.let {
+            if (event.animatable.model.bones.keys.containsAll(setOf("head", "waist", "leftArm", "rightArm", "leftLeg", "rightLeg"))) {
+                event.resultHitAnim = it.get()
+            }
+        }
+    }
+
+    fun hitAnimDoFreeze(anim: AnimInstance) {
+        anim.apply {
+            onEvent<AnimEvent.SwitchIn> {
+                val entity = holder.animatable as? Entity ?: return@onEvent
+                entity.hitting = true
+                entity.preInput.disable()
+                entity.setCameraLock(true)
+            }
+
+            onEvent<AnimEvent.PhysicsTick> {
+                val entity = holder.animatable as? Entity ?: return@onEvent
+                if (time >= origin.animationLength / 2) {
+                    entity.preInput.allowInput(SOFPreInputs.DODGE)
+                }
+            }
+
+            onEvent<AnimEvent.End> {
+                val entity = holder.animatable as? Entity ?: return@onEvent
+                entity.preInput.disallowInput(SOFPreInputs.DODGE)
+                entity.preInput.enable()
+                entity.hitting = false
+                entity.setCameraLock(false)
+            }
+        }
+    }
+//
+//    @SubscribeEvent
+//    private fun onDeath(event: LivingDeathEvent) {
+//        val victim = event.entity
+//        if (victim !is IEntityAnimatable<*>) return
+//        val source = event.source
+//        val sourcePos = source.sourcePosition ?: return
+//        val attackData = source.extraData ?: return
+//        val hitType = attackData.getHitType() ?: return
+//        val strength = hitType.strength
+//        val side = victim.getLateralSide(attackData.damageBox.position.toVec3())
+//        val posSide = victim.getSide(sourcePos)
+//        attackData.damagedBody?.let {
+//            val boneName = it.name
+//            val hitAnimation = hitType.getDeathAnimation(victim, strength, boneName, posSide, side) ?: return
+//            victim.animController.setAnimation(hitAnimation, 0)
+//            PacketDistributor.sendToAllPlayers(HitAnimPayload(victim.id, hitType.id, strength, boneName, posSide, side, true))
+//        }
+//    }
+
+    @SubscribeEvent
+    private fun fall(event: LivingDamageEvent.Post) {
+        val entity = event.entity
+        if (entity !is IEntityAnimatable<*>) return
+        if (event.source.typeHolder().`is`(DamageTypes.FALL) && event.newDamage > 0) {
+            SOFTypedAnimations.PLAYER_HIT_LANDING.get().apply {
+                play(entity, 0)
+                syncToClient(entity.id, 0)
+            }
+        }
     }
 
 }

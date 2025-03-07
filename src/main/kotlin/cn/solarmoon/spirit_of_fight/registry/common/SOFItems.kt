@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.item.GloveItem
+import cn.solarmoon.spirit_of_fight.item.GlovesItem
 import cn.solarmoon.spirit_of_fight.item.HammerItem
 import net.minecraft.world.item.DiggerItem
 import net.minecraft.world.item.Item
@@ -12,9 +12,9 @@ object SOFItems {
     fun register() {}
 
     @JvmStatic
-    val GLOVE = SpiritOfFight.REGISTER.item<GloveItem>()
+    val GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
         .id("glove")
-        .bound { GloveItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.IRON, 2f, -2f)).durability(1024)) }
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.IRON, 2f, -2f)).durability(1024)) }
         .build()
 
     @JvmStatic
