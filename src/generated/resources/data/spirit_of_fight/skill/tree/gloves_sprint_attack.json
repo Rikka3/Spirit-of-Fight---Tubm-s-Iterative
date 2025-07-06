@@ -16,10 +16,8 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "attack"
-      },
-      "skill": "spirit_of_fight:gloves_sprint_attack"
+      "pre_input_id": "attack",
+      "skill": "spirit_of_fight:gloves_dash_attack"
     }
   ],
   "priority": 1

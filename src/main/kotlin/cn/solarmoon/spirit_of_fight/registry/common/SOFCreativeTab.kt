@@ -34,7 +34,11 @@ object SOFCreativeTab {
             event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.DIAMOND_WARHAMMER.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
             event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.NETHERITE_WARHAMMER.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
 
-            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.LEATHER_GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.IRON_GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.GOLDEN_GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.DIAMOND_GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            event.insertBefore(ItemStack(Items.TRIDENT), ItemStack(SOFItems.NETHERITE_GLOVES.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
         }
     }
 

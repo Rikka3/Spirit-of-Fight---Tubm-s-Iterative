@@ -29,9 +29,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "guard"
-      },
+      "pre_input_id": "guard",
       "skill": "spirit_of_fight:hammer_guard"
     }
   ]

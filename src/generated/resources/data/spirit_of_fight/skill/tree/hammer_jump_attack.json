@@ -16,9 +16,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "attack"
-      },
+      "pre_input_id": "attack",
       "skill": "spirit_of_fight:hammer_jump_attack"
     }
   ],

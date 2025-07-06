@@ -33,6 +33,7 @@ neoForge {
 
     interfaceInjectionData {
         from "src/main/resources/META-INF/interfaces.json"
+        from "src/main/resources/META-INF/spark_interfaces.json"
         publish file("src/main/resources/META-INF/interfaces.json")
     }
 
@@ -75,7 +76,7 @@ neoForge {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 configurations {
-    runtimeClasspath.extendsFrom localRuntime
+    runtimeClasspath.extendsFrom configurations.additionalRuntimeClasspath
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -121,4 +122,7 @@ if (rootProject.file('repositories.gradle').exists()) {
 
 kotlin {
     jvmToolchain(21)
+    compilerOptions {
+        getFreeCompilerArgs().add("-Xjvm-default=all")
+    }
 }

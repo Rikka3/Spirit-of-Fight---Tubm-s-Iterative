@@ -1,13 +1,18 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
+import cn.solarmoon.spark_core.SparkCore
+import cn.solarmoon.spark_core.animation.model.origin.OModel
+import cn.solarmoon.spark_core.molang.core.builtin.QueryBinding
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.data.SOFBlockTags
 import cn.solarmoon.spirit_of_fight.data.SOFItemModelProvider
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.data.SOFLanguageProvider
 import cn.solarmoon.spirit_of_fight.data.SOFSkillTrees
-import cn.solarmoon.spirit_of_fight.data.SOFSkillTypes
 import cn.solarmoon.spirit_of_fight.data.SOFSoundProvider
+import cn.solarmoon.spirit_of_fight.data.skills.VindicatorSkill
+import com.mojang.serialization.JsonOps
+import kotlinx.serialization.json.Json
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.data.DataProvider
 import net.neoforged.bus.api.IEventBus
@@ -35,7 +40,6 @@ object SOFDataGenerater {
         generator.addProvider(event.includeClient(), SOFSoundProvider(output, helper))
 
         val builder = RegistrySetBuilder().apply {
-            SOFSkillTypes(this)
             SOFSkillTrees(this)
         }
         generator.addProvider(

@@ -29,8 +29,8 @@ object SOFKeyMappings {
         .build()
 
     @JvmStatic
-    val SWITCH_ATTACK = SpiritOfFight.REGISTER.keyMapping()
-        .id("switch_attack")
+    val OPEN_SKILL_TREE = SpiritOfFight.REGISTER.keyMapping()
+        .id("open_skill_tree")
         .bound(GLFW.GLFW_KEY_K)
         .build()
 

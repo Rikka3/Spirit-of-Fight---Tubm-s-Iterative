@@ -19,9 +19,6 @@ class SkillNodeWidget(
         partialTick: Float
     ) {
         layout.render(guiGraphics)
-        if (isHovered) {
-
-        }
     }
 
     override fun updateWidgetNarration(narrationElementOutput: NarrationElementOutput) {}

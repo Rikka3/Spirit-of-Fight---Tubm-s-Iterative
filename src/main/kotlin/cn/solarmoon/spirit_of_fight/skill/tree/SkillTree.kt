@@ -43,7 +43,7 @@ class SkillTree(
         val preInput = player.preInput
 
         val ps = currentSkill
-        if (ps != null && !ps.isActive) {
+        if (ps != null && !ps.isActivated) {
             if (reserveTime > 0) reserveTime--
             else reset(player)
         }
@@ -58,7 +58,7 @@ class SkillTree(
         if (cNode == null) {
             rootNodes.forEachIndexed { index, rootNode ->
                 if (rootNode.match(player, currentSkill)) {
-                    if (!simulate) activateNode(rootNode, index, player, level, preInput, input)
+                    if (!simulate) activateNode(rootNode, index, player, level, preInput, input, true)
                     return true
                 }
             }
@@ -67,7 +67,7 @@ class SkillTree(
         else {
             cNode.children.forEachIndexed { index, child ->
                 if (child.match(player, currentSkill)) {
-                    if (!simulate) activateNode(child, index, player, level, preInput, input)
+                    if (!simulate) activateNode(child, index, player, level, preInput, input, false)
                     return true
                 }
             }
@@ -82,21 +82,18 @@ class SkillTree(
         player: Player,
         level: Level,
         preInput: PreInput,
-        input: Input
+        input: Input,
+        root: Boolean
     ) {
         preInput.setInput(node.preInputId, node.preInputDuration) {
-            inputCooldown = 1
-            reserveTime = node.reserveTime
+            val next = if (!root) currentNode?.nextNode(index) else rootNodes.getOrNull(index)
+            if (next?.onEntry(player, level, this) == true) {
+                inputCooldown = 1
+                reserveTime = node.reserveTime
 
-            path.add(index)
-            currentNode = currentNode?.nextNode(index) ?: rootNodes.getOrNull(index)
-
-            // 存储移动方向信息
-            val direction = MoveDirection.getByInput((player as LocalPlayer).savedInput)
-            player.moveDirection = direction
-            PacketDistributor.sendToServer(MoveDirectionPayload(direction?.ordinal ?: -1))
-
-            currentNode?.onEntry(player, level, this)
+                path.add(index)
+                currentNode = next
+            }
         }
     }
 
@@ -105,7 +102,7 @@ class SkillTree(
         reserveTime = 0
         currentSkill = null
         currentNode = null
-        player.preInput.clear()
+        player.chargingTime = 0
     }
 
     fun getNodeByPath(path: MutableList<Int>): SkillTreeNode? {

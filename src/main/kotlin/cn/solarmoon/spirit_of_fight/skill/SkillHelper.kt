@@ -1,0 +1,41 @@
+package cn.solarmoon.spirit_of_fight.skill
+
+import cn.solarmoon.spark_core.animation.IEntityAnimatable
+import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
+import cn.solarmoon.spark_core.physics.toVec3
+import com.jme3.bullet.collision.ManifoldPoints
+import com.jme3.bullet.collision.PhysicsCollisionObject
+import com.jme3.math.Vector3f
+import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.phys.Vec3
+import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
+
+object SkillHelper {
+
+    fun guard(damageSource: DamageSource, guardBody: PhysicsCollisionObject, onGuard: (PhysicsCollisionObject?, Vec3) -> Unit = {_, _ -> }) {
+        val damagedBody = damageSource.extraData?.damagedBody
+        val sourcePos = damageSource.sourcePosition
+
+        if (guardBody.collideWithGroups != 0) {
+            if (damagedBody != null && damagedBody == guardBody) {
+                val hitPos = damagedBody.getPhysicsLocation(Vector3f())
+                    .apply { damageSource.extraData?.manifoldId?.let { ManifoldPoints.getPositionWorldOnA(it, this) } }
+                    .toVec3()
+                onGuard.invoke(damagedBody, hitPos)
+            } else if (sourcePos != null) {
+                onGuard.invoke(null, guardBody.getPhysicsLocation(Vector3f()).toVec3())
+            }
+        }
+    }
+
+    fun grabToBone(animatable: IEntityAnimatable<*>, bone: String, offset: Vec3) {
+        val entity = animatable.animatable
+        entity.grabManager.getGrabs().forEach {
+            if (!animatable.animLevel.isClientSide) {
+                val pos = animatable.getWorldBonePivot(bone, offset).toVec3()
+                it.setPos(pos)
+            }
+        }
+    }
+
+}

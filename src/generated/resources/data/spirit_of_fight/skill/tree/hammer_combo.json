@@ -25,9 +25,7 @@
                   }
                 }
               ],
-              "pre_input_id": {
-                "name": "attack"
-              },
+              "pre_input_id": "attack",
               "skill": "spirit_of_fight:hammer_combo_2"
             }
           ],
@@ -45,9 +43,7 @@
               }
             }
           ],
-          "pre_input_id": {
-            "name": "attack"
-          },
+          "pre_input_id": "attack",
           "reserve_time": 10,
           "skill": "spirit_of_fight:hammer_combo_1"
         },
@@ -73,9 +69,7 @@
                       }
                     }
                   ],
-                  "pre_input_id": {
-                    "name": "attack"
-                  },
+                  "pre_input_id": "attack",
                   "skill": "spirit_of_fight:hammer_combo_2"
                 }
               ],
@@ -96,9 +90,7 @@
                   "type": "spirit_of_fight:hit_target"
                 }
               ],
-              "pre_input_id": {
-                "name": "attack"
-              },
+              "pre_input_id": "attack",
               "reserve_time": 10,
               "skill": "spirit_of_fight:hammer_combo_c1"
             }
@@ -111,9 +103,7 @@
               }
             }
           ],
-          "pre_input_id": {
-            "name": "attack"
-          },
+          "pre_input_id": "attack",
           "reserve_time": 10,
           "skill": "spirit_of_fight:hammer_combo_c0"
         }
@@ -132,9 +122,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "attack"
-      },
+      "pre_input_id": "attack",
       "reserve_time": 10,
       "skill": "spirit_of_fight:hammer_combo_0"
     }

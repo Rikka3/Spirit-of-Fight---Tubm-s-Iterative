@@ -12,9 +12,33 @@ object SOFItems {
     fun register() {}
 
     @JvmStatic
-    val GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
-        .id("glove")
-        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.IRON, 2f, -2f)).durability(1024)) }
+    val LEATHER_GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
+        .id("leather_gloves")
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.WOOD, 2f, -2.2f)).durability(1024)) }
+        .build()
+
+    @JvmStatic
+    val IRON_GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
+        .id("iron_gloves")
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.IRON, 2f, -2.1f)).durability(1024)) }
+        .build()
+
+    @JvmStatic
+    val GOLDEN_GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
+        .id("golden_gloves")
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.GOLD, 2f, -2f)).durability(1024)) }
+        .build()
+
+    @JvmStatic
+    val DIAMOND_GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
+        .id("diamond_gloves")
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 2f, -2f)).durability(1024)) }
+        .build()
+
+    @JvmStatic
+    val NETHERITE_GLOVES = SpiritOfFight.REGISTER.item<GlovesItem>()
+        .id("netherite_gloves")
+        .bound { GlovesItem(Tiers.IRON, Item.Properties().attributes(DiggerItem.createAttributes(Tiers.NETHERITE, 2f, -2f)).durability(1024)) }
         .build()
 
     @JvmStatic

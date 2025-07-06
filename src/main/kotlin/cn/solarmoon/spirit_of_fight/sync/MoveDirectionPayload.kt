@@ -10,6 +10,7 @@ import net.neoforged.neoforge.network.PacketDistributor
 import net.neoforged.neoforge.network.handling.IPayloadContext
 
 data class MoveDirectionPayload(
+    val entityId: Int,
     val sideId: Int
 ): CustomPacketPayload {
 
@@ -20,9 +21,10 @@ data class MoveDirectionPayload(
     companion object {
         @JvmStatic
         fun handle(payload: MoveDirectionPayload, context: IPayloadContext) {
-            val player = context.player()
-            player.moveDirection = MoveDirection.entries.getOrNull(payload.sideId)
-            if (!player.level().isClientSide) PacketDistributor.sendToAllPlayers(MoveDirectionPayload(payload.sideId))
+            val level = context.player().level()
+            val entity = level.getEntity(payload.entityId) ?: return
+            entity.moveDirection = MoveDirection.entries.getOrNull(payload.sideId)
+            if (!level.isClientSide) PacketDistributor.sendToAllPlayers(MoveDirectionPayload(payload.entityId, payload.sideId))
         }
 
         @JvmStatic
@@ -30,6 +32,7 @@ data class MoveDirectionPayload(
 
         @JvmStatic
         val STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.INT, MoveDirectionPayload::entityId,
             ByteBufCodecs.INT, MoveDirectionPayload::sideId,
             ::MoveDirectionPayload
         )

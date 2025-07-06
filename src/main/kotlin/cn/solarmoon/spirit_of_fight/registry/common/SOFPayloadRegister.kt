@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
+import cn.solarmoon.spirit_of_fight.particle.sync.QuadraticParticlePayload
 import cn.solarmoon.spirit_of_fight.spirit.FightSpiritClearPayload
 import cn.solarmoon.spirit_of_fight.spirit.FightSpiritPayload
 import cn.solarmoon.spirit_of_fight.sync.MoveDirectionPayload
@@ -17,6 +18,8 @@ object SOFPayloadRegister {
         control.playToServer(FightSpiritClearPayload.TYPE, FightSpiritClearPayload.STREAM_CODEC, FightSpiritClearPayload::handleInServer)
         val sync = event.registrar("sync")
         sync.playToClient(FightSpiritPayload.TYPE, FightSpiritPayload.STREAM_CODEC, FightSpiritPayload::handleInClient)
+        val particle = event.registrar("particle")
+        particle.playToClient(QuadraticParticlePayload.TYPE, QuadraticParticlePayload.STREAM_CODEC, QuadraticParticlePayload::handleInClient)
     }
 
     @JvmStatic

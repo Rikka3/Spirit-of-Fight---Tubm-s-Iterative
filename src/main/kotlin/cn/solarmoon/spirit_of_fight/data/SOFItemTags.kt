@@ -31,7 +31,11 @@ class SOFItemTags(
             SOFItems.NETHERITE_WARHAMMER.get()
         )
         tag(FORGE_GLOVES).add(
-            SOFItems.GLOVES.get()
+            SOFItems.LEATHER_GLOVES.get(),
+            SOFItems.IRON_GLOVES.get(),
+            SOFItems.GOLDEN_GLOVES.get(),
+            SOFItems.DIAMOND_GLOVES.get(),
+            SOFItems.NETHERITE_GLOVES.get()
         )
     }
 

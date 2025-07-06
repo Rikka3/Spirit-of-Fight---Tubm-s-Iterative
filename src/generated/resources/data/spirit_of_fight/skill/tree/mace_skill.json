@@ -30,9 +30,7 @@
               "type": "spirit_of_fight:fight_spirit"
             }
           ],
-          "pre_input_id": {
-            "name": "special_attack"
-          },
+          "pre_input_id": "special_attack",
           "skill": "spirit_of_fight:mace_skill"
         },
         {
@@ -66,9 +64,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "special_attack"
-      },
+      "pre_input_id": "special_attack",
       "skill": "spirit_of_fight:mace_skill_charging"
     }
   ]

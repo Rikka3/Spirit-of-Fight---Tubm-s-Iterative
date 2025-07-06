@@ -16,9 +16,7 @@
           "type": "spirit_of_fight:on_ground"
         }
       ],
-      "pre_input_id": {
-        "name": "dodge"
-      },
+      "pre_input_id": "dodge",
       "skill": "spirit_of_fight:axe_dodge"
     }
   ]

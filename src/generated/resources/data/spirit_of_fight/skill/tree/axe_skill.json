@@ -22,9 +22,7 @@
                   }
                 }
               ],
-              "pre_input_id": {
-                "name": "special_attack"
-              },
+              "pre_input_id": "special_attack",
               "skill": "spirit_of_fight:axe_spin"
             }
           ],
@@ -33,9 +31,7 @@
               "type": "spirit_of_fight:hit_target"
             }
           ],
-          "pre_input_id": {
-            "name": "special_attack"
-          },
+          "pre_input_id": "special_attack",
           "skill": "spirit_of_fight:axe_pull"
         }
       ],
@@ -47,9 +43,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "special_attack"
-      },
+      "pre_input_id": "special_attack",
       "reserve_time": 5,
       "skill": "spirit_of_fight:axe_grab"
     }

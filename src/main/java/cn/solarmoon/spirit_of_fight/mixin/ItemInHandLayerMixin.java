@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.mixin;
 
+import cn.solarmoon.spirit_of_fight.data.SOFItemTags;
 import cn.solarmoon.spirit_of_fight.registry.common.SOFItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ArmedModel;
@@ -32,8 +33,8 @@ public abstract class ItemInHandLayerMixin<T extends LivingEntity, M extends Ent
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/layers/ItemInHandLayer;renderArmWithItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V")
     )
     private void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-        var mainMatch = livingEntity.getMainHandItem().is(SOFItems.getGLOVES());
-        var offMatch = livingEntity.getOffhandItem().is(SOFItems.getGLOVES());
+        var mainMatch = livingEntity.getMainHandItem().is(SOFItemTags.getFORGE_GLOVES());
+        var offMatch = livingEntity.getOffhandItem().is(SOFItemTags.getFORGE_GLOVES());
         if (mainMatch && offMatch) return;
         if (mainMatch) {
             this.renderArmWithItem(livingEntity, livingEntity.getMainHandItem(), ItemDisplayContext.THIRD_PERSON_LEFT_HAND, HumanoidArm.LEFT, poseStack, buffer, packedLight);

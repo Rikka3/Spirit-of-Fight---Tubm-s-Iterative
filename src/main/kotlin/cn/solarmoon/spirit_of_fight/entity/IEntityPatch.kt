@@ -2,9 +2,7 @@ package cn.solarmoon.spirit_of_fight.entity
 
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spirit_of_fight.entity.grab.GrabManager
-import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTreeSet
-import net.minecraft.world.entity.Entity
 
 interface IEntityPatch {
 
@@ -14,6 +12,10 @@ interface IEntityPatch {
 
     val grabManager: GrabManager
 
-    var hitting: Boolean
+    var isHitting: Boolean
+
+    var isKnockedDown: Boolean
+
+    var chargingTime: Int
 
 }

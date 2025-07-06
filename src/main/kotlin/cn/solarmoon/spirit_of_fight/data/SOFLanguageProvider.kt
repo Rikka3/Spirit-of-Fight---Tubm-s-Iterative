@@ -29,8 +29,10 @@ class SOFLanguageProvider(
         add("skill_tree_condition.spirit_of_fight.reverse", "§4不需要§r〘%s〙")
         add("skill_tree_condition.spirit_of_fight.on_ground", "站在地面")
         add("skill_tree_condition.spirit_of_fight.skill_ended", "技能结束")
+        add("skill_tree_condition.spirit_of_fight.off_hand", "副手持有：[%s]")
         add("skill_tree_condition.spirit_of_fight.key_input.press", "按住 [%s]")
-        add("skill_tree_condition.spirit_of_fight.key_input.press_once", "按下 [%s]")
+        add("skill_tree_condition.spirit_of_fight.key_input.press_once", "按一次 [%s]")
+        add("skill_tree_condition.spirit_of_fight.key_input.pulse", "按下 [%s]")
         add("skill_tree_condition.spirit_of_fight.key_input.release", "释放 [%s]")
 
         add("gui.spirit_of_fight.skill_tree.info", "缩放: %sx 拖动：按住鼠标左键")

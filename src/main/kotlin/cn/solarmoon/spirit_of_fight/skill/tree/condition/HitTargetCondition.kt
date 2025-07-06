@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.condition
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.registry.common.SOFRegistries
@@ -13,7 +14,8 @@ import net.minecraft.world.entity.player.Player
 class HitTargetCondition: SkillTreeCondition {
 
     override fun test(host: Player, skill: Skill?): Boolean {
-        return skill != null && skill.getTargets().isNotEmpty()
+        SparkCore.LOGGER.info("${skill != null && skill.targetPool.getTargets().isNotEmpty()}")
+        return skill != null && skill.targetPool.getTargets().isNotEmpty()
     }
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC

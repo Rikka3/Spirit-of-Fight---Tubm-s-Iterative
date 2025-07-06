@@ -81,22 +81,22 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.SWORD_COMBO_0.location(),
+                            SOFSkillTypes.SWORD_COMBO_0,
                             SOFPreInputs.ATTACK,
                             listOf(
                                 CommonNode(
                                     listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
-                                    SOFSkillTypes.SHIELD_COMBO_C0.location(),
+                                    SOFSkillTypes.SHIELD_COMBO_C0,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
-                                            SOFSkillTypes.SWORD_SHIELD_COMBO_C1.location(),
+                                            SOFSkillTypes.SWORD_SHIELD_COMBO_C1,
                                             SOFPreInputs.ATTACK,
                                             children = listOf(
                                                 CommonNode(
                                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                    SOFSkillTypes.SWORD_COMBO_2.location(),
+                                                    SOFSkillTypes.SWORD_COMBO_2,
                                                     SOFPreInputs.ATTACK
                                                 )
                                             ),
@@ -107,12 +107,12 @@ class SOFSkillTrees(
                                 ),
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.SWORD_COMBO_1.location(),
+                                    SOFSkillTypes.SWORD_COMBO_1,
                                     SOFPreInputs.ATTACK,
                                     listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.SWORD_COMBO_2.location(),
+                                            SOFSkillTypes.SWORD_COMBO_2,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -130,7 +130,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.SWORD_JUMP_ATTACK.location(),
+                            SOFSkillTypes.SWORD_JUMP_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -143,7 +143,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.SWORD_SPRINT_ATTACK.location(),
+                            SOFSkillTypes.SWORD_SPRINT_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -156,7 +156,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SHIELD_GUARD.location(),
+                            SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -164,7 +164,7 @@ class SOFSkillTrees(
                         ),
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SWORD_GUARD.location(),
+                            SOFSkillTypes.SWORD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -179,7 +179,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.DODGE.name to KeyEvent.PULSE)), OnGroundCondition()),
-                            SOFSkillTypes.SWORD_DODGE.location(),
+                            SOFSkillTypes.SWORD_DODGE,
                             SOFPreInputs.DODGE
                         )
                     )
@@ -191,7 +191,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SWORD_SUPER_ARMOR_BLOCK.location(),
+                            SOFSkillTypes.SWORD_SUPER_ARMOR_BLOCK,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 FightSpiritConsumeNode(
@@ -203,7 +203,7 @@ class SOFSkillTrees(
                                         )),
                                         FightSpiritCondition(100)
                                     ),
-                                    SOFSkillTypes.SWORD_SPECIAL_ATTACK.location(),
+                                    SOFSkillTypes.SWORD_SPECIAL_ATTACK,
                                     SOFPreInputs.SPECIAL_ATTACK
                                 ),
                                 StopNode(
@@ -227,17 +227,17 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.GLOVES_COMBO_0.location(),
+                            SOFSkillTypes.GLOVES_COMBO_0,
                             SOFPreInputs.ATTACK,
                             listOf(
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.GLOVES_COMBO_1.location(),
+                                    SOFSkillTypes.GLOVES_COMBO_1,
                                     SOFPreInputs.ATTACK,
                                     listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.GLOVES_COMBO_2.location(),
+                                            SOFSkillTypes.GLOVES_COMBO_2,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -255,7 +255,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.GLOVES_JUMP_ATTACK.location(),
+                            SOFSkillTypes.GLOVES_JUMP_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -268,7 +268,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.GLOVES_SPRINT_ATTACK.location(),
+                            SOFSkillTypes.GLOVES_SPRINT_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -281,7 +281,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.GLOVES_GUARD.location(),
+                            SOFSkillTypes.GLOVES_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -296,7 +296,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.DODGE.name to KeyEvent.PULSE)), OnGroundCondition()),
-                            SOFSkillTypes.GLOVES_DODGE.location(),
+                            SOFSkillTypes.GLOVES_DODGE,
                             SOFPreInputs.DODGE
                         )
                     )
@@ -308,7 +308,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.GLOVES_SKILL_0.location(),
+                            SOFSkillTypes.GLOVES_SKILL_0,
                             SOFPreInputs.SPECIAL_ATTACK,
                             children = listOf(
                                 FightSpiritConsumeNode(
@@ -320,7 +320,7 @@ class SOFSkillTrees(
                                         )),
                                         FightSpiritCondition(100)
                                     ),
-                                    SOFSkillTypes.GLOVES_SKILL_1.location(),
+                                    SOFSkillTypes.GLOVES_SKILL_1,
                                     SOFPreInputs.SPECIAL_ATTACK
                                 ),
                                 StopNode(
@@ -344,17 +344,17 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.HAMMER_COMBO_0.location(),
+                            SOFSkillTypes.HAMMER_COMBO_0,
                             SOFPreInputs.ATTACK,
                             children = listOf(
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.HAMMER_COMBO_1.location(),
+                                    SOFSkillTypes.HAMMER_COMBO_1,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.HAMMER_COMBO_2.location(),
+                                            SOFSkillTypes.HAMMER_COMBO_2,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -362,17 +362,17 @@ class SOFSkillTrees(
                                 ),
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
-                                    SOFSkillTypes.HAMMER_COMBO_C0.location(),
+                                    SOFSkillTypes.HAMMER_COMBO_C0,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
-                                            SOFSkillTypes.HAMMER_COMBO_C1.location(),
+                                            SOFSkillTypes.HAMMER_COMBO_C1,
                                             SOFPreInputs.ATTACK,
                                             children = listOf(
                                                 CommonNode(
                                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                    SOFSkillTypes.HAMMER_COMBO_2.location(),
+                                                    SOFSkillTypes.HAMMER_COMBO_2,
                                                     SOFPreInputs.ATTACK
                                                 )
                                             ),
@@ -393,7 +393,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.HAMMER_JUMP_ATTACK.location(),
+                            SOFSkillTypes.HAMMER_JUMP_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -406,7 +406,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.HAMMER_SPRINT_ATTACK.location(),
+                            SOFSkillTypes.HAMMER_SPRINT_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -419,7 +419,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.HAMMER_GUARD.location(),
+                            SOFSkillTypes.HAMMER_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -434,7 +434,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.DODGE.name to KeyEvent.PULSE)), OnGroundCondition()),
-                            SOFSkillTypes.HAMMER_DODGE.location(),
+                            SOFSkillTypes.HAMMER_DODGE,
                             SOFPreInputs.DODGE
                         )
                     )
@@ -446,7 +446,7 @@ class SOFSkillTrees(
                     listOf(
                         FightSpiritConsumeNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE)), FightSpiritCondition(100)),
-                            SOFSkillTypes.HAMMER_SPECIAL_ATTACK.location(),
+                            SOFSkillTypes.HAMMER_SPECIAL_ATTACK,
                             SOFPreInputs.SPECIAL_ATTACK
                         )
                     ),
@@ -460,22 +460,22 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.AXE_COMBO_0.location(),
+                            SOFSkillTypes.AXE_COMBO_0,
                             SOFPreInputs.ATTACK,
                             listOf(
                                 CommonNode(
                                     listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
-                                    SOFSkillTypes.SHIELD_COMBO_C0.location(),
+                                    SOFSkillTypes.SHIELD_COMBO_C0,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
-                                            SOFSkillTypes.AXE_SHIELD_COMBO_C1.location(),
+                                            SOFSkillTypes.AXE_SHIELD_COMBO_C1,
                                             SOFPreInputs.ATTACK,
                                             children = listOf(
                                                 CommonNode(
                                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                    SOFSkillTypes.AXE_SHIELD_COMBO_C2.location(),
+                                                    SOFSkillTypes.AXE_SHIELD_COMBO_C2,
                                                     SOFPreInputs.ATTACK
                                                 )
                                             ),
@@ -486,12 +486,12 @@ class SOFSkillTrees(
                                 ),
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.AXE_COMBO_1.location(),
+                                    SOFSkillTypes.AXE_COMBO_1,
                                     SOFPreInputs.ATTACK,
                                     listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.AXE_COMBO_2.location(),
+                                            SOFSkillTypes.AXE_COMBO_2,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -509,7 +509,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.AXE_JUMP_ATTACK.location(),
+                            SOFSkillTypes.AXE_JUMP_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -522,7 +522,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.AXE_SPRINT_ATTACK.location(),
+                            SOFSkillTypes.AXE_SPRINT_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -535,7 +535,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SHIELD_GUARD.location(),
+                            SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -543,7 +543,7 @@ class SOFSkillTrees(
                         ),
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.AXE_GUARD.location(),
+                            SOFSkillTypes.AXE_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -558,7 +558,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.DODGE.name to KeyEvent.PULSE)), OnGroundCondition()),
-                            SOFSkillTypes.AXE_DODGE.location(),
+                            SOFSkillTypes.AXE_DODGE,
                             SOFPreInputs.DODGE
                         )
                     )
@@ -570,17 +570,17 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
-                            SOFSkillTypes.AXE_SKILL_GRAB.location(),
+                            SOFSkillTypes.AXE_SKILL_GRAB,
                             SOFPreInputs.SPECIAL_ATTACK,
                             children = listOf(
                                 CommonNode(
                                     listOf(HitTargetCondition()),
-                                    SOFSkillTypes.AXE_SKILL_PULL.location(),
+                                    SOFSkillTypes.AXE_SKILL_PULL,
                                     SOFPreInputs.SPECIAL_ATTACK,
                                     children = listOf(
                                         FightSpiritConsumeNode(
                                             listOf(FightSpiritCondition(100), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                                            SOFSkillTypes.AXE_SKILL_SPIN.location(),
+                                            SOFSkillTypes.AXE_SKILL_SPIN,
                                             SOFPreInputs.SPECIAL_ATTACK
                                         )
                                     )
@@ -599,22 +599,22 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.MACE_COMBO_0.location(),
+                            SOFSkillTypes.MACE_COMBO_0,
                             SOFPreInputs.ATTACK,
                             listOf(
                                 CommonNode(
                                     listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
-                                    SOFSkillTypes.SHIELD_COMBO_C0.location(),
+                                    SOFSkillTypes.SHIELD_COMBO_C0,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
-                                            SOFSkillTypes.MACE_SHIELD_COMBO_C1.location(),
+                                            SOFSkillTypes.MACE_SHIELD_COMBO_C1,
                                             SOFPreInputs.ATTACK,
                                             children = listOf(
                                                 CommonNode(
                                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                    SOFSkillTypes.MACE_COMBO_2.location(),
+                                                    SOFSkillTypes.MACE_COMBO_2,
                                                     SOFPreInputs.ATTACK
                                                 )
                                             ),
@@ -625,12 +625,12 @@ class SOFSkillTrees(
                                 ),
                                 CommonNode(
                                     listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.MACE_COMBO_1.location(),
+                                    SOFSkillTypes.MACE_COMBO_1,
                                     SOFPreInputs.ATTACK,
                                     listOf(
                                         CommonNode(
                                             listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.MACE_COMBO_2.location(),
+                                            SOFSkillTypes.MACE_COMBO_2,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -648,7 +648,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.MACE_JUMP_ATTACK.location(),
+                            SOFSkillTypes.MACE_JUMP_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -661,7 +661,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.MACE_SPRINT_ATTACK.location(),
+                            SOFSkillTypes.MACE_SPRINT_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -674,7 +674,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SHIELD_GUARD.location(),
+                            SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -682,7 +682,7 @@ class SOFSkillTrees(
                         ),
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.MACE_GUARD.location(),
+                            SOFSkillTypes.MACE_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
                                 StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
@@ -697,7 +697,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.DODGE.name to KeyEvent.PULSE)), OnGroundCondition()),
-                            SOFSkillTypes.MACE_DODGE.location(),
+                            SOFSkillTypes.MACE_DODGE,
                             SOFPreInputs.DODGE
                         )
                     )
@@ -709,7 +709,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(FallDistanceCondition(4f), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
-                            SOFSkillTypes.MACE_FALL_ATTACK.location(),
+                            SOFSkillTypes.MACE_FALL_ATTACK,
                             SOFPreInputs.ATTACK
                         )
                     ),
@@ -722,7 +722,7 @@ class SOFSkillTrees(
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.MACE_SKILL_CHARGING.location(),
+                            SOFSkillTypes.MACE_SKILL_CHARGING,
                             SOFPreInputs.SPECIAL_ATTACK,
                             children = listOf(
                                 FightSpiritConsumeNode(
@@ -735,7 +735,7 @@ class SOFSkillTrees(
                                         )),
                                         FightSpiritCondition(100)
                                     ),
-                                    SOFSkillTypes.MACE_SKILL.location(),
+                                    SOFSkillTypes.MACE_SKILL,
                                     SOFPreInputs.SPECIAL_ATTACK
                                 ),
                                 StopNode(

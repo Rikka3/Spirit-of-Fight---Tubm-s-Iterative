@@ -13,23 +13,24 @@ object StateAnimApplier {
     private fun transModifier(event: ChangePresetAnimEvent.PlayerState) {
         val player = event.player
         if (player.mainHandItem.`is`(SOFItemTags.FORGE_HAMMER)) {
+
             when(event.state) {
-                EntityStates.Idle -> event.newAnim = SOFTypedAnimations.HAMMER_IDLE.get()
-                EntityStates.Walk -> event.newAnim = SOFTypedAnimations.HAMMER_WALK.get()
-                EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.HAMMER_WALK_BACK.get()
-                EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.HAMMER_SPRINTING.get()
-                EntityStates.Fall -> event.newAnim = SOFTypedAnimations.HAMMER_FALL.get()
+                is EntityStates.Idle -> event.newAnim = SOFTypedAnimations.HAMMER_IDLE.get()
+                is EntityStates.Walk -> event.newAnim = SOFTypedAnimations.HAMMER_WALK.get()
+                is EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.HAMMER_WALK_BACK.get()
+                is EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.HAMMER_SPRINTING.get()
+                is EntityStates.Fall -> event.newAnim = SOFTypedAnimations.HAMMER_FALL.get()
             }
         } else if (player.mainHandItem.`is`(SOFItemTags.FORGE_GLOVES)) {
             when(event.state) {
-                EntityStates.Idle -> event.newAnim = SOFTypedAnimations.BAIMEI_IDLE.get()
-                EntityStates.Walk -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK.get()
-                EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK_BACK.get()
-                EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.BAIMEI_SPRINTING.get()
+                is EntityStates.Idle -> event.newAnim = SOFTypedAnimations.BAIMEI_IDLE.get()
+                is EntityStates.Walk -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK.get()
+                is EntityStates.WalkBack -> event.newAnim = SOFTypedAnimations.BAIMEI_WALK_BACK.get()
+                is EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.BAIMEI_SPRINTING.get()
             }
         } else if (player.offhandItem.`is`(Tags.Items.TOOLS_SHIELD)) {
             when(event.state) {
-                EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.SHIELD_SPRINTING.get()
+                is EntityStates.Sprinting -> event.newAnim = SOFTypedAnimations.SHIELD_SPRINTING.get()
             }
         }
     }

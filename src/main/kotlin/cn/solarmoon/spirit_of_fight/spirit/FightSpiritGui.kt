@@ -21,6 +21,7 @@ class FightSpiritGui: LayeredDraw.Layer {
         guiGraphics: GuiGraphics,
         deltaTracker: DeltaTracker
     ) {
+        if (Minecraft.getInstance().options.hideGui) return
         val partialTicks = deltaTracker.getGameTimeDeltaPartialTick(true)
         val poseStack = guiGraphics.pose()
         val player = Minecraft.getInstance().player ?: return

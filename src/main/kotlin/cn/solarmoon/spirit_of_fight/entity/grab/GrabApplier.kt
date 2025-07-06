@@ -15,7 +15,7 @@ object GrabApplier {
     @SubscribeEvent
     private fun tick(event: EntityTickEvent.Post) {
         val entity = event.entity
-        if (entity.grabManager.grabbedBy != null || entity.hitting) {
+        if (entity.grabManager.grabbedBy != null || entity.isHitting) {
             with(entity) {
                 if (this is Mob) {
                     navigation.stop() // 停止路径导航
@@ -33,7 +33,7 @@ object GrabApplier {
     @SubscribeEvent
     private fun changeTarget(event: LivingChangeTargetEvent) {
         val entity = event.entity
-        if (entity.grabManager.grabbedBy != null || entity.hitting) {
+        if (entity.grabManager.grabbedBy != null || entity.isHitting) {
             event.newAboutToBeSetTarget = null
         }
     }
@@ -42,7 +42,7 @@ object GrabApplier {
     private fun onPlayerMove(event: MovementInputUpdateEvent) {
         val player = event.entity
         val input = event.input
-        if (player.grabManager.grabbedBy != null || player.hitting) {
+        if (player.grabManager.grabbedBy != null || player.isHitting) {
             input.forwardImpulse = 0f
             input.leftImpulse = 0f
             input.up = false

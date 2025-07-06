@@ -10,6 +10,9 @@ class SkillTreeSet: LinkedHashSet<SkillTree> {
     constructor(elements: Collection<SkillTree>) : super(elements)
 
     fun tryAdvance(player: Player, input: Input, simulate: Boolean = false): Boolean {
+        // 修复：旁观者模式下卡操作问题
+        if (player.isSpectator) return false
+
         // 使用 partition 分割列表
         val (activeTrees, inactiveTrees) = this.partition { it.currentNode != null }
 

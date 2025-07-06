@@ -1,8 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.node
 
-import cn.solarmoon.spark_core.preinput.PreInputId
-import cn.solarmoon.spark_core.skill.getSkillType
-import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
+import cn.solarmoon.spark_core.skill.SkillManager
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition
 import com.mojang.serialization.Codec
@@ -19,7 +17,7 @@ import net.minecraft.world.level.Level
 open class CommonNode(
     override val conditions: List<SkillTreeCondition>,
     var skillLocation: ResourceLocation,
-    override val preInputId: PreInputId,
+    override val preInputId: String,
     override val children: List<SkillTreeNode> = listOf(),
     override val reserveTime: Int = 2,
     override val preInputDuration: Int = 5
@@ -29,8 +27,9 @@ open class CommonNode(
     override val description = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.description")
     override val icon: ResourceLocation = ResourceLocation.fromNamespaceAndPath(skillLocation.namespace, "textures/skill/${skillLocation.path}.png")
 
-    override fun onEntry(host: Player, level: Level, tree: SkillTree) {
-        tree.currentSkill = getSkillType(level, skillLocation).createSkill(host, level, true)
+    override fun onEntry(host: Player, level: Level, tree: SkillTree): Boolean {
+        tree.currentSkill = SkillManager.get(skillLocation)!!.createSkill(host, level, true)
+        return true
     }
 
     override val codec: MapCodec<out SkillTreeNode> = CODEC
@@ -40,7 +39,7 @@ open class CommonNode(
             instance.group(
                 SkillTreeCondition.CODEC.listOf().fieldOf("conditions").forGetter { it.conditions },
                 ResourceLocation.CODEC.fieldOf("skill").forGetter { it.skillLocation },
-                PreInputId.CODEC.fieldOf("pre_input_id").forGetter { it.preInputId },
+                Codec.STRING.fieldOf("pre_input_id").forGetter { it.preInputId },
                 SkillTreeNode.CODEC.listOf().optionalFieldOf("children", listOf()).forGetter { it.children },
                 Codec.INT.optionalFieldOf("reserve_time", 2).forGetter { it.reserveTime },
                 Codec.INT.optionalFieldOf("pre_input_duration", 5).forGetter { it.preInputDuration }

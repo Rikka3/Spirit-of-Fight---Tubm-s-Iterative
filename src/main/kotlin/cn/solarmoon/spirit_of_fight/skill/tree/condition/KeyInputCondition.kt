@@ -5,6 +5,7 @@ import cn.solarmoon.spark_core.local_control.KeyEvent
 import cn.solarmoon.spark_core.local_control.KeyMappingHelper
 import cn.solarmoon.spark_core.local_control.onEvent
 import cn.solarmoon.spark_core.skill.Skill
+import cn.solarmoon.spirit_of_fight.entity.player.PlayerLocalController
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
@@ -21,7 +22,8 @@ class KeyInputCondition(
         return keyMap.all { (key, event) ->
             val key = KeyMappingHelper.get(key) ?: throw NullPointerException("不存在注册名为 $key 的键位")
             key.onEvent(event) { time ->
-                activeTime.isEmpty() || activeTime.any { time in it.x..it.y }
+                host.chargingTime = time
+                (activeTime.isEmpty() || activeTime.any { time in it.x..it.y }) && !(PlayerLocalController.guardKeyConflict() && host.isUsingItem)
             }
         }
     }

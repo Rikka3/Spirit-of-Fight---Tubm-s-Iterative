@@ -16,6 +16,8 @@ public class EntityMixin implements IEntityPatch {
     private final GrabManager grabManager = new GrabManager((Entity) (Object) this);
     private SkillTreeSet treeSet;
     private boolean hitting = false;
+    private boolean knockDown = false;
+    private int chargingTime = 0;
 
     @Override
     public @Nullable MoveDirection getMoveDirection() {
@@ -43,7 +45,7 @@ public class EntityMixin implements IEntityPatch {
     }
 
     @Override
-    public boolean getHitting() {
+    public boolean isHitting() {
         return hitting;
     }
 
@@ -52,4 +54,23 @@ public class EntityMixin implements IEntityPatch {
         hitting = b;
     }
 
+    @Override
+    public boolean isKnockedDown() {
+        return knockDown;
+    }
+
+    @Override
+    public void setKnockedDown(boolean b) {
+        knockDown = b;
+    }
+
+    @Override
+    public int getChargingTime() {
+        return chargingTime;
+    }
+
+    @Override
+    public void setChargingTime(int i) {
+        chargingTime = i;
+    }
 }

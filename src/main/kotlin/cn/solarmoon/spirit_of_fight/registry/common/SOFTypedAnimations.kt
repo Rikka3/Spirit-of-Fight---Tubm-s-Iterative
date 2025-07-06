@@ -47,6 +47,24 @@ object SOFTypedAnimations {
         }
         .build()
 
+    @JvmStatic
+    val PARRIED_LEFT = SpiritOfFight.REGISTER.typedAnimation()
+        .id("parried_left")
+        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "common:parried_left"))
+        .provider {
+            EntityHitApplier.hitAnimDoFreeze(this)
+        }
+        .build()
+
+    @JvmStatic
+    val PARRIED_RIGHT = SpiritOfFight.REGISTER.typedAnimation()
+        .id("parried_right")
+        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "common:parried_right"))
+        .provider {
+            EntityHitApplier.hitAnimDoFreeze(this)
+        }
+        .build()
+
     fun createHitAnim(index: ResourceLocation = ResourceLocation.withDefaultNamespace("player")) = SOFHitTypes.HIT_ANIM_NAMES.mapValues { (animName, _) ->
         SpiritOfFight.REGISTER.typedAnimation()
             .id(animName

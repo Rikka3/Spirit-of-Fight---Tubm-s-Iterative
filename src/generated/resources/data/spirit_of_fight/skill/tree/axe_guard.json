@@ -35,9 +35,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "guard"
-      },
+      "pre_input_id": "guard",
       "skill": "spirit_of_fight:shield_guard"
     },
     {
@@ -66,9 +64,7 @@
           }
         }
       ],
-      "pre_input_id": {
-        "name": "guard"
-      },
+      "pre_input_id": "guard",
       "skill": "spirit_of_fight:axe_guard"
     }
   ]

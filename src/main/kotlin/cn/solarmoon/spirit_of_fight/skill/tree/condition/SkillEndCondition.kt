@@ -15,7 +15,7 @@ class SkillEndCondition: SkillTreeCondition {
         host: Player,
         skill: Skill?
     ): Boolean {
-        return skill?.isActive == false
+        return skill?.isActivated == false
     }
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC

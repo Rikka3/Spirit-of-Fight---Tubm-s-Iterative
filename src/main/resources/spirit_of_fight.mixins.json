@@ -6,8 +6,12 @@
   "mixins": [
     "fighter.EntityMixin",
     "fighter.LivingEntityMixin",
+    "fighter.MeleeAttackGoalMixin",
     "fighter.PlayerMixin",
-    "fighter.ZombieMixin"
+    "fighter.VindicatorMixin",
+    "fighter.ZombieMixin",
+    "js.EntityMixin",
+    "js.SkillMixin"
   ],
   "client": [
     "ItemInHandLayerMixin"
