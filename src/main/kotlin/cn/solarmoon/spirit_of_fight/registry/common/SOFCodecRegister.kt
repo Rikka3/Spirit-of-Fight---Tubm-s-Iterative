@@ -5,6 +5,7 @@ import cn.solarmoon.spirit_of_fight.skill.tree.condition.AnyCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallDistanceCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FightSpiritCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.HitTargetCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.HoldCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
@@ -33,6 +34,7 @@ object SOFCodecRegister {
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("off_hand")) { OffHandCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("reverse")) { ReverseCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("any")) { AnyCondition.CODEC }
+        event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("wield_style")) { HoldCondition.CODEC }
 
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("node")) { CommonNode.CODEC }
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("fight_spirit_consumer")) { FightSpiritConsumeNode.CODEC }

@@ -16,6 +16,10 @@
                   "type": "spirit_of_fight:node",
                   "conditions": [
                     {
+                      "type": "spirit_of_fight:wield_style",
+                      "hold": "single_wield"
+                    },
+                    {
                       "type": "spirit_of_fight:key_input",
                       "active_time": [
                         [
@@ -29,10 +33,14 @@
                     }
                   ],
                   "pre_input_id": "attack",
-                  "skill": "spirit_of_fight:sword_combo_2"
+                  "skill": "spirit_of_fight:sword.single_wield.combo_3"
                 }
               ],
               "conditions": [
+                {
+                  "type": "spirit_of_fight:wield_style",
+                  "hold": "single_wield"
+                },
                 {
                   "type": "spirit_of_fight:key_input",
                   "active_time": [
@@ -55,6 +63,10 @@
             }
           ],
           "conditions": [
+            {
+              "type": "spirit_of_fight:wield_style",
+              "hold": "single_wield"
+            },
             {
               "type": "spirit_of_fight:off_hand",
               "ingredient": {
@@ -79,6 +91,10 @@
               "type": "spirit_of_fight:node",
               "conditions": [
                 {
+                  "type": "spirit_of_fight:wield_style",
+                  "hold": "single_wield"
+                },
+                {
                   "type": "spirit_of_fight:key_input",
                   "active_time": [
                     [
@@ -92,10 +108,14 @@
                 }
               ],
               "pre_input_id": "attack",
-              "skill": "spirit_of_fight:sword_combo_2"
+              "skill": "spirit_of_fight:sword.single_wield.combo_3"
             }
           ],
           "conditions": [
+            {
+              "type": "spirit_of_fight:wield_style",
+              "hold": "single_wield"
+            },
             {
               "type": "spirit_of_fight:key_input",
               "active_time": [
@@ -111,10 +131,14 @@
           ],
           "pre_input_id": "attack",
           "reserve_time": 10,
-          "skill": "spirit_of_fight:sword_combo_1"
+          "skill": "spirit_of_fight:sword.single_wield.combo_2"
         }
       ],
       "conditions": [
+        {
+          "type": "spirit_of_fight:wield_style",
+          "hold": "single_wield"
+        },
         {
           "type": "spirit_of_fight:key_input",
           "active_time": [
@@ -130,7 +154,7 @@
       ],
       "pre_input_id": "attack",
       "reserve_time": 10,
-      "skill": "spirit_of_fight:sword_combo_0"
+      "skill": "spirit_of_fight:sword.single_wield.combo_1"
     }
   ]
 }

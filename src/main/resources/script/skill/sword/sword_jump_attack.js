@@ -7,34 +7,40 @@ Skill.create("spirit_of_fight:sword_jump_attack", builder => {
         if (entity == null || animatable == null) return
 
         const config = skill.getConfig()
-        config.disableCriticalHit()
-        config.disableSweepAttack()
-        config.ignoreAttackSpeed()
+        config.setCanCriticalHit(false)
+        config.setCanSweepAttack(false)
+        config.setIgnoreAttackSpeed(true)
         config.setDamageMultiplier(1)
 
-        const anim = animatable.createAnimation('sword:attack_jump')
-        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -1.0))
+        const anim = animatable.createAnimation('minecraft:player', 'sword:attack_jump')
+        anim.setShouldTurnBody(true)
+        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -0.75))
 
         attackBody.onAttackCollide('attack', {
             preAttack: (isFirst, attacker, target, o1, o2, manifoldId) => {
+                skill.addTarget(target)
                 if (isFirst) {
                     entity.cameraShake(2, 1, 2)
                     animatable.changeSpeed(7, 0.05)
                 }
+                entity.addFightSpirit(50)
             },
             doAttack: (attacker, target, o1, o2, manifoldId) => {
                 entity.commonAttack(target)
+            },
+            postAttack: (attacker, target, o1, o2, manifoldId) => {
+                skill.removeTarget(target)
             }
         })
 
         attackBody.onCollisionActive(() => {
             entity.setCameraLock(true)
-            level.playSound(entity.getOnPos().above(), "minecraft:entity.player.attack.sweep", "players")
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players")
         })
 
-        SOFSkillHelper.summonQuadraticHitParticle(skill, 12, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
-        skill.onTargetActualHitPost(event => {
-            level.playSound(entity.getOnPos().above(), "minecraft:entity.arrow.hit", "players")
+        skill.onTargetActualHurtPost(event => {
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players")
+            SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
         })
 
         anim.onEnd(event => {

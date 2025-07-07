@@ -1,4 +1,4 @@
-Skill.create("spirit_of_fight:sword_combo_2", builder => {
+Skill.create("spirit_of_fight:axe_combo_2", builder => {
     builder.accept(skill => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
@@ -7,34 +7,40 @@ Skill.create("spirit_of_fight:sword_combo_2", builder => {
         if (entity == null || animatable == null) return
 
         const config = skill.getConfig()
-        config.disableCriticalHit()
-        config.disableSweepAttack()
-        config.ignoreAttackSpeed()
+        config.setCanCriticalHit(false)
+        config.setCanSweepAttack(false)
+        config.setIgnoreAttackSpeed(true)
         config.setDamageMultiplier(1.25)
 
-        const anim = animatable.createAnimation('sword:combo_2')
-        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -1.0))
+        const anim = animatable.createAnimation('minecraft:player', 'axe:combo_2')
+        anim.setShouldTurnBody(true)
+        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.25, 1.25, 1.25), SpMath.vec3(0.0, 0.0, -0.75))
 
         attackBody.onAttackCollide('attack', {
             preAttack: (isFirst, attacker, target, o1, o2, manifoldId) => {
+                skill.addTarget(target)
                 if (isFirst) {
                     entity.cameraShake(3, 1.5, 3)
                     animatable.changeSpeed(7, 0.05)
                 }
+                entity.addFightSpirit(100)
             },
             doAttack: (attacker, target, o1, o2, manifoldId) => {
                 entity.commonAttack(target)
+            },
+            postAttack: (attacker, target, o1, o2, manifoldId) => {
+                skill.removeTarget(target)
             }
         })
 
         attackBody.onCollisionActive(() => {
             entity.setCameraLock(true)
-            level.playSound(entity.getOnPos().above(), "minecraft:entity.player.attack.sweep", "players")
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 0.8)
         })
 
-        SOFSkillHelper.summonQuadraticHitParticle(skill, 12, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
-        skill.onTargetActualHitPost(event => {
-            level.playSound(entity.getOnPos().above(), "minecraft:entity.arrow.hit", "players")
+        skill.onTargetActualHurtPost(event => {
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players", 1, 0.9)
+            SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
         })
 
         anim.onEnd(event => {
@@ -47,11 +53,11 @@ Skill.create("spirit_of_fight:sword_combo_2", builder => {
 
         skill.onActive(() => {
             const animTime = anim.getTime()
-            if (animTime >= 0.1 && animTime <= 0.35) {
+            if (animTime >= 0.45 && animTime <= 0.65) {
                 entity.move(SpMath.vec3(0.0, entity.getDeltaMovement().y, 0.5), false)
             }
 
-            if (animTime >= 0.25 && animTime <= 0.5) {
+            if (animTime >= 0.45 && animTime <= 0.7) {
                 attackBody.setCollideWithGroups(1)
             } else {
                 attackBody.setCollideWithGroups(0)

@@ -2,8 +2,8 @@ package cn.solarmoon.spirit_of_fight.js
 
 import cn.solarmoon.spark_core.entity.getRelativeVector
 import cn.solarmoon.spark_core.js.JSComponent
-import cn.solarmoon.spark_core.physics.toVec3
 import cn.solarmoon.spark_core.util.ParticleUtil
+import cn.solarmoon.spark_core.util.toVec3
 import cn.solarmoon.spirit_of_fight.particle.ParticlePresets
 import cn.solarmoon.spirit_of_fight.particle.sync.QuadraticParticlePayload
 import com.jme3.bullet.collision.ManifoldPoints

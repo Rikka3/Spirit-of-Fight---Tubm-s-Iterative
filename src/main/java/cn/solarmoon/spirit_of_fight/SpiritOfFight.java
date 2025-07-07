@@ -4,6 +4,8 @@ import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex;
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance;
 import cn.solarmoon.spark_core.entry_builder.ObjectRegister;
 import cn.solarmoon.spark_core.js.JSHelperKt;
+import cn.solarmoon.spark_core.registry.common.SparkRegistries;
+import cn.solarmoon.spark_core.resource.handler.DynamicJavaScriptHandler;
 import cn.solarmoon.spirit_of_fight.registry.client.*;
 import cn.solarmoon.spirit_of_fight.registry.common.*;
 import net.neoforged.bus.api.IEventBus;
@@ -50,8 +52,6 @@ public class SpiritOfFight {
         SOFJSApiRegister.register();
         SOFSkills.register();
 
-        JSHelperKt.loadDefaultScripts(getClass());
     }
-
 
 }

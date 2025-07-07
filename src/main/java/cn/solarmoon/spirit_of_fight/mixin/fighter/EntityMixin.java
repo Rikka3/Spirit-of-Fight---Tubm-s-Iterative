@@ -3,6 +3,7 @@ package cn.solarmoon.spirit_of_fight.mixin.fighter;
 import cn.solarmoon.spark_core.util.MoveDirection;
 import cn.solarmoon.spirit_of_fight.entity.grab.GrabManager;
 import cn.solarmoon.spirit_of_fight.entity.IEntityPatch;
+import cn.solarmoon.spirit_of_fight.skill.controller.WieldStyle;
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTreeSet;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +19,7 @@ public class EntityMixin implements IEntityPatch {
     private boolean hitting = false;
     private boolean knockDown = false;
     private int chargingTime = 0;
+    private WieldStyle wieldStyle = WieldStyle.SINGLE_WIELD;
 
     @Override
     public @Nullable MoveDirection getMoveDirection() {
@@ -72,5 +74,15 @@ public class EntityMixin implements IEntityPatch {
     @Override
     public void setChargingTime(int i) {
         chargingTime = i;
+    }
+
+    @Override
+    public @NotNull WieldStyle getWieldStyle() {
+        return wieldStyle;
+    }
+
+    @Override
+    public void setWieldStyle(@NotNull WieldStyle wieldStyle) {
+        this.wieldStyle = wieldStyle;
     }
 }

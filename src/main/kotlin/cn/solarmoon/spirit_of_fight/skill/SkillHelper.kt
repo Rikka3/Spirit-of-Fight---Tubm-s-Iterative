@@ -2,7 +2,7 @@ package cn.solarmoon.spirit_of_fight.skill
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
-import cn.solarmoon.spark_core.physics.toVec3
+import cn.solarmoon.spark_core.util.toVec3
 import com.jme3.bullet.collision.ManifoldPoints
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.math.Vector3f

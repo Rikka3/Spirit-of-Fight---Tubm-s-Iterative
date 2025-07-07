@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-12T18:25:18.7592891	Registries
+// 1.21.1	2025-07-06T21:15:21.2988626	Registries
 bb8450bf196cdd06e0b48eef745010e389e75bd6 data/spirit_of_fight/skill/tree/axe_combo.json
 5878d00d254ffe19d1dda0649971051e16a67fea data/spirit_of_fight/skill/tree/axe_dodge.json
 abedae14ce13194cd964a9e654123e0e058a871b data/spirit_of_fight/skill/tree/axe_guard.json
@@ -24,9 +24,10 @@ e1c84325ceb09f7ce1841b0d5dc2e2ebd1c643ba data/spirit_of_fight/skill/tree/mace_gu
 7996e67b30cc431583e1187071cfe450108fef33 data/spirit_of_fight/skill/tree/mace_jump_attack.json
 72e6a99973958ccc3b419e991dbfe7cb2934ab88 data/spirit_of_fight/skill/tree/mace_skill.json
 8f340cc39d1a74e79b3ff5518f4cf343d20df98b data/spirit_of_fight/skill/tree/mace_sprint_attack.json
-12fa442045bcf7779bc2b39ffd769ff96cab37ee data/spirit_of_fight/skill/tree/sword_combo.json
+c153a1428bf760d75ad2d19fc1f3d21b140a60b0 data/spirit_of_fight/skill/tree/sword.dual_wield.combo.json
+5df5b57ed4512673d189cc2e415e30ff363d5484 data/spirit_of_fight/skill/tree/sword.single_wield.combo.json
+dc2cc35d76ff7223064caaebd7fe6196a91b25ee data/spirit_of_fight/skill/tree/sword.switch_attack.json
 07463cb0f5c5ba505cd60f9a8f6a03d534fcd79c data/spirit_of_fight/skill/tree/sword_dodge.json
 bb99dbe708af4c7534518dead31c04170a188bbf data/spirit_of_fight/skill/tree/sword_guard.json
 d4442023ff89aafba9fc968000c999aa7ff31cc1 data/spirit_of_fight/skill/tree/sword_jump_attack.json
-b2efad30044dadd15296ef8b3c9be42f528b01de data/spirit_of_fight/skill/tree/sword_skill.json
 ee71dc89256e0593c040323adcc10cfebecb4776 data/spirit_of_fight/skill/tree/sword_sprint_attack.json

@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.node
 
+import cn.solarmoon.spark_core.js.SparkJS
 import cn.solarmoon.spark_core.skill.SkillManager
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition

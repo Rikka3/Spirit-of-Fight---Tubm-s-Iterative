@@ -5,12 +5,14 @@ import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.registry.common.SOFRegistries
+import cn.solarmoon.spirit_of_fight.skill.controller.WieldStyle
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.AnyCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallDistanceCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FightSpiritCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.node.CommonNode
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.HitTargetCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.HoldCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
@@ -34,12 +36,13 @@ class SOFSkillTrees(
 ) {
 
     companion object {
-        val SWORD_COMBO = sofKey("sword_combo")
+        val SWORD_SINGLE_WIELD_COMBO = sofKey("sword.single_wield.combo")
+        val SWORD_DUAL_WIELD_COMBO = sofKey("sword.dual_wield.combo")
         val SWORD_JUMP_ATTACK = sofKey("sword_jump_attack")
         val SWORD_SPRINT_ATTACK = sofKey("sword_sprint_attack")
         val SWORD_GUARD = sofKey("sword_guard")
         val SWORD_DODGE = sofKey("sword_dodge")
-        val SWORD_SKILL = sofKey("sword_skill")
+        val SWORD_SWITCH_ATTACK = sofKey("sword.switch_attack")
 
         val GLOVES_COMBO = sofKey("gloves_combo")
         val GLOVES_JUMP_ATTACK = sofKey("gloves_jump_attack")
@@ -75,28 +78,28 @@ class SOFSkillTrees(
 
     init {
         builder.add(SOFRegistries.SKILL_TREE) {
-            it.register(SWORD_COMBO,
+            it.register(SWORD_SINGLE_WIELD_COMBO,
                 SkillTree(
                     Ingredient.of(ItemTags.SWORDS),
                     listOf(
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                            SOFSkillTypes.SWORD_COMBO_0,
+                            listOf(HoldCondition(WieldStyle.SINGLE_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                            SOFSkillTypes.SWORD_SINGLE_WIELD_COMBO_1,
                             SOFPreInputs.ATTACK,
                             listOf(
                                 CommonNode(
-                                    listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
+                                    listOf(HoldCondition(WieldStyle.SINGLE_WIELD), OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PULSE))),
                                     SOFSkillTypes.SHIELD_COMBO_C0,
                                     SOFPreInputs.ATTACK,
                                     children = listOf(
                                         CommonNode(
-                                            listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
+                                            listOf(HoldCondition(WieldStyle.SINGLE_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
                                             SOFSkillTypes.SWORD_SHIELD_COMBO_C1,
                                             SOFPreInputs.ATTACK,
                                             children = listOf(
                                                 CommonNode(
-                                                    listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                    SOFSkillTypes.SWORD_COMBO_2,
+                                                    listOf(HoldCondition(WieldStyle.SINGLE_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                                    SOFSkillTypes.SWORD_SINGLE_WIELD_COMBO_3,
                                                     SOFPreInputs.ATTACK
                                                 )
                                             ),
@@ -106,13 +109,41 @@ class SOFSkillTrees(
                                     10
                                 ),
                                 CommonNode(
-                                    listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                    SOFSkillTypes.SWORD_COMBO_1,
+                                    listOf(HoldCondition(WieldStyle.SINGLE_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                    SOFSkillTypes.SWORD_SINGLE_WIELD_COMBO_2,
                                     SOFPreInputs.ATTACK,
                                     listOf(
                                         CommonNode(
-                                            listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                            SOFSkillTypes.SWORD_COMBO_2,
+                                            listOf(HoldCondition(WieldStyle.SINGLE_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                            SOFSkillTypes.SWORD_SINGLE_WIELD_COMBO_3,
+                                            SOFPreInputs.ATTACK
+                                        )
+                                    ),
+                                    10
+                                )
+                            ),
+                            10
+                        )
+                    )
+                )
+            )
+            it.register(SWORD_DUAL_WIELD_COMBO,
+                SkillTree(
+                    Ingredient.of(ItemTags.SWORDS),
+                    listOf(
+                        CommonNode(
+                            listOf(HoldCondition(WieldStyle.DUAL_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                            SOFSkillTypes.SWORD_DUAL_WIELD_COMBO_1,
+                            SOFPreInputs.ATTACK,
+                            listOf(
+                                CommonNode(
+                                    listOf(HoldCondition(WieldStyle.DUAL_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                    SOFSkillTypes.SWORD_DUAL_WIELD_COMBO_2,
+                                    SOFPreInputs.ATTACK,
+                                    listOf(
+                                        CommonNode(
+                                            listOf(HoldCondition(WieldStyle.DUAL_WIELD), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                            SOFSkillTypes.SWORD_DUAL_WIELD_COMBO_3,
                                             SOFPreInputs.ATTACK
                                         )
                                     ),
@@ -185,39 +216,17 @@ class SOFSkillTrees(
                     )
                 )
             )
-            it.register(SWORD_SKILL,
+            it.register(SWORD_SWITCH_ATTACK,
                 SkillTree(
                     Ingredient.of(ItemTags.SWORDS),
                     listOf(
                         CommonNode(
                             listOf(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SWORD_SUPER_ARMOR_BLOCK,
-                            SOFPreInputs.GUARD,
-                            children = listOf(
-                                FightSpiritConsumeNode(
-                                    listOf(
-                                        AnyCondition(ConcurrentLinkedQueue(
-                                            listOf(
-                                                ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                                                SkillEndCondition())
-                                        )),
-                                        FightSpiritCondition(100)
-                                    ),
-                                    SOFSkillTypes.SWORD_SPECIAL_ATTACK,
-                                    SOFPreInputs.SPECIAL_ATTACK
-                                ),
-                                StopNode(
-                                    listOf(
-                                        AnyCondition(ConcurrentLinkedQueue(
-                                            listOf(
-                                                ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.name to KeyEvent.PRESS))),
-                                                SkillEndCondition())
-                                        )),
-                                    )
-                                )
-                            )
+                            SOFSkillTypes.SWORD_SWITCH_ATTACK,
+                            SOFPreInputs.SPECIAL_ATTACK,
                         )
-                    )
+                    ),
+                    3
                 )
             )
 

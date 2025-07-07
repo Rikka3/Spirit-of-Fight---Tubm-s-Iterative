@@ -8,8 +8,8 @@ import cn.solarmoon.spark_core.camera.isCameraLocked
 import cn.solarmoon.spark_core.camera.setCameraLock
 import cn.solarmoon.spark_core.entity.getLateralSide
 import cn.solarmoon.spark_core.entity.getSide
-import cn.solarmoon.spark_core.physics.toVec3
 import cn.solarmoon.spark_core.util.Key
+import cn.solarmoon.spark_core.util.toVec3
 import cn.solarmoon.spirit_of_fight.event.GetHitAnimationEvent
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
@@ -48,7 +48,7 @@ object EntityHitApplier {
             NeoForge.EVENT_BUS.post(GetHitAnimationEvent(victim, hitType, boneName, posSide, hitSide)).resultHitAnim?.apply {
                 if (exist()) {
                     play(victim, 0)
-                    syncToClient(victim.id, 0)
+                    playToClient(victim.id, 0)
                 } else SparkCore.LOGGER.warn("${victim.type} 缺少受击动画：${index}")
             }
         }
@@ -68,7 +68,7 @@ object EntityHitApplier {
         anim.apply {
             onEvent<AnimEvent.SwitchIn> {
                 val entity = holder.animatable as? Entity ?: return@onEvent
-                if (name.contains("knockdown")) entity.isKnockedDown = true
+                if (index.name.contains("knockdown")) entity.isKnockedDown = true
                 entity.isHitting = true
                 entity.setCameraLock(true)
                 entity.preInput.disable()
@@ -87,7 +87,7 @@ object EntityHitApplier {
                 entity.preInput.enable()
                 entity.isHitting = false
                 entity.setCameraLock(false)
-                if (name.contains("knockdown")) entity.isKnockedDown = false
+                if (index.name.contains("knockdown")) entity.isKnockedDown = false
             }
         }
     }
@@ -119,7 +119,7 @@ object EntityHitApplier {
         if (event.source.typeHolder().`is`(DamageTypes.FALL) && event.newDamage > 0) {
             SOFTypedAnimations.PLAYER_HIT_LANDING.get().apply {
                 play(entity, 0)
-                syncToClient(entity.id, 0)
+                playToClient(entity.id, 0)
             }
         }
     }

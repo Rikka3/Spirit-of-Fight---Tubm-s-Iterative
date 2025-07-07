@@ -70,13 +70,13 @@ class GuardSkill: Skill() {
                                 Side.LEFT -> {
                                     SOFTypedAnimations.PARRIED_RIGHT.get().apply {
                                         play(attacker, 0)
-                                        syncToClient(attacker.id, 0)
+                                        playToClient(attacker.id, 0)
                                     }
                                 }
                                 Side.RIGHT -> {
                                     SOFTypedAnimations.PARRIED_LEFT.get().apply {
                                         play(attacker, 0)
-                                        syncToClient(attacker.id, 0)
+                                        playToClient(attacker.id, 0)
                                     }
                                 }
                                 else -> {}
