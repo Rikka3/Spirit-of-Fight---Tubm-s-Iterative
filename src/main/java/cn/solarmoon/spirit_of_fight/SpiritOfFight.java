@@ -1,11 +1,7 @@
 package cn.solarmoon.spirit_of_fight;
 
-import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex;
-import cn.solarmoon.spark_core.animation.anim.play.AnimInstance;
 import cn.solarmoon.spark_core.entry_builder.ObjectRegister;
-import cn.solarmoon.spark_core.js.JSHelperKt;
-import cn.solarmoon.spark_core.registry.common.SparkRegistries;
-import cn.solarmoon.spark_core.resource.handler.DynamicJavaScriptHandler;
+import cn.solarmoon.spark_core.resource.common.MultiModResourceRegistry;
 import cn.solarmoon.spirit_of_fight.registry.client.*;
 import cn.solarmoon.spirit_of_fight.registry.common.*;
 import net.neoforged.bus.api.IEventBus;
@@ -23,6 +19,9 @@ public class SpiritOfFight {
     public static final ObjectRegister REGISTER = new ObjectRegister(MOD_ID, false);
 
     public SpiritOfFight(IEventBus modEventBus, ModContainer modContainer) {
+        // 首先注册Spirit of Fight到多mod资源系统
+        MultiModResourceRegistry.INSTANCE.registerModResources(MOD_ID, SpiritOfFight.class);
+
         REGISTER.register(modEventBus);
 
         if (FMLEnvironment.dist.isClient()) {

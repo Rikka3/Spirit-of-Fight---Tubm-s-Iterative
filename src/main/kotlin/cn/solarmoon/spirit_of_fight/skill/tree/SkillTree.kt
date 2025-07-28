@@ -1,6 +1,7 @@
 package cn.solarmoon.spirit_of_fight.skill.tree
 
 import cn.solarmoon.spark_core.preinput.PreInput
+import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.skill.Skill
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spirit_of_fight.registry.common.SOFRegistries
@@ -123,7 +124,7 @@ class SkillTree(
 
     fun getIcon(registryAccess: RegistryAccess): ResourceLocation {
         val key = getRegistryKey(registryAccess)
-        return ResourceLocation.fromNamespaceAndPath(key.namespace, "textures/skill/tree/${key.path}.png")
+        return SparkResourcePathBuilder.buildResourcePath("spirit_of_fight", "spirit_of_fight", "textures", "skill/tree/${key.path}")
     }
 
     fun getRegistryKey(registryAccess: RegistryAccess) = registryAccess.registry(SOFRegistries.SKILL_TREE).get().getKey(this) ?: throw NullPointerException("技能树尚未注册")

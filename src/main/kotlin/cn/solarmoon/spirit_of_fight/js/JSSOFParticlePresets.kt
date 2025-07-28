@@ -2,10 +2,10 @@ package cn.solarmoon.spirit_of_fight.js
 
 import cn.solarmoon.spark_core.entity.getRelativeVector
 import cn.solarmoon.spark_core.js.JSComponent
-import cn.solarmoon.spark_core.util.ParticleUtil
 import cn.solarmoon.spark_core.util.toVec3
-import cn.solarmoon.spirit_of_fight.particle.ParticlePresets
-import cn.solarmoon.spirit_of_fight.particle.sync.QuadraticParticlePayload
+import cn.solarmoon.spark_core.util.ParticleUtil
+
+import cn.solarmoon.spirit_of_fight.particle.*
 import com.jme3.bullet.collision.ManifoldPoints
 import com.jme3.math.Vector3f
 import net.minecraft.core.particles.ParticleOptions

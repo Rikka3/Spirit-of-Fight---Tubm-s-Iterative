@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.particle
 
 import cn.solarmoon.spark_core.entity.getRelativeVector
 import cn.solarmoon.spirit_of_fight.particle.sync.QuadraticParticlePayload
+
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.level.Level

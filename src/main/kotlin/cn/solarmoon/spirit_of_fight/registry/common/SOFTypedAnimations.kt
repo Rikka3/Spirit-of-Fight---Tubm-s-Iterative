@@ -3,6 +3,7 @@ package cn.solarmoon.spirit_of_fight.registry.common
 import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.TypedAnimProvider
+import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.hit.EntityHitApplier
 import cn.solarmoon.spirit_of_fight.hit.SOFHitTypes
@@ -41,7 +42,7 @@ object SOFTypedAnimations {
     @JvmStatic
     val PLAYER_HIT_LANDING = SpiritOfFight.REGISTER.typedAnimation()
         .id("hit_landing")
-        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "Hit/landing"))
+        .animIndex(AnimIndex(SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player"), "Hit/landing"))
         .provider {
             EntityHitApplier.hitAnimDoFreeze(this)
         }
@@ -50,7 +51,7 @@ object SOFTypedAnimations {
     @JvmStatic
     val PARRIED_LEFT = SpiritOfFight.REGISTER.typedAnimation()
         .id("parried_left")
-        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "common:parried_left"))
+        .animIndex(AnimIndex(SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player"), "common:parried_left"))
         .provider {
             EntityHitApplier.hitAnimDoFreeze(this)
         }
@@ -59,13 +60,13 @@ object SOFTypedAnimations {
     @JvmStatic
     val PARRIED_RIGHT = SpiritOfFight.REGISTER.typedAnimation()
         .id("parried_right")
-        .animIndex(AnimIndex(ResourceLocation.withDefaultNamespace("player"), "common:parried_right"))
+        .animIndex(AnimIndex(SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player"), "common:parried_right"))
         .provider {
             EntityHitApplier.hitAnimDoFreeze(this)
         }
         .build()
 
-    fun createHitAnim(index: ResourceLocation = ResourceLocation.withDefaultNamespace("player")) = SOFHitTypes.HIT_ANIM_NAMES.mapValues { (animName, _) ->
+    fun createHitAnim(index: ResourceLocation = SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player")) = SOFHitTypes.HIT_ANIM_NAMES.mapValues { (animName, _) ->
         SpiritOfFight.REGISTER.typedAnimation()
             .id(animName
                 .split("/").last()
@@ -78,13 +79,13 @@ object SOFTypedAnimations {
             .build()
     }
 
-    fun createStateAnim(name: String, index: ResourceLocation = ResourceLocation.withDefaultNamespace("player"), provider: TypedAnimProvider = {}) = SpiritOfFight.REGISTER.typedAnimation()
+    fun createStateAnim(name: String, index: ResourceLocation = SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player"), provider: TypedAnimProvider = {}) = SpiritOfFight.REGISTER.typedAnimation()
         .id(name)
         .animIndex(AnimIndex(index, "EntityState/$name"))
         .provider(provider)
         .build()
 
-    fun createMoveStateAnim(name: String, index: ResourceLocation = ResourceLocation.withDefaultNamespace("player"), provider: TypedAnimProvider = {}) = createStateAnim(name, index) {
+    fun createMoveStateAnim(name: String, index: ResourceLocation = SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "models", "player"), provider: TypedAnimProvider = {}) = createStateAnim(name, index) {
         onEvent<AnimEvent.Tick> {
             val holder = this.holder
             if (holder is LivingEntity) {

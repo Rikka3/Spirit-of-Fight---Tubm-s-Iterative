@@ -1,8 +1,6 @@
 package cn.solarmoon.spirit_of_fight.js
 
-import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.js.extension.JSEntity
-import cn.solarmoon.spark_core.registry.common.SparkTypedAnimations
 import cn.solarmoon.spirit_of_fight.skill.controller.WieldStyle
 import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
 

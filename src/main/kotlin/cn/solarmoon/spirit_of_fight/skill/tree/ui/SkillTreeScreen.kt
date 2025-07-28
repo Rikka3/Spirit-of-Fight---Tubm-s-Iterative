@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.ui
 
+import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.util.ColorUtil
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
@@ -98,7 +99,7 @@ class SkillTreeScreen(
     private fun onHovering(guiGraphics: GuiGraphics, layout: SkillTreeNodeLayout) {
         // 选框
         guiGraphics.blit(
-            ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/skill_tree_checkbox.png"),
+            SparkResourcePathBuilder.buildResourcePath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "textures", "gui/skill_tree_checkbox"),
             layout.pos.first - layout.iconSize / 2,
             layout.pos.second - layout.iconSize / 2,
             0f, 0f,

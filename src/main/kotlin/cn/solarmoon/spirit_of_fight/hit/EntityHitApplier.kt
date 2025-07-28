@@ -4,26 +4,20 @@ import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
-import cn.solarmoon.spark_core.camera.isCameraLocked
 import cn.solarmoon.spark_core.camera.setCameraLock
 import cn.solarmoon.spark_core.entity.getLateralSide
 import cn.solarmoon.spark_core.entity.getSide
 import cn.solarmoon.spark_core.util.Key
-import cn.solarmoon.spark_core.util.toVec3
 import cn.solarmoon.spirit_of_fight.event.GetHitAnimationEvent
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
 import com.jme3.math.Vector3f
 import net.minecraft.world.damagesource.DamageTypes
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.crafting.Ingredient
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent
-import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent
-import net.neoforged.neoforge.event.tick.EntityTickEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
+import cn.solarmoon.spark_core.util.toVec3
 
 object EntityHitApplier {
 
@@ -68,7 +62,7 @@ object EntityHitApplier {
         anim.apply {
             onEvent<AnimEvent.SwitchIn> {
                 val entity = holder.animatable as? Entity ?: return@onEvent
-                if (index.name.contains("knockdown")) entity.isKnockedDown = true
+                if (animIndex.index.path.contains("knockdown")) entity.isKnockedDown = true
                 entity.isHitting = true
                 entity.setCameraLock(true)
                 entity.preInput.disable()
@@ -87,7 +81,7 @@ object EntityHitApplier {
                 entity.preInput.enable()
                 entity.isHitting = false
                 entity.setCameraLock(false)
-                if (index.name.contains("knockdown")) entity.isKnockedDown = false
+                if (animIndex.index.path.contains("knockdown")) entity.isKnockedDown = false
             }
         }
     }

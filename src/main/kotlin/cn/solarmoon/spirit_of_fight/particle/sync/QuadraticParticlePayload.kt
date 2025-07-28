@@ -4,7 +4,6 @@ import cn.solarmoon.spark_core.data.SerializeHelper
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.particle.ParticlePresets
-import cn.solarmoon.spirit_of_fight.sync.MoveDirectionPayload
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.network.codec.ByteBufCodecs
