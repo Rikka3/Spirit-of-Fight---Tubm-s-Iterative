@@ -1,6 +1,5 @@
 package cn.solarmoon.spirit_of_fight.skill.tree.node
 
-import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.skill.SkillManager
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition
@@ -26,7 +25,7 @@ open class CommonNode(
 
     override val name = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.name")
     override val description = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.description")
-    override val icon: ResourceLocation = SparkResourcePathBuilder.buildResourcePath(skillLocation.namespace,skillLocation.namespace,"textures","skill/${skillLocation.path}")
+    override val icon: ResourceLocation = ResourceLocation.fromNamespaceAndPath(skillLocation.namespace, "textures/skill/${skillLocation.path}.png")
 
     override fun onEntry(host: Player, level: Level, tree: SkillTree): Boolean {
         tree.currentSkill = SkillManager[skillLocation]!!.createSkill(host, level, true)
