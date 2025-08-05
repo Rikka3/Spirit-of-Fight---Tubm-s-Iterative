@@ -10,7 +10,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers
 object SOFGuiRegister {
 
     fun reg(event: RegisterGuiLayersEvent) {
-        event.registerAbove(VanillaGuiLayers.CROSSHAIR, id("fight_spirit"), FightSpiritGui())
+        event.registerAbove(VanillaGuiLayers.CROSSHAIR, id("fight_spirit"), FightSpiritGui)
     }
 
     private fun id(name: String): ResourceLocation {

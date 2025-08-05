@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
-import net.minecraft.util.Mth
 import net.neoforged.neoforge.network.PacketDistributor
 
 class FightSpirit(
@@ -13,8 +12,6 @@ class FightSpirit(
     var fadeTick: Int = 0,
     var maxTickToFade: Int = 300
 ) {
-
-    var valueCache = 0
 
     val shouldFade get() = value > 0 && fadeTick >= maxTickToFade
     val isFull get() = value >= maxValue
@@ -25,14 +22,6 @@ class FightSpirit(
         maxValue = spirit.maxValue
         fadeTick = spirit.fadeTick
         maxTickToFade = spirit.maxTickToFade
-    }
-
-    fun getProgress(partialTicks: Float = 1f): Float {
-        return (Mth.lerp(partialTicks, valueCache.toFloat(), value.toFloat()) / maxValue).coerceIn(0f, 1f)
-    }
-
-    private fun updateCache() {
-        valueCache = value
     }
 
     fun addStage(amount: Int) {
@@ -55,7 +44,6 @@ class FightSpirit(
     }
 
     fun tick() {
-        updateCache()
         if (value > 0) {
             if (shouldFade) {
                 value--

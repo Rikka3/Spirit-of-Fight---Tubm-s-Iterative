@@ -7,12 +7,22 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.LayeredDraw
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Mth
+import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.neoforge.client.event.ClientTickEvent
 
-class FightSpiritGui: LayeredDraw.Layer {
+object FightSpiritGui: LayeredDraw.Layer {
 
-    companion object {
-        val EMPTY = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/fight_spirit_empty.png")
-        val FULL = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/fight_spirit_full.png")
+    val EMPTY = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/fight_spirit_empty.png")
+    val FULL = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/fight_spirit_full.png")
+
+    var valueCache = 0
+
+    @SubscribeEvent
+    private fun tick(event: ClientTickEvent.Pre) {
+        val player = Minecraft.getInstance().player ?: return
+        val fs = player.getFightSpirit()
+        valueCache = fs.value
     }
 
     override fun render(
@@ -39,6 +49,10 @@ class FightSpiritGui: LayeredDraw.Layer {
         poseStack.popPose()
 
         RenderSystem.disableBlend()
+    }
+
+    private fun FightSpirit.getProgress(partialTicks: Float = 1f): Float {
+        return (Mth.lerp(partialTicks, valueCache.toFloat(), value.toFloat()) / maxValue).coerceIn(0f, 1f)
     }
 
 }
