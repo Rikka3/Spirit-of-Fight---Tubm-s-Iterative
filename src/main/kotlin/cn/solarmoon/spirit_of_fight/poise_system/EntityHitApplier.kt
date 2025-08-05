@@ -5,6 +5,7 @@ import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
 import cn.solarmoon.spark_core.camera.setCameraLock
+import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
 import cn.solarmoon.spark_core.entity.getLateralSide
 import cn.solarmoon.spark_core.entity.getSide
 import cn.solarmoon.spark_core.util.Key
@@ -30,16 +31,17 @@ object EntityHitApplier {
         if (victim !is IEntityAnimatable<*>) return
         val source = event.source
         val sourcePos = source.sourcePosition ?: return
-        val attackData = source.extraData ?: return
+        val attackData = source.extraData
+        val collisionData = attackData.read(SparkHurtDatas.COLLISION) ?: return
 
         val hitType = HitType(SOFHitTypes.KNOCKDOWN_CHOP.name.lowercase(), 100)
         val strength = hitType.poiseDamage
         val poiseData = victim.poise
 
         if (poiseData.reduce(strength)) {
-            val hitSide = victim.getLateralSide(attackData.damagedBody.getPhysicsLocation(Vector3f()).toVec3())
+            val hitSide = victim.getLateralSide(collisionData.damagedBody.getPhysicsLocation(Vector3f()).toVec3())
             val posSide = victim.getSide(sourcePos)
-            attackData.damagedBody.let {
+            collisionData.damagedBody.let {
                 val boneName = it.name
                 NeoForge.EVENT_BUS.post(GetHitAnimationEvent(victim, hitType, boneName, posSide, hitSide)).resultHitAnim?.apply {
                     if (exist()) {

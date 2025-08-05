@@ -1,45 +1,47 @@
-Skill.create("spirit_of_fight:sword.single_wield.combo_1", builder => {
+Skill.create("spirit_of_fight:sword.special_wield.combo_1", builder => {
+    builder.acceptConfig(config => {
+        config.set("can_critical_hit", false)
+        config.set("can_sweep_attack", false)
+        config.set("ignore_attack_speed", true)
+        config.set("target_knockback_strength", 0.25)
+        config.set("damage_multiplier", 1)
+    })
     builder.accept(skill => {
+        const name = skill.getLocation().getPath()
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
+        const attackSystem = PhysicsHelper.createAttackSystem()
+        const trailMesh = SOFHelper.createTrailMesh("minecraft:textures/block/stone.png", 5, 0xFFFFFF)
+        var count = 0
 
         if (entity == null || animatable == null) return
 
-        const config = skill.getConfig()
-        config.setCanCriticalHit(false)
-        config.setCanSweepAttack(false)
-        config.setIgnoreAttackSpeed(true)
-        config.setDamageMultiplier(1)
-
-        const anim = animatable.createAnimation('spirit_of_fight:spirit_of_fight/animations/player/fight_skill/fightskill_sword','sword.single_wield.combo_1')
+        const anim = animatable.createAnimation('spirit_of_fight:spirit_of_fight/animations/player/fight_skill/fightskill_sword', name)
         anim.setShouldTurnBody(true)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -0.75))
-        // 创建全局 AttackSystem 用于管理攻击状态
-        const globalAttackSystem = PhysicsHelper.createAttackSystem()
-
-        // 跟踪当前攻击段
-        let currentAttackPhase = 0 // 0: 无攻击, 1: 第一段, 2: 第二段
         attackBody.onAttackCollide('attack', {
-            preAttack: (isFirst, attacker, target, o1, o2, manifoldId, attackSystem) => {
+            preAttack: (isFirst, attacker, target, o1, o2, manifoldId) => {
                 skill.addTarget(target)
                 if (isFirst) {
                     entity.cameraShake(2, 1, 2)
-                    animatable.changeSpeed(7, 0.05)
                 }
                 entity.addFightSpirit(50)
             },
-            doAttack: (attacker, target, o1, o2, manifoldId, attackSystem) => {
+            doAttack: (attacker, target, o1, o2, manifoldId) => {
                 entity.commonAttack(target)
             },
-            postAttack: (attacker, target, o1, o2, manifoldId, attackSystem) => {
+            postAttack: (attacker, target, o1, o2, manifoldId) => {
                 skill.removeTarget(target)
             }
-        }, globalAttackSystem)
+        }, attackSystem)
 
         attackBody.onCollisionActive(() => {
+            if (count == 0) entity.move(SpMath.vec3(0.0, entity.getDeltaMovement().y, 0.3), false)
             entity.setCameraLock(true)
+            attackSystem.reset()
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 1.1)
+            count++
         })
 
         skill.onTargetActualHurtPost(event => {
@@ -53,27 +55,19 @@ Skill.create("spirit_of_fight:sword.single_wield.combo_1", builder => {
 
         skill.onActiveStart(() => {
             animatable.playAnimation(anim, 0)
-            // 技能开始时重置 AttackSystem 和攻击段
-            currentAttackPhase = 0
-            globalAttackSystem.reset()
-            entity.log("[DBG] Skill started - AttackSystem and phase reset")
         })
 
         skill.onActive(() => {
             const animTime = anim.getTime()
-            if (animTime >= 0.2 && animTime <= 0.3) {
-                entity.move(SpMath.vec3(0.0, entity.getDeltaMovement().y, 0.25), false)
-            }
 
-            if (animTime >= 0.3 && animTime <= 0.55) {
-                Logger.info("[DBG] Attack phase: " + currentAttackPhase)
+            if ((animTime >= 0.25 && animTime <= 0.35) || (animTime >= 0.45 && animTime <= 0.8)) {
+                animatable.summonTrail(trailMesh, "rightItem", SpMath.vec3(0.0, 0.0, -0.5), SpMath.vec3(0.0, 0.0, -1.0))
                 attackBody.setCollideWithGroups(1)
             } else {
-                Logger.info("[DBG] Attack phase: " + currentAttackPhase)
                 attackBody.setCollideWithGroups(0)
             }
 
-            if (animTime >= 0.6) {
+            if (animTime >= 0.85) {
                 entity.getPreInput().execute()
             }
         })

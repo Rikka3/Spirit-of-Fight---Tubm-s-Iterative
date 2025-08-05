@@ -22,7 +22,6 @@ class KeyInputCondition(
         return keyMap.all { (key, event) ->
             val key = KeyMappingHelper.get(key) ?: throw NullPointerException("不存在注册名为 $key 的键位")
             key.onEvent(event) { time ->
-                host.chargingTime = time
                 (activeTime.isEmpty() || activeTime.any { time in it.x..it.y }) && !(PlayerLocalController.guardKeyConflict() && host.isUsingItem)
             }
         }

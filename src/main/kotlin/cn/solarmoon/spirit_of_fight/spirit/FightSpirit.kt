@@ -19,7 +19,7 @@ class FightSpirit(
     val shouldFade get() = value > 0 && fadeTick >= maxTickToFade
     val isFull get() = value >= maxValue
 
-    fun reset(spirit: FightSpirit) {
+    fun refresh(spirit: FightSpirit) {
         value = spirit.value
         maxValue = spirit.maxValue
         fadeTick = spirit.fadeTick
@@ -38,6 +38,13 @@ class FightSpirit(
         fadeTick = 0
         if (value < maxValue) {
             value = (value + amount).coerceIn(0, maxValue)
+        }
+    }
+
+    fun removeStage(amount: Int) {
+        fadeTick = 0
+        if (value > 0) {
+            value = (value - amount).coerceIn(0, maxValue)
         }
     }
 

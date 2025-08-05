@@ -39,12 +39,12 @@ object PlayerLocalController {
         if (player.moveDirection != direction) PacketDistributor.sendToServer(MoveDirectionPayload(player.id, direction?.ordinal ?: -1))
         player.moveDirection = direction
 
-//        // 移动加入预输入
-//        if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
-//            player.preInput.setInput(SOFPreInputs.MOVE, 1, -1) {
-//                player.animController.stopAnimation()
-//            }
-//        }
+        // 移动加入预输入
+        if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
+            player.preInput.setInput(SOFPreInputs.MOVE, 1, -1) {
+                player.animController.stopAnimation()
+            }
+        }
 
         // 把跳跃加入预输入防止卡手
         if (player.isPlayingSkill && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {

@@ -7,7 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Player
 
-class HoldCondition(
+class WieldCondition(
     val wieldStyle: WieldStyle
 ): SkillTreeCondition {
 
@@ -24,10 +24,10 @@ class HoldCondition(
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 
     companion object {
-        val CODEC: MapCodec<HoldCondition> = RecordCodecBuilder.mapCodec {
+        val CODEC: MapCodec<WieldCondition> = RecordCodecBuilder.mapCodec {
             it.group(
                 WieldStyle.CODEC.fieldOf("hold").forGetter { it.wieldStyle }
-            ).apply(it, ::HoldCondition)
+            ).apply(it, ::WieldCondition)
         }
     }
 

@@ -97,7 +97,6 @@ class SkillTree(
         reserveTime = 0
         currentSkill = null
         currentNode = null
-        player.chargingTime = 0
     }
 
     fun getNodeByPath(path: MutableList<Int>): SkillTreeNode? {

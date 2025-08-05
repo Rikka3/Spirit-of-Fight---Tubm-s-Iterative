@@ -5,7 +5,6 @@ import cn.solarmoon.spirit_of_fight.entity.IEntityPatch;
 import cn.solarmoon.spirit_of_fight.entity.WieldStyle;
 import cn.solarmoon.spirit_of_fight.entity.grab.GrabManager;
 import cn.solarmoon.spirit_of_fight.poise_system.PoiseData;
-import cn.solarmoon.spirit_of_fight.skill.tree.SkillTreeSet;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +16,6 @@ public class EntityMixin implements IEntityPatch {
     private final Entity entity = (Entity) (Object) this;
     private MoveDirection side;
     private final GrabManager grabManager = new GrabManager((Entity) (Object) this);
-    private SkillTreeSet treeSet;
     private boolean hitting = false;
     private boolean knockDown = false;
     private int chargingTime = 0;
@@ -40,16 +38,6 @@ public class EntityMixin implements IEntityPatch {
     }
 
     @Override
-    public @Nullable SkillTreeSet getCurrentSkillSet() {
-        return treeSet;
-    }
-
-    @Override
-    public void setCurrentSkillSet(@Nullable SkillTreeSet skillTrees) {
-        treeSet = skillTrees;
-    }
-
-    @Override
     public boolean isHitting() {
         return hitting;
     }
@@ -67,16 +55,6 @@ public class EntityMixin implements IEntityPatch {
     @Override
     public void setKnockedDown(boolean b) {
         knockDown = b;
-    }
-
-    @Override
-    public int getChargingTime() {
-        return chargingTime;
-    }
-
-    @Override
-    public void setChargingTime(int i) {
-        chargingTime = i;
     }
 
     @Override

@@ -21,7 +21,7 @@ data class FightSpiritPayload(
         fun handleInClient(payload: FightSpiritPayload, context: IPayloadContext) {
             val level = context.player().level()
             val entity = level.getEntity(payload.entityId) ?: return
-            entity.getFightSpirit().reset(payload.spirit)
+            entity.getFightSpirit().refresh(payload.spirit)
         }
 
         @JvmStatic

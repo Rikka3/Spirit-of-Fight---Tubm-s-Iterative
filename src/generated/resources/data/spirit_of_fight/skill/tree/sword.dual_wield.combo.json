@@ -30,7 +30,7 @@
                 }
               ],
               "pre_input_id": "attack",
-              "skill": "spirit_of_fight:sword.dual_wield.combo_3"
+              "skill": "spirit_of_fight:sword.special_wield.combo_3"
             }
           ],
           "conditions": [
@@ -53,7 +53,7 @@
           ],
           "pre_input_id": "attack",
           "reserve_time": 10,
-          "skill": "spirit_of_fight:sword.dual_wield.combo_2"
+          "skill": "spirit_of_fight:sword.special_wield.combo_2"
         }
       ],
       "conditions": [
@@ -76,7 +76,7 @@
       ],
       "pre_input_id": "attack",
       "reserve_time": 10,
-      "skill": "spirit_of_fight:sword.dual_wield.combo_1"
+      "skill": "spirit_of_fight:sword.special_wield.combo_1"
     }
   ]
 }

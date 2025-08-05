@@ -1,7 +1,5 @@
 Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder => {
     builder.acceptConfig(config => {
-        config.put('enable_perfect_dodge', true)
-        config.put('max_perfect_dodge_times', 1)
     })
     builder.accept(skill => {
         const entity = skill.getHolderWrapper().asEntity()
@@ -27,7 +25,7 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
                 entity.move(SpMath.vec3(0.0, entity.getDeltaMovement().y, 1.25), true)
             }
 
-            if (animTime >= 0.35) {
+            if (animTime >= 0.3) {
                 entity.getPreInput().executeExcept("dodge")
             }
         })

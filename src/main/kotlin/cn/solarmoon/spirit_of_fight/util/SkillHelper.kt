@@ -2,8 +2,12 @@ package cn.solarmoon.spirit_of_fight.util
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
+import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
+import cn.solarmoon.spark_core.registry.common.SparkRegistries
+import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spark_core.util.toVec3
+import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import com.jme3.bullet.collision.ManifoldPoints
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.math.Vector3f
@@ -13,13 +17,13 @@ import net.minecraft.world.phys.Vec3
 object SkillHelper {
 
     fun guard(damageSource: DamageSource, guardBody: PhysicsCollisionObject, onGuard: (PhysicsCollisionObject?, Vec3) -> Unit = {_, _ -> }) {
-        val damagedBody = damageSource.extraData?.damagedBody
+        val damagedBody = damageSource.extraData.read(SparkHurtDatas.COLLISION)?.damagedBody
         val sourcePos = damageSource.sourcePosition
 
         if (guardBody.collideWithGroups != 0) {
             if (damagedBody != null && damagedBody == guardBody) {
                 val hitPos = damagedBody.getPhysicsLocation(Vector3f())
-                    .apply { damageSource.extraData?.manifoldId?.let { ManifoldPoints.getPositionWorldOnA(it, this) } }
+                    .apply { damageSource.extraData.read(SparkHurtDatas.COLLISION)?.manifoldId?.let { ManifoldPoints.getPositionWorldOnA(it, this) } }
                     .toVec3()
                 onGuard.invoke(damagedBody, hitPos)
             } else if (sourcePos != null) {
@@ -40,7 +44,8 @@ object SkillHelper {
 
     fun createAnimByDirection(animatable: IEntityAnimatable<*>, animBaseName: String, default: MoveDirection): AnimInstance {
         val direction = animatable.animatable.moveDirection ?: default
-        return AnimInstance.create(animatable, "${animBaseName}.${direction.toString().lowercase()}")
+        val animPath = SparkResourcePathBuilder.buildAnimationPath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "player", "${animBaseName}.${direction.toString().lowercase()}")
+        return SparkRegistries.TYPED_ANIMATION[animPath]!!.create(animatable)
     }
 
 }

@@ -10,7 +10,7 @@ class DodgeSkill: Skill() {
     var perfectDodgeCheck = 0
 
     fun perfectDodge(event: LivingIncomingDamageEvent) {
-        val maxPerfectDodgeTimes = (config["max_perfect_dodge_times"] as? Double)?.toInt() ?: 0
+        val maxPerfectDodgeTimes = (config.read("max_perfect_dodge_times", 1.0))
         if (perfectDodgeCheck < maxPerfectDodgeTimes) {
             triggerEvent(PerfectDodge(event))
             perfectDodgeCheck++

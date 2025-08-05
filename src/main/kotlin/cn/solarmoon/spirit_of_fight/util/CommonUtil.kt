@@ -2,7 +2,6 @@ package cn.solarmoon.spirit_of_fight.util
 
 import net.minecraft.client.gui.Font
 import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.FormattedText
 import net.minecraft.world.item.crafting.Ingredient
 

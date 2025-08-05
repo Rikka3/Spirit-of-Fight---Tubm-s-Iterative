@@ -1,4 +1,10 @@
 Skill.create("spirit_of_fight:sword.switch_attack", builder => {
+    builder.acceptConfig(config => {
+        config.set("can_critical_hit", false)
+        config.set("can_sweep_attack", false)
+        config.set("ignore_attack_speed", true)
+        config.set("damage_multiplier", 0.25)
+    })
     builder.accept(skill => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
@@ -6,21 +12,12 @@ Skill.create("spirit_of_fight:sword.switch_attack", builder => {
 
         if (entity == null || animatable == null) return
 
-        const config = skill.getConfig()
-        config.setCanCriticalHit(false)
-        config.setCanSweepAttack(false)
-        config.setIgnoreAttackSpeed(true)
-        config.setDamageMultiplier(1)
-
         const anim = animatable.createAnimation('spirit_of_fight:spirit_of_fight/animations/player/fight_skill/fightskill_sword','sword.switch_attack')
         anim.setShouldTurnBody(true)
-        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -0.75))
+        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'leftItem', SpMath.vec3(1.0, 1.0, 1.0), SpMath.vec3(0.0, 0.0, -0.75))
         
         // 创建全局 AttackSystem 用于管理攻击状态
         const globalAttackSystem = PhysicsHelper.createAttackSystem()
-        
-        // 跟踪当前攻击段
-        let currentAttackPhase = 0 // 0: 无攻击, 1: 第一段, 2: 第二段
 
         attackBody.onAttackCollide('attack', {
             preAttack: (isFirst, attacker, target, o1, o2, manifoldId, attackSystem) => {
@@ -68,17 +65,8 @@ Skill.create("spirit_of_fight:sword.switch_attack", builder => {
 
             // 攻击段管理和 AttackSystem 重置
             if (animTime >= 0.3 && animTime <= 0.45) {
-                // 攻击段
-                if (currentAttackPhase !== 1) {
-                    currentAttackPhase = 1
-                    globalAttackSystem.reset()
-                }
                 attackBody.setCollideWithGroups(1)
             } else {
-                // 非攻击时段
-                if (currentAttackPhase !== 0) {
-                    currentAttackPhase = 0
-                }
                 attackBody.setCollideWithGroups(0)
             }
 

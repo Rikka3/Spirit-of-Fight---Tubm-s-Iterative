@@ -6,7 +6,6 @@ import net.neoforged.bus.api.IEventBus
 object SOFMolangQueryRegister {
 
     private fun reg(event: MolangQueryRegisterEvent) {
-        event.binding.entityVar("charging_time") { it.animatable.chargingTime }
     }
 
     @JvmStatic
