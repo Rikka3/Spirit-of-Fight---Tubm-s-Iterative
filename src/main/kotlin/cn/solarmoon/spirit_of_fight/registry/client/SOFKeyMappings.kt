@@ -10,10 +10,9 @@ object SOFKeyMappings {
     fun register() {}
 
     @JvmStatic
-    val GUARD = SpiritOfFight.REGISTER.keyMapping()
-        .id("guard")
-        .bound(GLFW.GLFW_MOUSE_BUTTON_RIGHT)
-        .type(InputConstants.Type.MOUSE)
+    val BLOCK = SpiritOfFight.REGISTER.keyMapping()
+        .id("block")
+        .bound(GLFW.GLFW_KEY_R)
         .build()
 
     @JvmStatic

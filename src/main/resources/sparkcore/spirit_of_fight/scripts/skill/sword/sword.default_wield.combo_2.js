@@ -62,7 +62,6 @@ Skill.create("spirit_of_fight:sword.default_wield.combo_2", builder => {
         skill.onActive(() => {
             const animTime = anim.getTime()
 
-            // 攻击段管理和 AttackSystem 重置
             if ((animTime >= 0.2 && animTime <= 0.4) || (animTime >= 0.45 && animTime <= 0.65)) {
                 animatable.summonTrail(trailMesh, "rightItem", SpMath.vec3(0.0, 0.0, -0.5), SpMath.vec3(0.0, 0.0, -1.0))
                 attackBody.setCollideWithGroups(1)

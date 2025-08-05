@@ -87,7 +87,7 @@ object PlayerLocalController {
         else attackKey.getPressTickTime() <= 3
     }
 
-    fun guardKeyConflict() = SOFKeyMappings.GUARD.isDown && SOFKeyMappings.GUARD.key.value == Minecraft.getInstance().options.keyUse.key.value
+    fun guardKeyConflict() = SOFKeyMappings.BLOCK.isDown && SOFKeyMappings.BLOCK.key.value == Minecraft.getInstance().options.keyUse.key.value
 
     @SubscribeEvent
     private fun fpa(event: PlayerRenderAnimInFirstPersonEvent) {

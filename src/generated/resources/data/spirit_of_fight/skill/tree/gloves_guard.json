@@ -14,7 +14,7 @@
               "condition": {
                 "type": "spirit_of_fight:key_input",
                 "map": {
-                  "key.spirit_of_fight.guard": "press"
+                  "key.spirit_of_fight.block": "press"
                 }
               }
             }
@@ -25,7 +25,7 @@
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.spirit_of_fight.guard": "press"
+            "key.spirit_of_fight.block": "press"
           }
         }
       ],

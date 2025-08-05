@@ -186,19 +186,19 @@ class SOFSkillTrees(
                     Ingredient.of(ItemTags.SWORDS),
                     listOf(
                         CommonNode(
-                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         ),
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
-                            SOFSkillTypes.SWORD_GUARD,
+                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
+                            SOFSkillTypes.SWORD_BLOCK,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         )
                     )
@@ -289,11 +289,11 @@ class SOFSkillTrees(
                     Ingredient.of(SOFItemTags.FORGE_GLOVES),
                     listOf(
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.GLOVES_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         )
                     )
@@ -427,11 +427,11 @@ class SOFSkillTrees(
                     Ingredient.of(SOFItemTags.FORGE_HAMMER),
                     listOf(
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.HAMMER_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         )
                     )
@@ -543,19 +543,19 @@ class SOFSkillTrees(
                     Ingredient.of(ItemTags.AXES),
                     listOf(
                         CommonNode(
-                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         ),
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.AXE_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         )
                     )
@@ -682,19 +682,19 @@ class SOFSkillTrees(
                     Ingredient.of(Tags.Items.TOOLS_MACE),
                     listOf(
                         CommonNode(
-                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.SHIELD_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         ),
                         CommonNode(
-                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS))),
+                            listOf(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS))),
                             SOFSkillTypes.MACE_GUARD,
                             SOFPreInputs.GUARD,
                             children = listOf(
-                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.GUARD.name to KeyEvent.PRESS)))))
+                                StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf(SOFKeyMappings.BLOCK.name to KeyEvent.PRESS)))))
                             )
                         )
                     )

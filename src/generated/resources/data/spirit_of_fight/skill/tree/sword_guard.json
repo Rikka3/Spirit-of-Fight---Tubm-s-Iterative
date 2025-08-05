@@ -14,7 +14,7 @@
               "condition": {
                 "type": "spirit_of_fight:key_input",
                 "map": {
-                  "key.spirit_of_fight.guard": "press"
+                  "key.spirit_of_fight.block": "press"
                 }
               }
             }
@@ -31,7 +31,7 @@
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.spirit_of_fight.guard": "press"
+            "key.spirit_of_fight.block": "press"
           }
         }
       ],
@@ -49,7 +49,7 @@
               "condition": {
                 "type": "spirit_of_fight:key_input",
                 "map": {
-                  "key.spirit_of_fight.guard": "press"
+                  "key.spirit_of_fight.block": "press"
                 }
               }
             }
@@ -60,12 +60,12 @@
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.spirit_of_fight.guard": "press"
+            "key.spirit_of_fight.block": "press"
           }
         }
       ],
       "pre_input_id": "guard",
-      "skill": "spirit_of_fight:sword.guard"
+      "skill": "spirit_of_fight:sword.block"
     }
   ]
 }
