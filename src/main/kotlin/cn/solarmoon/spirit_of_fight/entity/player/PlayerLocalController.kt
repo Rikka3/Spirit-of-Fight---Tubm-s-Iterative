@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.entity.player
 
+import cn.solarmoon.spark_core.animation.anim.play.layer.getMainLayer
 import cn.solarmoon.spark_core.event.PlayerRenderAnimInFirstPersonEvent
 import cn.solarmoon.spark_core.local_control.KeyEvent
 import cn.solarmoon.spark_core.local_control.getPressTickTime
@@ -27,7 +28,7 @@ object PlayerLocalController {
         val player = event.entity
         val input = event.input
 
-        SOFKeyMappings.OPEN_SKILL_TREE.onEvent(KeyEvent.PRESS_ONCE) {
+        SOFKeyMappings.OPEN_SKILL_TREE.get().onEvent(KeyEvent.PRESS_ONCE) {
             player.currentSkillSet?.let {
                 Minecraft.getInstance().setScreen(SkillTreeSetScreen(it))
             }
@@ -42,13 +43,14 @@ object PlayerLocalController {
         // 移动加入预输入
         if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
             player.preInput.setInput(SOFPreInputs.MOVE, 1, -1) {
-                player.animController.stopAnimation()
+                player.animController.getMainLayer().stopAnimation()
             }
         }
 
         // 把跳跃加入预输入防止卡手
         if (player.isPlayingSkill && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
             player.preInput.setInput(SOFPreInputs.JUMP, 5) {
+                player.animController.getMainLayer().stopAnimation()
                 player.jumping = true
                 player.jumpFromGround()
             }
@@ -87,7 +89,7 @@ object PlayerLocalController {
         else attackKey.getPressTickTime() <= 3
     }
 
-    fun guardKeyConflict() = SOFKeyMappings.BLOCK.isDown && SOFKeyMappings.BLOCK.key.value == Minecraft.getInstance().options.keyUse.key.value
+    fun guardKeyConflict() = SOFKeyMappings.BLOCK.get().isDown && SOFKeyMappings.BLOCK.get().key.value == Minecraft.getInstance().options.keyUse.key.value
 
     @SubscribeEvent
     private fun fpa(event: PlayerRenderAnimInFirstPersonEvent) {

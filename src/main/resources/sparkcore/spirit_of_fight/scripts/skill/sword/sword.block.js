@@ -1,14 +1,14 @@
 Skill.createBy("spirit_of_fight:sword.block", "spirit_of_fight:block", builder => {
     builder.acceptConfig(config => {
-        config.set("anim_path", "sword.block")
-        config.set("hurt_movement", SpMath.vec3(0.0, 0.0, 1.0))
+        config.set("anim_path", "minecraft:player/sword.block")
+        config.set("hurt_movement", [0.0, 0.0, 1.0])
     })
     builder.accept(skill => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
         const config = skill.getConfig()
-        config.set("block_body", PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', SpMath.vec3(1.0, 1.0, 2.0), SpMath.vec3(0.0, 0.0, -0.75), body => { body.setCollideWithGroups(1) }))
+        config.set("block_body", PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.0, 1.0, 2.0], [0.0, 0.0, -0.75], body => { body.setCollideWithGroups(1) }))
 
 
         if (entity == null || animatable == null) return
@@ -28,11 +28,11 @@ Skill.createBy("spirit_of_fight:sword.block", "spirit_of_fight:block", builder =
             const runTime = skill.getTickCount()
             if (runTime >= 0 && runTime <= 10) skill.readyPrecisionBlock()
 
-            entity.getPreInput().executeExcept("move", "guard")
+            entity.getPreInput().executeExcept("move", "guard", "jump")
         })
 
         skill.onLocalInputUpdate(event => {
-            EntityHelper.preventLocalInput(event)
+            SOFHelper.preventLocalInputExceptMove(event, 1.5)
         })
     })
 })

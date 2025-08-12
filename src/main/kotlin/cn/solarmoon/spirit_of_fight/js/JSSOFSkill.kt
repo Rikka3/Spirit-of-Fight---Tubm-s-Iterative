@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.js
 
 import cn.solarmoon.spark_core.js.call
 import cn.solarmoon.spark_core.js.extension.JSSkill
+import cn.solarmoon.spark_core.js.toNativeArray
 import cn.solarmoon.spirit_of_fight.skill.BlockSkill
 import cn.solarmoon.spirit_of_fight.skill.DodgeSkill
 import org.mozilla.javascript.Function
@@ -12,12 +13,12 @@ interface JSSOFSkill: JSSkill {
         consumer.call(js, it.event, (skill as? DodgeSkill)?.perfectDodgeCheck ?: 0)
     }
 
-    fun onBlockHurt(consumer: Function) = skill.onEvent<BlockSkill.BlockHurt> {
-        consumer.call(js, it.event, it.hitPos)
+    fun onBlockHurt(consumer: Function) = skill.onEvent<BlockSkill.Hurt> {
+        consumer.call(js, it.event, it.hitPos.toNativeArray())
     }
 
     fun onPrecisionBlock(consumer: Function) = skill.onEvent<BlockSkill.PrecisionBlock> {
-        consumer.call(js, it.event, it.hitPos)
+        consumer.call(js, it.event, it.hitPos.toNativeArray())
     }
 
 }

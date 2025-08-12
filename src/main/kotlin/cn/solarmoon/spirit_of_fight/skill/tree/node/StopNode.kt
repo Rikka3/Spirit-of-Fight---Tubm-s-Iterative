@@ -27,7 +27,7 @@ class StopNode(
     override val icon: ResourceLocation = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/skill/stop.png")
 
     override fun match(player: Player, skill: Skill?): Boolean {
-        return skill?.canTransitionTo(SkillPhase.END) == true && super.match(player, skill)
+        return skill?.transitionGuard(SkillPhase.END) == true && super.match(player, skill)
     }
 
     override fun onEntry(host: Player, level: Level, tree: SkillTree): Boolean {

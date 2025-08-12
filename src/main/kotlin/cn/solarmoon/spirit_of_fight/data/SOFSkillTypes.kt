@@ -1,6 +1,7 @@
 package cn.solarmoon.spirit_of_fight.data
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
+import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import net.minecraft.resources.ResourceLocation
 
 object SOFSkillTypes {
@@ -8,18 +9,26 @@ object SOFSkillTypes {
     val SHIELD_COMBO_C0 = sofKey("shield_combo_c0")
     val SHIELD_GUARD = sofKey("shield_guard")
 
-    val SWORD_DEFAULT_WIELD_COMBO_1 = sofKey("sword.default_wield.combo_1")
-    val SWORD_DEFAULT_WIELD_COMBO_2 = sofKey("sword.default_wield.combo_2")
-    val SWORD_DEFAULT_WIELD_COMBO_3 = sofKey("sword.default_wield.combo_3")
-    val SWORD_SPECIAL_WIELD_COMBO_1 = sofKey("sword.special_wield.combo_1")
-    val SWORD_SPECIAL_WIELD_COMBO_2 = sofKey("sword.special_wield.combo_2")
-    val SWORD_SPECIAL_WIELD_COMBO_3 = sofKey("sword.special_wield.combo_3")
+    val SWORD_DEFAULT_COMBO_1 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_1")
+    val SWORD_DEFAULT_COMBO_2 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_2")
+    val SWORD_DEFAULT_COMBO_3 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_3")
+    val SWORD_DEFAULT_SPRINT_ATTACK = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.sprint_attack")
+    val SWORD_SPECIAL_COMBO_1 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_1")
+    val SWORD_SPECIAL_COMBO_2 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_2")
+    val SWORD_SPECIAL_COMBO_3 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_3")
+    val SWORD_SPECIAL_SPRINT_ATTACK = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.sprint_attack")
     val SWORD_SHIELD_COMBO_C1 = sofKey("sword_shield_combo_c1")
-    val SWORD_SPRINT_ATTACK = sofKey("sword_dash_attack")
     val SWORD_JUMP_ATTACK = sofKey("sword_jump_attack")
     val SWORD_DODGE = sofKey("sword.dodge")
     val SWORD_BLOCK = sofKey("sword.block")
     val SWORD_SWITCH_ATTACK = sofKey("sword.switch_attack")
+
+    val SPEAR_DEFAULT_COMBO_1 = sofKey("spear.${WieldStyle.DEFAULT.serializedName}.combo_1")
+    val SPEAR_DEFAULT_COMBO_2 = sofKey("spear.${WieldStyle.DEFAULT.serializedName}.combo_2")
+    val SPEAR_DEFAULT_COMBO_3 = sofKey("spear.${WieldStyle.DEFAULT.serializedName}.combo_3")
+    val SPEAR_SPECIAL_COMBO_1 = sofKey("spear.${WieldStyle.SPECIAL.serializedName}.combo_1")
+    val SPEAR_SPECIAL_COMBO_2 = sofKey("spear.${WieldStyle.SPECIAL.serializedName}.combo_2")
+    val SPEAR_SPECIAL_COMBO_3 = sofKey("spear.${WieldStyle.SPECIAL.serializedName}.combo_3")
 
     val HAMMER_COMBO_0 = sofKey("hammer_combo_0")
     val HAMMER_COMBO_1 = sofKey("hammer_combo_1")

@@ -4,6 +4,8 @@ import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.animation.anim.play.AnimEvent
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
+import cn.solarmoon.spark_core.animation.anim.play.layer.AnimLayerData
+import cn.solarmoon.spark_core.animation.anim.play.layer.DefaultLayer
 import cn.solarmoon.spark_core.camera.setCameraLock
 import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
 import cn.solarmoon.spark_core.entity.getLateralSide
@@ -45,8 +47,8 @@ object EntityHitApplier {
                 val boneName = it.name
                 NeoForge.EVENT_BUS.post(GetHitAnimationEvent(victim, hitType, boneName, posSide, hitSide)).resultHitAnim?.apply {
                     if (exist()) {
-                        play(victim, 0)
-                        playToClient(victim.id, 0)
+                        play(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
+                        playToClient(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
                     } else SparkCore.LOGGER.warn("${victim.type} 缺少受击动画：${index}")
                 }
             }
@@ -70,20 +72,19 @@ object EntityHitApplier {
                 if (animIndex.index.path.contains("knockdown")) entity.isKnockedDown = true
                 entity.isHitting = true
                 entity.setCameraLock(true)
-                entity.preInput.disable()
+                entity.preInput.lock()
             }
 
             onEvent<AnimEvent.Tick> {
                 val entity = holder.animatable as? Entity ?: return@onEvent
                 if (time >= origin.animationLength / 2) {
-                    entity.preInput.allowInput(SOFPreInputs.DODGE)
+                    entity.preInput.executeIfPresent(SOFPreInputs.DODGE)
                 }
             }
 
             onEvent<AnimEvent.End> {
                 val entity = holder.animatable as? Entity ?: return@onEvent
-                entity.preInput.disallowInput(SOFPreInputs.DODGE)
-                entity.preInput.enable()
+                entity.preInput.unlock()
                 entity.isHitting = false
                 entity.setCameraLock(false)
                 if (animIndex.index.path.contains("knockdown")) entity.isKnockedDown = false
@@ -117,8 +118,8 @@ object EntityHitApplier {
         if (entity !is IEntityAnimatable<*>) return
         if (event.source.typeHolder().`is`(DamageTypes.FALL) && event.newDamage > 0) {
             SOFTypedAnimations.PLAYER_HIT_LANDING.get().apply {
-                play(entity, 0)
-                playToClient(entity.id, 0)
+//                play(entity, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
+//                playToClient(entity, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
             }
         }
     }

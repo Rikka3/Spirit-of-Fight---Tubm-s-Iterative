@@ -1,18 +1,12 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
-import cn.solarmoon.spark_core.SparkCore
-import cn.solarmoon.spark_core.animation.model.origin.OModel
-import cn.solarmoon.spark_core.molang.core.builtin.QueryBinding
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.data.SOFBlockTags
 import cn.solarmoon.spirit_of_fight.data.SOFItemModelProvider
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.data.SOFLanguageProvider
-import cn.solarmoon.spirit_of_fight.data.SOFSkillTrees
 import cn.solarmoon.spirit_of_fight.data.SOFSoundProvider
-import cn.solarmoon.spirit_of_fight.data.skills.VindicatorSkill
-import com.mojang.serialization.JsonOps
-import kotlinx.serialization.json.Json
+import cn.solarmoon.spirit_of_fight.data.skill_trees.SOFSkillTrees
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.data.DataProvider
 import net.neoforged.bus.api.IEventBus

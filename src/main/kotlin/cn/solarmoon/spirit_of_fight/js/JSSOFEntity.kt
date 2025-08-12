@@ -1,11 +1,12 @@
 package cn.solarmoon.spirit_of_fight.js
 
-import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.js.extension.JSEntity
-import cn.solarmoon.spark_core.visual_effect.trail.TrailMesh
+import cn.solarmoon.spark_core.registry.common.SparkStateMachineRegister
+import cn.solarmoon.spark_core.state_machine.presets.PlayerBaseAnimStateMachine
 import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
-import net.minecraft.world.phys.Vec3
+import net.minecraft.world.entity.player.Player
+import ru.nsk.kstatemachine.statemachine.processEventBlocking
 
 interface JSSOFEntity: JSEntity {
 
@@ -33,15 +34,7 @@ interface JSSOFEntity: JSEntity {
 
     fun toggleWieldStyle() {
         WieldStyle.switch(entity)
-    }
-
-    fun summonTrail(mesh: TrailMesh, bone: String, off1: Vec3, off2: Vec3) {
-        val entity = entity
-        if (entity !is IEntityAnimatable<*> || !entity.level().isClientSide) return
-        mesh.addPoint(
-            { entity.getWorldBonePivot(bone, off1, it) },
-            { entity.getWorldBonePivot(bone, off2, it) },
-        )
+        if (entity is Player) entity.getStateMachineHandler(SparkStateMachineRegister.PLAYER_BASE_STATE)?.machine?.processEventBlocking(PlayerBaseAnimStateMachine.ResetEvent)
     }
 
 }

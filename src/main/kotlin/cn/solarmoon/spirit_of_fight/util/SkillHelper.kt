@@ -1,16 +1,15 @@
 package cn.solarmoon.spirit_of_fight.util
 
 import cn.solarmoon.spark_core.animation.IEntityAnimatable
+import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex
 import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
 import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
-import cn.solarmoon.spark_core.registry.common.SparkRegistries
-import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spark_core.util.toVec3
-import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import com.jme3.bullet.collision.ManifoldPoints
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.math.Vector3f
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.phys.Vec3
 
@@ -42,10 +41,9 @@ object SkillHelper {
         }
     }
 
-    fun createAnimByDirection(animatable: IEntityAnimatable<*>, animBaseName: String, default: MoveDirection): AnimInstance {
+    fun createAnimByDirection(animatable: IEntityAnimatable<*>, path: ResourceLocation, animBaseName: String, default: MoveDirection): AnimInstance {
         val direction = animatable.animatable.moveDirection ?: default
-        val animPath = SparkResourcePathBuilder.buildAnimationPath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "player", "${animBaseName}.${direction.toString().lowercase()}")
-        return SparkRegistries.TYPED_ANIMATION[animPath]!!.create(animatable)
+        return AnimInstance.create(animatable, AnimIndex(path, "${animBaseName}.${direction.toString().lowercase()}"))
     }
 
 }

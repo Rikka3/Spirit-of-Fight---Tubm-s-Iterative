@@ -13,6 +13,9 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Player
 import org.joml.Vector2i
 
+/**
+ * @param activeTime 按键长按有效时间
+ */
 class KeyInputCondition(
     val keyMap: Map<String, KeyEvent>,
     val activeTime: List<Vector2i> = listOf()

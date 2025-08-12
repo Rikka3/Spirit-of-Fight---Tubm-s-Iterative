@@ -8,13 +8,14 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
 
         if (entity == null || animatable == null) return
 
-        const anim = SOFHelper.createAnimByDirection(animatable, "sword.dodge", "forward")
+        const anim = SOFHelper.createAnimByDirection(animatable, "minecraft:player", "sword.dodge", "forward")
 
         anim.onEnd(event => {
             skill.end()
         })
 
         skill.onActiveStart(() => {
+            entity.getPreInput().lock()
             animatable.playAnimation(anim, 0)
         })
 
@@ -22,7 +23,7 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
             const animTime = anim.getTime()
 
             if (animTime >= 0.0 && animTime <= 0.1) {
-                entity.move(SpMath.vec3(0.0, entity.getDeltaMovement().y, 1.25), true)
+                entity.move([0.0, entity.getDeltaMovement().y, 1.25], true)
             }
 
             if (animTime >= 0.3) {
@@ -38,12 +39,16 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
         })
 
         skill.onLocalInputUpdate(event => {
-            EntityHelper.preventLocalInput(event)
+            SOFHelper.preventLocalInput(event)
         })
 
         skill.onPerfectDodge((event, times) => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:perfect_dodge", "players")
             animatable.summonShadow(20, 0x808080)
+        })
+
+        skill.onEnd(() => {
+            entity.getPreInput().unlock()
         })
     })
 })

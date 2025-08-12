@@ -7,6 +7,8 @@ object LockOnController {
 
     private var TARGET: Entity? = null
 
+    val lookDistance = 64.0
+
     @JvmStatic
     val target get() = TARGET
 
@@ -14,7 +16,15 @@ object LockOnController {
     val hasTarget get() = TARGET != null
 
     @JvmStatic
-    val lookPos get() = target?.boundingBox?.center ?: Vec3.ZERO
+    fun getLookPos(partialTicks: Float = 1f): Vec3 {
+        val target = target
+        if (target != null) {
+            val center = target.getPosition(partialTicks)
+            val maxY = target.boundingBox.maxY - target.boundingBox.minY
+            return Vec3(center.x, center.y + maxY / 4, center.z)
+        }
+        return Vec3.ZERO
+    }
 
     @JvmStatic
     fun setTarget(entity: Entity?) {

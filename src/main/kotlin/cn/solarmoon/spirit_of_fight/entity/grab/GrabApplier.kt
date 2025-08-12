@@ -58,7 +58,7 @@ object GrabApplier {
 
     @SubscribeEvent
     private fun onPreInput(event: OnPreInputExecuteEvent.Pre) {
-        val entity = event.data.preInput.holder as? Entity ?: return
+        val entity = event.preInput.holder as? Entity ?: return
         if (entity.grabManager.grabbedBy != null) {
             event.isCanceled = true
         }

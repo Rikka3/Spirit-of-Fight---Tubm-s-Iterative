@@ -14,6 +14,13 @@ class SOFItemModelProvider(
 ): ItemModelProvider(output, SpiritOfFight.MOD_ID, existingFileHelper) {
 
     override fun registerModels() {
+        inHandItemModel(SOFItems.WOODEN_SPEAR, "spear")
+        inHandItemModel(SOFItems.STONE_SPEAR, "spear")
+        inHandItemModel(SOFItems.IRON_SPEAR, "spear")
+        inHandItemModel(SOFItems.GOLDEN_SPEAR, "spear")
+        inHandItemModel(SOFItems.DIAMOND_SPEAR, "spear")
+        inHandItemModel(SOFItems.NETHERITE_SPEAR, "spear")
+
         inHandItemModel(SOFItems.WOODEN_WARHAMMER, "warhammer")
         inHandItemModel(SOFItems.STONE_WARHAMMER, "warhammer")
         inHandItemModel(SOFItems.IRON_WARHAMMER, "warhammer")

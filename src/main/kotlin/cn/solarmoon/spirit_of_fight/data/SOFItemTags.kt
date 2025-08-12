@@ -37,6 +37,14 @@ class SOFItemTags(
             SOFItems.DIAMOND_GLOVES.get(),
             SOFItems.NETHERITE_GLOVES.get()
         )
+        tag(FORGE_SPEARS).add(
+            SOFItems.WOODEN_SPEAR.get(),
+            SOFItems.STONE_SPEAR.get(),
+            SOFItems.IRON_SPEAR.get(),
+            SOFItems.GOLDEN_SPEAR.get(),
+            SOFItems.DIAMOND_SPEAR.get(),
+            SOFItems.NETHERITE_SPEAR.get()
+        )
     }
 
     companion object {
@@ -44,6 +52,8 @@ class SOFItemTags(
         val FORGE_HAMMER = forgeTag("hammer")
         @JvmStatic
         val FORGE_GLOVES = forgeTag("gloves")
+        @JvmStatic
+        val FORGE_SPEARS = forgeTag("spears")
 
         private fun modTag(path: String): TagKey<Item> {
             Tags.Items.BUDS

@@ -26,7 +26,7 @@ class WieldCondition(
     companion object {
         val CODEC: MapCodec<WieldCondition> = RecordCodecBuilder.mapCodec {
             it.group(
-                WieldStyle.CODEC.fieldOf("hold").forGetter { it.wieldStyle }
+                WieldStyle.CODEC.fieldOf("value").forGetter { it.wieldStyle }
             ).apply(it, ::WieldCondition)
         }
     }

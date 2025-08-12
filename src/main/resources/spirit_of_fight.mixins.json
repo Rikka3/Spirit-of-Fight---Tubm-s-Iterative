@@ -4,6 +4,7 @@
   "package": "cn.solarmoon.spirit_of_fight.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "Test",
     "fighter.EntityMixin",
     "fighter.LivingEntityMixin",
     "fighter.MeleeAttackGoalMixin",
@@ -11,6 +12,7 @@
     "fighter.VindicatorMixin",
     "fighter.ZombieMixin",
     "js.EntityMixin",
+    "js.IAnimatableMixin",
     "js.SkillMixin"
   ],
   "client": [

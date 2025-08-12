@@ -14,6 +14,13 @@ object SOFItemInHandModelRegister {
         event.addInHandModel(SOFItems.DIAMOND_WARHAMMER.get())
         event.addInHandModel(SOFItems.NETHERITE_WARHAMMER.get())
 
+        event.addInHandModel(SOFItems.WOODEN_SPEAR.get())
+        event.addInHandModel(SOFItems.STONE_SPEAR.get())
+        event.addInHandModel(SOFItems.IRON_SPEAR.get())
+        event.addInHandModel(SOFItems.GOLDEN_SPEAR.get())
+        event.addInHandModel(SOFItems.DIAMOND_SPEAR.get())
+        event.addInHandModel(SOFItems.NETHERITE_SPEAR.get())
+
         event.addInHandModel(SOFItems.LEATHER_GLOVES.get())
         event.addInHandModel(SOFItems.IRON_GLOVES.get())
         event.addInHandModel(SOFItems.GOLDEN_GLOVES.get())
