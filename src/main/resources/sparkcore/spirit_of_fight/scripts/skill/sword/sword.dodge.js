@@ -10,12 +10,15 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
 
         const anim = SOFHelper.createAnimByDirection(animatable, "minecraft:player", "sword.dodge", "forward")
 
+        anim.onSwitchIn(p => {
+            entity.getPreInput().lock()
+        })
+
         anim.onEnd(event => {
             skill.end()
         })
 
         skill.onActiveStart(() => {
-            entity.getPreInput().lock()
             animatable.playAnimation(anim, 0)
         })
 

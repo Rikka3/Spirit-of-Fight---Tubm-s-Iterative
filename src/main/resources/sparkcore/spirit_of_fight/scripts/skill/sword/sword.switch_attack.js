@@ -44,12 +44,16 @@ Skill.create("spirit_of_fight:sword.switch_attack", builder => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players", 1, 1.1)
             SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
         })
+
+        anim.onSwitchIn(p => {
+            entity.getPreInput().lock()
+        })
+
         anim.onEnd(event => {
             skill.end()
         })
 
         skill.onActiveStart(() => {
-            entity.getPreInput().lock()
             animatable.playAnimation(anim, 0)
             entity.toggleWieldStyle()
             // 技能开始时重置 AttackSystem 和攻击段
@@ -76,14 +80,13 @@ Skill.create("spirit_of_fight:sword.switch_attack", builder => {
         })
 
         skill.onLocalInputUpdate(event => {
-            if (event.getInput().down) event.getEntity().setDeltaMovement(0.0, entity.getDeltaMovement().y, 0.0)
             SOFHelper.preventLocalInput(event)
         })
 
         skill.onEnd(() => {
             entity.setCameraLock(false)
             attackBody.remove()
-            entity.getPreInput().unLock()
+            entity.getPreInput().unlock()
         })
     })
 })

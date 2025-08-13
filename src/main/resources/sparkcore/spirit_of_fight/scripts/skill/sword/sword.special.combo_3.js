@@ -46,12 +46,15 @@ Skill.create("spirit_of_fight:sword.special.combo_3", builder => {
             SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
         })
 
+        anim.onSwitchIn(p => {
+            entity.getPreInput().lock()
+        })
+
         anim.onEnd(event => {
             skill.end()
         })
 
         skill.onActiveStart(() => {
-            entity.getPreInput().lock()
             animatable.playAnimation(anim, 0)
         })
 
@@ -77,7 +80,6 @@ Skill.create("spirit_of_fight:sword.special.combo_3", builder => {
         })
 
         skill.onLocalInputUpdate(event => {
-            if (event.getInput().down) event.getEntity().setDeltaMovement(0.0, entity.getDeltaMovement().y, 0.0)
             SOFHelper.preventLocalInput(event)
         })
 

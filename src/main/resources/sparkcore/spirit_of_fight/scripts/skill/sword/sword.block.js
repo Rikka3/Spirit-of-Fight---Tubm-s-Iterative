@@ -26,13 +26,7 @@ Skill.createBy("spirit_of_fight:sword.block", "spirit_of_fight:block", builder =
 
         skill.onActive(() => {
             const runTime = skill.getTickCount()
-            if (runTime >= 0 && runTime <= 10) skill.readyPrecisionBlock()
 
-            entity.getPreInput().executeExcept("move", "guard", "jump")
-        })
-
-        skill.onLocalInputUpdate(event => {
-            SOFHelper.preventLocalInputExceptMove(event, 1.5)
         })
     })
 })
