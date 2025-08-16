@@ -35,8 +35,7 @@ object EntityHitApplier {
         val sourcePos = source.sourcePosition ?: return
         val attackData = source.extraData
         val collisionData = attackData.read(SparkHurtDatas.COLLISION) ?: return
-
-        val hitType = HitType(SOFHitTypes.KNOCKDOWN_CHOP.name.lowercase(), 100)
+        val hitType = attackData.read(HIT_TYPE) ?: return
         val strength = hitType.poiseDamage
         val poiseData = victim.poise
 
@@ -47,8 +46,8 @@ object EntityHitApplier {
                 val boneName = it.name
                 NeoForge.EVENT_BUS.post(GetHitAnimationEvent(victim, hitType, boneName, posSide, hitSide)).resultHitAnim?.apply {
                     if (exist()) {
-                        play(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
-                        playToClient(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(transitionTime = 0))
+                        play(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(enterTransitionTime = 0))
+                        playToClient(victim, DefaultLayer.MAIN_LAYER, AnimLayerData(enterTransitionTime = 0))
                     } else SparkCore.LOGGER.warn("${victim.type} 缺少受击动画：${index}")
                 }
             }

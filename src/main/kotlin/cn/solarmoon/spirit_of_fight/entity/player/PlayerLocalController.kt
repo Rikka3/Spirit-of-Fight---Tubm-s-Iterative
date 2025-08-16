@@ -42,7 +42,7 @@ object PlayerLocalController {
 
         // 移动加入预输入
         if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
-            player.preInput.setInput(SOFPreInputs.MOVE, 1, -1) {
+            player.preInput.setInput(SOFPreInputs.MOVE, 5) {
                 player.animController.getMainLayer().stopAnimation()
             }
         }

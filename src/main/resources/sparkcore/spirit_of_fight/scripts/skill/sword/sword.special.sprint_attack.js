@@ -18,7 +18,7 @@ Skill.create("spirit_of_fight:sword.special.sprint_attack", builder => {
         anim.setShouldTurnBody(true)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.0, 1.0, 2.0], [0.0, 0.0, -0.75])
         const globalAttackSystem = PhysicsHelper.createAttackSystem()
-        const trailMesh = SOFHelper.createTrailMesh("minecraft:textures/block/stone.png", 5, 0xFFFFFF)
+        const trailMesh = SOFHelper.createTrailMesh("spirit_of_fight:textures/particle/base_trail.png", 5, 0xFFFFFF)
 
         attackBody.onAttackCollide('attack', {
             preAttack: (isFirst, attacker, target, o1, o2, manifoldId, attackSystem) => {
@@ -29,7 +29,7 @@ Skill.create("spirit_of_fight:sword.special.sprint_attack", builder => {
                 entity.addFightSpirit(25)
             },
             doAttack: (attacker, target, o1, o2, manifoldId, attackSystem) => {
-                entity.commonAttack(target)
+                entity.sofCommonAttack(target, "light_swipe", 25, 25)
             },
             postAttack: (attacker, target, o1, o2, manifoldId, attackSystem) => {
                 skill.removeTarget(target)
@@ -66,7 +66,7 @@ Skill.create("spirit_of_fight:sword.special.sprint_attack", builder => {
             }
 
             if (animTime >= 0.25 && animTime <= 0.65) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.5], [0.0, 0.0, -1.0])
+                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
                 attackBody.setCollideWithGroups(1)
             } else {
                 attackBody.setCollideWithGroups(0)

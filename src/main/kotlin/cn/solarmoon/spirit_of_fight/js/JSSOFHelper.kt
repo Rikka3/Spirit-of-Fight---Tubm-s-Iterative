@@ -8,6 +8,7 @@ import cn.solarmoon.spark_core.js.toVec3
 import cn.solarmoon.spark_core.registry.common.SparkVisualEffects
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spark_core.visual_effect.trail.TrailInfo
+import cn.solarmoon.spirit_of_fight.util.OneTimeTrigger
 import cn.solarmoon.spirit_of_fight.util.SkillHelper
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import net.minecraft.client.player.LocalPlayer
@@ -61,6 +62,13 @@ object JSSOFHelper: JSComponent() {
             player.swinging = false
             player.isSprinting = false
         }
+    }
+
+    fun createOneTimeTrigger(condition: Function, action: Function): OneTimeTrigger {
+        return OneTimeTrigger(
+            condition = { condition.call(engine) as Boolean },
+            action = { action.call(engine) }
+        )
     }
 
 }

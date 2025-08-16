@@ -14,10 +14,10 @@ class PoiseData(
     fun reduce(value: Int): Boolean {
         if (!entity.level().isClientSide) {
             currentValue -= value
-            clientSync()
+            syncToClient()
             if (isBroken) {
                 reset()
-                clientReset()
+                resetToClient()
                 return true
             }
         }
@@ -28,11 +28,11 @@ class PoiseData(
         currentValue = maxValue
     }
 
-    fun clientSync() {
+    fun syncToClient() {
         PacketDistributor.sendToAllPlayers(PoiseSetPayload(entity.id, currentValue, maxValue))
     }
 
-    fun clientReset() {
+    fun resetToClient() {
         PacketDistributor.sendToAllPlayers(PoiseResetPayload(entity.id))
     }
 

@@ -30,6 +30,10 @@ object SOFSkillTypes {
     val SPEAR_SPECIAL_COMBO_2 = sofKey("spear.${WieldStyle.SPECIAL.serializedName}.combo_2")
     val SPEAR_SPECIAL_COMBO_3 = sofKey("spear.${WieldStyle.SPECIAL.serializedName}.combo_3")
 
+    val GLOVES_DEFAULT_COMBO_1 = sofKey("gloves.${WieldStyle.DEFAULT.serializedName}.combo_1")
+    val GLOVES_DEFAULT_COMBO_2 = sofKey("gloves.${WieldStyle.DEFAULT.serializedName}.combo_2")
+    val GLOVES_DEFAULT_COMBO_3 = sofKey("gloves.${WieldStyle.DEFAULT.serializedName}.combo_3")
+
     val HAMMER_COMBO_0 = sofKey("hammer_combo_0")
     val HAMMER_COMBO_1 = sofKey("hammer_combo_1")
     val HAMMER_COMBO_2 = sofKey("hammer_combo_2")

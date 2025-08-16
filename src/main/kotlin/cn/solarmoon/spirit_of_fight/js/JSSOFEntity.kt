@@ -4,11 +4,20 @@ import cn.solarmoon.spark_core.js.extension.JSEntity
 import cn.solarmoon.spark_core.registry.common.SparkStateMachineRegister
 import cn.solarmoon.spark_core.state_machine.presets.PlayerBaseAnimStateMachine
 import cn.solarmoon.spirit_of_fight.entity.WieldStyle
+import cn.solarmoon.spirit_of_fight.poise_system.EntityHitApplier
+import cn.solarmoon.spirit_of_fight.poise_system.HitType
 import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import ru.nsk.kstatemachine.statemachine.processEventBlocking
 
 interface JSSOFEntity: JSEntity {
+
+    fun sofCommonAttack(target: Entity, hitName: String, poise: Int, fs: Int) {
+        val entity = this.entity
+        target.hurtData.write(EntityHitApplier.HIT_TYPE, HitType(hitName, poise, fs))
+        super.commonAttack(target)
+    }
 
     fun addFightSpirit(value: Int) {
         val level = entity.level()
@@ -35,6 +44,11 @@ interface JSSOFEntity: JSEntity {
     fun toggleWieldStyle() {
         WieldStyle.switch(entity)
         if (entity is Player) entity.getStateMachineHandler(SparkStateMachineRegister.PLAYER_BASE_STATE)?.machine?.processEventBlocking(PlayerBaseAnimStateMachine.ResetEvent)
+    }
+
+    fun setSolid(value: Boolean) {
+        val entity = this.entity
+        entity.isSolid = value
     }
 
 }

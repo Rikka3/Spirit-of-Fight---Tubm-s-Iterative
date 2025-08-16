@@ -59,11 +59,9 @@ object SwordSkillTree {
                                                 SOFSkillTypes.SWORD_DEFAULT_COMBO_3,
                                                 SOFPreInputs.ATTACK
                                             )
-                                        ),
-                                        10
+                                        )
                                     )
-                                ),
-                                10
+                                )
                             ),
                             CommonNode(
                                 listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
@@ -75,11 +73,9 @@ object SwordSkillTree {
                                         SOFSkillTypes.SWORD_DEFAULT_COMBO_3,
                                         SOFPreInputs.ATTACK
                                     )
-                                ),
-                                10
+                                )
                             )
-                        ),
-                        10
+                        )
                     )
                 )
             )
@@ -103,11 +99,9 @@ object SwordSkillTree {
                                         SOFSkillTypes.SWORD_SPECIAL_COMBO_3,
                                         SOFPreInputs.ATTACK
                                     )
-                                ),
-                                10
+                                )
                             )
-                        ),
-                        10
+                        )
                     )
                 )
             )

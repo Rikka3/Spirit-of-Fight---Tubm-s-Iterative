@@ -47,7 +47,6 @@ class BlockSkill: Skill() {
             val breakAnim = AnimInstance.create(animatable, AnimIndex(ResourceLocation.parse(animPath.first()), "${animPath.last()}.break")).apply {
                 EntityHitApplier.hitAnimDoFreeze(this)
             }
-            val consume = config.read("spirit_consumption", 25.0).toInt()
 
             onEvent<SkillEvent.ActiveStart> {
                 guardBody = config.readNonNull("block_body")
@@ -70,11 +69,12 @@ class BlockSkill: Skill() {
                         it.event.isCanceled = true
                     } else if (hurtAnim.isCancelled) {
                         val fs = entity.getFightSpirit()
+                        val consume = event.source.extraData.read(EntityHitApplier.HIT_TYPE)?.fsDamage ?: 25
                         fs.removeStage(consume)
                         fs.syncToClient(entity.id)
                         if (!fs.isEmpty) {
                             hurtAnim.refresh()
-                            animatable.animController.getMainLayer().setAnimation(hurtAnim, AnimLayerData(transitionTime = 0))
+                            animatable.animController.getMainLayer().setAnimation(hurtAnim, AnimLayerData(enterTransitionTime = 0))
                             entity.addRelativeMovement(sourcePos, hurtMovement)
                             if (entity is ServerPlayer) entity.connection.send(ClientboundSetEntityMotionPacket(entity))
                             PacketDistributor.sendToAllPlayers(SkillPayload(this, CompoundTag().apply {
@@ -83,7 +83,7 @@ class BlockSkill: Skill() {
                             triggerEvent(Hurt(event, hitPos))
                             it.event.isCanceled = true
                         } else {
-                            animatable.animController.getMainLayer().setAnimation(breakAnim, AnimLayerData(transitionTime = 0))
+                            animatable.animController.getMainLayer().setAnimation(breakAnim, AnimLayerData(enterTransitionTime = 0))
                             entity.addRelativeMovement(sourcePos, hurtMovement)
                             if (entity is ServerPlayer) entity.connection.send(ClientboundSetEntityMotionPacket(entity))
                             triggerEvent(Break(event, hitPos))
@@ -96,9 +96,9 @@ class BlockSkill: Skill() {
             sync { data, _ ->
                 if (data.getBoolean("hurt")) {
                     hurtAnim.refresh()
-                    animatable.animController.getMainLayer().setAnimation(hurtAnim, AnimLayerData(transitionTime = 0))
+                    animatable.animController.getMainLayer().setAnimation(hurtAnim, AnimLayerData(enterTransitionTime = 0))
                 } else {
-                    animatable.animController.getMainLayer().setAnimation(breakAnim, AnimLayerData(transitionTime = 0))
+                    animatable.animController.getMainLayer().setAnimation(breakAnim, AnimLayerData(enterTransitionTime = 0))
                 }
             }
 

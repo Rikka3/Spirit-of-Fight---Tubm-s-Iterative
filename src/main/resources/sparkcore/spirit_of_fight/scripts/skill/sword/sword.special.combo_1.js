@@ -12,7 +12,7 @@ Skill.create("spirit_of_fight:sword.special.combo_1", builder => {
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
         const attackSystem = PhysicsHelper.createAttackSystem()
-        const trailMesh = SOFHelper.createTrailMesh("minecraft:textures/block/stone.png", 5, 0xFFFFFF)
+        const trailMesh = SOFHelper.createTrailMesh("spirit_of_fight:textures/particle/base_trail.png", 5, 0xFFFFFF)
         var count = 0
 
         if (entity == null || animatable == null) return
@@ -29,7 +29,7 @@ Skill.create("spirit_of_fight:sword.special.combo_1", builder => {
                 entity.addFightSpirit(50)
             },
             doAttack: (attacker, target, o1, o2, manifoldId) => {
-                entity.commonAttack(target)
+                entity.sofCommonAttack(target, "light_chop", 25, 25)
             },
             postAttack: (attacker, target, o1, o2, manifoldId) => {
                 skill.removeTarget(target)
@@ -51,6 +51,7 @@ Skill.create("spirit_of_fight:sword.special.combo_1", builder => {
 
         anim.onSwitchIn(p => {
             entity.getPreInput().lock()
+            entity.setSolid(true)
         })
 
         anim.onEnd(event => {
@@ -61,27 +62,46 @@ Skill.create("spirit_of_fight:sword.special.combo_1", builder => {
             animatable.playAnimation(anim, 0)
         })
 
+        const releaseTrigger = SOFHelper.createOneTimeTrigger(
+            () => { return anim.getTime() >= 0.85 },
+            () => {
+                entity.setCameraLock(false)
+            }
+        )
+        const blendTrigger = SOFHelper.createOneTimeTrigger(
+            () => { return anim.getTime() >= 0.9 && entity.isMoving() },
+            () => {
+                animatable.blendMove()
+            }
+        )
         skill.onActive(() => {
             const animTime = anim.getTime()
 
             if ((animTime >= 0.25 && animTime <= 0.35) || (animTime >= 0.45 && animTime <= 0.8)) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.5], [0.0, 0.0, -1.0])
+                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
                 attackBody.setCollideWithGroups(1)
             } else {
                 attackBody.setCollideWithGroups(0)
             }
 
             if (animTime >= 0.85) {
-                entity.getPreInput().execute()
+                entity.getPreInput().executeExcept("move")
             }
+
+            releaseTrigger.trigger()
+            blendTrigger.trigger()
         })
 
         skill.onLocalInputUpdate(event => {
-            SOFHelper.preventLocalInput(event)
+            if (anim.getTime() < 0.9) {
+                SOFHelper.preventLocalInput(event)
+            }
         })
 
         skill.onEnd(() => {
+            animatable.recoveryBlendMove()
             entity.getPreInput().unlock()
+            entity.setSolid(false)
             entity.setCameraLock(false)
             attackBody.remove()
         })

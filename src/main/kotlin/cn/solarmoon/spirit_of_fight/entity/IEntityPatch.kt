@@ -18,4 +18,6 @@ interface IEntityPatch {
 
     var wieldStyle: WieldStyle
 
+    var isSolid: Boolean
+
 }

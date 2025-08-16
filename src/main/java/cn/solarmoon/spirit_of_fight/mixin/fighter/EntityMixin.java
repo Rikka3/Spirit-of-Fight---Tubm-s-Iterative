@@ -9,6 +9,9 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public class EntityMixin implements IEntityPatch {
@@ -21,6 +24,7 @@ public class EntityMixin implements IEntityPatch {
     private int chargingTime = 0;
     private WieldStyle wieldStyle = WieldStyle.DEFAULT;
     private final PoiseData poise = new PoiseData(entity, 100, 100);
+    private boolean solid = false;
 
     @Override
     public @Nullable MoveDirection getMoveDirection() {
@@ -72,4 +76,18 @@ public class EntityMixin implements IEntityPatch {
         return poise;
     }
 
+    @Inject(method = "canCollideWith", at = @At("HEAD"), cancellable = true)
+    private void collide(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+        if (this.entity.isSolid()) cir.setReturnValue(true);
+    }
+
+    @Override
+    public boolean isSolid() {
+        return solid;
+    }
+
+    @Override
+    public void setSolid(boolean b) {
+        solid = b;
+    }
 }
