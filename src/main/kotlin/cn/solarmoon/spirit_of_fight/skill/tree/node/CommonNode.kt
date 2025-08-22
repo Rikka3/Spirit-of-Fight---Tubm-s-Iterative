@@ -19,7 +19,7 @@ open class CommonNode(
     var skillLocation: ResourceLocation,
     override val preInputId: String,
     override val children: List<SkillTreeNode> = listOf(),
-    override val reserveTime: Int = 2,
+    override val reserveTime: Int = 5,
     override val preInputDuration: Int = 5
 ): SkillTreeNode {
 

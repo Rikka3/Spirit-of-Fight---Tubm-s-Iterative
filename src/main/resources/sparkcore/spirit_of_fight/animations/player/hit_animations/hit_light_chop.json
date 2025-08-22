@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"Hit/light_chop:head_left": {
+		"hit.light_chop.head_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -386,7 +386,7 @@
 				}
 			}
 		},
-		"Hit/light_chop:head_right": {
+		"hit.light_chop.head_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -771,7 +771,7 @@
 				}
 			}
 		},
-		"Hit/light_chop:body_right": {
+		"hit.light_chop.body_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1140,7 +1140,7 @@
 				}
 			}
 		},
-		"Hit/light_chop:body_left": {
+		"hit.light_chop.body_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1509,7 +1509,7 @@
 				}
 			}
 		},
-		"Hit/light_chop:leg_left": {
+		"hit.light_chop.leg_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1850,7 +1850,7 @@
 				}
 			}
 		},
-		"Hit/light_chop:leg_right": {
+		"hit.light_chop.leg_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {

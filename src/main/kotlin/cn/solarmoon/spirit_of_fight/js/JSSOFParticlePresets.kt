@@ -1,5 +1,7 @@
 package cn.solarmoon.spirit_of_fight.js
 
+import cn.solarmoon.spark_core.animation.IAnimatable
+import cn.solarmoon.spark_core.animation.IEntityAnimatable
 import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
 import cn.solarmoon.spark_core.js.JSComponent
 import cn.solarmoon.spark_core.js.toVec3
@@ -30,8 +32,8 @@ object JSSOFParticlePresets: JSComponent() {
         summonQuadraticParticle(level, pos, amount, particle, "")
     }
 
-    fun summonGaleParticle(level: Level, entity: Entity, amount: Int, speed: Double, offset: NativeArray, particle: String) {
-        summonGaleParticle(level, entity, amount, speed, offset, particle, "")
+    fun summonSeismicWave(level: Level, entity: Entity, amount: Int, speed: Double, offset: NativeArray, particle: String) {
+        summonSeismicWave(level, entity, amount, speed, offset, particle, "")
     }
 
     fun summonChargingParticle(level: Level, center: NativeArray, amount: Int, radius: Double, still: Boolean, particle: String) {
@@ -45,10 +47,10 @@ object JSSOFParticlePresets: JSComponent() {
         presets.summonQuadraticParticle(pos.toVec3(), amount, particle)
     }
 
-    fun summonGaleParticle(level: Level, entity: Entity, amount: Int, speed: Double, offset: NativeArray, particle: String, reader: String) {
+    fun summonSeismicWave(level: Level, entity: Entity, amount: Int, speed: Double, offset: NativeArray, particle: String, reader: String) {
         val presets = ParticlePresets(level, true)
         val particle = ParticleUtil.createParticleByString(level.registryAccess(), particle, reader)
-        presets.summonGaleParticle(entity, amount, speed, offset.toVec3(), particle)
+        presets.summonSeismicWave(entity, amount, speed, offset.toVec3(), particle)
     }
 
     fun summonChargingParticle(level: Level, center: NativeArray, amount: Int, radius: Double, still: Boolean, particle: String, reader: String) {
@@ -56,5 +58,56 @@ object JSSOFParticlePresets: JSComponent() {
         val particle = ParticleUtil.createParticleByString(level.registryAccess(), particle, reader)
         presets.summonChargingParticle(center.toVec3(), amount, radius, still, particle)
     }
+
+    fun summonSplashFromBoneMotion(
+        animatable: IAnimatable<*>,
+        particle: String,
+        bone: String,
+        offset: NativeArray,
+        radius: Float,
+        strength: Float,
+        rings: Int,
+        forwardBias: Float,
+        density: Float
+    ) {
+        ParticlePresets(animatable.animLevel, true).summonSplashFromBoneMotion(
+            animatable,
+            ParticleUtil.createParticleByString(animatable.animLevel.registryAccess(), particle),
+            bone,
+            offset.toVec3(),
+            radius,
+            strength,
+            rings,
+            forwardBias,
+            density
+        )
+    }
+
+    fun summonSplashRelateYRot(
+        animatable: IEntityAnimatable<*>,
+        particle: String,
+        bone: String,
+        relateV: NativeArray,
+        offset: NativeArray,
+        radius: Float,
+        strength: Float,
+        rings: Int,
+        forwardBias: Float,
+        density: Float
+    ) {
+        ParticlePresets(animatable.animLevel, true).summonSplashRelateYRot(
+            animatable,
+            ParticleUtil.createParticleByString(animatable.animLevel.registryAccess(), particle),
+            bone,
+            relateV.toVec3(),
+            offset.toVec3(),
+            radius,
+            strength,
+            rings,
+            forwardBias,
+            density
+        )
+    }
+
 
 }

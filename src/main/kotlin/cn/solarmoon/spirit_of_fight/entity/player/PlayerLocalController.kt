@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.entity.player
 
+import cn.solarmoon.spark_core.animation.anim.play.layer.DefaultLayer
 import cn.solarmoon.spark_core.animation.anim.play.layer.getMainLayer
 import cn.solarmoon.spark_core.event.PlayerRenderAnimInFirstPersonEvent
 import cn.solarmoon.spark_core.local_control.KeyEvent
@@ -44,6 +45,7 @@ object PlayerLocalController {
         if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
             player.preInput.setInput(SOFPreInputs.MOVE, 5) {
                 player.animController.getMainLayer().stopAnimation()
+                player.animController.stopAnimToServer(DefaultLayer.MAIN_LAYER, 10)
             }
         }
 
@@ -51,6 +53,7 @@ object PlayerLocalController {
         if (player.isPlayingSkill && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
             player.preInput.setInput(SOFPreInputs.JUMP, 5) {
                 player.animController.getMainLayer().stopAnimation()
+                player.animController.stopAnimToServer(DefaultLayer.MAIN_LAYER, 10)
                 player.jumping = true
                 player.jumpFromGround()
             }

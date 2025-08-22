@@ -19,6 +19,7 @@ class SOFSkillTrees(
             SwordSkillTree.register(it)
             SpearSkillTree.register(it)
             GlovesSkillTree.register(it)
+            HammerSkillTree.register(it)
         }
     }
 

@@ -36,4 +36,9 @@ class PoiseData(
         PacketDistributor.sendToAllPlayers(PoiseResetPayload(entity.id))
     }
 
+    fun initValue(value: Int) {
+        currentValue = value
+        maxValue = value
+    }
+
 }

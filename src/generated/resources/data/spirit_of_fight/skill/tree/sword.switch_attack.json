@@ -14,6 +14,7 @@
         }
       ],
       "pre_input_id": "special_attack",
+      "reserve_time": 5,
       "skill": "spirit_of_fight:sword.switch_attack"
     }
   ],

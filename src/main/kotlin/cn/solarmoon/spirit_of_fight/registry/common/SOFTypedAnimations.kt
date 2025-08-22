@@ -1,7 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spark_core.animation.anim.origin.AnimIndex
-import cn.solarmoon.spark_core.util.MultiModuleResourceExtractionUtil
+import cn.solarmoon.spark_core.animation.anim.play.TypedAnimation2
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.poise_system.EntityHitApplier
 import cn.solarmoon.spirit_of_fight.poise_system.SOFHitTypes
@@ -25,13 +25,7 @@ object SOFTypedAnimations {
 
     fun createHitAnim(index: ResourceLocation = ResourceLocation.withDefaultNamespace("player")) =
         SOFHitTypes.HIT_ANIM_NAMES.mapValues { (animName, _) ->
-            SpiritOfFight.REGISTER.typedAnimation()
-                .id(MultiModuleResourceExtractionUtil.normalizeResourceName(animName))
-                .animIndex(AnimIndex(index, MultiModuleResourceExtractionUtil.normalizeResourceName(animName)))
-                .provider {
-                    EntityHitApplier.hitAnimDoFreeze(this)
-                }
-                .build()
+            TypedAnimation2(AnimIndex(index, animName)) { EntityHitApplier.hitAnimDoFreeze(this) }
         }
 
 }

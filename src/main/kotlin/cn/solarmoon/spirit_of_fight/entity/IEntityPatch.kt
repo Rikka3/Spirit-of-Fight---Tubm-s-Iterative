@@ -20,4 +20,6 @@ interface IEntityPatch {
 
     var isSolid: Boolean
 
+    var isGuardEnabled: Boolean
+
 }

@@ -25,6 +25,7 @@ public class EntityMixin implements IEntityPatch {
     private WieldStyle wieldStyle = WieldStyle.DEFAULT;
     private final PoiseData poise = new PoiseData(entity, 100, 100);
     private boolean solid = false;
+    private boolean guardEnabled = true;
 
     @Override
     public @Nullable MoveDirection getMoveDirection() {
@@ -89,5 +90,15 @@ public class EntityMixin implements IEntityPatch {
     @Override
     public void setSolid(boolean b) {
         solid = b;
+    }
+
+    @Override
+    public boolean isGuardEnabled() {
+        return guardEnabled;
+    }
+
+    @Override
+    public void setGuardEnabled(boolean b) {
+        guardEnabled = b;
     }
 }

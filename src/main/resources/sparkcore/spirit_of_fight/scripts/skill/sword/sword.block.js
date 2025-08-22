@@ -23,10 +23,5 @@ Skill.createBy("spirit_of_fight:sword.block", "spirit_of_fight:block", builder =
             SOFParticlePresets.summonQuadraticParticle(level, hitPos, 15, 'minecraft:firework')
             SOFParticlePresets.summonQuadraticParticle(level, hitPos, 15, 'minecraft:flame')
         })
-
-        skill.onActive(() => {
-            const runTime = skill.getTickCount()
-
-        })
     })
 })

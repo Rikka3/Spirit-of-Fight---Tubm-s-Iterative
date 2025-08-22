@@ -13,7 +13,6 @@ Skill.create("spirit_of_fight:sword.special.combo_2", builder => {
         const level = skill.getLevel()
         const globalAttackSystem = PhysicsHelper.createAttackSystem()
         const trailMesh = SOFHelper.createTrailMesh("spirit_of_fight:textures/particle/base_trail.png", 5, 0xFFFFFF)
-        var count = 0
 
         if (entity == null || animatable == null) return
 
@@ -37,14 +36,6 @@ Skill.create("spirit_of_fight:sword.special.combo_2", builder => {
             }
         },globalAttackSystem)
 
-        attackBody.onCollisionActive(() => {
-            if (count == 0) entity.move([0.0, entity.getDeltaMovement().y, 0.4], false)
-            entity.setCameraLock(true)
-            globalAttackSystem.reset()
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players")
-            count++
-        })
-
         skill.onTargetActualHurtPost(event => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players")
             SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
@@ -63,44 +54,35 @@ Skill.create("spirit_of_fight:sword.special.combo_2", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        const releaseTrigger = SOFHelper.createOneTimeTrigger(
-            () => { return anim.getTime() >= 0.9 },
-            () => {
-                entity.setCameraLock(false)
-            }
-        )
-        const blendTrigger = SOFHelper.createOneTimeTrigger(
-            () => { return anim.getTime() >= 0.95 && entity.isMoving() },
-            () => {
-                animatable.blendMove()
-            }
-        )
-        skill.onActive(() => {
-            const animTime = anim.getTime()
-
-            if ((animTime >= 0.25 && animTime <= 0.5) || (animTime >= 0.6 && animTime <= 0.85)) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
+        anim.registerKeyframeRanges("attack", [[0.25, 0.5], [0.6, 0.85]], (attackKF, index) => {
+            attackKF.onEnter(() => {
                 attackBody.setCollideWithGroups(1)
-            } else {
+                if (index == 0) entity.move([0.0, entity.getDeltaMovement().y, 0.4], false)
+                entity.setCameraLock(true)
+                globalAttackSystem.reset()
+                level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players")
+            })
+            attackKF.onInside(() => {
+                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
+            })
+            attackKF.onExit(() => {
                 attackBody.setCollideWithGroups(0)
-            }
+            })
+        })
 
-            if (animTime >= 0.9) {
-                entity.getPreInput().executeExcept("move")
-            }
-
-            releaseTrigger.trigger()
-            blendTrigger.trigger()
+        const inputKF = anim.registerKeyframeRangeStart("input", 0.9)
+        inputKF.onEnter(() => {
+            entity.setCameraLock(false)
+        })
+        inputKF.onInside((time) => {
+            entity.getPreInput().execute()
         })
 
         skill.onLocalInputUpdate(event => {
-            if (anim.getTime() < 0.95) {
-                SOFHelper.preventLocalInput(event)
-            }
+            SOFHelper.preventLocalInput(event)
         })
 
         skill.onEnd(() => {
-            animatable.recoveryBlendMove()
             entity.getPreInput().unlock()
             entity.setSolid(false)
             entity.setCameraLock(false)

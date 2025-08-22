@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"Hit/knockdown_swipe:head_left": {
+		"hit.knockdown_swipe.head_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -798,7 +798,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_swipe:leg_right": {
+		"hit.knockdown_swipe.leg_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -1615,7 +1615,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_swipe:leg_left": {
+		"hit.knockdown_swipe.leg_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -2412,7 +2412,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_swipe:body_right": {
+		"hit.knockdown_swipe.body_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -3111,7 +3111,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_swipe:body_left": {
+		"hit.knockdown_swipe.body_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -3794,7 +3794,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_swipe:head_right": {
+		"hit.knockdown_swipe.head_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {

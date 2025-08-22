@@ -36,11 +36,6 @@ Skill.create("spirit_of_fight:sword.default.sprint_attack", builder => {
             }
         }, globalAttackSystem)
 
-        attackBody.onCollisionActive(() => {
-            entity.setCameraLock(true)
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 0.8)
-        })
-
         skill.onTargetActualHurtPost(event => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players", 1, 0.9)
             SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
@@ -58,23 +53,30 @@ Skill.create("spirit_of_fight:sword.default.sprint_attack", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        skill.onActive(() => {
-            const animTime = anim.getTime()
+        const moveKF = anim.registerKeyframeRangeStart("move", 0.1)
+        moveKF.onEnter(() => {
+            entity.move([0.0, 0.2, 1.25], false)
+        })
 
-            if (animTime >= 0.0 && animTime <= 0.1) {
-                entity.move([0.0, 0.2, 0.75], false)
-            }
+        const attackKF = anim.registerKeyframeRange("attack", 0.25, 0.65)
+        attackKF.onEnter(() => {
+            attackBody.setCollideWithGroups(1)
+            entity.setCameraLock(true)
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 0.8)
+        })
+        attackKF.onInside(() => {
+            animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
+        })
+        attackKF.onExit(() => {
+            attackBody.setCollideWithGroups(0)
+        })
 
-            if (animTime >= 0.25 && animTime <= 0.65) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
-                attackBody.setCollideWithGroups(1)
-            } else {
-                attackBody.setCollideWithGroups(0)
-            }
-
-            if (animTime >= 0.8) {
-                entity.getPreInput().execute()
-            }
+        const inputKF = anim.registerKeyframeRangeStart("input", 0.8)
+        inputKF.onEnter(() => {
+            entity.setCameraLock(false)
+        })
+        inputKF.onInside((time) => {
+            entity.getPreInput().execute()
         })
 
         skill.onLocalInputUpdate(event => {

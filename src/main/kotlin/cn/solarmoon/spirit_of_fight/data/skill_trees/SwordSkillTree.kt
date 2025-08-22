@@ -25,17 +25,15 @@ import org.joml.Vector2i
 
 object SwordSkillTree {
 
-    val SWORD_DEFAULT_COMBO = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo")
-    val SWORD_SPECIAL_COMBO = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo")
+    val SWORD_COMBO = sofKey("sword.combo")
     val SWORD_JUMP_ATTACK = sofKey("sword_jump_attack")
-    val SWORD_DEFAULT_SPRINT_ATTACK = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.sprint_attack")
-    val SWORD_SPECIAL_SPRINT_ATTACK = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.sprint_attack")
+    val SWORD_SPRINT_ATTACK = sofKey("sword.sprint_attack")
     val SWORD_BLOCK = sofKey("sword.block")
-    val SWORD_DODGE = sofKey("sword_dodge")
+    val SWORD_DODGE = sofKey("sword.dodge")
     val SWORD_SWITCH_ATTACK = sofKey("sword.switch_attack")
     
     fun register(context: BootstrapContext<SkillTree>) {
-        context.register(SWORD_DEFAULT_COMBO,
+        context.register(SWORD_COMBO,
             SkillTree(
                 Ingredient.of(ItemTags.SWORDS),
                 listOf(
@@ -76,14 +74,7 @@ object SwordSkillTree {
                                 )
                             )
                         )
-                    )
-                )
-            )
-        )
-        context.register(SWORD_SPECIAL_COMBO,
-            SkillTree(
-                Ingredient.of(ItemTags.SWORDS),
-                listOf(
+                    ),
                     CommonNode(
                         listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
                         SOFSkillTypes.SWORD_SPECIAL_COMBO_1,
@@ -119,7 +110,7 @@ object SwordSkillTree {
                 2
             )
         )
-        context.register(SWORD_DEFAULT_SPRINT_ATTACK,
+        context.register(SWORD_SPRINT_ATTACK,
             SkillTree(
                 Ingredient.of(ItemTags.SWORDS),
                 listOf(
@@ -127,15 +118,7 @@ object SwordSkillTree {
                         listOf(SprintingCondition(), WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
                         SOFSkillTypes.SWORD_DEFAULT_SPRINT_ATTACK,
                         SOFPreInputs.ATTACK
-                    )
-                ),
-                1
-            )
-        )
-        context.register(SWORD_SPECIAL_SPRINT_ATTACK,
-            SkillTree(
-                Ingredient.of(ItemTags.SWORDS),
-                listOf(
+                    ),
                     CommonNode(
                         listOf(SprintingCondition(), WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
                         SOFSkillTypes.SWORD_SPECIAL_SPRINT_ATTACK,

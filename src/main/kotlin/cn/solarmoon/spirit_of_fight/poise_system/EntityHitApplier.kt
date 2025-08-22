@@ -13,13 +13,16 @@ import cn.solarmoon.spark_core.entity.getSide
 import cn.solarmoon.spark_core.util.Key
 import cn.solarmoon.spark_core.util.toVec3
 import cn.solarmoon.spirit_of_fight.event.GetHitAnimationEvent
+import cn.solarmoon.spirit_of_fight.js.JSSOFConfig
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.registry.common.SOFTypedAnimations
 import com.jme3.math.Vector3f
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.damagesource.DamageTypes
 import net.minecraft.world.entity.Entity
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.common.NeoForge
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent
 
 object EntityHitApplier {
@@ -59,8 +62,17 @@ object EntityHitApplier {
         val animName = SOFHitTypes.getHitAnimation(event.hitType.name, event.boneName, event.posSide, event.hitSide)
         SOFTypedAnimations.HIT_ANIMS[animName]?.let {
             if (event.animatable.model.bones.keys.containsAll(setOf("head", "waist", "leftArm", "rightArm", "leftLeg", "rightLeg"))) {
-                event.resultHitAnim = it.get()
+                event.resultHitAnim = it
             }
+        }
+    }
+
+    @SubscribeEvent
+    private fun entityInit(event: EntityJoinLevelEvent) {
+        val entity = event.entity
+        val key = BuiltInRegistries.ENTITY_TYPE.getKey(entity.type)
+        JSSOFConfig.ENTITY_DEFAULT_POISE[key]?.let {
+            entity.poise.initValue(it)
         }
     }
 
@@ -72,6 +84,7 @@ object EntityHitApplier {
                 entity.isHitting = true
                 entity.setCameraLock(true)
                 entity.preInput.lock()
+                entity.preInput.clear()
             }
 
             onEvent<AnimEvent.Tick> {

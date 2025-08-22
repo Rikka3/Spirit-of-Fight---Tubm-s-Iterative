@@ -36,12 +36,6 @@ Skill.create("spirit_of_fight:sword.default.combo_1", builder => {
             }
         }, globalAttackSystem)
 
-        attackBody.onCollisionActive(() => {
-            entity.move([0.0, entity.getDeltaMovement().y, 0.3], false)
-            entity.setCameraLock(true)
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 1.1)
-        })
-
         skill.onTargetActualHurtPost(event => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players", 1, 1.1)
             SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
@@ -60,44 +54,33 @@ Skill.create("spirit_of_fight:sword.default.combo_1", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        const releaseTrigger = SOFHelper.createOneTimeTrigger(
-            () => { return anim.getTime() >= 0.6 },
-            () => {
-                entity.setCameraLock(false)
-            }
-        )
-        const blendTrigger = SOFHelper.createOneTimeTrigger(
-            () => { return anim.getTime() >= 0.65 && entity.isMoving() },
-            () => {
-                animatable.blendMove()
-            }
-        )
-        skill.onActive(() => {
-            const animTime = anim.getTime()
+        const attackKF = anim.registerKeyframeRange("attack", 0.3, 0.55)
+        attackKF.onEnter(() => {
+            attackBody.setCollideWithGroups(1)
+            entity.move([0.0, entity.getDeltaMovement().y, 0.3], false)
+            entity.setCameraLock(true)
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 1.1)
+        })
+        attackKF.onInside(() => {
+            animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
+        })
+        attackKF.onExit(() => {
+            attackBody.setCollideWithGroups(0)
+        })
 
-            if (animTime >= 0.3 && animTime <= 0.55) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.4], [0.0, 0.0, -0.9])
-                attackBody.setCollideWithGroups(1)
-            } else {
-                attackBody.setCollideWithGroups(0)
-            }
-
-            if (animTime >= 0.6) {
-                entity.getPreInput().executeExcept("move")
-            }
-
-            releaseTrigger.trigger()
-            blendTrigger.trigger()
+        const inputKF = anim.registerKeyframeRangeStart("input", 0.6)
+        inputKF.onEnter(() => {
+            entity.setCameraLock(false)
+        })
+        inputKF.onInside((time) => {
+            entity.getPreInput().execute()
         })
 
         skill.onLocalInputUpdate(event => {
-            if (anim.getTime() < 0.65) {
-                SOFHelper.preventLocalInput(event)
-            }
+            SOFHelper.preventLocalInput(event)
         })
 
         skill.onEnd(() => {
-            animatable.recoveryBlendMove()
             entity.getPreInput().unlock()
             entity.setSolid(false)
             entity.setCameraLock(false)

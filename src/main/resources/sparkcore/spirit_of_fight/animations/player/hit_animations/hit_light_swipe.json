@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"Hit/light_swipe:leg_right": {
+		"hit.light_swipe.leg_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -346,7 +346,7 @@
 				}
 			}
 		},
-		"Hit/light_swipe:leg_left": {
+		"hit.light_swipe.leg_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -691,7 +691,7 @@
 				}
 			}
 		},
-		"Hit/light_swipe:body_right": {
+		"hit.light_swipe.body_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1032,7 +1032,7 @@
 				}
 			}
 		},
-		"Hit/light_swipe:body_left": {
+		"hit.light_swipe.body_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1373,7 +1373,7 @@
 				}
 			}
 		},
-		"Hit/light_swipe:head_right": {
+		"hit.light_swipe.head_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1758,7 +1758,7 @@
 				}
 			}
 		},
-		"Hit/light_swipe:head_left": {
+		"hit.light_swipe.head_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {

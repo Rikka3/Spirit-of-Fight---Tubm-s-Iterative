@@ -10,7 +10,6 @@ import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import java.util.concurrent.CompletableFuture
 
@@ -22,7 +21,7 @@ class SOFItemTags(
 ): ItemTagsProvider(output, lookupProvider, blockTags, SpiritOfFight.MOD_ID, existingFileHelper) {
 
     override fun addTags(provider: HolderLookup.Provider) {
-        tag(FORGE_HAMMER).add(
+        tag(FORGE_HAMMERS).add(
             SOFItems.WOODEN_WARHAMMER.get(),
             SOFItems.STONE_WARHAMMER.get(),
             SOFItems.IRON_WARHAMMER.get(),
@@ -49,14 +48,13 @@ class SOFItemTags(
 
     companion object {
         @JvmStatic
-        val FORGE_HAMMER = forgeTag("hammer")
+        val FORGE_HAMMERS = forgeTag("hammers")
         @JvmStatic
         val FORGE_GLOVES = forgeTag("gloves")
         @JvmStatic
         val FORGE_SPEARS = forgeTag("spears")
 
         private fun modTag(path: String): TagKey<Item> {
-            Tags.Items.BUDS
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, path))
         }
 

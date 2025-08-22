@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"Hit/knockdown_chop:jaw": {
+		"hit.knockdown_chop.jaw": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -774,7 +774,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:head_left": {
+		"hit.knockdown_chop.head_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -1479,7 +1479,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:head_right": {
+		"hit.knockdown_chop.head_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -2184,7 +2184,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:body_right": {
+		"hit.knockdown_chop.body_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -2957,7 +2957,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:body_left": {
+		"hit.knockdown_chop.body_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -3706,7 +3706,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:leg_left": {
+		"hit.knockdown_chop.leg_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -4455,7 +4455,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_chop:leg_right": {
+		"hit.knockdown_chop.leg_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {

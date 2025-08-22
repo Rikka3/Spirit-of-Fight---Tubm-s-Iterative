@@ -46,9 +46,16 @@ interface JSSOFEntity: JSEntity {
         if (entity is Player) entity.getStateMachineHandler(SparkStateMachineRegister.PLAYER_BASE_STATE)?.machine?.processEventBlocking(PlayerBaseAnimStateMachine.ResetEvent)
     }
 
+    fun getWieldStyleName() = entity.wieldStyle.serializedName
+
     fun setSolid(value: Boolean) {
         val entity = this.entity
         entity.isSolid = value
+    }
+
+    fun setGuardEnabled(value: Boolean) {
+        val entity = this.entity
+        entity.isGuardEnabled = value
     }
 
 }

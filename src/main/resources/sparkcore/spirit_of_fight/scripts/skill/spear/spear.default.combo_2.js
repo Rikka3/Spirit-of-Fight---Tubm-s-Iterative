@@ -14,21 +14,19 @@ Skill.create("spirit_of_fight:spear.default.combo_2", builder => {
 
         if (entity == null || animatable == null) return
 
-        const anim = animatable.createAnimation('minecraft:player', name)
-        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.0, 1.0, 4.0], [0.0, 0.0, 0.0])
+        const anim = animatable.createAnimation("minecraft:player", name)
         anim.setShouldTurnBody(true)
+        const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.0, 1.0, 4.0], [0.0, 0.0, 0.0])
         const globalAttackSystem = PhysicsHelper.createAttackSystem()
-        const trailMesh = SOFHelper.createTrailMesh("minecraft:textures/block/stone.png", 5, 0xFFFFFF)
-        var count = 0
+        const trailMesh = SOFHelper.createTrailMesh("spirit_of_fight:textures/particle/base_trail.png", 5, 0xFFFFFF)
 
         attackBody.onAttackCollide('attack', {
             preAttack: (isFirst, attacker, target, o1, o2, manifoldId, attackSystem) => {
                 skill.addTarget(target)
                 if (isFirst) {
                     entity.cameraShake(2, 1, 2)
-                    if (count == 1) animatable.changeSpeed(5, 0.025)
                 }
-                entity.addFightSpirit(50)
+                entity.addFightSpirit(25)
             },
             doAttack: (attacker, target, o1, o2, manifoldId, attackSystem) => {
                 entity.commonAttack(target)
@@ -38,17 +36,14 @@ Skill.create("spirit_of_fight:spear.default.combo_2", builder => {
             }
         }, globalAttackSystem)
 
-        attackBody.onCollisionActive(() => {
-            if (count == 0) entity.move([0.0, entity.getDeltaMovement().y, 0.4], false)
-            entity.setCameraLock(true)
-            globalAttackSystem.reset()
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players")
-            count++
+        skill.onTargetActualHurtPost(event => {
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players", 1, 1.1)
+            SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
         })
 
-        skill.onTargetActualHurtPost(event => {
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_under_attack_1", "players")
-            SOFParticlePresets.summonQuadraticParticle(event.getSource(), 15, 'minecraft:block', '{"block_state": {"Name": "minecraft:redstone_block"}}')
+        anim.onSwitchIn(p => {
+            entity.getPreInput().lock()
+            entity.setSolid(true)
         })
 
         anim.onEnd(event => {
@@ -59,27 +54,37 @@ Skill.create("spirit_of_fight:spear.default.combo_2", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        skill.onActive(() => {
-            const animTime = anim.getTime()
-
-            if ((animTime >= 0.1 && animTime <= 0.3) || (animTime >= 0.6 && animTime <= 0.9)) {
-                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.5], [0.0, 0.0, -1.0])
+        anim.registerKeyframeRanges("attack", [[0.1, 0.3], [0.6, 0.8]], (kf, index) => {
+            kf.onEnter(() => {
                 attackBody.setCollideWithGroups(1)
-            } else {
+                entity.move([0.0, entity.getDeltaMovement().y, 0.3], false)
+                entity.setCameraLock(true)
+                level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_wield_1", "players", 1, 1)
+            })
+            kf.onInside(() => {
+                animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, -0.9], [0.0, 0.0, -1.1])
+            })
+            kf.onExit(() => {
                 attackBody.setCollideWithGroups(0)
-            }
+                globalAttackSystem.reset()
+            })
+        })
 
-            if (animTime >= 1.25) {
-                entity.getPreInput().execute()
-            }
+        const inputKF = anim.registerKeyframeRangeStart("input", 1.0)
+        inputKF.onEnter(() => {
+            entity.setCameraLock(false)
+        })
+        inputKF.onInside((time) => {
+            entity.getPreInput().execute()
         })
 
         skill.onLocalInputUpdate(event => {
-            if (event.getInput().down) event.getEntity().setDeltaMovement(0.0, entity.getDeltaMovement().y, 0.0)
             SOFHelper.preventLocalInput(event)
         })
 
         skill.onEnd(() => {
+            entity.getPreInput().unlock()
+            entity.setSolid(false)
             entity.setCameraLock(false)
             attackBody.remove()
         })

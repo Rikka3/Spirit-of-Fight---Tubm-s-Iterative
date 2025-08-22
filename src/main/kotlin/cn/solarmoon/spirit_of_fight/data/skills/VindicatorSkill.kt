@@ -2,7 +2,6 @@ package cn.solarmoon.spirit_of_fight.data.skills
 
 import cn.solarmoon.spark_core.skill.SkillType
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.data.SOFSkillTypes
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.worldgen.BootstrapContext
 import net.minecraft.resources.ResourceLocation
@@ -14,7 +13,7 @@ object VindicatorSkill {
     val SWIPE_ATTACK = sofKey("vindicator_swipe_attack")
     val COUNTER_ATTACK = sofKey("vindicator_counter_attack")
     val SPRINT_ATTACK = sofKey("vindicator_sprint_attack")
-    val ALL = listOf(SWIPE_ATTACK, COUNTER_ATTACK, SOFSkillTypes.AXE_COMBO_0, SOFSkillTypes.AXE_COMBO_1, SOFSkillTypes.AXE_COMBO_2)
+    val ALL = listOf(SWIPE_ATTACK, COUNTER_ATTACK)
 
     fun random() = ALL.random()
 

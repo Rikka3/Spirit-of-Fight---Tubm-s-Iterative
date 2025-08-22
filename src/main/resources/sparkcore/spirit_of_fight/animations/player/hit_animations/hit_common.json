@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"Hit/landing": {
+		"hit.landing": {
 			"animation_length": 1.4583,
 			"bones": {
 				"head": {
@@ -584,7 +584,7 @@
 				}
 			}
 		},
-		"Hit/light_all:lowerbody_left": {
+		"hit.light_all.lowerbody_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -913,7 +913,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:upperbody_right": {
+		"hit.heavy_all.upperbody_right": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -1298,7 +1298,7 @@
 				}
 			}
 		},
-		"Hit/light_all:upperbody_right": {
+		"hit.light_all.upperbody_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -1627,7 +1627,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:upperbody_back": {
+		"hit.knockdown_all.upperbody_back": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -2348,7 +2348,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:upperbody_right": {
+		"hit.knockdown_all.upperbody_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -3039,7 +3039,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:lowerbody_right": {
+		"hit.knockdown_all.lowerbody_right": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -3730,7 +3730,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:lowerbody_back": {
+		"hit.knockdown_all.lowerbody_back": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -4527,7 +4527,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:lowerbody_left": {
+		"hit.knockdown_all.lowerbody_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -5202,7 +5202,7 @@
 				}
 			}
 		},
-		"Hit/knockdown_all:upperbody_left": {
+		"hit.knockdown_all.upperbody_left": {
 			"animation_length": 3.5,
 			"bones": {
 				"head": {
@@ -5877,7 +5877,7 @@
 				}
 			}
 		},
-		"Hit/light_all:upperbody_left": {
+		"hit.light_all.upperbody_left": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -6206,7 +6206,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:lowerbody_back": {
+		"hit.heavy_all.lowerbody_back": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -6591,7 +6591,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:upperbody_back": {
+		"hit.heavy_all.upperbody_back": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -6976,7 +6976,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:lowerbody_right": {
+		"hit.heavy_all.lowerbody_right": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -7361,7 +7361,7 @@
 				}
 			}
 		},
-		"Hit/light_all:lowerbody_right": {
+		"hit.light_all.lowerbody_right": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -7690,7 +7690,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:lowerbody_left": {
+		"hit.heavy_all.lowerbody_left": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -8075,7 +8075,7 @@
 				}
 			}
 		},
-		"Hit/heavy_all:upperbody_left": {
+		"hit.heavy_all.upperbody_left": {
 			"animation_length": 0.7917,
 			"bones": {
 				"head": {
@@ -8460,7 +8460,7 @@
 				}
 			}
 		},
-		"Hit/light_all:lowerbody_back": {
+		"hit.light_all.lowerbody_back": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {
@@ -8789,7 +8789,7 @@
 				}
 			}
 		},
-		"Hit/light_all:upperbody_back": {
+		"hit.light_all.upperbody_back": {
 			"animation_length": 0.5,
 			"bones": {
 				"head": {

@@ -29,25 +29,25 @@ enum class SOFHitTypes {
         ): String {
             val suffix = when (posSide) {
                 Side.FRONT -> when (boneName) {
-                    "head" -> "$hitType:head_${hitSide.toString().lowercase()}"
-                    "waist", "leftArm", "rightArm" -> "$hitType:body_${hitSide.toString().lowercase()}"
-                    "leftLeg", "rightLeg" -> "$hitType:leg_${hitSide.toString().lowercase()}"
+                    "head" -> "$hitType.head_${hitSide.toString().lowercase()}"
+                    "waist", "leftArm", "rightArm" -> "$hitType.body_${hitSide.toString().lowercase()}"
+                    "leftLeg", "rightLeg" -> "$hitType.leg_${hitSide.toString().lowercase()}"
                     else -> null
                 }
                 else -> when (boneName) {
                     "head", "waist", "leftArm", "rightArm" -> {
                         // 分割hitType取前半
                         val baseType = hitType.split('_').first()
-                        "${baseType}_all:upperbody_${posSide.toString().lowercase()}"
+                        "${baseType}_all.upperbody_${posSide.toString().lowercase()}"
                     }
                     "leftLeg", "rightLeg" -> {
                         val baseType = hitType.split('_').first()
-                        "${baseType}_all:lowerbody_${posSide.toString().lowercase()}"
+                        "${baseType}_all.lowerbody_${posSide.toString().lowercase()}"
                     }
                     else -> null
                 }
-            } ?: "$hitType:${boneName}_$posSide#${hitSide.toString().lowercase()}"
-            return suffix.let { "Hit/$it" }
+            } ?: "$hitType:${boneName}_${posSide.simpleName}#${hitSide.toString().lowercase()}"
+            return suffix.let { "hit.$it" }
         }
     }
 

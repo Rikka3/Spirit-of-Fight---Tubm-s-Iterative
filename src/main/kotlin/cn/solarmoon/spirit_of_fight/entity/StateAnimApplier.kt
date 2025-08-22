@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.entity
 
+import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.event.ChangePresetAnimEvent
 import cn.solarmoon.spark_core.physics.presets.callback.SparkCollisionCallback
 import cn.solarmoon.spark_core.physics.presets.initWithAnimatedBone
@@ -9,14 +10,17 @@ import cn.solarmoon.spark_core.registry.common.SparkStateMachineRegister
 import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.state_machine.presets.PlayerBaseAnimStateMachine
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
+import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.event.OnSkillTreeSetChangeEvent
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.bullet.collision.shapes.CompoundCollisionShape
 import com.jme3.bullet.objects.PhysicsRigidBody
 import com.jme3.math.Vector3f
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
-import net.minecraft.world.entity.monster.Husk
+import net.minecraft.world.entity.monster.Vindicator
+import net.minecraft.world.entity.monster.Zombie
 import net.minecraft.world.item.Item
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent
@@ -38,6 +42,8 @@ object StateAnimApplier {
         }
 
         set(ItemTags.SWORDS, "sword")
+        set(SOFItemTags.FORGE_HAMMERS, "hammer")
+        set(SOFItemTags.FORGE_GLOVES, "gloves")
     }
 
     @SubscribeEvent
@@ -50,11 +56,12 @@ object StateAnimApplier {
     private fun add(event: EntityJoinLevelEvent) {
         val entity = event.entity
         val level = entity.level()
-        if (entity is Husk) {
+        if (entity is Zombie || entity is Vindicator) {
+            entity.modelIndex.modelPath = ResourceLocation.fromNamespaceAndPath(SparkCore.MOD_ID, "spark_core/models/zombie")
             entity.model.bones.values.filterNot { it.name in listOf("rightItem", "leftItem") }.forEach { bone ->
                 val body = PhysicsRigidBody(bone.name, entity, CompoundCollisionShape())
 
-                entity.bindBody(body, level.physicsLevel, true) {
+                entity.bindBody(body, level.physicsLevel, allowOverride = true) {
                     (this.collisionShape as CompoundCollisionShape).initWithAnimatedBone(bone)
                     this.isContactResponse = false
                     this.setGravity(Vector3f.ZERO)

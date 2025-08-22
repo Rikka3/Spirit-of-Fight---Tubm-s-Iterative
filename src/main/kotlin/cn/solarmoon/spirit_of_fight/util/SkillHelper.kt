@@ -6,11 +6,16 @@ import cn.solarmoon.spark_core.animation.anim.play.AnimInstance
 import cn.solarmoon.spark_core.entity.attack.SparkHurtDatas
 import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spark_core.util.toVec3
+import cn.solarmoon.spirit_of_fight.poise_system.EntityHitApplier
+import cn.solarmoon.spirit_of_fight.poise_system.HitType
 import com.jme3.bullet.collision.ManifoldPoints
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.math.Vector3f
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.Vec3
 
 object SkillHelper {
@@ -44,6 +49,19 @@ object SkillHelper {
     fun createAnimByDirection(animatable: IEntityAnimatable<*>, path: ResourceLocation, animBaseName: String, default: MoveDirection): AnimInstance {
         val direction = animatable.animatable.moveDirection ?: default
         return AnimInstance.create(animatable, AnimIndex(path, "${animBaseName}.${direction.toString().lowercase()}"))
+    }
+
+    fun sofCommonAttack(attacker: Entity, target: Entity, hitType: HitType) {
+        val entity = attacker
+        target.hurtData.write(EntityHitApplier.HIT_TYPE, hitType)
+        if (entity.level().isClientSide) return
+        if (target is LivingEntity) {
+            if (entity is Player) {
+                entity.attack(target)
+            } else if (entity is LivingEntity) {
+                entity.doHurtTarget(target)
+            }
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package cn.solarmoon.spirit_of_fight.skill.tree
 
+import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.event.OnSkillTreeSetChangeEvent
 import net.minecraft.world.entity.player.Player
 import net.neoforged.bus.api.SubscribeEvent
@@ -26,6 +27,7 @@ object SkillTreeApplier {
                 it.reset(this)
             }
         }
+        wieldStyle = WieldStyle.DEFAULT
         currentSkillSet = event.newSet
     }
 

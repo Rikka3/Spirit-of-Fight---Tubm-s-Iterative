@@ -8,7 +8,7 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
 
         if (entity == null || animatable == null) return
 
-        const anim = SOFHelper.createAnimByDirection(animatable, "minecraft:player", "sword.dodge", "forward")
+        const anim = SOFHelper.createAnimByDirection(animatable, "minecraft:player", `sword.${entity.getWieldStyleName()}.dodge`, "forward")
 
         anim.onSwitchIn(p => {
             entity.getPreInput().lock()
@@ -22,21 +22,22 @@ Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder =
             animatable.playAnimation(anim, 0)
         })
 
-        skill.onActive(() => {
-            const animTime = anim.getTime()
+        const moveKF = anim.registerKeyframeRangeStart("move", 0.0)
+        moveKF.onEnter(() => {
+            entity.move([0.0, entity.getDeltaMovement().y, 1.25], true)
+        })
 
-            if (animTime >= 0.0 && animTime <= 0.1) {
-                entity.move([0.0, entity.getDeltaMovement().y, 1.25], true)
-            }
-
-            if (animTime >= 0.3) {
-                entity.getPreInput().executeExcept("dodge")
-            }
+        const inputKF = anim.registerKeyframeRangeStart("input", 0.3)
+        inputKF.onEnter(() => {
+            entity.setCameraLock(false)
+        })
+        inputKF.onInside((time) => {
+            entity.getPreInput().executeExcept("dodge")
         })
 
         skill.onHurt(event => {
             event.setCanceled(true)
-            if (skill.getTickCount() <= 10) {
+            if (skill.getTickCount() <= 5) {
                 skill.perfectDodge(event)
             }
         })
