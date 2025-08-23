@@ -10,7 +10,6 @@ import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OnGroundCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.ReverseCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SprintingCondition
@@ -19,7 +18,6 @@ import cn.solarmoon.spirit_of_fight.skill.tree.node.CommonNode
 import cn.solarmoon.spirit_of_fight.skill.tree.node.StopNode
 import net.minecraft.data.worldgen.BootstrapContext
 import net.minecraft.world.item.crafting.Ingredient
-import net.neoforged.neoforge.common.Tags
 import org.joml.Vector2i
 
 object HammerSkillTree {
@@ -112,14 +110,6 @@ object HammerSkillTree {
             SkillTree(
                 Ingredient.of(SOFItemTags.FORGE_HAMMERS),
                 listOf(
-                    CommonNode(
-                        listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS))),
-                        SOFSkillTypes.SHIELD_GUARD,
-                        SOFPreInputs.GUARD,
-                        children = listOf(
-                            StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS)))))
-                        )
-                    ),
                     CommonNode(
                         listOf(KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS))),
                         SOFSkillTypes.HAMMER_BLOCK,

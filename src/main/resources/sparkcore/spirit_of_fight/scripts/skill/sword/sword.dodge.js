@@ -1,12 +1,11 @@
 Skill.createBy("spirit_of_fight:sword.dodge", "spirit_of_fight:dodge", builder => {
+    builder.addEntityAnimatableCondition()
     builder.acceptConfig(config => {
     })
     builder.accept(skill => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
-
-        if (entity == null || animatable == null) return
 
         const anim = SOFHelper.createAnimByDirection(animatable, "minecraft:player", `sword.${entity.getWieldStyleName()}.dodge`, "forward")
 

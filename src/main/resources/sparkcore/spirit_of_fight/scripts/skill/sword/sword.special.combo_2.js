@@ -1,4 +1,5 @@
 Skill.create("spirit_of_fight:sword.special.combo_2", builder => {
+    builder.addEntityAnimatableCondition()
     builder.acceptConfig(config => {
         config.set("enable_critical_hit", false)
         config.set("enable_sweep_attack", false)
@@ -13,8 +14,6 @@ Skill.create("spirit_of_fight:sword.special.combo_2", builder => {
         const level = skill.getLevel()
         const globalAttackSystem = PhysicsHelper.createAttackSystem()
         const trailMesh = SOFHelper.createTrailMesh("spirit_of_fight:textures/particle/base_trail.png", 5, 0xFFFFFF)
-
-        if (entity == null || animatable == null) return
 
         const anim = animatable.createAnimation('minecraft:player', name)
         anim.setShouldTurnBody(true)

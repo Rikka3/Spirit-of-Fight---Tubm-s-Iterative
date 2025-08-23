@@ -9,6 +9,7 @@ import cn.solarmoon.spirit_of_fight.entity.player.PlayerLocalController
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Player
 import org.joml.Vector2i
@@ -38,7 +39,7 @@ class KeyInputCondition(
                 // 获取按键的显示名称
                 val keyDisplay = KeyMappingHelper.get(key)!!.key.displayName
                 // 创建描述该按键-事件对的可翻译组件
-                val eventDesc = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}.${event.toString().lowercase()}", keyDisplay)
+                val eventDesc = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}.${event.toString().lowercase()}", keyDisplay.copy().withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
                 // 添加连接词
                 if (index > 0) {
                     if (index == entries.size - 1) {

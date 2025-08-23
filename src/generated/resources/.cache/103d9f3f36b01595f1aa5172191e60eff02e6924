@@ -1,10 +1,10 @@
-// 1.21.1	2025-08-22T13:46:51.8808963	Registries
-cd517847aae2a8683e7b4bb36e67285b0788a507 data/spirit_of_fight/skill/tree/gloves.block.json
+// 1.21.1	2025-08-23T15:46:45.0741936	Registries
+05c6e3defb0d9aba3e6deeaf55210c703d83bc06 data/spirit_of_fight/skill/tree/gloves.block.json
 39f1177b64ce0a1ee1223c24f3f9ffa1c0079303 data/spirit_of_fight/skill/tree/gloves.combo.json
 78bcd334cc99f734ac21ff80f4a29c234c8d86dd data/spirit_of_fight/skill/tree/gloves.dodge.json
 e92350994b8e68c81b0c75e463cec99951710746 data/spirit_of_fight/skill/tree/gloves.sprint_attack.json
 09c8d3057350320e31744fe565d611c993e6aee5 data/spirit_of_fight/skill/tree/gloves.switch_attack.json
-b5ce508f842fcf02533cf9410ff41a049d27f429 data/spirit_of_fight/skill/tree/hammer.block.json
+848b857f897e3ef8f0cda29d3d1ddfe75378961d data/spirit_of_fight/skill/tree/hammer.block.json
 eaabdfa40cdbb4822c4c5472ca8de994a7a72e5c data/spirit_of_fight/skill/tree/hammer.combo.json
 f7da9f37147f36831bf2009b4e3a17b19ea1445a data/spirit_of_fight/skill/tree/hammer.dodge.json
 044757bb7c5e8f043d7ec1dd0749353ae5788193 data/spirit_of_fight/skill/tree/hammer.sprint_attack.json
@@ -12,8 +12,8 @@ f7da9f37147f36831bf2009b4e3a17b19ea1445a data/spirit_of_fight/skill/tree/hammer.
 c7ebd9ab06b2a256bcb3addcfedb326d4318df7a data/spirit_of_fight/skill/tree/hammer_jump_attack.json
 4d25817c4c777f1fdd112993aa9eb6a6df4ce75e data/spirit_of_fight/skill/tree/spear.combo.json
 337d8281b05d484f47148ea55ed6fc452f2ce784 data/spirit_of_fight/skill/tree/spear.switch_attack.json
-d65178141d95618ecf5579fec8b791eabce79053 data/spirit_of_fight/skill/tree/sword.block.json
-dbe0842ff401f00a51ec2ebf482eb55e747eb9ae data/spirit_of_fight/skill/tree/sword.combo.json
+fd9154928bb06b86141e5ccb33a4f974c8ac8e90 data/spirit_of_fight/skill/tree/sword.block.json
+aab19498dca72ea6807996e5a326f065dbbdae1a data/spirit_of_fight/skill/tree/sword.combo.json
 a6f1802fdc185324a2a492c2017db5f628513f12 data/spirit_of_fight/skill/tree/sword.dodge.json
 19d030867642ab40aeb7918612dbb230cd29064f data/spirit_of_fight/skill/tree/sword.sprint_attack.json
 364d0d4acbb9dcf8b23bd77c22e113464f1719ed data/spirit_of_fight/skill/tree/sword.switch_attack.json

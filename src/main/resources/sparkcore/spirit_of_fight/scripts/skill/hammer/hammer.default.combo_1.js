@@ -1,4 +1,5 @@
 Skill.create("spirit_of_fight:hammer.default.combo_1", builder => {
+    builder.addEntityAnimatableCondition()
     builder.acceptConfig(config => {
         config.set("enable_critical_hit", false)
         config.set("enable_sweep_attack", false)
@@ -11,8 +12,6 @@ Skill.create("spirit_of_fight:hammer.default.combo_1", builder => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
-
-        if (entity == null || animatable == null) return
 
         const anim = animatable.createAnimation("minecraft:player", name)
         anim.setShouldTurnBody(true)
@@ -59,7 +58,7 @@ Skill.create("spirit_of_fight:hammer.default.combo_1", builder => {
         attackKF.onEnter(() => {
             attackBody.setCollideWithGroups(1)
             entity.move([0.0, entity.getDeltaMovement().y, 0.3], false)
-            entity.setCameraLock(true)
+            if (skill.isActivated()) entity.setCameraLock(true)
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:hard_wield_1", "players")
         })
         attackKF.onInside(() => {
@@ -86,6 +85,7 @@ Skill.create("spirit_of_fight:hammer.default.combo_1", builder => {
             entity.setSolid(false)
             entity.setCameraLock(false)
             attackBody.remove()
+            anim.cancel()
         })
     })
 })

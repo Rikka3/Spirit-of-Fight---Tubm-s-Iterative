@@ -7,7 +7,6 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.HitTargetCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
@@ -43,21 +42,14 @@ object SwordSkillTree {
                         SOFPreInputs.ATTACK,
                         listOf(
                             CommonNode(
-                                listOf(WieldCondition(WieldStyle.DEFAULT), OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf(SOFKeyMappings.SPECIAL_ATTACK.get().name to KeyEvent.PULSE))),
-                                SOFSkillTypes.SHIELD_COMBO_C0,
+                                listOf(WieldCondition(WieldStyle.DEFAULT), OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                SOFSkillTypes.SWORD_DEFAULT_SHIELD_COMBO_2,
                                 SOFPreInputs.ATTACK,
                                 children = listOf(
                                     CommonNode(
-                                        listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3))), HitTargetCondition()),
-                                        SOFSkillTypes.SWORD_SHIELD_COMBO_C1,
-                                        SOFPreInputs.ATTACK,
-                                        children = listOf(
-                                            CommonNode(
-                                                listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                                SOFSkillTypes.SWORD_DEFAULT_COMBO_3,
-                                                SOFPreInputs.ATTACK
-                                            )
-                                        )
+                                        listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                        SOFSkillTypes.SWORD_DEFAULT_SHIELD_COMBO_3,
+                                        SOFPreInputs.ATTACK
                                     )
                                 )
                             ),
@@ -80,6 +72,18 @@ object SwordSkillTree {
                         SOFSkillTypes.SWORD_SPECIAL_COMBO_1,
                         SOFPreInputs.ATTACK,
                         listOf(
+                            CommonNode(
+                                listOf(WieldCondition(WieldStyle.SPECIAL), OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                SOFSkillTypes.SWORD_SPECIAL_SHIELD_COMBO_2,
+                                SOFPreInputs.ATTACK,
+                                children = listOf(
+                                    CommonNode(
+                                        listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                        SOFSkillTypes.SWORD_SPECIAL_SHIELD_COMBO_3,
+                                        SOFPreInputs.ATTACK
+                                    )
+                                )
+                            ),
                             CommonNode(
                                 listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
                                 SOFSkillTypes.SWORD_SPECIAL_COMBO_2,
@@ -134,7 +138,7 @@ object SwordSkillTree {
                 listOf(
                     CommonNode(
                         listOf(OffHandCondition(Ingredient.of(Tags.Items.TOOLS_SHIELD)), KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS))),
-                        SOFSkillTypes.SHIELD_GUARD,
+                        SOFSkillTypes.SWORD_SHIELD_BLOCK,
                         SOFPreInputs.GUARD,
                         children = listOf(
                             StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS)))))

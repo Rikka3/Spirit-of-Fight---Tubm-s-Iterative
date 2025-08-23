@@ -7,7 +7,9 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.poise_system.EntityHitApplier
 import cn.solarmoon.spirit_of_fight.poise_system.HitType
 import cn.solarmoon.spirit_of_fight.spirit.getFightSpirit
+import net.minecraft.world.InteractionHand
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import ru.nsk.kstatemachine.statemachine.processEventBlocking
 
@@ -56,6 +58,17 @@ interface JSSOFEntity: JSEntity {
     fun setGuardEnabled(value: Boolean) {
         val entity = this.entity
         entity.isGuardEnabled = value
+    }
+
+    fun setCanUseItem(value: Boolean) {
+        entity.canUseItem = value
+    }
+
+    fun useOffHandItem() {
+        val entity = this.entity
+        if (entity is LivingEntity) {
+            entity.startUsingItem(InteractionHand.OFF_HAND)
+        }
     }
 
 }

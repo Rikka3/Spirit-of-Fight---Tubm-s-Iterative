@@ -106,4 +106,9 @@ object SOFSounds {
         .id("soft_under_attack_4")
         .build()
 
+    @JvmStatic
+    val WOODEN_FISH = SpiritOfFight.REGISTER.sound()
+        .id("gui.wooden_fish")
+        .build()
+
 }

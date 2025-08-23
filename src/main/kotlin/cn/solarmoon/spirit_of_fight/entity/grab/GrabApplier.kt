@@ -1,6 +1,6 @@
 package cn.solarmoon.spirit_of_fight.entity.grab
 
-import cn.solarmoon.spark_core.event.OnPreInputExecuteEvent
+import cn.solarmoon.spark_core.event.PreInputEvent
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
@@ -57,7 +57,7 @@ object GrabApplier {
     }
 
     @SubscribeEvent
-    private fun onPreInput(event: OnPreInputExecuteEvent.Pre) {
+    private fun onPreInput(event: PreInputEvent.Execute.Pre) {
         val entity = event.preInput.holder as? Entity ?: return
         if (entity.grabManager.grabbedBy != null) {
             event.isCanceled = true

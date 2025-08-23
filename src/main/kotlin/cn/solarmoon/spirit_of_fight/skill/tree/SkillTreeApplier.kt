@@ -23,7 +23,9 @@ object SkillTreeApplier {
         val event = NeoForge.EVENT_BUS.post(OnSkillTreeSetChangeEvent(this, last, new))
         if (true && this.isLocalPlayer) {
             last?.forEach {
-                it.currentSkill?.endOnClient()
+                it.currentSkill?.apply {
+                    endOnClient()
+                }
                 it.reset(this)
             }
         }

@@ -3,10 +3,10 @@ package cn.solarmoon.spirit_of_fight.skill.tree.ui
 import cn.solarmoon.spirit_of_fight.skill.tree.node.SkillTreeNode
 import cn.solarmoon.spirit_of_fight.util.lineHeight
 import cn.solarmoon.spirit_of_fight.util.width
+import net.minecraft.ChatFormatting
 import net.minecraft.client.gui.Font
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.network.chat.FormattedText
-import org.checkerframework.checker.units.qual.h
 import java.awt.Color
 
 class SkillTreeNodeLayout(
@@ -17,7 +17,7 @@ class SkillTreeNodeLayout(
 ) {
 
     private val fontOffset = 4
-    private val conditionColor = Color.YELLOW.rgb
+    private val conditionColor = ChatFormatting.YELLOW.color!!
     private val nameColor = Color.WHITE.rgb
     private val nameBackgroundColor = Color.DARK_GRAY.rgb
     private val nameBorderThickness = 2

@@ -8,5 +8,13 @@ SOFConfig.apply({
         "minecraft:zombie": 25,
         "minecraft:husk": 25,
         "minecraft:vindicator": 25
+    },
+    // 持有特定Tag物品的状态动画组
+    // 键为持有物品的tag，值为状态动画的前缀名，比如"sword"下，则会自动检测动画库里是否存在名为"state.sword.land.idle"这样格式的动画，一旦找到这种命名的动画即会在指定状态下播放
+    HeldItemStateAnimation: {
+        "minecraft:swords": "sword",
+        "c:hammers": "hammer",
+        "c:gloves": "gloves",
+        "c:spears": "spear"
     }
 })

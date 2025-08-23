@@ -1,4 +1,5 @@
 Skill.createBy("spirit_of_fight:gloves.block", "spirit_of_fight:block", builder => {
+    builder.addEntityAnimatableCondition()
     builder.acceptConfig(config => {
         config.set("anim_path", "minecraft:player/gloves.block")
         config.set("hurt_movement", [0.0, 0.0, 1.0])
@@ -9,9 +10,6 @@ Skill.createBy("spirit_of_fight:gloves.block", "spirit_of_fight:block", builder 
         const level = skill.getLevel()
         const config = skill.getConfig()
         config.set("block_body", PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.5, 1.5, 1.5], [0.0, 0.0, 0.0], body => { body.setCollideWithGroups(1) }))
-
-
-        if (entity == null || animatable == null) return
 
         skill.onBlockHurt((event, hitPos) => {
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_block", "players")

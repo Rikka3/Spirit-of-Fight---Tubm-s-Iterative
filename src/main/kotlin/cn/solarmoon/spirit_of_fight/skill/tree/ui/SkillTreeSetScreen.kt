@@ -2,10 +2,12 @@ package cn.solarmoon.spirit_of_fight.skill.tree.ui
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTreeSet
+import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.sounds.SoundEvents
 import kotlin.math.ceil
 
 class SkillTreeSetScreen(
@@ -21,10 +23,13 @@ class SkillTreeSetScreen(
     private val buttonSize = 24      // 按钮实际像素尺寸
     private val scrollWidth = 30     // 竹简背景宽度
     private val scrollHeight = 166   // 竹简背景高度
+    private val scrollPointHeight = 192
     private val columnSpacing = 1   // 列间固定间距（竹简边缘间距）
     private val rowSpacing = 2      // 行间固定间距（按钮底部到下一个按钮顶部）
     private val scrollPaddingTop = 32// 竹简顶部留白
     private val columnWidth = columnSpacing + scrollWidth
+    // 播放状态记录
+    private val playedColumns = mutableSetOf<Int>()
 
     // 动画
     private var animationStartTime = 0L
@@ -65,15 +70,15 @@ class SkillTreeSetScreen(
         // 计算总内容宽度
         val totalWidth = (columns - 1) * scrollWidth + (columns - 1) * columnSpacing
         val startX = (width - totalWidth) / 2
-        val startY = (height - scrollHeight) / 2
+        val startY = (height - scrollPointHeight) / 2
 
         // 竹简头部 + 物品
         guiGraphics.blit(
             bambooScrollHead,
             startX - columnWidth, startY,
             0f, 0f,
-            scrollWidth, scrollHeight,
-            scrollWidth, scrollHeight
+            scrollWidth, scrollPointHeight,
+            scrollWidth, scrollPointHeight
         )
 
         // 绘制每个竹简背景
@@ -86,10 +91,16 @@ class SkillTreeSetScreen(
             val x = startX + add
             val y = startY
 
+            // 播放碰撞音效（首次到达位置）
+            if (colProgress >= 1f && col !in playedColumns) {
+                playedColumns.add(col)
+                minecraft?.player?.playSound(SoundEvents.BAMBOO_PLACE, 1.0f, 1.0f)
+            }
+
             if (col != columns - 1) {
                 guiGraphics.blit(
                     bambooScroll,
-                    x, y,
+                    x, y + (scrollPointHeight - scrollHeight) / 2,
                     0f, 0f,
                     scrollWidth, scrollHeight,
                     scrollWidth, scrollHeight
@@ -99,8 +110,8 @@ class SkillTreeSetScreen(
                     bambooScrollFoot,
                     x, y,
                     0f, 0f,
-                    scrollWidth, scrollHeight,
-                    scrollWidth, scrollHeight
+                    scrollWidth + 32, scrollPointHeight,
+                    scrollWidth + 32, scrollPointHeight
                 )
             }
 
@@ -110,7 +121,7 @@ class SkillTreeSetScreen(
                 if (index < buttons.size) {
                     val button = buttons[index]
                     val x = x + (scrollWidth - buttonSize) / 2
-                    val y = y + scrollPaddingTop + (button.height + rowSpacing) * row
+                    val y = y + (scrollPointHeight - scrollHeight) / 2 + scrollPaddingTop + (button.height + rowSpacing) * row
                     // 按钮位置跟随竹简
                     button.setPosition(x, y)
                     // 渐显效果（当进度超过50%时显示）
@@ -119,6 +130,11 @@ class SkillTreeSetScreen(
                 }
             }
         }
+    }
+
+    fun open() {
+        Minecraft.getInstance().setScreen(this)
+        minecraft?.player?.playSound(SoundEvents.BOOK_PAGE_TURN, 1.0f, 1.0f)
     }
 
 }

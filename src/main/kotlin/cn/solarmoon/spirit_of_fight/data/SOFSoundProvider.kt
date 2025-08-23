@@ -35,10 +35,11 @@ class SOFSoundProvider(
         addDefault(SOFSounds.SOFT_UNDER_ATTACK_3)
         addDefault(SOFSounds.SOFT_UNDER_ATTACK_4)
         addDefault(SOFSounds.PERFECT_DODGE)
+        addDefault(SOFSounds.WOODEN_FISH)
     }
 
     fun addDefault(event: DeferredHolder<SoundEvent, SoundEvent>, volume: Float = 1.0f) {
-        val id = event.id.path
+        val id = event.id.path.replace('.', '/')
         add(event.get(), SoundDefinition.definition()
             .with(
                 sound("${SpiritOfFight.MOD_ID}:$id", SoundDefinition.SoundType.SOUND)
@@ -47,5 +48,6 @@ class SOFSoundProvider(
             .subtitle("sound.${SpiritOfFight.MOD_ID}.$id")
             .replace(true))
     }
+
 
 }

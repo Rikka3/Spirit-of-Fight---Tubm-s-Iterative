@@ -6,21 +6,23 @@ import net.minecraft.resources.ResourceLocation
 
 object SOFSkillTypes {
 
-    val SHIELD_COMBO_C0 = sofKey("shield_combo_c0")
-    val SHIELD_GUARD = sofKey("shield_guard")
-
     val SWORD_DEFAULT_COMBO_1 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_1")
     val SWORD_DEFAULT_COMBO_2 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_2")
     val SWORD_DEFAULT_COMBO_3 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.combo_3")
+    val SWORD_DEFAULT_SHIELD_COMBO_2 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.shield.combo_2")
+    val SWORD_DEFAULT_SHIELD_COMBO_3 = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.shield.combo_3")
     val SWORD_DEFAULT_SPRINT_ATTACK = sofKey("sword.${WieldStyle.DEFAULT.serializedName}.sprint_attack")
     val SWORD_SPECIAL_COMBO_1 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_1")
     val SWORD_SPECIAL_COMBO_2 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_2")
     val SWORD_SPECIAL_COMBO_3 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.combo_3")
+    val SWORD_SPECIAL_SHIELD_COMBO_2 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.shield.combo_2")
+    val SWORD_SPECIAL_SHIELD_COMBO_3 = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.shield.combo_3")
     val SWORD_SPECIAL_SPRINT_ATTACK = sofKey("sword.${WieldStyle.SPECIAL.serializedName}.sprint_attack")
     val SWORD_SHIELD_COMBO_C1 = sofKey("sword_shield_combo_c1")
     val SWORD_JUMP_ATTACK = sofKey("sword_jump_attack")
     val SWORD_DODGE = sofKey("sword.dodge")
     val SWORD_BLOCK = sofKey("sword.block")
+    val SWORD_SHIELD_BLOCK = sofKey("sword.shield.block")
     val SWORD_SWITCH_ATTACK = sofKey("sword.switch_attack")
 
     val HAMMER_DEFAULT_COMBO_1 = sofKey("hammer.${WieldStyle.DEFAULT.serializedName}.combo_1")

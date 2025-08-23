@@ -6,6 +6,7 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle;
 import cn.solarmoon.spirit_of_fight.entity.grab.GrabManager;
 import cn.solarmoon.spirit_of_fight.poise_system.PoiseData;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +27,7 @@ public class EntityMixin implements IEntityPatch {
     private final PoiseData poise = new PoiseData(entity, 100, 100);
     private boolean solid = false;
     private boolean guardEnabled = true;
+    private boolean canUseItem = true;
 
     @Override
     public @Nullable MoveDirection getMoveDirection() {
@@ -100,5 +102,16 @@ public class EntityMixin implements IEntityPatch {
     @Override
     public void setGuardEnabled(boolean b) {
         guardEnabled = b;
+    }
+
+    @Override
+    public boolean getCanUseItem() {
+        return canUseItem;
+    }
+
+    @Override
+    public void setCanUseItem(boolean b) {
+        if (canUseItem && !b && entity instanceof LivingEntity living && living.isUsingItem()) living.stopUsingItem();
+        canUseItem = b;
     }
 }

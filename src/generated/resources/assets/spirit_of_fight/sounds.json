@@ -1,4 +1,11 @@
 {
+  "gui.wooden_fish": {
+    "replace": true,
+    "sounds": [
+      "spirit_of_fight:gui/wooden_fish"
+    ],
+    "subtitle": "sound.spirit_of_fight.gui/wooden_fish"
+  },
   "hard_block": {
     "replace": true,
     "sounds": [

@@ -31,7 +31,7 @@ object PlayerLocalController {
 
         SOFKeyMappings.OPEN_SKILL_TREE.get().onEvent(KeyEvent.PRESS_ONCE) {
             player.currentSkillSet?.let {
-                Minecraft.getInstance().setScreen(SkillTreeSetScreen(it))
+                SkillTreeSetScreen(it).open()
             }
             true
         }
@@ -44,7 +44,7 @@ object PlayerLocalController {
         // 移动加入预输入
         if (input.moveVector.length() > 0 && !player.preInput.hasInput && player.isPlayingSkill) {
             player.preInput.setInput(SOFPreInputs.MOVE, 5) {
-                player.animController.getMainLayer().stopAnimation()
+                player.animController.getMainLayer().stopAnimation(10)
                 player.animController.stopAnimToServer(DefaultLayer.MAIN_LAYER, 10)
             }
         }
@@ -52,7 +52,7 @@ object PlayerLocalController {
         // 把跳跃加入预输入防止卡手
         if (player.isPlayingSkill && !player.isSwimming && !player.jumping && Minecraft.getInstance().options.keyJump.isDown && player.onGround()) {
             player.preInput.setInput(SOFPreInputs.JUMP, 5) {
-                player.animController.getMainLayer().stopAnimation()
+                player.animController.getMainLayer().stopAnimation(10)
                 player.animController.stopAnimToServer(DefaultLayer.MAIN_LAYER, 10)
                 player.jumping = true
                 player.jumpFromGround()

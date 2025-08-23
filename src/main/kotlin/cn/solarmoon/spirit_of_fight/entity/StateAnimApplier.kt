@@ -2,6 +2,7 @@ package cn.solarmoon.spirit_of_fight.entity
 
 import cn.solarmoon.spark_core.SparkCore
 import cn.solarmoon.spark_core.event.ChangePresetAnimEvent
+import cn.solarmoon.spark_core.event.PreInputEvent
 import cn.solarmoon.spark_core.physics.presets.callback.SparkCollisionCallback
 import cn.solarmoon.spark_core.physics.presets.initWithAnimatedBone
 import cn.solarmoon.spark_core.physics.presets.ticker.MoveWithAnimatedBoneTicker
@@ -10,20 +11,21 @@ import cn.solarmoon.spark_core.registry.common.SparkStateMachineRegister
 import cn.solarmoon.spark_core.resource.common.SparkResourcePathBuilder
 import cn.solarmoon.spark_core.state_machine.presets.PlayerBaseAnimStateMachine
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
-import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.event.OnSkillTreeSetChangeEvent
+import cn.solarmoon.spirit_of_fight.js.JSSOFConfig
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.bullet.collision.shapes.CompoundCollisionShape
 import com.jme3.bullet.objects.PhysicsRigidBody
 import com.jme3.math.Vector3f
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.monster.Vindicator
 import net.minecraft.world.entity.monster.Zombie
 import net.minecraft.world.item.Item
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent
 import ru.nsk.kstatemachine.statemachine.processEventBlocking
 
 object StateAnimApplier {
@@ -41,15 +43,33 @@ object StateAnimApplier {
             }
         }
 
-        set(ItemTags.SWORDS, "sword")
-        set(SOFItemTags.FORGE_HAMMERS, "hammer")
-        set(SOFItemTags.FORGE_GLOVES, "gloves")
+        JSSOFConfig.ITEM_STATES.forEach { (tag, prefix) ->
+            set(tag, prefix)
+        }
     }
 
     @SubscribeEvent
     private fun weaponChangeResetAnim(event: OnSkillTreeSetChangeEvent) {
         val player = event.player
         player.getStateMachineHandler(SparkStateMachineRegister.PLAYER_BASE_STATE)?.machine?.processEventBlocking(PlayerBaseAnimStateMachine.ResetEvent)
+    }
+
+    @SubscribeEvent
+    private fun stopUseItem(event: LivingEntityUseItemEvent.Start) {
+        val entity = event.entity
+        if (!entity.canUseItem) event.isCanceled = true
+    }
+
+    @SubscribeEvent
+    private fun preInputLock(event: PreInputEvent.Lock) {
+        val entity = event.preInput.holder as? Entity ?: return
+        entity.canUseItem = false
+    }
+
+    @SubscribeEvent
+    private fun preInputUnlock(event: PreInputEvent.Unlock) {
+        val entity = event.preInput.holder as? Entity ?: return
+        entity.canUseItem = true
     }
 
     @SubscribeEvent

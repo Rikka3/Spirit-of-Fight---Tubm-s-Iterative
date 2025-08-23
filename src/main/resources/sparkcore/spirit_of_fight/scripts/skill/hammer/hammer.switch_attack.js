@@ -1,4 +1,5 @@
 Skill.create("spirit_of_fight:hammer.switch_attack", builder => {
+    builder.addEntityAnimatableCondition()
     builder.acceptConfig(config => {
         config.set("enable_critical_hit", false)
         config.set("enable_sweep_attack", false)
@@ -11,8 +12,6 @@ Skill.create("spirit_of_fight:hammer.switch_attack", builder => {
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
-
-        if (entity == null || animatable == null) return
 
         const anim = animatable.createAnimation('minecraft:player', name)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightLeg', [1.5, 1.5, 1.5], [0.0, -0.5, 0.0])

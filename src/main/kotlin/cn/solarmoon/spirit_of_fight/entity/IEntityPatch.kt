@@ -22,4 +22,6 @@ interface IEntityPatch {
 
     var isGuardEnabled: Boolean
 
+    var canUseItem: Boolean
+
 }
