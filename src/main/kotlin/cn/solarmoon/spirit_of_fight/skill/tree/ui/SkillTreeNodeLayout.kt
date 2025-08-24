@@ -26,7 +26,7 @@ class SkillTreeNodeLayout(
 
     val conditionHeight = fontOffset + node.conditions.size * fontLineHeight() + (node.conditions.size - 1) // 条件占的总高度（用于计算连线根据条件长度延申的拓展长度）
 
-    val nameHeight = fontOffset * 2 + fontLineHeight() // 名子行高 + 名字下移量 * 2 （上下对称）
+    val nameHeight = if (node.name == null) 0 else fontOffset * 2 + fontLineHeight() // 名子行高 + 名字下移量 * 2 （上下对称）
 
     val upperHeight = conditionHeight + iconSize / 2
 
@@ -38,7 +38,7 @@ class SkillTreeNodeLayout(
         // 当前节点自身需要的宽度（名字与描述间的最大宽度）
         // 描述固定在右侧，故描述宽度为 描述长度 * 2（对称） + 图标大小 + 描述与中线的偏移量 * 2（对称）
         return maxOf(
-            fontWidth(node.name) + nameBorderThickness * 2,
+            (node.name?.let { fontWidth(it) } ?: 0) + nameBorderThickness * 2,
             (node.conditions.maxOfOrNull { fontWidth(it.description) * 2 } ?: 0) + (fontOffset * 2)
         )
     }
@@ -83,27 +83,29 @@ class SkillTreeNodeLayout(
         // 图标
         guiGraphics.blit(node.icon, pos.first - iconSize / 2, pos.second - iconSize / 2, 0f, 0f, iconSize, iconSize, iconSize, iconSize)
 
-        // 名字透明背景
-        guiGraphics.fill(
-            pos.first - fontWidth(node.name) / 2 - nameBorderThickness, pos.second + iconSize / 2 + fontOffset - nameBorderThickness,
-            pos.first + fontWidth(node.name) / 2 + nameBorderThickness, pos.second + iconSize / 2 + fontOffset + fontLineHeight() + nameBorderThickness,
-            nameBackgroundColor
-        )
+        node.name?.let { name ->
+            // 名字透明背景
+            guiGraphics.fill(
+                pos.first - fontWidth(name) / 2 - nameBorderThickness, pos.second + iconSize / 2 + fontOffset - nameBorderThickness,
+                pos.first + fontWidth(name) / 2 + nameBorderThickness, pos.second + iconSize / 2 + fontOffset + fontLineHeight() + nameBorderThickness,
+                nameBackgroundColor
+            )
 
-        // 名字
-        poseStack.pushPose()
-        poseStack.scale(fontSize.toFloat(), fontSize.toFloat(), 0f)
-        // 计算居中坐标并反向缩放
-        val nameX = (pos.first) / fontSize
-        val nameY = (pos.second + iconSize/2 + fontOffset) / fontSize
-        guiGraphics.drawCenteredString(
-            font,
-            node.name,
-            nameX.toInt(),
-            nameY.toInt(),
-            nameColor
-        )
-        poseStack.popPose()
+            // 名字
+            poseStack.pushPose()
+            poseStack.scale(fontSize.toFloat(), fontSize.toFloat(), 0f)
+            // 计算居中坐标并反向缩放
+            val nameX = (pos.first) / fontSize
+            val nameY = (pos.second + iconSize/2 + fontOffset) / fontSize
+            guiGraphics.drawCenteredString(
+                font,
+                name,
+                nameX.toInt(),
+                nameY.toInt(),
+                nameColor
+            )
+            poseStack.popPose()
+        }
 
         poseStack.popPose()
     }

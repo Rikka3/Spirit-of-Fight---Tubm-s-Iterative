@@ -94,6 +94,7 @@ class SkillTreeScreen(
     }
 
     private fun onHovering(guiGraphics: GuiGraphics, layout: SkillTreeNodeLayout) {
+        if (layout.node.description == null) return
         // 选框
         guiGraphics.blit(
             ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/skill_tree_checkbox.png"),
@@ -135,10 +136,13 @@ class SkillTreeScreen(
             val alpha = fadeProgress
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, alpha)
             val name = node.name
-            val desc = font.split(node.description, max(128, font.width(name)))
+            val nameWidth = name?.let { font.width(it) } ?: 0
+            val description = node.description
+            if (description == null) return@let
+            val desc = font.split(description, max(128, nameWidth))
             if (fadeTime <= 0) return@let
             // 计算背景大小
-            val textWidth = max(font.width(name) + layout.iconSize / 2, desc.maxOf { font.width(it) })
+            val textWidth = max(nameWidth + layout.iconSize / 2, desc.maxOf { font.width(it) })
             val bgWidth = textWidth + 8
             val bgHeight = font.lineHeight * (desc.size + 1) + layout.iconSize / 2 + 8
 
@@ -161,14 +165,16 @@ class SkillTreeScreen(
             guiGraphics.drawThickHLine(14, 14 + textWidth, 14 + layout.iconSize / 2 + 4, 1, ColorUtil.getColorAndSetAlpha(Color.WHITE.rgb, alpha))
 
             // 绘制名称
-            guiGraphics.drawString(
-                font,
-                name,
-                14 + layout.iconSize / 2 + 4,
-                14 + layout.iconSize / 2 / 2 - font.lineHeight / 2,
-                ColorUtil.getColorAndSetAlpha(Color.WHITE.rgb, alpha), // 应用透明度
-                false
-            )
+            name?.let {
+                guiGraphics.drawString(
+                    font,
+                    it,
+                    14 + layout.iconSize / 2 + 4,
+                    14 + layout.iconSize / 2 / 2 - font.lineHeight / 2,
+                    ColorUtil.getColorAndSetAlpha(Color.WHITE.rgb, alpha), // 应用透明度
+                    false
+                )
+            }
             desc.forEachIndexed { index, text ->
                 guiGraphics.drawString(
                     font,

@@ -37,8 +37,8 @@ object StateAnimApplier {
             if (player.mainHandItem.`is`(tag)) {
                 val stateName = event.state.name
                 val animationPath = SparkResourcePathBuilder.buildAnimationPath(SpiritOfFight.MOD_ID, SpiritOfFight.MOD_ID, "player", "state.$prefix.${player.wieldStyle.serializedName}.$stateName")
-                when(stateName) {
-                    "land.idle", "land.move", "land.move_back", "land.sprint" -> event.newAnim = SparkRegistries.TYPED_ANIMATION[animationPath]
+                SparkRegistries.TYPED_ANIMATION[animationPath]?.let { animation ->
+                    event.newAnim = animation
                 }
             }
         }

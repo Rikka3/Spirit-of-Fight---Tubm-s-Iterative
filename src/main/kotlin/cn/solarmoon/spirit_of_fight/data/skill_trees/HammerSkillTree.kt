@@ -1,6 +1,7 @@
 package cn.solarmoon.spirit_of_fight.data.skill_trees
 
 import cn.solarmoon.spark_core.local_control.KeyEvent
+import cn.solarmoon.spark_core.util.MoveDirection
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.data.SOFSkillTypes
 import cn.solarmoon.spirit_of_fight.data.skill_trees.SOFSkillTrees.Companion.sofKey
@@ -8,6 +9,7 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OnGroundCondition
@@ -15,6 +17,7 @@ import cn.solarmoon.spirit_of_fight.skill.tree.condition.ReverseCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SprintingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.WieldCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.node.CommonNode
+import cn.solarmoon.spirit_of_fight.skill.tree.node.ConditionNode
 import cn.solarmoon.spirit_of_fight.skill.tree.node.StopNode
 import net.minecraft.data.worldgen.BootstrapContext
 import net.minecraft.world.item.crafting.Ingredient
@@ -34,41 +37,55 @@ object HammerSkillTree {
             SkillTree(
                 Ingredient.of(SOFItemTags.FORGE_HAMMERS),
                 listOf(
-                    CommonNode(
-                        listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                        SOFSkillTypes.HAMMER_DEFAULT_COMBO_1,
-                        SOFPreInputs.ATTACK,
+                    ConditionNode(
+                        listOf(WieldCondition(WieldStyle.DEFAULT)),
                         listOf(
                             CommonNode(
-                                listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                SOFSkillTypes.HAMMER_DEFAULT_COMBO_2,
+                                listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                SOFSkillTypes.HAMMER_DEFAULT_COMBO_1,
                                 SOFPreInputs.ATTACK,
                                 listOf(
                                     CommonNode(
-                                        listOf(WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                        SOFSkillTypes.HAMMER_DEFAULT_COMBO_3,
-                                        SOFPreInputs.ATTACK
+                                        listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                        SOFSkillTypes.HAMMER_DEFAULT_COMBO_2,
+                                        SOFPreInputs.ATTACK,
+                                        listOf(
+                                            CommonNode(
+                                                listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                                SOFSkillTypes.HAMMER_DEFAULT_COMBO_3,
+                                                SOFPreInputs.ATTACK
+                                            )
+                                        ),
+                                        reserveTime = 5
                                     )
-                                )
-                            )
+                                ),
+                                reserveTime = 5
+                            ),
                         )
                     ),
-                    CommonNode(
-                        listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                        SOFSkillTypes.HAMMER_SPECIAL_COMBO_1,
-                        SOFPreInputs.ATTACK,
+                    ConditionNode(
+                        listOf(WieldCondition(WieldStyle.SPECIAL)),
                         listOf(
                             CommonNode(
-                                listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                SOFSkillTypes.HAMMER_SPECIAL_COMBO_2,
+                                listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                SOFSkillTypes.HAMMER_SPECIAL_COMBO_1,
                                 SOFPreInputs.ATTACK,
                                 listOf(
                                     CommonNode(
-                                        listOf(WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
-                                        SOFSkillTypes.HAMMER_SPECIAL_COMBO_3,
-                                        SOFPreInputs.ATTACK
+                                        listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                        SOFSkillTypes.HAMMER_SPECIAL_COMBO_2,
+                                        SOFPreInputs.ATTACK,
+                                        listOf(
+                                            CommonNode(
+                                                listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
+                                                SOFSkillTypes.HAMMER_SPECIAL_COMBO_3,
+                                                SOFPreInputs.ATTACK
+                                            )
+                                        ),
+                                        reserveTime = 5
                                     )
-                                )
+                                ),
+                                reserveTime = 5
                             )
                         )
                     )
@@ -111,11 +128,11 @@ object HammerSkillTree {
                 Ingredient.of(SOFItemTags.FORGE_HAMMERS),
                 listOf(
                     CommonNode(
-                        listOf(KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS))),
+                        listOf(InputDirectionCondition(MoveDirection.BACKWARD)),
                         SOFSkillTypes.HAMMER_BLOCK,
                         SOFPreInputs.GUARD,
                         children = listOf(
-                            StopNode(listOf(ReverseCondition(KeyInputCondition(mapOf("key.back" to KeyEvent.PRESS)))))
+                            StopNode(listOf(ReverseCondition(InputDirectionCondition(MoveDirection.BACKWARD))))
                         )
                     )
                 )

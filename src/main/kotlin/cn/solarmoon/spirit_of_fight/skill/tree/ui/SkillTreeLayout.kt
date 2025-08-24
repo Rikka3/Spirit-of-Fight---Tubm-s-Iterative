@@ -88,14 +88,20 @@ class SkillTreeLayout(
         val maxWidth = node.children.maxOf { calculateWidth(it) }
         val childTotalWidth = node.children.size * maxWidth
 
-        // 计算起始X坐标（保证子节点居中）
         var childX = initial.first - childTotalWidth / 2 - interval * (node.children.size - 1) / 2
+
+        val parentLayout = nodeLayouts[node]!!  // 新增：拿到父节点布局
 
         node.children.forEach { child ->
             val childLayout = nodeLayouts[child]!!
             positionNodes(
                 child,
-                childX + maxWidth / 2 to initial.second + childLayout.lowerHeight + verticalDrop * 2 + childLayout.upperHeight
+                childX + maxWidth / 2 to (
+                        initial.second
+                                + parentLayout.lowerHeight      // 修复点：用父节点的 lowerHeight
+                                + verticalDrop * 2
+                                + childLayout.upperHeight       // 子节点的 upperHeight 仍然使用
+                        )
             )
             childX += maxWidth + interval
         }

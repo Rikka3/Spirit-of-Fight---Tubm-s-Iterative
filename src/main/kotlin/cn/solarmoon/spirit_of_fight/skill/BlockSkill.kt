@@ -55,7 +55,7 @@ class BlockSkill: Skill() {
             hurtAnim.onEvent<AnimEvent.Completed> {
             }
 
-            val hurtMovement = config.read("hurt_movement", NativeArray(arrayOf(0.0, 0.0, 1.0))).toVec3()
+            val hurtMovement = config.read("hurt_movement", NativeArray(arrayOf(0.0, 0.0, 1.5))).toVec3()
 
             onEvent<SkillEvent.Hurt> {
                 if (!entity.isGuardEnabled) return@onEvent

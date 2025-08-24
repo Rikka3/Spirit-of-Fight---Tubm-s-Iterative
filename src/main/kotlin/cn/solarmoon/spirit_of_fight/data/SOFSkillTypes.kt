@@ -56,7 +56,11 @@ object SOFSkillTypes {
     val GLOVES_SPECIAL_SPRINT_ATTACK = sofKey("gloves.${WieldStyle.SPECIAL.serializedName}.sprint_attack")
     val GLOVES_DODGE = sofKey("gloves.dodge")
     val GLOVES_BLOCK = sofKey("gloves.block")
-    val GLOVES_SWITCH_ATTACK = sofKey("gloves.switch_attack")
+    val GLOVES_DEFAULT_SWITCH_ATTACK_FORWARD = sofKey("gloves.default.switch_attack.forward")
+    val GLOVES_DEFAULT_SWITCH_ATTACK_LEFT = sofKey("gloves.default.switch_attack.left")
+    val GLOVES_DEFAULT_SWITCH_ATTACK_RIGHT = sofKey("gloves.default.switch_attack.right")
+    val GLOVES_DEFAULT_SWITCH_ATTACK_BACKWARD = sofKey("gloves.default.switch_attack.backward")
+    val GLOVES_SPECIAL_SWITCH_ATTACK_RIGHT = sofKey("gloves.special.switch_attack.right")
 
     fun sofKey(id: String) = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, id)
 }

@@ -20,7 +20,7 @@ class StopNode(
     override val children: List<SkillTreeNode> = listOf(),
     override val reserveTime: Int = 0,
     override val preInputDuration: Int = 5,
-) : SkillTreeNode {
+) : SkillTreeInputNode {
 
     override val name = Component.translatable("skill.stop.name")
     override val description = Component.translatable("skill.stop.description")

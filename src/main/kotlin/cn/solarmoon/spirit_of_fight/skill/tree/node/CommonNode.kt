@@ -19,9 +19,9 @@ open class CommonNode(
     var skillLocation: ResourceLocation,
     override val preInputId: String,
     override val children: List<SkillTreeNode> = listOf(),
-    override val reserveTime: Int = 5,
+    override val reserveTime: Int = 0,
     override val preInputDuration: Int = 5
-): SkillTreeNode {
+): SkillTreeInputNode {
 
     override val name = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.name")
     override val description = Component.translatable("skill.${skillLocation.namespace}.${skillLocation.path}.description")

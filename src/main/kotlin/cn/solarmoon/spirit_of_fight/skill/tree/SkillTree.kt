@@ -30,23 +30,22 @@ class SkillTree(
         private set
     var reserveTime = 0
         private set
-    private var inputCooldown = 0
 
     fun tryAdvance(player: Player, input: Input, simulate: Boolean = false): Boolean {
         val cNode = currentNode
         val level = player.level()
         val preInput = player.preInput
 
+        // 当前节点已存在但父节点持久性条件失效 → 立刻复位
+        if (currentNode != null && !checkPersistentConditions(player)) {
+            reset(player)
+            return false
+        }
+
         val ps = currentSkill
         if (ps != null && !ps.isActivated) {
             if (reserveTime > 0) reserveTime--
             else reset(player)
-        }
-
-        // 防连击缓冲
-        if (inputCooldown > 0) {
-            inputCooldown--
-            return false
         }
 
         // 阶段1：首次触发根节点
@@ -80,16 +79,36 @@ class SkillTree(
         input: Input,
         root: Boolean
     ) {
-        preInput.setInput(node.preInputId, node.preInputDuration) {
-            val next = if (!root) currentNode?.nextNode(index) else rootNodes.getOrNull(index)
-            if (next?.onEntry(player, level, this) == true) {
-                inputCooldown = 1
-                reserveTime = node.reserveTime
+        node.onActive(this, index, player, level, preInput, input, root)
+    }
 
-                path.add(index)
-                currentNode = next
-            }
+    fun step(
+        node: SkillTreeNode,
+        index: Int,
+        player: Player,
+        level: Level,
+        root: Boolean
+    ) {
+        val next = if (!root) currentNode?.nextNode(index) else rootNodes.getOrNull(index)
+        if (next?.onEntry(player, level, this) == true) {
+            reserveTime = node.reserveTime
+
+            path.add(index)
+            currentNode = next
         }
+    }
+
+    private fun checkPersistentConditions(player: Player): Boolean {
+        val skill = currentSkill
+        var nodes = rootNodes
+        for (i in path) {
+            val n = nodes.getOrNull(i) ?: return false
+            if (n.persistentCondition && !n.match(player, skill)) {
+                return false
+            }
+            nodes = n.children
+        }
+        return true
     }
 
     fun reset(player: Player) {

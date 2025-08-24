@@ -5,6 +5,7 @@ import cn.solarmoon.spirit_of_fight.skill.tree.condition.AnyCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallDistanceCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FightSpiritCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.HitTargetCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
@@ -14,6 +15,7 @@ import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillEndCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SprintingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.WieldCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.node.CommonNode
+import cn.solarmoon.spirit_of_fight.skill.tree.node.ConditionNode
 import cn.solarmoon.spirit_of_fight.skill.tree.node.FightSpiritConsumeNode
 import cn.solarmoon.spirit_of_fight.skill.tree.node.StopNode
 import net.minecraft.resources.ResourceLocation
@@ -35,10 +37,12 @@ object SOFCodecRegister {
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("reverse")) { ReverseCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("any")) { AnyCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("wield_style")) { WieldCondition.CODEC }
+        event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("input_direction")) { InputDirectionCondition.CODEC }
 
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("node")) { CommonNode.CODEC }
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("fight_spirit_consumer")) { FightSpiritConsumeNode.CODEC }
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("stop")) { StopNode.CODEC }
+        event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("condition")) { ConditionNode.CODEC }
     }
 
     private fun id(id: String) = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, id)

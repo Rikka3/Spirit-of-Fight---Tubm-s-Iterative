@@ -22,6 +22,7 @@ class SOFLanguageProvider(
         add("skill_tree_condition.spirit_of_fight.reverse", "§4不需要 §7[%s§7]")
         add("skill_tree_condition.spirit_of_fight.on_ground", "站在地面")
         add("skill_tree_condition.spirit_of_fight.skill_ended", "技能结束")
+        add("skill_tree_condition.spirit_of_fight.input_direction", "输入方向: §7[%s§7]")
         add("skill_tree_condition.spirit_of_fight.off_hand", "副手持有: §7[%s§7]")
         add("skill_tree_condition.spirit_of_fight.key_input.press", "按住 §7[%s§7]")
         add("skill_tree_condition.spirit_of_fight.key_input.press_once", "按一次 §7[%s§7]")
@@ -32,6 +33,11 @@ class SOFLanguageProvider(
 
         add("wield_style.default", "默认架势")
         add("wield_style.special", "特殊架势")
+        add("move_direction.forward", "前")
+        add("move_direction.backward", "后")
+        add("move_direction.left", "左")
+        add("move_direction.right", "右")
+        add("move_direction.null", "无")
     }
 
 
