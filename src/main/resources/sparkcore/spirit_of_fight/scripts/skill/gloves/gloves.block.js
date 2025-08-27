@@ -12,7 +12,7 @@ Skill.createBy("spirit_of_fight:gloves.block", "spirit_of_fight:block", builder 
         config.set("block_body", PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.5, 1.5, 1.5], [0.0, 0.0, 0.0], body => { body.setCollideWithGroups(1) }))
 
         skill.onBlockHurt((event, hitPos) => {
-            level.playSound(entity.getOnPos().above(), "spirit_of_fight:sharp_block", "players")
+            level.playSound(entity.getOnPos().above(), "spirit_of_fight:soft_block", "players")
             SOFParticlePresets.summonQuadraticParticle(level, hitPos, 15, 'minecraft:crit')
         })
 

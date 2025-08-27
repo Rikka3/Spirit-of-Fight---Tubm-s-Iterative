@@ -79,7 +79,7 @@ Skill.create("spirit_of_fight:gloves.default.switch_attack.backward", builder =>
             })
         })
 
-        const inputKF = anim.registerKeyframeRangeStart("input", 0.65)
+        const inputKF = anim.registerKeyframeRangeStart("input", 0.9)
         inputKF.onEnter(() => {
             entity.setCameraLock(false)
         })

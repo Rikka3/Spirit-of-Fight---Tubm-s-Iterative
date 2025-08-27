@@ -64,14 +64,14 @@ Skill.create("spirit_of_fight:gloves.default.sprint_attack", builder => {
                 }
             })
             attackKF.onInside(() => {
-                if (index == 1) animatable.summonTrail(trailMesh, "leftLeg", [0.0, -0.5, 0.0], [0.0, -0.7, 0.0])
+                if (index == 1) animatable.summonTrail(trailMesh, "rightItem", [0.0, 0.0, 0.1], [0.0, 0.0, -0.1])
             })
             attackKF.onExit(() => {
                 attackBody.setCollideWithGroups(0)
             })
         })
 
-        const inputKF = anim.registerKeyframeRangeStart("input", 1.25)
+        const inputKF = anim.registerKeyframeRangeStart("input", 1.0)
         inputKF.onEnter(() => {
             entity.setCameraLock(false)
         })

@@ -4,7 +4,7 @@ Skill.create("spirit_of_fight:hammer.special.combo_1", builder => {
         config.set("enable_critical_hit", false)
         config.set("enable_sweep_attack", false)
         config.set("ignore_attack_speed", true)
-        config.set("target_knockback_strength", 0.5)
+        config.set("target_knockback_strength", 0.25)
         config.set("damage_multiplier", 1)
     })
     builder.accept(skill => {

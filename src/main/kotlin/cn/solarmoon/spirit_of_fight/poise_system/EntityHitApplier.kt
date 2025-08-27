@@ -78,6 +78,7 @@ object EntityHitApplier {
 
     fun hitAnimDoFreeze(anim: AnimInstance) {
         anim.apply {
+            shouldTurnHead = false
             onEvent<AnimEvent.SwitchIn> {
                 val entity = holder.animatable as? Entity ?: return@onEvent
                 if (animIndex.index.path.contains("knockdown")) entity.isKnockedDown = true
