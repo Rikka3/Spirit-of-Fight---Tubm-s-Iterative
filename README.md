@@ -138,6 +138,12 @@ gpr.key=ghp_your_personal_access_token
 ### Greatsword Implementation
 **Problem**:It is a placeholder for the time being until future update.
 
+### Custom Items Implementation
+**Problem**: You could not use custom items at all 
+
+**Solution**:
+Check the wiki page.
+
 ---
 
 ## Credits
