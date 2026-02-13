@@ -1,0 +1,656 @@
+# cli-code-change.log
+
+## [2026-02-13 05:30] Fix Module Registration - Double Namespace Bug
+### Root Cause Identified
+SparkCore was unable to sync module resources because:
+
+1. **Double namespace bug**: `SpiritOfFight.java` was registering the module with `spirit_of_fight:spirit_of_fight` instead of `spirit_of_fight`
+2. This caused "模块节点不存在，无法同步" (Module node does not exist, cannot sync) errors
+3. All animations and scripts failed to sync because the module node was missing
+
+### Changes Made
+
+**Modified `src/main/java/cn/solarmoon/spirit_of_fight/SpiritOfFight.java`:**
+- Line 23: Changed `MultiModResourceRegistry.INSTANCE.registerModResources(MOD_ID, SpiritOfFight.class)`
+- To: `MultiModResourceRegistry.INSTANCE.registerModResources("spirit_of_fight", SpiritOfFight.class)`
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-13 05:15] Fix Skill Registration - Skills Not Initializing
+### Root Cause Identified
+All weapon skills (gloves.block, sword.block, spear.block, etc.) were returning "Skill not found in SkillManager" errors because:
+
+1. **SOFSkills.register() was empty**: The `register()` function in `SOFSkills.kt` was empty and did nothing
+2. **Object properties not initialized**: In Kotlin, object properties (`val xyz = skillType(...)`) are only initialized when the object is first accessed. Simply calling `register()` didn't force initialization.
+3. **skillType() never called**: Since properties weren't initialized, `skillType()` was never called, so skills were never registered with SparkCore's `SkillManager`.
+
+### Changes Made
+
+**Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFSkills.kt`:**
+- Changed empty `register()` function to call `forceInit()` which accesses all skill properties
+- This forces Kotlin to initialize all `val xyz = skillType(...)` properties, triggering registration
+
+```kotlin
+@JvmStatic
+fun register() {
+    forceInit()
+}
+
+private fun forceInit() {
+    // Accessing these properties forces their initialization
+    dodge; block
+    gloves_block; gloves_dodge; gloves_special_attack
+    // ... all other skills ...
+    
+    SpiritOfFight.LOGGER.info("All SOF skills initialized and registered")
+}
+```
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-12 16:04] Fix Build - Deprecated isMoving Reference
+### Root Cause Identified
+Build failed due to deprecated `isMoving` property reference in JSSOFAnimatable.kt.
+
+### Changes Made
+
+**Fixed JSSOFAnimatable.kt:**
+- Line 51: Changed `animatable.isMoving` to `animatable.deltaMovement.lengthSqr() > 0.001`
+
+### Changes Made
+
+**Fixed JSSOFAnimatable.kt:**
+- Line 51: Changed `animatable.isMoving` to `animatable.deltaMovement.lengthSqr() > 0.001`
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-12 10:55] Fix Animation Path Namespace - Block Skills Crash Fix
+### Root Cause Identified
+Game crash when pressing block keybind due to `IllegalArgumentException: ??????[anim_path] ??????`.
+
+The animation resources are located in the `sparkcore` namespace (in `sparkcore/spirit_of_fight/animations/`), but the code was looking for them in the `spirit_of_fight` namespace.
+
+### Changes Made
+
+**Fixed GenericWeaponSkill.kt:**
+- Changed `ResourceLocation.fromNamespaceAndPath("spirit_of_fight", "fight_skill/$weaponType/$animFileName")`
+- To: `ResourceLocation.fromNamespaceAndPath("sparkcore", "spirit_of_fight/animations/player/fight_skill/$weaponType/$animFileName")`
+
+**Fixed 6 Block JavaScript Files:**
+- `sparkcore/spirit_of_fight/scripts/skill/sword/sword.block.js`
+- `sparkcore/spirit_of_fight/scripts/skill/sword/sword.shield.block.js`
+- `sparkcore/spirit_of_fight/scripts/skill/spear/spear.block.js`
+- `sparkcore/spirit_of_fight/scripts/skill/hammer/hammer.block.js`
+- `sparkcore/spirit_of_fight/scripts/skill/gloves/gloves.block.js`
+- `sparkcore/spirit_of_fight/scripts/skill/axe/axe.block.js`
+
+Changed `anim_path` from `spirit_of_fight:spirit_of_fight/animations/...` to `sparkcore:spirit_of_fight/animations/...`
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-12 09:30] Fix Build - Remove Incompatible Bundled SparkCore Source Code
+### Root Cause Identified
+After build failures, identified that Spirit of Fight had bundled incompatible SparkCore and jme3 source code that was outdated and incompatible with the pre-compiled spark-core-neoforge dependency from mavenLocal.
+
+### Changes Made
+
+**Removed Bundled Source Code:**
+- `src/main/java/cn/solarmoon/spark_core/` - Removed entire bundled SparkCore source directory (59 files)
+- `src/main/java/com/jme3/` - Removed bundled jme3 physics library (33 files)
+
+**Fixed Configuration Files:**
+- `src/main/resources/META-INF/spark_interfaces.json` - Fixed incorrect IEntityPatch path from `cn/solarmoon/spark_core/entity/IEntityPatch` to `cn/solarmoon/spirit_of_fight/entity/IEntityPatch`
+
+**Fixed Kotlin Code:**
+- `src/main/kotlin/cn/solarmoon/spirit_of_fight/js/JSSOFAnimatable.kt:51` - Replaced `animatable.isMoving` (deprecated) with `animatable.deltaMovement.lengthSqr() > 0.001`
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-12 07:15] Fix Weapon Skill Animations Not Playing
+### Root Cause Identified
+After investigating the issue where weapon skill animations weren't playing, the following root causes were identified:
+
+1. **SOFScriptLoader.register() was never called**: The JavaScript skill script loader existed in the codebase but was not being called from SpiritOfFight.java, meaning skill scripts were never loaded.
+
+2. **SOFScriptLoader creates plain Rhino context**: The SOFScriptLoader creates a plain Rhino context without Spark Core globals (Skill, PhysicsHelper, SOFHelper, etc.). This causes JavaScript skill scripts to fail silently because they rely on these globals.
+
+3. **Weapon skills not registered in Kotlin**: Only `dodge` and `block` skills were registered in SOFSkills.kt. All weapon-specific skills (spear, sword, hammer, greatsword, gloves, axe) were not registered anywhere.
+
+### Changes Made
+
+**Modified Files:**
+- `src/main/java/cn/solarmoon/spirit_of_fight/SpiritOfFight.java` - Added `SOFScriptLoader.register(modEventBus)` call to initialize JavaScript script loading
+
+**New Files:**
+- `src/main/kotlin/cn/solarmoon/spirit_of_fight/skill/GenericWeaponSkill.kt` - Created a generic weapon skill class that provides basic animation support (plays animation on skill activation, stops on end)
+
+- `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFSkills.kt` - Added registrations for ALL weapon skill types:
+  - Sword skills (combo_1, combo_2, combo_3, dodge, block, switch_attack, special_attack, special_combo_1, special_combo_2, special_combo_3)
+  - Spear skills (combo_1, combo_2, combo_3, block, switch_attack, special_attack, special_combo_1, special_combo_2, special_combo_3, dodge)
+  - Hammer skills (combo_1, combo_2, combo_3, block, dodge, switch_attack, special_attack, special_combo_1, special_combo_2, special_combo_3)
+  - Greatsword skills (combo_1, combo_2, combo_3, combo_4, block, dodge, switch_attack, special_attack, special_combo_1, special_combo_2)
+  - Gloves skills (combo_1, combo_2, combo_3, block, dodge, switch_attack, special_attack, special_combo_1, special_combo_2, special_combo_3)
+  - Axe skills (combo_1, combo_2, combo_3, block, dodge, special_attack, special_combo_1, special_combo_2, special_combo_3, special_grab, special_pull, special_spin)
+
+### How the Fix Works
+
+1. **Script Loading**: SOFScriptLoader now loads JavaScript skill scripts from the sparkcore/ directory. While the scripts still fail due to missing Spark Core globals, this ensures the loading mechanism is in place.
+
+2. **Skill Registration**: All weapon skill types are now registered in SOFSkills.kt using the `skillType()` function. Each skill uses `GenericWeaponSkill` as its implementation class.
+
+3. **Basic Animation Support**: GenericWeaponSkill provides basic animation functionality:
+   - Reads animation configuration from skill config (anim_path, anim_name)
+   - Plays animation on skill activation
+   - Stops animation when skill ends
+
+### Limitations
+
+- The GenericWeaponSkill provides only basic animation support without attack mechanics, particles, or physics
+- Full skill functionality (attack bodies, camera effects, particles, etc.) requires the JavaScript scripts to be loaded with proper Spark Core globals
+- This is a fallback solution until the JavaScript loading system is fully fixed
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-07 13:30] Initial Fix for Ghost Blocks
+### Feature Implemented
+Resolved ghost blocks issue and added error handling for block animations.
+
+### Changes
+- Fixed compilation errors in `StateAnimApplier.kt` by adding missing imports.
+- Added `try-catch` block around animation playback to prevent server crashes (fixing ghost blocks).
+- Initial attempt at fixing animation keys.
+
+### Build Status
+- Build passed: Yes
+
+## [2026-02-07 14:00] Fix Block Interaction Animations (Final)
+### Feature Implemented
+Fixed block placing and block breaking animations for players in third-person view.
+
+### Changes
+- Renamed `src/main/resources/sparkcore/spirit_of_fight/animations/player/use_anim.json` to `sof_use_anim.json` to avoid collision with the `spark_core` library.
+- Renamed all animation keys inside `sof_use_anim.json` to use the `sof_use_anim.` prefix.
+- Updated `StateAnimApplier.kt` to trigger `sof_use_anim.place` and `sof_use_anim.break` animations.
+- Manually synced `sof_use_anim.json` to the `run/` directory to ensure immediate effect in the dev environment.
+- Verified multiplayer synchronization using `TypedAnimation.playToClient`.
+
+### Build Status
+- Build passed: Yes
+
+## [2026-02-07 14:30] Implement Stun Mechanic on Hit and Knockdown (Initial)
+### Feature Implemented
+Added automatic stunning for players and mobs when they are hit or knocked down.
+
+### Changes
+- Modified `EntityHitApplier.kt` to apply a 4-tick stun on every valid combat hit in `onHit`.
+- Updated `StunHandler.kt` to use `max()` when setting stun ticks.
+- Modified `EntityHitApplier.kt`'s `hitAnimDoFreeze` to apply knockdown stun.
+
+### Build Status
+- Build passed: Yes
+
+## [2026-02-07 15:00] Comprehensive Stun and Knockdown Action Blocking
+### Feature Implemented
+Ensured that stunned or knocked down entities (mobs and players) cannot move, attack, or use skills, rewarding the player for hitting first.
+
+### Changes
+- **Extended Hitstun:** Increased regular hitstun from 4 ticks to 10 ticks (0.5s) in `EntityHitApplier.onHit` to provide a larger window for combos.
+- **Animation-Linked Stun:** Updated `hitAnimDoFreeze` to ALWAYS stun the victim for the full duration of their hit reaction animation.
+- **AI Action Blocking:** Overrode `LivingEntity.isMovementBlocked()` via `LivingEntityMixin.java` to return `true` when stunned or knocked down. This automatically stops Mob AI goals (attacks) and intentional movement while preserving physics like gravity.
+- **Player Attack Blocking:** Added a mixin to `Player.attack(Entity)` in `PlayerMixin.java` to block server-side attack attempts when stunned or knocked down.
+- **Client-Side Action Blocking:** Enhanced `PlayerLocalController.kt` to cancel all interaction mappings (attack/use) when the player is stunned or knocked down.
+
+### Build Status
+- Build passed: Yes
+
+## [2026-02-09 11:50] Implement Block Breaking Mechanics with Stun Effect
+### Feature Implemented
+Implemented block breaking mechanics where if a player experiences a total of 10 heart damage (20 damage) from any single damage source, the targeted block is immediately broken and the player enters a stunned state.
+
+### Changes
+- **Modified Files:**
+  - Modified `skill/BlockDamageHandler.kt` - Added damage tracking per damage source, implemented block break logic at 10 hearts damage
+  - Modified `skill/BlockSkill.kt` - Added call to clear damage tracking when block skill ends
+
+- **Key Improvements:**
+  - Added damage tracking map to track damage per source type for each entity
+  - Changed block break condition from total damage >= max health to damage from single source >= 20.0f (10 hearts)
+  - Added stun effect when block breaks (60 ticks = 3 seconds)
+  - Ensures damage tracking is properly cleared when block skill ends
+
+### Build Status
+- Build pending: Run `./gradlew build` to verify
+
+## [2026-02-10 17:00] Implement SOF Item Fix Gamerule Command
+### Feature Implemented
+Created a gamerule command `/gamerule sofItemfix <namespace:item> <c:tag>` that allows adding Spirit of Fight tags to custom items for easy compatibility. The command replaces existing tags with new ones and stores data in world data.
+
+### Changes
+
+**New Files:**
+- Created `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/SOFItemFixData.kt` - World-level SavedData for storing custom item-to-tag mappings
+- Created `src/main/kotlin/cn/solarmoon/spirit_of_fight/debug/SOFItemFixCommands.kt` - Command handler with validation and suggestions
+
+**Modified Files:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFSimpleDebugRegister.kt` - Registered SOFItemFixCommands
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFCapabilities.kt` - Added helper functions for checking custom mappings
+
+**Command Structure:**
+- **Set tag**: `/gamerule sofItemfix <item> <tag>` - Assign a weapon tag to an item
+- **List**: `/gamerule sofItemfix list` - Show all custom mappings
+- **Remove**: `/gamerule sofItemfix remove <item>` - Remove a specific mapping
+- **Clear**: `/gamerule sofItemfix clear` - Remove all mappings
+
+**Valid Tags:**
+- `c:hammers` - Hammer weapons
+- `c:gloves` - Glove weapons
+- `c:spears` - Spear weapons
+- `c:axes` - Axe weapons
+- `c:greatswords` - Greatsword weapons
+
+**Key Features:**
+- Custom tags override default behavior
+- Data persists across server restarts (stored in world data)
+- Tab completion for items and tags
+- Validation for item existence and tag validity
+- Clear error messages
+- Permission level 2 required (operator/admin)
+
+**Implementation Details:**
+- `SOFItemFixData` extends `SavedData` and stores mappings as `Map<ResourceLocation, ResourceLocation>`
+- `SOFItemFixCommands` provides command registration and execution logic
+- `SOFCapabilities.getCustomItemTag()` checks custom mappings before default tags
+- `SOFCapabilities.itemMatchesIngredient()` creates temporary ingredient from custom tag for matching
+
+**Usage Examples:**
+```
+/gamerule sofItemfix minecraft:diamond_sword c:greatswords
+/gamerule sofItemfix bettercombat:katana c:spears
+/gamerule sofItemfix list
+/gamerule sofItemfix remove minecraft:diamond_sword
+/gamerule sofItemfix clear
+```
+
+### Build Status
+- Build pending: Run `./gradlew build` to verify
+
+## [2026-02-09 09:15] Improve Block Breaking Logic
+### Feature Implemented
+Fixed block breaking animation issues and added an action bar that shows block break progress. The block now breaks only when the action bar is full.
+
+### Changes
+- **New Files:**
+  - Created `skill/BlockBreakingData.kt` - Data class to track block break state and progress
+  - Created `skill/BlockBreakingDataHelper.kt` - Extension functions for accessing BlockBreakingData
+  - Created `skill/BlockBreakBarGui.kt` - GUI layer for rendering the break progress bar
+  - Created `sync/BlockBreakProgressPayload.kt` - Network payload for syncing break progress to client
+
+- **Modified Files:**
+  - Modified `skill/BlockSkill.kt` - Added damage tracking, break progress calculation, and proper animation transitions
+  - Modified `skill/BlockDamageHandler.kt` - Updated to use new addBlockDamage method
+  - Modified `registry/common/SOFAttachments.kt` - Added BLOCK_BREAKING attachment registration
+  - Modified `registry/common/SOFPayloadRegister.kt` - Registered BlockBreakProgressPayload
+  - Modified `registry/client/SOFGuiRegister.kt` - Registered BlockBreakBarGui layer
+
+- **Key Improvements:**
+  - Block breaking now shows a visible action bar that fills as damage accumulates
+  - Block breaks only when the action bar is full (configurable threshold)
+  - Break animation plays correctly when block breaks
+  - Blocking animation stops when block breaks
+  - Network sync ensures clients see the same break progress as server
+
+### Build Status
+- Build passed: Yes
+
+## [2026-02-09 15:38] Fix Spear Block Crash (Missing Animation)
+### Feature Implemented
+Fixed game crash that occurs when blocking while holding a spear. The crash was caused by the code looking for a missing `spear.block.hurt` animation.
+
+### Root Cause
+- Error: `java.lang.NullPointerException: 没有找到名为 spear.block.hurt 的动画`
+- The `BlockSkill.kt` code was constructing animation names as `${animName}.hurt` which resulted in looking for `spear.block.hurt`
+- The animation file `spear.skills.common.json` only contains `spear.block` and `spear.switch_attack.backward`, not `spear.block.hurt`
+
+### Changes
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/skill/BlockSkill.kt`
+- Added `try-catch` error handling around the hurt animation initialization (similar to existing break animation handling)
+- When `spear.block.hurt` animation is not found, it now falls back to using the `blockPose` animation instead of crashing
+
+### Files Modified
+- `src/main/kotlin/cn/solarmoon/spirit_of_fight/skill/BlockSkill.kt`
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 06:58] Block Break Recovery and Stun Animation Fix
+### Feature Implemented
+Fixed visual bug where player continues playing blocking animation after block breaks. Implemented proper recovery system with:
+1. Force idle animation after block break animation completes
+2. Stunned animation during recovery state
+3. Block bar gradual unfill mechanic
+4. Blocking disabled until recovery completes
+
+### Changes
+
+**New Files:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/stunned.json` - Stunned animation asset
+- Created `skill/BlockRecoveryHandler.kt` - Manages block recovery state and unfill logic
+
+**Modified Files:**
+- `skill/BlockBreakingData.kt` - Added `recoveryProgress` and `isRecovering` fields for unfill mechanics
+- `skill/BlockBreakBarGui.kt` - Updated to render unfilling bar animation during recovery
+- `skill/BlockSkill.kt` - Added stunned animation triggering and transition to idle on stun end
+- `skill/StunHandler.kt` - Added stunned animation triggering and transition to idle on stun end
+- `entity/player/PlayerLocalController.kt` - Added blocking input blocking during recovery, added `guardKeyConflict()` method
+- `debug/SimpleBlockDebug.kt` - Added `logRecovery()` method
+
+**Key Improvements:**
+- When block breaks, player transitions from break animation → stunned animation → idle animation
+- Block bar now smoothly drains from 100% to 0% over ~5 seconds (100 ticks)
+- Player cannot re-block until block bar is completely empty
+- Visual feedback shows recovery progress
+- Stun duration (60 ticks) ensures player is visually stunned during early recovery
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 07:33] Revamp Block Break Recovery - Fix Animation Flow and Blocking Input
+### Feature Implemented
+Fixed critical issues with block break recovery where player stayed in blocking animation and could re-block immediately. Revamped implementation to ensure proper animation transitions and blocking input blocking.
+
+### Root Cause Analysis
+1. `StunHandler.setStunned(entity, 60)` was called with default `stopAnim = true`, which immediately stopped the break animation
+2. `entity.setActiveBlockSkill(null)` was called in `handleBlockBreak()`, losing the block skill reference needed for animation transitions
+3. Break animation completion handler never fired because animation was stopped
+4. Stunned animation was set but block skill reference was lost, preventing idle animation transition
+5. `isRecoveryStun` flag was not set, so stun was treated as normal stun
+
+### Changes
+
+**Modified Files:**
+- `skill/BlockSkill.kt` - Fixed `handleBlockBreak()` to call `StunHandler.setStunned(entity, 60, stopAnim = false, isRecovery = true)` and keep block skill reference
+- `skill/StunHandler.kt` - Updated `onEntityTick()` to transition to idle animation and reset block skill reference when stun ends
+
+**Key Improvements:**
+- Break animation now plays to completion before transitioning to stunned animation
+- Block skill reference is preserved during recovery for proper animation transitions
+- Stun is marked as recovery stun (`isRecovery = true`) for proper handling
+- Animation flow: Block Break → Break Animation → Stunned Animation (60 ticks) → Idle Animation
+- Blocking input is blocked during both stun (60 ticks) and recovery (100 ticks)
+- Player cannot re-block until recovery completes
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 12:30] Implement Greatsword Animations
+### Feature Implemented
+Created complete greatsword animation system with 2 combo sequences, block, switch attack, and special attack (meteor smash - jump 3 blocks up and giant chop).
+
+### Changes
+
+**New Animation Files:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.skills.common.json` - Block and switch attack animations
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.skills.default.json` - Combo 1 (diagonal upward slash) and Combo 2 (vertical overhead chop) animations
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.skills.special.json` - Special attack (meteor smash) animation
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.states.json` - Idle and move state animations
+
+**New Skill Scripts:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.block.js` - Block skill with 2.0x2.0x2.0 hitbox
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.default.combo_1.js` - Diagonal upward slash (1.5x damage, 0.5 knockback, 1.8s duration)
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.default.combo_2.js` - Vertical overhead chop (1.8x damage, 0.7 knockback, 2.0s duration)
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.switch_attack.js` - Quick counter attack (1.0x damage, 0.3 knockback, 1.0s duration)
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.special_attack.js` - Meteor smash (3.0x damage, 1.5 knockback, 2.5s duration, jumps 3 blocks up)
+
+**New Model File:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/models/greatsword.json` - Placeholder greatsword model with blade, guard, handle, and pommel
+
+**Key Features:**
+- Two-handed stance using both arms for holding the greatsword
+- Slower, heavier animations (1.8-2.5s duration) compared to other weapons
+- Larger hitboxes (2.0-3.0 blocks) for wider reach
+- Higher damage multipliers (1.5x-3.0x) for powerful attacks
+- Camera shake effects (intensity 2-5) on heavy attacks
+- Red trail effects during attack phases
+- Particle effects (redstone block, firework) on hits
+- Special attack includes jump mechanic (3 blocks up) and impact effects
+
+**Animation Details:**
+- **Combo 1:** Diagonal upward slash from bottom-right to top-left, attack phase at 0.4-0.8s
+- **Combo 2:** Vertical overhead chop, attack phase at 0.5-0.9s
+- **Block:** Two-handed defensive stance with 2.0x2.0x2.0 hitbox
+- **Switch Attack:** Fast counter-attack for weapon switching, attack phase at 0.3-0.45s
+- **Special Attack:** Jump 3 blocks up (0.3-0.6s), airborne (0.6-1.2s), downward strike (1.2-1.6s), impact and recovery (1.6-2.5s)
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 12:45] Implement Greatsword Item Registration and Skill Tree
+### Feature Implemented
+Created complete greatsword item system with all tiers (wooden, stone, iron, golden, diamond, netherite), skill tree registration, and model setup.
+
+### Changes
+
+**New Item Class:**
+- Created `src/main/kotlin/cn/solarmoon/spirit_of_fight/item/GreatswordItem.kt` - Greatsword item class extending SwordItem
+
+**Modified Files - Item Registration:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFItems.kt` - Added 6 greatsword items (WOODEN_GREATSWORD, STONE_GREATSWORD, IRON_GREATSWORD, GOLDEN_GREATSWORD, DIAMOND_GREATSWORD, NETHERITE_GREATSWORD) with 7f attack damage and -3.5 to -3.1 attack speed
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/common/SOFCreativeTab.kt` - Added all 6 greatswords to creative tab display
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/registry/client/SOFItemInHandModelRegister.kt` - Registered in-hand models for all 6 greatswords
+
+**New Item Model JSONs:**
+- Created `src/main/resources/assets/spirit_of_fight/models/item/wooden_greatsword.json`
+- Created `src/main/resources/assets/spirit_of_fight/models/item/stone_greatsword.json`
+- Created `src/main/resources/assets/spirit_of_fight/models/item/iron_greatsword.json`
+- Created `src/main/resources/assets/spirit_of_fight/models/item/golden_greatsword.json`
+- Created `src/main/resources/assets/spirit_of_fight/models/item/diamond_greatsword.json`
+- Created `src/main/resources/assets/spirit_of_fight/models/item/netherite_greatsword.json`
+
+**Modified Files - Skill Types and Tags:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/SOFSkillTypes.kt` - Added 11 greatsword skill types (GREATSWORD_DEFAULT_COMBO_1, GREATSWORD_DEFAULT_COMBO_2, GREATSWORD_DEFAULT_SPRINT_ATTACK, GREATSWORD_SPECIAL_COMBO_1, GREATSWORD_SPECIAL_COMBO_2, GREATSWORD_SPECIAL_SPRINT_ATTACK, GREATSWORD_BLOCK, GREATSWORD_DODGE, GREATSWORD_SWITCH_ATTACK, GREATSWORD_SPECIAL_ATTACK)
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/SOFItemTags.kt` - Added FORGE_GREATSWORDS tag and registered all 6 greatswords
+
+**New Skill Tree:**
+- Created `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/skill_trees/GreatswordSkillTree.kt` - Complete skill tree with combo, jump attack, sprint attack, block, dodge, and special attack
+
+**Modified Files - Skill Tree Registration:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/skill_trees/SOFSkillTrees.kt` - Registered GreatswordSkillTree
+
+**Key Features:**
+- All 6 greatsword tiers are now obtainable in-game
+- Items appear in creative tab
+- In-hand models are registered for third-person view
+- Skill tree provides combo system (2-hit combo), jump attack, sprint attack, block, dodge, and special attack
+- Special attack requires 100 fight spirit
+- All skills use proper key bindings (attack, block, dodge, special attack)
+
+**Item Stats:**
+- Wooden: 7f damage, -3.5 speed, 64 durability
+- Stone: 7f damage, -3.4 speed, 512 durability
+- Iron: 7f damage, -3.3 speed, 1024 durability
+- Golden: 7f damage, -3.2 speed, 128 durability
+- Diamond: 7f damage, -3.2 speed, 2048 durability
+- Netherite: 7f damage, -3.1 speed, 4096 durability
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 13:45] Improve Greatsword Model with Blockbench
+### Feature Implemented
+Created an improved iron greatsword model using Blockbench MCP server with better proportions, more detail, and proper greatsword aesthetics.
+
+### Changes
+
+**Model Improvements:**
+- Modified `run/sparkcore/spirit_of_fight/spirit_of_fight/models/greatsword.json` - Completely redesigned greatsword model with:
+  - **Blade:** Large, thick blade (3 blocks wide, 20 blocks tall) with tapered tip and pointy end
+  - **Fuller:** Central groove running through the blade for realistic greatsword appearance
+  - **Guard:** Large crossguard (6 blocks wide) with extended quillons (8 blocks total width)
+  - **Handle:** Long handle (6 blocks tall) for two-handed grip with leather wrapping details
+  - **Pommel:** Substantial pommel (1.5 blocks wide) with cap for counterweight
+
+**Model Specifications:**
+- Texture size: 128x128 (increased from 64x64 for more detail)
+- Visible bounds: 8x36 blocks (much larger than original 3x3.5)
+- Total height: 26 blocks (from pommel cap to blade point)
+- Total width: 8 blocks (guard with quillons)
+- Blade thickness: 1 block (thicker than original 0.25 block)
+
+**Key Features:**
+- Pointy blade tip for realistic greatsword appearance
+- Fuller (groove) in center of blade for weight reduction and aesthetics
+- Extended quillons on guard for better hand protection
+- Leather wrapping on handle for grip detail
+- Substantial pommel for balance and counterweight
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 15:30] Fix Greatsword In-Hand Model Display
+### Feature Implemented
+Fixed greatsword model not appearing in hand in-game by creating missing fightskill_greatsword.json file and setting up proper in-hand model system.
+
+### Root Cause Analysis
+- The greatsword model was not appearing in hand because the `fightskill_greatsword.json` file was missing
+- Spark Core requires this file to properly load and display the greatsword model in first-person view
+- The in-hand model system was not properly configured for greatswords
+
+### Changes
+
+**New Animation File:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/fightskill_greatsword.json` - Fight skill animations for greatsword (attack_jump, combo_0)
+
+**New In-Hand Model Files:**
+- Created `src/main/resources/assets/spirit_of_fight/models/item/greatsword_in_hand.json` - Parent in-hand model with 13 elements (blade, guard, handle, pommel, etc.)
+- Created `src/main/resources/assets/spirit_of_fight/models/item/wooden_greatsword_in_hand.json` - Wooden greatsword in-hand model
+- Created `src/main/resources/assets/spirit_of_fight/models/item/stone_greatsword_in_hand.json` - Stone greatsword in-hand model
+- Created `src/main/resources/assets/spirit_of_fight/models/item/iron_greatsword_in_hand.json` - Iron greatsword in-hand model
+- Created `src/main/resources/assets/spirit_of_fight/models/item/golden_greatsword_in_hand.json` - Golden greatsword in-hand model
+- Created `src/main/resources/assets/spirit_of_fight/models/item/diamond_greatsword_in_hand.json` - Diamond greatsword in-hand model
+- Created `src/main/resources/assets/spirit_of_fight/models/item/netherite_greatsword_in_hand.json` - Netherite greatsword in-hand model
+
+**New Texture Files:**
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/wooden_greatsword.png` - Wooden greatsword texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/stone_greatsword.png` - Stone greatsword texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/golden_greatsword.png` - Golden greatsword texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/diamond_greatsword.png` - Diamond greatsword texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/netherite_greatsword.png` - Netherite greatsword texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/wooden_greatsword_in_hand.png` - Wooden greatsword in-hand texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/stone_greatsword_in_hand.png` - Stone greatsword in-hand texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/iron_greatsword_in_hand.png` - Iron greatsword in-hand texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/golden_greatsword_in_hand.png` - Golden greatsword in-hand texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/diamond_greatsword_in_hand.png` - Diamond greatsword in-hand texture
+- Created `src/main/resources/assets/spirit_of_fight/textures/item/netherite_greatsword_in_hand.png` - Netherite greatsword in-hand texture
+
+**Modified Files:**
+- Modified `src/main/resources/assets/spirit_of_fight/models/item/iron_greatsword.json` - Fixed texture path from "Pack pack:entity/attachable/iron_greatsword" to "spirit_of_fight:item/iron_greatsword"
+- Modified `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/config/main.js` - Added `"c:greatswords": "greatsword"` to HeldItemStateAnimation configuration
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/SOFItemModelProvider.kt` - Added greatsword items to model provider
+
+**Key Improvements:**
+- Greatsword model now appears correctly in first-person view
+- All 6 greatsword tiers have proper in-hand models
+- Texture paths are correctly configured
+- Spark Core configuration properly maps greatsword tag to greatsword animations
+- Data generation creates proper model JSON files
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 16:00] Fix Greatsword Combo_1 Animation - Two-Handed Stance and Sideways Sweep
+### Feature Implemented
+Fixed greatsword combo_1 animation to use proper two-handed stance and horizontal sweep pattern based on warhammer animation reference.
+
+### Root Cause Analysis
+1. **Sword going over player's head:** rightItem rotation X reached 180-240 degrees at 0.6-0.8s, causing overhead swing instead of horizontal sweep
+2. **Player not using two hands:** leftArm had only 4 keyframes with minimal movement, not actively participating in the swing
+3. **Sideways sweep not based on warhammer:** Animation didn't follow proper horizontal sweep pattern
+
+### Changes
+
+**Modified Files:**
+- Modified `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.skills.default.json` - Completely redesigned combo_1 animation
+
+**Key Improvements:**
+- **Increased animation length** from 1.8s to 2.0s (matching warhammer pattern)
+- **Added 8 more keyframes** to all bones (total 12 keyframes each) for smoother motion
+- **Fixed rightItem rotation** - Limited X-axis rotation to -5 to 65 degrees (prevents overhead swing)
+- **Enhanced leftArm animation** - Increased from 4 to 12 keyframes with significant movement for proper two-handed stance
+- **Implemented horizontal sweep** - Used Y-axis rotation for sideways sweep pattern
+- **Coordinated both arms** - Both rightArm and leftArm work together for realistic two-handed grip
+- **Added body rotation** - Body and waist rotate to help with the swing
+- **Enhanced leg movement** - Legs step forward during strike, recover after
+
+**Animation Timeline (0.0 - 2.0 seconds):**
+- **0.0:** Idle stance - two-handed grip position
+- **0.0833-0.1667:** Wind-up - arms pull back
+- **0.2917-0.5:** Power build-up - arms extend forward
+- **0.5417-0.625:** Strike - maximum power, horizontal sweep across body
+- **0.8333-1.125:** Follow-through - arms continue motion
+- **1.4583-1.75:** Recovery - return to idle stance
+- **2.0:** Idle - return to two-handed idle stance
+
+**Bone Animation Details:**
+- **root:** 12 keyframes - body movement during swing (forward during strike, backward during recovery)
+- **rightArm:** 12 keyframes - main arm controlling the sword with wind-up, strike, follow-through, recovery
+- **leftArm:** 12 keyframes - support arm coordinating with right arm for two-handed grip
+- **rightItem:** 12 keyframes - sword orientation with horizontal sweep (X-axis limited to -5-65 degrees)
+- **head:** 12 keyframes - look direction toward target during strike
+- **body:** 12 keyframes - body rotation for added power
+- **waist:** 12 keyframes - waist rotation for added power
+- **rightLeg:** 12 keyframes - stance and balance (step forward during strike)
+- **leftLeg:** 12 keyframes - stance and balance (step forward during strike)
+
+**Reference Pattern:**
+Based on warhammer's `hammer.special.combo_1` animation with adjustments for greatsword:
+- Two-handed idle stance: rightArm [-70, 60, -55], leftArm [-135, 60, -90]
+- Wind-up peak (0.1667s): rightArm [-110, 25, 5], leftArm [-140, 40, -40]
+- Strike peak (0.5417s): rightArm [-35, 0, 60], leftArm [0, 40, 75]
+- Follow-through (0.8333s): rightArm [10, 30, 55], leftArm [15, 65, 80]
+- Recovery (1.75s): rightArm [-70, 60, -35], leftArm [-115, 70, -65]
+
+### Build Status
+- Build passed: Yes (Verified with `gradle build`)
+
+## [2026-02-10 16:30] Implement 4-Hit Greatsword Combo System
+### Feature Implemented
+Expanded greatsword combo system from 2 hits to 4 hits with realistic animations based on historical German longsword techniques (HEMA). Fixed "behind head" issue in combo_2 by limiting X-axis rotation.
+
+### Root Cause Analysis
+1. **Only 2 swings:** Original combo system only had combo_1 and combo_2
+2. **Combo_1 just swipes in the side:** Animation was not a realistic greatsword attack
+3. **Combo_2 goes from behind the head:** rightItem X rotation reached -180° at 0.7s, causing sword to swing from behind player's head
+
+### Changes
+
+**Modified Files - Skill Types:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/SOFSkillTypes.kt` - Added GREATSWORD_DEFAULT_COMBO_3 and GREATSWORD_DEFAULT_COMBO_4 skill types
+
+**Modified Files - Skill Tree:**
+- Modified `src/main/kotlin/cn/solarmoon/spirit_of_fight/data/skill_trees/GreatswordSkillTree.kt` - Updated combo chain to include combo_3 and combo_4 (combo_1 → combo_2 → combo_3 → combo_4)
+
+**Modified Files - Animations:**
+- Modified `run/sparkcore/spirit_of_fight/spirit_of_fight/animations/player/fight_skill/greatsword/greatsword.skills.default.json` - Added combo_3 and combo_4 animations, fixed combo_2 "behind head" issue
+
+**New Skill Scripts:**
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.default.combo_3.js` - Diagonal upward slash (Unterhau) with 6.0 damage, 0.8 knockback, 15 poise damage
+- Created `run/sparkcore/spirit_of_fight/spirit_of_fight/scripts/skill/greatsword/greatsword.default.combo_4.js` - Diagonal downward slash (Oberhau) finisher with 7.0 damage, 1.0 knockback, 20 poise damage, 20% knockdown chance
+
+### Key Improvements
+
+**4-Hit Combo System (Historical German Longsword Techniques):**
+- **Combo 1 (Mittelhau - Right-to-Left):** Horizontal sweep from right shoulder to left
+  - X-axis rotation: 10-25° (never goes negative to avoid "behind head")
+  - Y-axis rotation: -20° to 60°
+  - 12 keyframes per bone for smooth motion
+
+- **Combo 2 (Mittelhau Reverse - Left-to-Right):** Horizontal sweep from left shoulder to right
+  - X-axis rotation: 10-25° (FIXED - was -180° causing "behind head" issue)
+  - Y-axis rotation: 80° to 0°
+  - 8 keyframes per bone

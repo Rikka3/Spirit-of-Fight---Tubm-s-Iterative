@@ -1,0 +1,8 @@
+{
+  "net/minecraft/world/entity/Entity": [
+    "cn/solarmoon/spirit_of_fight/entity/IEntityPatch"
+  ],
+  "net/minecraft/world/entity/player/Player": [
+    "cn/solarmoon/spirit_of_fight/entity/player/IPlayerPatch"
+  ]
+}

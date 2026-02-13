@@ -1,0 +1,198 @@
+{
+  "item": {
+    "tag": "c:gloves"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:condition",
+      "children": [
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:any",
+              "conditions": [
+                {
+                  "type": "spirit_of_fight:input_direction",
+                  "direction": "forward"
+                },
+                {
+                  "type": "spirit_of_fight:input_direction"
+                }
+              ]
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.forward"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "left"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.left"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "right"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.right"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "backward"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.backward"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "spirit_of_fight:wield_style",
+          "value": "default"
+        }
+      ]
+    },
+    {
+      "type": "spirit_of_fight:condition",
+      "children": [
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:any",
+              "conditions": [
+                {
+                  "type": "spirit_of_fight:input_direction",
+                  "direction": "forward"
+                },
+                {
+                  "type": "spirit_of_fight:input_direction"
+                }
+              ]
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.forward"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "left"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.left"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "right"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.special.switch_attack.right"
+        },
+        {
+          "type": "spirit_of_fight:node",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:key_input",
+              "map": {
+                "key.spirit_of_fight.switch_posture": "press_once"
+              }
+            },
+            {
+              "type": "spirit_of_fight:input_direction",
+              "direction": "backward"
+            }
+          ],
+          "cooldown": 40,
+          "pre_input_id": "switch_posture",
+          "reserve_time": 0,
+          "skill": "spirit_of_fight:gloves.default.switch_attack.backward"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "spirit_of_fight:wield_style",
+          "value": "special"
+        }
+      ]
+    }
+  ],
+  "priority": 2
+}

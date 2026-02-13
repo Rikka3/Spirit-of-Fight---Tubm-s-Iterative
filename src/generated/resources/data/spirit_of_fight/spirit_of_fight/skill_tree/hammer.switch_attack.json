@@ -1,0 +1,23 @@
+{
+  "item": {
+    "tag": "c:hammers"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "conditions": [
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.spirit_of_fight.switch_posture": "press"
+          }
+        }
+      ],
+      "cooldown": 40,
+      "pre_input_id": "switch_posture",
+      "reserve_time": 0,
+      "skill": "spirit_of_fight:hammer.switch_attack"
+    }
+  ],
+  "priority": 3
+}

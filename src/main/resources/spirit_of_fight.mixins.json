@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "cn.solarmoon.spirit_of_fight.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "Test",
+    "fighter.EntityMixin",
+    "fighter.LivingEntityMixin",
+    "fighter.MobMixin",
+    "fighter.StunnedAttackPreventionMixin",
+    "fighter.MeleeAttackGoalMixin",
+    "fighter.PlayerMixin",
+    "fighter.VindicatorMixin",
+    "fighter.ZombieMixin",
+    "js.EntityMixin",
+    "js.IAnimatableMixin",
+    "js.SkillMixin"
+  ],
+  "client": [
+    "ItemInHandLayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

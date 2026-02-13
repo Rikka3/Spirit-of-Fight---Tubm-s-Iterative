@@ -1,0 +1,24 @@
+{
+  "item": {
+    "tag": "c:gloves"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:fight_spirit_consumer",
+      "conditions": [
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.spirit_of_fight.special_attack": "press"
+          }
+        },
+        {
+          "type": "spirit_of_fight:fight_spirit"
+        }
+      ],
+      "pre_input_id": "attack",
+      "skill": "spirit_of_fight:gloves.special_attack"
+    }
+  ],
+  "priority": 4
+}

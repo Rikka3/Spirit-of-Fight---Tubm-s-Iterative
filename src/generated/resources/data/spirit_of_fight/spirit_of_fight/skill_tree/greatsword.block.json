@@ -1,0 +1,37 @@
+{
+  "item": {
+    "tag": "c:greatswords"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "children": [
+        {
+          "type": "spirit_of_fight:stop",
+          "conditions": [
+            {
+              "type": "spirit_of_fight:reverse",
+              "condition": {
+                "type": "spirit_of_fight:key_input",
+                "map": {
+                  "key.spirit_of_fight.block": "press"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.spirit_of_fight.block": "press"
+          }
+        }
+      ],
+      "pre_input_id": "guard",
+      "reserve_time": 0,
+      "skill": "spirit_of_fight:greatsword.block"
+    }
+  ]
+}
