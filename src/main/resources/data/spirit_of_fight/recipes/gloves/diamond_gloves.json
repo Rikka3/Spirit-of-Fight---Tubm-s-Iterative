@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " M ",
+    " M ",
+    " L "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:diamond"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "id": "spirit_of_fight:diamond_gloves",
+    "count": 1
+  }
+}

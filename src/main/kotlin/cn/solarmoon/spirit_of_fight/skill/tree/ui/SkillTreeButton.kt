@@ -19,7 +19,7 @@ class SkillTreeButton(
     size,
     WidgetSprites(
         tree.getIcon(level.registryAccess()),
-        ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "textures/gui/skill_tree_focused.png")
+        tree.getIcon(level.registryAccess())
     ),
     onPress,
     tree.getName(level.registryAccess())

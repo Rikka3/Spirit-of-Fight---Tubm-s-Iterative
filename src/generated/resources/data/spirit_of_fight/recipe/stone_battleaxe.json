@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "MM ",
+    "MMS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "spirit_of_fight:stone_battleaxe"
+  }
+}

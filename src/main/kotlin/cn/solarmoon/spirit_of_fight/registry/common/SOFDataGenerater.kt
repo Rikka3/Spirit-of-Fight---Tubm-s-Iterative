@@ -6,6 +6,7 @@ import cn.solarmoon.spirit_of_fight.data.SOFItemModelProvider
 import cn.solarmoon.spirit_of_fight.data.SOFItemTags
 import cn.solarmoon.spirit_of_fight.data.SOFLanguageProvider
 import cn.solarmoon.spirit_of_fight.data.SOFLanguageProviderEN
+import cn.solarmoon.spirit_of_fight.data.SOFRecipeProvider
 import cn.solarmoon.spirit_of_fight.data.SOFSoundProvider
 import cn.solarmoon.spirit_of_fight.data.skill_trees.SOFSkillTrees
 import net.minecraft.core.RegistrySetBuilder
@@ -32,6 +33,7 @@ object SOFDataGenerater {
         addProvider(SOFItemTags(output, lookupProvider, blockTags.contentsGetter(), helper))
         addProvider(SOFLanguageProvider(output))
         addProvider(SOFLanguageProviderEN(output))
+        addProvider(SOFRecipeProvider(output, lookupProvider))
         generator.addProvider(event.includeClient(), SOFItemModelProvider(output, helper))
         generator.addProvider(event.includeClient(), SOFSoundProvider(output, helper))
 

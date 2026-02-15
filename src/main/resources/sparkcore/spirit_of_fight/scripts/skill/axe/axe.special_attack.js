@@ -12,7 +12,7 @@ Skill.create("spirit_of_fight:axe.special_attack", builder => {
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
 
-        const anim = animatable.createAnimation("minecraft:player", "axe.special.spin")
+        const anim = animatable.createAnimation("minecraft:player", "axe.skill")
         anim.setShouldTurnBody(true)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [2.0, 2.0, 2.0], [0.0, 0.0, -0.75])
         const globalAttackSystem = PhysicsHelper.createAttackSystem()

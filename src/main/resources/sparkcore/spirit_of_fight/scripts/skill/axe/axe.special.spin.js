@@ -7,7 +7,7 @@ Skill.create("spirit_of_fight:axe.special.spin", builder => {
         config.set("damage_multiplier", 1.5)
     })
     builder.accept(skill => {
-        const name = skill.getLocation().getPath()
+        const name = "axe.skill" // Use existing animation instead of missing axe.special.spin
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()

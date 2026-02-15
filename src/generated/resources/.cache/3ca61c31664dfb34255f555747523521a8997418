@@ -1,7 +1,6 @@
-// 1.21.1	2026-02-11T19:54:17.1230369	Tags for minecraft:item mod id spirit_of_fight
+// 1.21.1	2026-02-14T11:26:13.6561608	Tags for minecraft:item mod id spirit_of_fight
 d720b2adff6d0e25fd83c4d50ed68bff49f319ba data/c/tags/item/axes.json
 3e3c3bb42018d1248bad5dce0bb0152818fad6c9 data/c/tags/item/gloves.json
 8b9f6489113905bb7ecc11dcd5cb56ccc5159943 data/c/tags/item/greatswords.json
 40bb88ff1767a7a02a0dc3dc9bc2ca67dfce0881 data/c/tags/item/hammers.json
-ba1949056acc66b717086648b77871601c4cd73c data/c/tags/item/maces.json
 6248b8529c0a922be12f9202f2913c37ab45c615 data/c/tags/item/spears.json

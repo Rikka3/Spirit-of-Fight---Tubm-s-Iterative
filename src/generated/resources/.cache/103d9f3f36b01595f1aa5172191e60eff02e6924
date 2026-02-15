@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-11T19:54:17.1260346	Registries
+// 1.21.1	2026-02-14T11:26:13.6621564	Registries
 4292e46286345ee88b00b43b3f3cf0e585f62a85 data/spirit_of_fight/spirit_of_fight/skill_tree/axe.block.json
 aa45637879fdcc2474dd3919d26f914036a217cf data/spirit_of_fight/spirit_of_fight/skill_tree/axe.combo.json
 f5d28cd5589a2b04bfd5b42b2b6582b2840d6038 data/spirit_of_fight/spirit_of_fight/skill_tree/axe.dodge.json
@@ -24,13 +24,6 @@ fdc0f702086547b1c293c087b05a7dfdf88405c9 data/spirit_of_fight/spirit_of_fight/sk
 6675b0f2cf983317c0b60a7124948f55581de12e data/spirit_of_fight/spirit_of_fight/skill_tree/hammer.sprint_attack.json
 fa031945e04e32e1a54c01deb6ca8e661e22b437 data/spirit_of_fight/spirit_of_fight/skill_tree/hammer.switch_attack.json
 24592b231e23f195a362d90325dbd0a52ea22c3f data/spirit_of_fight/spirit_of_fight/skill_tree/hammer_jump_attack.json
-159ce29b33a27f22b9f34878eb06a30eea9e7223 data/spirit_of_fight/spirit_of_fight/skill_tree/mace.block.json
-6f7c281af6935a8b197d9eaecbd77e2c2afa6c1c data/spirit_of_fight/spirit_of_fight/skill_tree/mace.combo.json
-1651b86f950820ea7131fdc5354b7652de52af64 data/spirit_of_fight/spirit_of_fight/skill_tree/mace.dodge.json
-8aeca9433a8e32005c33e10eb4db940a137900cb data/spirit_of_fight/spirit_of_fight/skill_tree/mace.special_attack.json
-5ff340d719b58a2ce2ca5bd99b5802927a15e7d7 data/spirit_of_fight/spirit_of_fight/skill_tree/mace.sprint_attack.json
-249b5ddf399a82e418c8d16feb88b1c937b61aba data/spirit_of_fight/spirit_of_fight/skill_tree/mace.switch_attack.json
-9d02bd02d8f82a5aa7600eb6243ed00718a6c05e data/spirit_of_fight/spirit_of_fight/skill_tree/mace_jump_attack.json
 71c9456d8835ce4af8e3201c9a4e70d52cddf439 data/spirit_of_fight/spirit_of_fight/skill_tree/spear.block.json
 34e0e9efbf4d5a08c8276dcbee2c8814fbc04231 data/spirit_of_fight/spirit_of_fight/skill_tree/spear.combo.json
 5e3980cda690e5cc52a1d2f800251fb63e61ed44 data/spirit_of_fight/spirit_of_fight/skill_tree/spear.special_attack.json
