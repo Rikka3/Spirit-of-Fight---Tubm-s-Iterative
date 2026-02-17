@@ -8,12 +8,11 @@ Skill.create("spirit_of_fight:axe_jump_attack", builder => {
         config.set("damage_multiplier", 1.15)
     })
     builder.accept(skill => {
-        const name = skill.getLocation().getPath()
         const entity = skill.getHolderWrapper().asEntity()
         const animatable = skill.getHolderWrapper().asAnimatable()
         const level = skill.getLevel()
 
-        const anim = animatable.createAnimation("minecraft:player", name)
+        const anim = animatable.createAnimation("minecraft:player", "axe.attack_jump")
         anim.setShouldTurnBody(true)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [1.25, 1.25, 1.25], [0.0, 0.0, -0.75])
         const globalAttackSystem = PhysicsHelper.createAttackSystem()

@@ -1,5 +1,7 @@
 {
+  "entity.spirit_of_fight.warhammer_vindicator": "战锤灾厄村民",
   "gui.spirit_of_fight.skill_tree.info": "缩放: %sx 拖动: 按住鼠标左键",
+  "item.spirit_of_fight.warhammer_vindicator_spawn_egg": "战锤灾厄村民刷怪蛋",
   "key.spirit_of_fight.special_attack": "特殊攻击",
   "key.spirit_of_fight.switch_posture": "切换架势",
   "move_direction.backward": "后",
@@ -151,6 +153,8 @@
   "skill.spirit_of_fight.sword.switch_attack.name": "剑切换攻击",
   "skill.spirit_of_fight.sword_jump_attack.description": "跳跃中用剑攻击",
   "skill.spirit_of_fight.sword_jump_attack.name": "剑跳跃攻击",
+  "skill.spirit_of_fight.warhammer_vindicator.ground_slam.description": "强力AOE地面猛击，造成击倒效果",
+  "skill.spirit_of_fight.warhammer_vindicator.ground_slam.name": "地面猛击",
   "skill_tree.spirit_of_fight.axe.block": "斧格挡",
   "skill_tree.spirit_of_fight.axe.combo": "斧连击",
   "skill_tree.spirit_of_fight.axe.dodge": "斧闪避",

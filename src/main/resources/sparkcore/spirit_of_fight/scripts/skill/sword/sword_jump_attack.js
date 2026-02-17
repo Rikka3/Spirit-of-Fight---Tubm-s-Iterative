@@ -14,8 +14,7 @@ Skill.create("spirit_of_fight:sword_jump_attack", builder => {
 
         if (entity == null || animatable == null) return
 
-        // Using mace:attack_jump as placeholder for sword jump attack
-        const anim = animatable.createAnimation('minecraft:player', 'mace.attack_jump')
+        const anim = animatable.createAnimation('minecraft:player', 'sword.attack_jump')
         anim.setShouldTurnBody(true)
         const attackBody = PhysicsHelper.createCollisionBoxBoundToBone(animatable, 'rightItem', [2.5, 2.5, 2.5], [0.0, 0.0, -1.0])
         const globalAttackSystem = PhysicsHelper.createAttackSystem()

@@ -37,6 +37,7 @@ public class SpiritOfFight {
         SOFCodecRegister.register(modEventBus);
         SOFCreativeTab.register(modEventBus);
         SOFItems.register();
+        SOFEntities.register(modEventBus);
         SOFAttachments.register();
         SOFCommonEventRegister.register();
         SOFSimpleDebugRegister.register();

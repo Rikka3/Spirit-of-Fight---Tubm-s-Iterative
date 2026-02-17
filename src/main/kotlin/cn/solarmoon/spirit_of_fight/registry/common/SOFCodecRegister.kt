@@ -3,6 +3,7 @@ package cn.solarmoon.spirit_of_fight.registry.common
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.AnyCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallDistanceCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FightSpiritCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.HitTargetCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
@@ -32,6 +33,7 @@ object SOFCodecRegister {
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("on_ground")) { OnGroundCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("skill_ended")) { SkillEndCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("jumping")) { JumpingCondition.CODEC }
+        event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("falling")) { FallingCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("sprinting")) { SprintingCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("off_hand")) { OffHandCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("reverse")) { ReverseCondition.CODEC }

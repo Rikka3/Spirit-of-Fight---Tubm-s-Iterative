@@ -54,7 +54,7 @@ Skill.create("spirit_of_fight:hammer_jump_attack", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        // Based on hammer:attack_jump length 0.9583
+        // Based on hammer.attack_jump length 0.9583
         const attackKF = anim.registerKeyframeRange("attack", 0.3, 0.6)
         attackKF.onEnter(() => {
             attackBody.setCollideWithGroups(1)

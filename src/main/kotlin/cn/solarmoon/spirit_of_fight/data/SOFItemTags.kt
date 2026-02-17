@@ -43,7 +43,8 @@ class SOFItemTags(
             SOFItems.IRON_SPEAR.get(),
             SOFItems.GOLDEN_SPEAR.get(),
             SOFItems.DIAMOND_SPEAR.get(),
-            SOFItems.NETHERITE_SPEAR.get()
+            SOFItems.NETHERITE_SPEAR.get(),
+            Items.TRIDENT
         )
         tag(FORGE_AXES).add(
             Items.WOODEN_AXE,

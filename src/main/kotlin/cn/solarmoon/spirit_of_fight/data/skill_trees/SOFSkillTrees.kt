@@ -22,6 +22,7 @@ class SOFSkillTrees(
             HammerSkillTree.register(it)
             AxeSkillTree.register(it)
             GreatswordSkillTree.register(it)
+            MaceSkillTree.register(it)
         }
     }
 

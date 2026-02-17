@@ -28,6 +28,10 @@ class SOFLanguageProviderEN(
         add("item.spirit_of_fight.diamond_spear", "Diamond Spear")
         add("item.spirit_of_fight.netherite_spear", "Netherite Spear")
         
+        // Warhammer Vindicator
+        add("item.spirit_of_fight.warhammer_vindicator_spawn_egg", "Warhammer Vindicator Spawn Egg")
+        add("entity.spirit_of_fight.warhammer_vindicator", "Warhammer Vindicator")
+
         // Skill tree conditions
         add("skill_tree_condition.also", " §4and§r ")
         add("skill_tree_condition.any", " §7or§r ")

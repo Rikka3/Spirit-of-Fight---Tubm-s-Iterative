@@ -85,7 +85,7 @@ object GreatswordSkillTree {
                 Ingredient.of(SOFItemTags.FORGE_GREATSWORDS),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
                         SOFSkillTypes.GREATSWORD_DEFAULT_SPRINT_ATTACK,
                         SOFPreInputs.ATTACK
                     )

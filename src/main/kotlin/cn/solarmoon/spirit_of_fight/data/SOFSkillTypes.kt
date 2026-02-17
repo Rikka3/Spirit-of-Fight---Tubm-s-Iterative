@@ -96,5 +96,18 @@ object SOFSkillTypes {
     val GREATSWORD_SWITCH_ATTACK = sofKey("greatsword.switch_attack")
     val GREATSWORD_SPECIAL_ATTACK = sofKey("greatsword.special_attack")
 
+    // Mace skills
+    val MACE_DEFAULT_COMBO_1 = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.combo_1")
+    val MACE_DEFAULT_COMBO_2 = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.combo_2")
+    val MACE_DEFAULT_COMBO_3 = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.combo_3")
+    val MACE_DEFAULT_SPRINT_ATTACK = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.sprint_attack")
+    val MACE_JUMP_ATTACK = sofKey("mace_jump_attack")
+    val MACE_DODGE = sofKey("mace.dodge")
+    val MACE_BLOCK = sofKey("mace.block")
+    val MACE_SPECIAL_ATTACK = sofKey("mace.special_attack")
+
+    // Warhammer Vindicator skills
+    val WARHAMMER_VINDICATOR_GROUND_SLAM = sofKey("warhammer_vindicator.ground_slam")
+
     fun sofKey(id: String) = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, id)
 }

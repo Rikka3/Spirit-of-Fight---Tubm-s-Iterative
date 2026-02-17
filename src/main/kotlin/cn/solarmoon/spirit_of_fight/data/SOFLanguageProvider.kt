@@ -247,6 +247,13 @@ class SOFLanguageProvider(
         add("skill.spirit_of_fight.greatsword.special_attack.description", "强力巨剑攻击")
         add("skill.spirit_of_fight.greatsword_jump_attack.name", "巨剑跳跃攻击")
         add("skill.spirit_of_fight.greatsword_jump_attack.description", "跳跃中用巨剑攻击")
+        // Warhammer Vindicator
+        add("item.spirit_of_fight.warhammer_vindicator_spawn_egg", "战锤灾厄村民刷怪蛋")
+        add("entity.spirit_of_fight.warhammer_vindicator", "战锤灾厄村民")
+        
+        // Warhammer Vindicator skills
+        add("skill.spirit_of_fight.warhammer_vindicator.ground_slam.name", "地面猛击")
+        add("skill.spirit_of_fight.warhammer_vindicator.ground_slam.description", "强力AOE地面猛击，造成击倒效果")
     }
 
 

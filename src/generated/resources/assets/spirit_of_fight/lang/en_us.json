@@ -1,5 +1,6 @@
 {
   "creative_mode_tab.spirit_of_fight.main": "Spirit of Fight",
+  "entity.spirit_of_fight.warhammer_vindicator": "Warhammer Vindicator",
   "gui.spirit_of_fight.skill_tree.info": "Zoom: %sx Drag: Hold Left Mouse Button",
   "item.spirit_of_fight.diamond_gloves": "Diamond Gauntlets",
   "item.spirit_of_fight.diamond_spear": "Diamond Spear",
@@ -16,6 +17,7 @@
   "item.spirit_of_fight.netherite_warhammer": "Netherite Warhammer",
   "item.spirit_of_fight.stone_spear": "Stone Spear",
   "item.spirit_of_fight.stone_warhammer": "Stone Warhammer",
+  "item.spirit_of_fight.warhammer_vindicator_spawn_egg": "Warhammer Vindicator Spawn Egg",
   "item.spirit_of_fight.wooden_spear": "Wooden Spear",
   "item.spirit_of_fight.wooden_warhammer": "Wooden Warhammer",
   "key.spirit_of_fight.block": "Block",

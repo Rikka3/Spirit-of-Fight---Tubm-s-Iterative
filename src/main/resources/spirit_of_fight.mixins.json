@@ -12,6 +12,7 @@
     "fighter.MeleeAttackGoalMixin",
     "fighter.PlayerMixin",
     "fighter.VindicatorMixin",
+    "fighter.WarhammerVindicatorMixin",
     "fighter.ZombieMixin",
     "js.EntityMixin",
     "js.IAnimatableMixin",

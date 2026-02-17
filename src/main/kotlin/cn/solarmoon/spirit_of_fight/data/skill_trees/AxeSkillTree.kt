@@ -78,7 +78,7 @@ object AxeSkillTree {
                 Ingredient.of(SOFItemTags.FORGE_AXES),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
                         SOFSkillTypes.AXE_JUMP_ATTACK,
                         SOFPreInputs.ATTACK
                     )

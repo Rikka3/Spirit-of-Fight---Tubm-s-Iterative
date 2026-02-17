@@ -8,8 +8,8 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OnGroundCondition
@@ -141,7 +141,7 @@ object SwordSkillTree {
                 Ingredient.of(ItemTags.SWORDS),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
                         SOFSkillTypes.SWORD_JUMP_ATTACK,
                         SOFPreInputs.ATTACK
                     )
