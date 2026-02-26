@@ -52,11 +52,6 @@ Skill.create("spirit_of_fight:axe.default.sprint_attack", builder => {
             animatable.playAnimation(anim, 0)
         })
 
-        const dashKF = anim.registerKeyframeRange("dash", 0.0, 0.3)
-        dashKF.onInside(() => {
-            entity.move([0.0, entity.getDeltaMovement().y, 1.5], false)
-        })
-
         const attackKF = anim.registerKeyframeRange("attack", 0.2, 0.5)
         attackKF.onEnter(() => {
             attackBody.setCollideWithGroups(1)

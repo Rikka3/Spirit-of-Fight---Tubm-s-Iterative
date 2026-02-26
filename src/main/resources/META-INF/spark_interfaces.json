@@ -27,5 +27,8 @@
   ],
   "net/minecraft/world/entity/player/Player": [
     "cn/solarmoon/spark_core/animation/IEntityAnimatable"
+  ],
+  "cn/solarmoon/spirit_of_fight/entity/WarhammerVindicator": [
+    "cn/solarmoon/spark_core/animation/IEntityAnimatable"
   ]
 }

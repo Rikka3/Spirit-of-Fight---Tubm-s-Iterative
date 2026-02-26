@@ -119,6 +119,9 @@ class SkillTree(
         reserveTime = 0
         currentSkill = null
         currentNode = null
+        // Safety unlock - ensure preInput is always unlocked when skill tree resets
+        // This prevents player lock-up if skill.onEnd callback fails to fire
+        player.preInput.unlock()
     }
 
     fun getNodeByPath(path: MutableList<Int>): SkillTreeNode? {

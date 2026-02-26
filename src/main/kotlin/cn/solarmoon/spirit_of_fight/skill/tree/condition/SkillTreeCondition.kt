@@ -15,9 +15,10 @@ interface SkillTreeCondition {
 
     val codec: MapCodec<out SkillTreeCondition>
 
-    val registryKey get() = SOFRegistries.SKILL_TREE_CONDITION_CODEC.getKey(codec) ?: throw NullPointerException("${javaClass.simpleName} 尚未为其codec注册")
+    val registryKey: ResourceLocation? get() = SOFRegistries.SKILL_TREE_CONDITION_CODEC.getKey(codec)
 
-    val description: Component get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}")
+    val description: Component get() = registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}") }
+        ?: Component.literal(javaClass.simpleName)
 
     companion object {
         val CODEC = SOFRegistries.SKILL_TREE_CONDITION_CODEC.byNameCodec()

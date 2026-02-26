@@ -1,0 +1,34 @@
+{
+  "description": {
+    "translate": "enchantment.spirit_of_fight.density"
+  },
+  "supported_items": "#c:hammers",
+  "weight": 2,
+  "max_level": 5,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 3,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.5,
+            "per_level_above_first": 0.5
+          }
+        }
+      }
+    ]
+  }
+}

@@ -55,9 +55,8 @@ Skill.create("spirit_of_fight:gloves.default.sprint_attack", builder => {
         anim.registerKeyframeRanges("attack", [[0.2, 0.5], [0.55, 0.75]], (attackKF, index) => {
             attackKF.onEnter(() => {
                 if (index == 0) {
-                    entity.move([0.0, 0.35, 1.0], false)
+                    // No movement for sprint attack
                 } else {
-                    entity.move([0.0, -1.0, 0.75], false)
                     attackBody.setCollideWithGroups(1)
                     level.playSound(entity.getOnPos().above(), "minecraft:entity.player.attack.strong", "players")
                     entity.setCameraLock(true)

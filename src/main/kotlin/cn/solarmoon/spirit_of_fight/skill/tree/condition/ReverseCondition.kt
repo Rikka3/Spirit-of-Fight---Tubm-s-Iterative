@@ -19,7 +19,8 @@ class ReverseCondition(
     }
 
     override val description: Component
-        get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", condition.description)
+        get() = registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}", condition.description) }
+            ?: Component.literal("NOT ${condition.description.string}")
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 

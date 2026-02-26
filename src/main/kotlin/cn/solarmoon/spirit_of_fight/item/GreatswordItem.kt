@@ -7,4 +7,9 @@ import net.minecraft.world.item.Item
 class GreatswordItem(
     tier: Tier,
     properties: Item.Properties
-) : SwordItem(tier, properties)
+) : SwordItem(tier, properties) {
+
+    override fun getEnchantmentValue(): Int {
+        return 14 // Similar to diamond tools, good for heavy weapons
+    }
+}

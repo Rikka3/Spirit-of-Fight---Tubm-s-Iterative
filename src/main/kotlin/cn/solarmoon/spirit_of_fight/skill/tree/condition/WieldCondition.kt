@@ -19,7 +19,8 @@ class WieldCondition(
     }
 
     override val description: Component
-        get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", wieldStyle.translatableName)
+        get() = registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}", wieldStyle.translatableName) }
+            ?: Component.literal("Wield: ${wieldStyle.name}")
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 

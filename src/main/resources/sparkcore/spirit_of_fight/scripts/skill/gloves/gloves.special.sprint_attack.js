@@ -61,10 +61,9 @@ Skill.create("spirit_of_fight:gloves.special.sprint_attack", builder => {
             attackKF.onEnter(() => {
                 switch (index) {
                     case 0:
-                        entity.move([0.0, 0.0, 0.5], false)
+                        // No movement for sprint attack
                         break
                     case 1:
-                        entity.move([0.0, 0.35, 1.25], false)
                         attackBody.setCollideWithGroups(1)
                         level.playSound(entity.getOnPos().above(), "minecraft:entity.player.attack.weak", "players")
                         break
@@ -74,7 +73,6 @@ Skill.create("spirit_of_fight:gloves.special.sprint_attack", builder => {
                         break
                     case 3:
                         skill.getConfig().set("damage_multiplier", 0.5)
-                        entity.move([0.0, 0.0, 0.5], false)
                         attackBody.setCollideWithGroups(1)
                         level.playSound(entity.getOnPos().above(), "minecraft:entity.player.attack.strong", "players", 1, 0.9)
                         break

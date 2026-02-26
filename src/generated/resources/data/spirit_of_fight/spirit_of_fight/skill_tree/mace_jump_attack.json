@@ -7,13 +7,12 @@
       "type": "spirit_of_fight:node",
       "conditions": [
         {
-          "type": "spirit_of_fight:jumping",
-          "reserve_time": 10
+          "type": "spirit_of_fight:falling"
         },
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.attack": "release"
+            "key.attack": "press"
           }
         }
       ],

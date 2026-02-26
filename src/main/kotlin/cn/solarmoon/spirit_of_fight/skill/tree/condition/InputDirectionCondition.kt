@@ -25,7 +25,8 @@ class InputDirectionCondition(
     override val description: Component
         get() {
             val d = (side?.translatableName ?: Component.translatable("move_direction.null")).withStyle(ChatFormatting.BOLD)
-            return Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", d)
+            return registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}", d) }
+                ?: Component.literal("Direction: ${side?.name ?: "any"}")
         }
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC

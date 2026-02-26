@@ -9,4 +9,7 @@ class BattleAxeItem(
     properties: Properties
 ): AxeItem(tier, properties) {
 
+    override fun getEnchantmentValue(): Int {
+        return 14 // Similar to diamond tools, good for heavy weapons
+    }
 }

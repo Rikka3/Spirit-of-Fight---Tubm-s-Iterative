@@ -23,7 +23,12 @@ class AnyCondition(
         get() {
             val desc = Component.empty()
             conditions.forEachIndexed { index, condition ->
-                desc.append(Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", condition.description))
+                val key = registryKey
+                if (key != null) {
+                    desc.append(Component.translatable("skill_tree_condition.${key.namespace}.${key.path}", condition.description))
+                } else {
+                    desc.append(condition.description)
+                }
                 if (index < conditions.size - 1) desc.append(Component.translatable("skill_tree_condition.any"))
             }
             return desc

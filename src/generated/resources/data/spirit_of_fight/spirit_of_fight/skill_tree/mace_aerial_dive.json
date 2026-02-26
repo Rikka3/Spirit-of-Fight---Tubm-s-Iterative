@@ -1,0 +1,26 @@
+{
+  "item": {
+    "item": "minecraft:mace"
+  },
+  "nodes": [
+    {
+      "type": "spirit_of_fight:node",
+      "conditions": [
+        {
+          "type": "spirit_of_fight:aerial_dive"
+        },
+        {
+          "type": "spirit_of_fight:key_input",
+          "map": {
+            "key.attack": "press"
+          }
+        }
+      ],
+      "cooldown": 20,
+      "pre_input_id": "attack",
+      "reserve_time": 0,
+      "skill": "spirit_of_fight:mace_aerial_dive"
+    }
+  ],
+  "priority": 3
+}

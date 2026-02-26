@@ -9,9 +9,14 @@ import cn.solarmoon.spirit_of_fight.spirit.FightSpiritPayload
 import cn.solarmoon.spirit_of_fight.sync.BlockBreakProgressPayload
 import cn.solarmoon.spirit_of_fight.sync.DodgeCooldownPayload
 import cn.solarmoon.spirit_of_fight.sync.DodgeCostPayload
+import cn.solarmoon.spirit_of_fight.sync.JumpAttackCooldownPayload
+import cn.solarmoon.spirit_of_fight.sync.JumpAttackCostPayload
 import cn.solarmoon.spirit_of_fight.sync.MoveDirectionPayload
 import cn.solarmoon.spirit_of_fight.sync.SwitchAttackCooldownPayload
 import cn.solarmoon.spirit_of_fight.sync.ComboCooldownPayload
+import cn.solarmoon.spirit_of_fight.sync.SprintAttackCooldownPayload
+import cn.solarmoon.spirit_of_fight.sync.ComboCooldownCostPayload
+import cn.solarmoon.spirit_of_fight.sync.SprintAttackCooldownCostPayload
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent
 import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler
@@ -23,14 +28,19 @@ object SOFPayloadRegister {
         control.playBidirectional(MoveDirectionPayload.TYPE, MoveDirectionPayload.STREAM_CODEC, DirectionalPayloadHandler(MoveDirectionPayload::handle, MoveDirectionPayload::handle))
         control.playToServer(FightSpiritClearPayload.TYPE, FightSpiritClearPayload.STREAM_CODEC, FightSpiritClearPayload::handleInServer)
         control.playToServer(DodgeCostPayload.TYPE, DodgeCostPayload.STREAM_CODEC, DodgeCostPayload::handleInServer)
+        control.playToServer(JumpAttackCostPayload.TYPE, JumpAttackCostPayload.STREAM_CODEC, JumpAttackCostPayload::handleInServer)
+        control.playToServer(ComboCooldownCostPayload.TYPE, ComboCooldownCostPayload.STREAM_CODEC, ComboCooldownCostPayload::handleInServer)
+        control.playToServer(SprintAttackCooldownCostPayload.TYPE, SprintAttackCooldownCostPayload.STREAM_CODEC, SprintAttackCooldownCostPayload::handleInServer)
         
         val sync = event.registrar("sync")
         sync.playToClient(FightSpiritPayload.TYPE, FightSpiritPayload.STREAM_CODEC, FightSpiritPayload::handleInClient)
         sync.playToClient(PoiseSetPayload.TYPE, PoiseSetPayload.STREAM_CODEC, PoiseSetPayload::handleInClient)
         sync.playToClient(PoiseResetPayload.TYPE, PoiseResetPayload.STREAM_CODEC, PoiseResetPayload::handleInClient)
         sync.playToClient(DodgeCooldownPayload.TYPE, DodgeCooldownPayload.STREAM_CODEC, DodgeCooldownPayload::handleInClient)
+        sync.playToClient(JumpAttackCooldownPayload.TYPE, JumpAttackCooldownPayload.STREAM_CODEC, JumpAttackCooldownPayload::handleInClient)
         sync.playToClient(SwitchAttackCooldownPayload.TYPE, SwitchAttackCooldownPayload.STREAM_CODEC, SwitchAttackCooldownPayload::handleInClient)
         sync.playToClient(ComboCooldownPayload.TYPE, ComboCooldownPayload.STREAM_CODEC, ComboCooldownPayload::handleInClient)
+        sync.playToClient(SprintAttackCooldownPayload.TYPE, SprintAttackCooldownPayload.STREAM_CODEC, SprintAttackCooldownPayload::handleInClient)
         sync.playToClient(cn.solarmoon.spirit_of_fight.sync.RecoveryStunPayload.TYPE, cn.solarmoon.spirit_of_fight.sync.RecoveryStunPayload.STREAM_CODEC, cn.solarmoon.spirit_of_fight.sync.RecoveryStunPayload::handleInClient)
         sync.playToClient(BlockBreakProgressPayload.TYPE, BlockBreakProgressPayload.STREAM_CODEC, BlockBreakProgressPayload::handleInClient)
         val particle = event.registrar("particle")

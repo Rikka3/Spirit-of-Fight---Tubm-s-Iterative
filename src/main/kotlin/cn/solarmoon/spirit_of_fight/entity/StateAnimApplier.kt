@@ -20,6 +20,7 @@ import cn.solarmoon.spirit_of_fight.SpiritOfFight
 import cn.solarmoon.spirit_of_fight.event.OnSkillTreeSetChangeEvent
 import cn.solarmoon.spirit_of_fight.js.JSSOFConfig
 import cn.solarmoon.spark_core.util.MultiModuleResourceExtractionUtil
+import cn.solarmoon.spirit_of_fight.entity.WarhammerVindicator
 import com.jme3.bullet.collision.PhysicsCollisionObject
 import com.jme3.bullet.collision.shapes.CompoundCollisionShape
 import com.jme3.bullet.objects.PhysicsRigidBody
@@ -159,7 +160,31 @@ object StateAnimApplier {
     private fun add(event: EntityJoinLevelEvent) {
         val entity = event.entity
         val level = entity.level()
-        if (entity is Zombie || entity is Vindicator) {
+        
+        // Handle WarhammerVindicator with custom model
+        if (entity is WarhammerVindicator) {
+            entity.modelIndex.modelPath = ResourceLocation.fromNamespaceAndPath(SpiritOfFight.MOD_ID, "spirit_of_fight/models/warhammer_vindicator")
+            entity.model.bones.values.filterNot { it.name in listOf("rightItem", "leftItem") }.forEach { bone ->
+                val body = PhysicsRigidBody(bone.name, entity, CompoundCollisionShape())
+
+                entity.bindBody(body, level.physicsLevel, allowOverride = true) {
+                    (this.collisionShape as CompoundCollisionShape).initWithAnimatedBone(bone)
+                    this.isContactResponse = false
+                    this.setGravity(Vector3f.ZERO)
+                    this.setEnableSleep(false)
+                    this.isKinematic = true
+                    this.collideWithGroups = PhysicsCollisionObject.COLLISION_GROUP_OBJECT or PhysicsCollisionObject.COLLISION_GROUP_BLOCK
+                    this.addPhysicsTicker(MoveWithAnimatedBoneTicker(bone.name))
+                    this.addCollisionCallback(SparkCollisionCallback(
+                        owner = entity,
+                        cbName = body.name,
+                        collisionBoxId = body.name
+                    ))
+                }
+            }
+        }
+        // Handle Zombie and regular Vindicator with zombie model
+        else if (entity is Zombie || entity is Vindicator) {
             entity.modelIndex.modelPath = ResourceLocation.fromNamespaceAndPath(SparkCore.MOD_ID, "spark_core/models/zombie")
             entity.model.bones.values.filterNot { it.name in listOf("rightItem", "leftItem") }.forEach { bone ->
                 val body = PhysicsRigidBody(bone.name, entity, CompoundCollisionShape())

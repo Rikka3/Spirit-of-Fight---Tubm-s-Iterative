@@ -1,6 +1,7 @@
 package cn.solarmoon.spirit_of_fight.registry.common
 
 import cn.solarmoon.spirit_of_fight.SpiritOfFight
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.AerialDiveCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.AnyCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallDistanceCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallingCondition
@@ -40,6 +41,7 @@ object SOFCodecRegister {
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("any")) { AnyCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("wield_style")) { WieldCondition.CODEC }
         event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("input_direction")) { InputDirectionCondition.CODEC }
+        event.register(SOFRegistries.SKILL_TREE_CONDITION_CODEC.key(), id("aerial_dive")) { AerialDiveCondition.CODEC }
 
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("node")) { CommonNode.CODEC }
         event.register(SOFRegistries.SKILL_TREE_NODE_CODEC.key(), id("fight_spirit_consumer")) { FightSpiritConsumeNode.CODEC }

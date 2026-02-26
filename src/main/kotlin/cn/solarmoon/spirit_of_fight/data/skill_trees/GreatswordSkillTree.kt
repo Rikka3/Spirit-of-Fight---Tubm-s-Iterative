@@ -7,7 +7,7 @@ import cn.solarmoon.spirit_of_fight.data.skill_trees.SOFSkillTrees.Companion.sof
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OnGroundCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.ReverseCondition
@@ -85,7 +85,7 @@ object GreatswordSkillTree {
                 Ingredient.of(SOFItemTags.FORGE_GREATSWORDS),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(FallingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.GREATSWORD_DEFAULT_SPRINT_ATTACK,
                         SOFPreInputs.ATTACK
                     )
@@ -98,9 +98,10 @@ object GreatswordSkillTree {
                 Ingredient.of(SOFItemTags.FORGE_GREATSWORDS),
                 listOf(
                     CommonNode(
-                        listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.GREATSWORD_DEFAULT_SPRINT_ATTACK,
-                        SOFPreInputs.ATTACK
+                        SOFPreInputs.ATTACK,
+                        cooldown = 60 // 3 seconds = 60 ticks
                     )
                 ),
                 1

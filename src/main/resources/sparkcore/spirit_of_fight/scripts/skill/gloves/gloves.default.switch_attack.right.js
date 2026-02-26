@@ -59,6 +59,8 @@ Skill.create("spirit_of_fight:gloves.default.switch_attack.right", builder => {
                 skill.end()
                 return
             }
+            // Set 2 second cooldown (40 ticks) for switch attack
+            entity.setSwitchAttackCooldown(level.getGameTime() + 40)
             hasHit = false
             animatable.playAnimation(anim, 0)
         })

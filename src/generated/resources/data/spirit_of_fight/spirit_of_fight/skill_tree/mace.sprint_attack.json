@@ -12,10 +12,11 @@
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.attack": "release"
+            "key.attack": "press"
           }
         }
       ],
+      "cooldown": 20,
       "pre_input_id": "attack",
       "reserve_time": 0,
       "skill": "spirit_of_fight:mace.default.sprint_attack"

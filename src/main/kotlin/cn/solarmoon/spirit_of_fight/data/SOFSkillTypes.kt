@@ -102,6 +102,7 @@ object SOFSkillTypes {
     val MACE_DEFAULT_COMBO_3 = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.combo_3")
     val MACE_DEFAULT_SPRINT_ATTACK = sofKey("mace.${WieldStyle.DEFAULT.serializedName}.sprint_attack")
     val MACE_JUMP_ATTACK = sofKey("mace_jump_attack")
+    val MACE_AERIAL_DIVE = sofKey("mace_aerial_dive")
     val MACE_DODGE = sofKey("mace.dodge")
     val MACE_BLOCK = sofKey("mace.block")
     val MACE_SPECIAL_ATTACK = sofKey("mace.special_attack")

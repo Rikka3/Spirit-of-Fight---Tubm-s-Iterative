@@ -7,6 +7,7 @@ import net.minecraft.client.model.IllagerModel
 import net.minecraft.client.model.geom.ModelLayers
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import net.minecraft.client.renderer.entity.IllagerRenderer
+import net.minecraft.client.renderer.entity.layers.ItemInHandLayer
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
@@ -28,6 +29,7 @@ object SOFEntityRenderers {
 /**
  * Renderer for the Warhammer Vindicator entity.
  * Uses the vanilla vindicator model (IllagerModel) with a custom texture.
+ * Adds ItemInHandLayer to render the held warhammer.
  */
 class WarhammerVindicatorRenderer(context: EntityRendererProvider.Context) :
     IllagerRenderer<WarhammerVindicator>(
@@ -41,6 +43,11 @@ class WarhammerVindicatorRenderer(context: EntityRendererProvider.Context) :
             SpiritOfFight.MOD_ID,
             "textures/entity/warhammer_vindicator.png"
         )
+    }
+    
+    init {
+        // Add the item in hand layer to render the held warhammer
+        this.addLayer(ItemInHandLayer(this, context.itemInHandRenderer))
     }
     
     override fun getTextureLocation(entity: WarhammerVindicator): ResourceLocation {

@@ -46,6 +46,13 @@ Skill.create("spirit_of_fight:sword_jump_attack", builder => {
             skill.end()
         })
 
+        // Launch player forward and upward at the start
+        const launchKF = anim.registerKeyframeRange("launch", 0.0, 0.1)
+        launchKF.onEnter(() => {
+            // Launch forward 1.5 blocks and up 0.5 blocks relative to player facing
+            entity.move([0.0, 0.5, 1.5], false)
+        })
+
         skill.onActiveStart(() => {
             animatable.playAnimation(anim, 0)
         })

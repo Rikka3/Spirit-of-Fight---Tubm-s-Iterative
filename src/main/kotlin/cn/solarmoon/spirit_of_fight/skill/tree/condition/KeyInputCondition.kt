@@ -35,18 +35,23 @@ class KeyInputCondition(
         get() {
             val desc = Component.empty() // 创建一个空的 Component 作为基础
             val entries = keyMap.entries.toList() // 将 keyMap 转换为列表以便迭代
-            entries.forEachIndexed { index, (key, event) ->
+            val regKey = registryKey
+            entries.forEachIndexed { index, (keyName, event) ->
                 // 获取按键的显示名称
-                val keyDisplay = KeyMappingHelper.get(key)!!.key.displayName
+                val keyDisplay = KeyMappingHelper.get(keyName)!!.key.displayName
                 // 创建描述该按键-事件对的可翻译组件
-                val eventDesc = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}.${event.toString().lowercase()}", keyDisplay.copy().withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                val eventDesc = if (regKey != null) {
+                    Component.translatable("skill_tree_condition.${regKey.namespace}.${regKey.path}.${event.toString().lowercase()}", keyDisplay.copy().withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD))
+                } else {
+                    keyDisplay.copy().withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.BOLD)
+                }
                 // 添加连接词
                 if (index > 0) {
                     if (index == entries.size - 1) {
-                        // 最后一个元素前添加“和”
+                        // 最后一个元素前添加"和"
                         desc.append(Component.translatable("skill_tree_condition.also"))
                     } else {
-                        // 中间元素前添加“，”
+                        // 中间元素前添加"，"
                         desc.append(Component.translatable("skill_tree_condition.comma"))
                     }
                 }

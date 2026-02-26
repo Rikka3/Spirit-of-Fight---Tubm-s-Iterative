@@ -21,10 +21,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
-import java.util.List;
+import java.util.Random;
 
 /**
  * A specialized vindicator that wields an iron warhammer and uses the mod's combat system.
@@ -49,6 +48,9 @@ public class WarhammerVindicator extends Vindicator {
     private long lastAttackTick = 0;
     private int blockCooldown = 0;
     private int specialAttackCooldown = 0;
+    private int comboDelay = 0;
+    private int targetSwingTick = -100;
+    private boolean wasTargetSwinging = false;
 
     public WarhammerVindicator(EntityType<? extends WarhammerVindicator> entityType, Level level) {
         super(entityType, level);
@@ -65,13 +67,11 @@ public class WarhammerVindicator extends Vindicator {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new WarhammerBlockGoal(this));
-        goalSelector.addGoal(2, new WarhammerGroundSlamGoal(this));
-        goalSelector.addGoal(3, new WarhammerSprintAttackGoal(this));
-        goalSelector.addGoal(4, new WarhammerComboAttackGoal(this));
-        goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0, 32.0f));
-        goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0f));
-        goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(1, new WarhammerPrecisionBlockGoal(this));
+        goalSelector.addGoal(2, new WarhammerComboAttackGoal(this));
+        goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 1.0, 32.0f));
+        goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0f));
+        goalSelector.addGoal(5, new RandomLookAroundGoal(this));
 
         targetSelector.addGoal(0, new HurtByTargetGoal(this));
         targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -110,6 +110,16 @@ public class WarhammerVindicator extends Vindicator {
         // Decrease cooldowns
         if (blockCooldown > 0) blockCooldown--;
         if (specialAttackCooldown > 0) specialAttackCooldown--;
+        if (comboDelay > 0) comboDelay--;
+
+        // Track target swing for precision blocking
+        LivingEntity target = getTarget();
+        if (target != null) {
+            if (target.swinging && !wasTargetSwinging) {
+                targetSwingTick = tickCount;
+            }
+            wasTargetSwinging = target.swinging;
+        }
 
         // Reset combo after timeout (3 seconds)
         if (tickCount - lastAttackTick > 60 && getComboCount() > 0) {
@@ -123,6 +133,10 @@ public class WarhammerVindicator extends Vindicator {
 
     public void setComboCount(int value) {
         entityData.set(COMBO_COUNT, value);
+    }
+
+    public void incrementCombo() {
+        setComboCount((getComboCount() + 1) % 4); // 0-3 combo cycle
     }
 
     public boolean isBlocking() {
@@ -179,20 +193,78 @@ public class WarhammerVindicator extends Vindicator {
         return lastAttackTick;
     }
 
+    public int getComboDelay() {
+        return comboDelay;
+    }
+
+    public void setComboDelay(int delay) {
+        this.comboDelay = delay;
+    }
+
+    public int getTargetSwingTick() {
+        return targetSwingTick;
+    }
+
+    /**
+     * Check if target recently started swinging (within last 10 ticks)
+     */
+    public boolean isTargetAboutToHit() {
+        return tickCount - targetSwingTick < 10;
+    }
+
     @Override
     protected AABB getAttackBoundingBox() {
         return super.getAttackBoundingBox().inflate(1.0, 0.0, 1.0);
     }
 
     /**
-     * AI Goal for combo attacks
+     * AI Goal for combo attacks with proper timing
      */
     public static class WarhammerComboAttackGoal extends MeleeAttackGoal {
         private final WarhammerVindicator mob;
+        private static final Random RANDOM = new Random();
 
         public WarhammerComboAttackGoal(WarhammerVindicator mob) {
             super(mob, 1.0, false);
             this.mob = mob;
+        }
+
+        @Override
+        public boolean canUse() {
+            return super.canUse() && mob.getComboDelay() <= 0;
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity target = this.mob.getTarget();
+            if (target != null) {
+                double dist = this.mob.distanceToSqr(target);
+                this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
+                
+                // Check if we should attack
+                if (dist <= getAttackReachSqr(target) && mob.getComboDelay() <= 0) {
+                    // Add some randomness to attack timing for more natural behavior
+                    if (RANDOM.nextFloat() < 0.3f) {
+                        mob.setComboDelay(5 + RANDOM.nextInt(10));
+                        return;
+                    }
+                    
+                    this.mob.swing(InteractionHand.MAIN_HAND);
+                    this.mob.doHurtTarget(target);
+                    mob.setLastAttackTick(mob.tickCount);
+                    mob.incrementCombo();
+                    
+                    // Add delay between combo hits for more natural flow
+                    int comboDelay = 15 + RANDOM.nextInt(10); // 0.75-1.25 seconds between hits
+                    mob.setComboDelay(comboDelay);
+                } else {
+                    super.tick();
+                }
+            }
+        }
+
+        private double getAttackReachSqr(LivingEntity target) {
+            return this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + target.getBbWidth();
         }
 
         @Override
@@ -203,14 +275,15 @@ public class WarhammerVindicator extends Vindicator {
     }
 
     /**
-     * AI Goal for blocking
+     * AI Goal for precision blocking - blocks when target is about to attack
      */
-    public static class WarhammerBlockGoal extends Goal {
+    public static class WarhammerPrecisionBlockGoal extends Goal {
         private final WarhammerVindicator mob;
         private LivingEntity target;
         private int blockTime;
+        private static final Random RANDOM = new Random();
 
-        public WarhammerBlockGoal(WarhammerVindicator mob) {
+        public WarhammerPrecisionBlockGoal(WarhammerVindicator mob) {
             this.mob = mob;
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
@@ -223,13 +296,22 @@ public class WarhammerVindicator extends Vindicator {
             if (target == null) return false;
             double dist = mob.distanceToSqr(target);
 
-            // Block when target is close and attacking
-            return dist < 9.0 && isTargetAttacking();
+            // Block when target is close and about to hit (detected swing)
+            if (dist < 12.0 && mob.isTargetAboutToHit()) {
+                return true;
+            }
+
+            // Also block reactively when target is very close and attacking
+            if (dist < 6.0 && isTargetAttacking()) {
+                return RANDOM.nextFloat() < 0.5f; // 50% chance to block
+            }
+
+            return false;
         }
 
         @Override
         public boolean canContinueToUse() {
-            return mob.isBlocking() && blockTime < 40 && target != null && mob.distanceToSqr(target) < 16.0;
+            return mob.isBlocking() && blockTime < 30 && target != null && mob.distanceToSqr(target) < 16.0;
         }
 
         @Override
@@ -243,7 +325,7 @@ public class WarhammerVindicator extends Vindicator {
         public void stop() {
             mob.setBlocking(false);
             ((IEntityPatch) mob).setGuardEnabled(false);
-            mob.setBlockCooldown(60); // 3 second cooldown
+            mob.setBlockCooldown(40 + RANDOM.nextInt(40)); // 2-4 second cooldown
         }
 
         @Override
@@ -257,127 +339,6 @@ public class WarhammerVindicator extends Vindicator {
         private boolean isTargetAttacking() {
             if (target == null) return false;
             return target.isUsingItem() || target.swinging;
-        }
-    }
-
-    /**
-     * AI Goal for ground slam special attack
-     */
-    public static class WarhammerGroundSlamGoal extends Goal {
-        private final WarhammerVindicator mob;
-
-        public WarhammerGroundSlamGoal(WarhammerVindicator mob) {
-            this.mob = mob;
-            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-        }
-
-        @Override
-        public boolean canUse() {
-            if (!mob.canUseSpecialAttack()) return false;
-
-            LivingEntity target = mob.getTarget();
-            if (target == null) return false;
-            return mob.distanceToSqr(target) < 16.0; // Within 4 blocks
-        }
-
-        @Override
-        public void start() {
-            LivingEntity target = mob.getTarget();
-            if (target == null) return;
-
-            // Look at target
-            mob.getLookControl().setLookAt(target);
-
-            // Deal AOE damage in radius
-            Level level = mob.level();
-            AABB aabb = new AABB(mob.position(), mob.position()).inflate(4.0, 1.0, 4.0);
-            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb, e -> e != mob);
-
-            for (LivingEntity entity : entities) {
-                if (entity instanceof Player || entity instanceof AbstractVillager || entity instanceof IronGolem) {
-                    mob.doHurtTarget(entity);
-                }
-            }
-
-            // Knockback nearby entities
-            for (LivingEntity entity : entities) {
-                double dx = entity.getX() - mob.getX();
-                double dz = entity.getZ() - mob.getZ();
-                double dist = Math.sqrt(dx * dx + dz * dz);
-                if (dist > 0) {
-                    entity.setDeltaMovement(entity.getDeltaMovement().add(
-                            (dx / dist) * 0.8,
-                            0.3,
-                            (dz / dist) * 0.8
-                    ));
-                }
-            }
-
-            mob.setFightSpirit(mob.getFightSpirit() - 100);
-            mob.setSpecialAttackCooldown(200); // 10 second cooldown
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return false; // One-shot goal
-        }
-    }
-
-    /**
-     * AI Goal for sprint attack
-     */
-    public static class WarhammerSprintAttackGoal extends Goal {
-        private final WarhammerVindicator mob;
-        private LivingEntity target;
-        private boolean sprinting;
-
-        public WarhammerSprintAttackGoal(WarhammerVindicator mob) {
-            this.mob = mob;
-            this.setFlags(EnumSet.of(Flag.MOVE));
-        }
-
-        @Override
-        public boolean canUse() {
-            LivingEntity target = mob.getTarget();
-            if (target == null) return false;
-            double dist = mob.distanceToSqr(target);
-
-            // Sprint when target is 4-8 blocks away
-            return dist >= 16.0 && dist <= 64.0 && mob.onGround() && !mob.isBlocking();
-        }
-
-        @Override
-        public void start() {
-            target = mob.getTarget();
-            sprinting = false;
-        }
-
-        @Override
-        public void tick() {
-            if (target == null) return;
-            double dist = mob.distanceToSqr(target);
-
-            if (dist > 16.0) {
-                mob.getNavigation().moveTo(target, 1.5);
-                mob.setSprinting(true);
-                sprinting = true;
-            } else if (sprinting && dist <= 16.0) {
-                // Perform sprint attack with bonus damage
-                mob.doHurtTarget(target);
-                sprinting = false;
-            }
-        }
-
-        @Override
-        public void stop() {
-            mob.setSprinting(false);
-            sprinting = false;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            if (target == null) return false;
-            return mob.distanceToSqr(target) > 9.0 && !mob.swinging;
         }
     }
 }

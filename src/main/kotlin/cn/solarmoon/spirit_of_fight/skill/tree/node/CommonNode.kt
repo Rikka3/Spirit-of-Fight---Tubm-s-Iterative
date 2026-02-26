@@ -9,6 +9,9 @@ import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.SkillTreeCondition
 import cn.solarmoon.spirit_of_fight.sync.DodgeCooldownPayload
 import cn.solarmoon.spirit_of_fight.sync.DodgeCostPayload
+import cn.solarmoon.spirit_of_fight.sync.JumpAttackCostPayload
+import cn.solarmoon.spirit_of_fight.sync.ComboCooldownCostPayload
+import cn.solarmoon.spirit_of_fight.sync.SprintAttackCooldownCostPayload
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
@@ -50,6 +53,45 @@ open class CommonNode(
             }
         }
 
+        // Jump attack cooldown and hunger check
+        if (skillLocation.path.contains("jump_attack")) {
+            if (!player.isCreative) {
+                val patch = (player as Any) as? IEntityPatch
+                if (patch != null) {
+                    val currentTime = player.level().gameTime
+                    // Check 1 second cooldown (20 ticks)
+                    if (currentTime - patch.lastJumpAttackTick < 20) return false
+                    // Check at least 2 hunger points
+                    if (player.foodData.foodLevel < 2) return false
+                }
+            }
+        }
+
+        // Combo cooldown check (1 second = 20 ticks)
+        // Switch attacks bypass this cooldown
+        if (skillLocation.path.contains("combo") && preInputId != SOFPreInputs.SWITCH_POSTURE) {
+            if (!player.isCreative) {
+                val patch = (player as Any) as? IEntityPatch
+                if (patch != null) {
+                    val currentTime = player.level().gameTime
+                    // Check 1 second cooldown (20 ticks)
+                    if (currentTime < patch.comboCooldownUntil) return false
+                }
+            }
+        }
+
+        // Sprint attack cooldown check (3 seconds = 60 ticks)
+        if (skillLocation.path.contains("sprint_attack")) {
+            if (!player.isCreative) {
+                val patch = (player as Any) as? IEntityPatch
+                if (patch != null) {
+                    val currentTime = player.level().gameTime
+                    // Check 3 second cooldown (60 ticks)
+                    if (currentTime < patch.sprintAttackCooldownUntil) return false
+                }
+            }
+        }
+
         if (cooldown > 0 && !player.isCreative) {
             val patch = (player as Any) as? IEntityPatch
             if (patch != null) {
@@ -67,6 +109,33 @@ open class CommonNode(
                 if (level.isClientSide) {
                     // Send authoritative cost request to server
                     PacketDistributor.sendToServer(DodgeCostPayload)
+                }
+            }
+        }
+
+        // Jump attack cost - send to server for authoritative deduction
+        if (skillLocation.path.contains("jump_attack")) {
+            if (!host.isCreative) {
+                if (level.isClientSide) {
+                    PacketDistributor.sendToServer(JumpAttackCostPayload)
+                }
+            }
+        }
+
+        // Set combo cooldown (1 second = 20 ticks)
+        if (skillLocation.path.contains("combo")) {
+            if (!host.isCreative) {
+                if (level.isClientSide) {
+                    PacketDistributor.sendToServer(ComboCooldownCostPayload)
+                }
+            }
+        }
+
+        // Set sprint attack cooldown (3 seconds = 60 ticks)
+        if (skillLocation.path.contains("sprint_attack")) {
+            if (!host.isCreative) {
+                if (level.isClientSide) {
+                    PacketDistributor.sendToServer(SprintAttackCooldownCostPayload)
                 }
             }
         }

@@ -6,7 +6,8 @@ import cn.solarmoon.spirit_of_fight.data.skill_trees.SOFSkillTrees.Companion.sof
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.AerialDiveCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OnGroundCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.ReverseCondition
@@ -22,6 +23,7 @@ object MaceSkillTree {
 
     val MACE_COMBO = sofKey("mace.combo")
     val MACE_JUMP_ATTACK = sofKey("mace_jump_attack")
+    val MACE_AERIAL_DIVE = sofKey("mace_aerial_dive")
     val MACE_SPRINT_ATTACK = sofKey("mace.sprint_attack")
     val MACE_BLOCK = sofKey("mace.block")
     val MACE_DODGE = sofKey("mace.dodge")
@@ -77,7 +79,7 @@ object MaceSkillTree {
                 Ingredient.of(Items.MACE),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(FallingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.MACE_JUMP_ATTACK,
                         SOFPreInputs.ATTACK
                     )
@@ -85,14 +87,31 @@ object MaceSkillTree {
                 2
             )
         )
+        // Aerial dive attack - higher priority than jump attack (3 vs 2)
+        // This will be checked first when falling with a target in range
+        context.register(MACE_AERIAL_DIVE,
+            SkillTree(
+                Ingredient.of(Items.MACE),
+                listOf(
+                    CommonNode(
+                        listOf(AerialDiveCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
+                        SOFSkillTypes.MACE_AERIAL_DIVE,
+                        SOFPreInputs.ATTACK,
+                        cooldown = 20
+                    )
+                ),
+                3
+            )
+        )
         context.register(MACE_SPRINT_ATTACK,
             SkillTree(
                 Ingredient.of(Items.MACE),
                 listOf(
                     CommonNode(
-                        listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.MACE_DEFAULT_SPRINT_ATTACK,
-                        SOFPreInputs.ATTACK
+                        SOFPreInputs.ATTACK,
+                        cooldown = 60 // 3 seconds = 60 ticks
                     )
                 ),
                 1

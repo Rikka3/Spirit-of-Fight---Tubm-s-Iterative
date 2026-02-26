@@ -103,6 +103,15 @@ class SOFLanguageProviderEN(
         add("skill_tree.spirit_of_fight.spear.switch_attack", "Spear Switch Attack")
         add("skill_tree.spirit_of_fight.spear.special_attack", "Spear Special Attack")
 
+        // Skill tree names - Mace
+        add("skill_tree.spirit_of_fight.mace.combo", "Mace Combo")
+        add("skill_tree.spirit_of_fight.mace_jump_attack", "Mace Jump Attack")
+        add("skill_tree.spirit_of_fight.mace_aerial_dive", "Mace Aerial Dive")
+        add("skill_tree.spirit_of_fight.mace.sprint_attack", "Mace Sprint Attack")
+        add("skill_tree.spirit_of_fight.mace.block", "Mace Block")
+        add("skill_tree.spirit_of_fight.mace.dodge", "Mace Dodge")
+        add("skill_tree.spirit_of_fight.mace.special_attack", "Mace Special Attack")
+
         // Wield styles
         add("wield_style.default", "Default Stance")
         add("wield_style.special", "Special Stance")
@@ -299,5 +308,25 @@ class SOFLanguageProviderEN(
         add("skill.spirit_of_fight.greatsword.special_attack.description", "A powerful greatsword attack")
         add("skill.spirit_of_fight.greatsword_jump_attack.name", "Greatsword Jump Attack")
         add("skill.spirit_of_fight.greatsword_jump_attack.description", "A jumping greatsword attack")
+
+        // Mace skills
+        add("skill.spirit_of_fight.mace.default.combo_1.name", "Mace Combo 1")
+        add("skill.spirit_of_fight.mace.default.combo_1.description", "First mace strike")
+        add("skill.spirit_of_fight.mace.default.combo_2.name", "Mace Combo 2")
+        add("skill.spirit_of_fight.mace.default.combo_2.description", "Second mace strike")
+        add("skill.spirit_of_fight.mace.default.combo_3.name", "Mace Combo 3")
+        add("skill.spirit_of_fight.mace.default.combo_3.description", "Third mace strike")
+        add("skill.spirit_of_fight.mace.default.sprint_attack.name", "Mace Sprint Attack")
+        add("skill.spirit_of_fight.mace.default.sprint_attack.description", "A running mace attack")
+        add("skill.spirit_of_fight.mace.block.name", "Mace Block")
+        add("skill.spirit_of_fight.mace.block.description", "Block with the mace")
+        add("skill.spirit_of_fight.mace.dodge.name", "Mace Dodge")
+        add("skill.spirit_of_fight.mace.dodge.description", "Dodge while wielding mace")
+        add("skill.spirit_of_fight.mace.special_attack.name", "Mace Special Attack")
+        add("skill.spirit_of_fight.mace.special_attack.description", "A powerful mace slam")
+        add("skill.spirit_of_fight.mace_jump_attack.name", "Mace Jump Attack")
+        add("skill.spirit_of_fight.mace_jump_attack.description", "A jumping mace slam")
+        add("skill.spirit_of_fight.mace_aerial_dive.name", "Mace Aerial Dive")
+        add("skill.spirit_of_fight.mace_aerial_dive.description", "A diving attack from above")
     }
 }

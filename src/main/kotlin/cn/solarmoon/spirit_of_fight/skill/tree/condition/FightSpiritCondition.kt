@@ -20,7 +20,8 @@ class FightSpiritCondition(
     }
 
     override val description: Component
-        get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", need)
+        get() = registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}", need) }
+            ?: Component.literal("Fight Spirit >= $need")
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 

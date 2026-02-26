@@ -82,6 +82,15 @@ class SOFLanguageProvider(
         add("skill_tree.spirit_of_fight.spear.switch_attack", "矛切换攻击")
         add("skill_tree.spirit_of_fight.spear.special_attack", "矛特殊攻击")
 
+        // Skill tree names - Mace
+        add("skill_tree.spirit_of_fight.mace.combo", "重锤连击")
+        add("skill_tree.spirit_of_fight.mace_jump_attack", "重锤跳跃攻击")
+        add("skill_tree.spirit_of_fight.mace_aerial_dive", "重锤俯冲")
+        add("skill_tree.spirit_of_fight.mace.sprint_attack", "重锤冲刺攻击")
+        add("skill_tree.spirit_of_fight.mace.block", "重锤格挡")
+        add("skill_tree.spirit_of_fight.mace.dodge", "重锤闪避")
+        add("skill_tree.spirit_of_fight.mace.special_attack", "重锤特殊攻击")
+
         add("wield_style.default", "默认架势")
         add("wield_style.special", "特殊架势")
         add("move_direction.forward", "前")
@@ -231,6 +240,26 @@ class SOFLanguageProvider(
         add("skill.spirit_of_fight.spear.special_attack.description", "强力矛攻击")
         add("skill.spirit_of_fight.spear.switch_attack.name", "矛切换攻击")
         add("skill.spirit_of_fight.spear.switch_attack.description", "切换架势攻击")
+
+        // Mace skills
+        add("skill.spirit_of_fight.mace.default.combo_1.name", "重锤连击1")
+        add("skill.spirit_of_fight.mace.default.combo_1.description", "重锤连击第一击")
+        add("skill.spirit_of_fight.mace.default.combo_2.name", "重锤连击2")
+        add("skill.spirit_of_fight.mace.default.combo_2.description", "重锤连击第二击")
+        add("skill.spirit_of_fight.mace.default.combo_3.name", "重锤连击3")
+        add("skill.spirit_of_fight.mace.default.combo_3.description", "重锤连击第三击")
+        add("skill.spirit_of_fight.mace.default.sprint_attack.name", "重锤冲刺攻击")
+        add("skill.spirit_of_fight.mace.default.sprint_attack.description", "奔跑中用重锤攻击")
+        add("skill.spirit_of_fight.mace.block.name", "重锤格挡")
+        add("skill.spirit_of_fight.mace.block.description", "用重锤格挡")
+        add("skill.spirit_of_fight.mace.dodge.name", "重锤闪避")
+        add("skill.spirit_of_fight.mace.dodge.description", "持重锤闪避")
+        add("skill.spirit_of_fight.mace.special_attack.name", "重锤特殊攻击")
+        add("skill.spirit_of_fight.mace.special_attack.description", "强力重锤攻击")
+        add("skill.spirit_of_fight.mace_jump_attack.name", "重锤跳跃攻击")
+        add("skill.spirit_of_fight.mace_jump_attack.description", "跳跃中用重锤攻击")
+        add("skill.spirit_of_fight.mace_aerial_dive.name", "重锤俯冲")
+        add("skill.spirit_of_fight.mace_aerial_dive.description", "从空中俯冲攻击")
 
         // Greatsword skills
         add("skill.spirit_of_fight.greatsword.default.combo_1.name", "巨剑连击1")

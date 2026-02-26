@@ -58,7 +58,6 @@ Skill.create("spirit_of_fight:hammer.special.sprint_attack", builder => {
         const attackKF = anim.registerKeyframeRange("attack", 0.45, 0.7)
         attackKF.onEnter(() => {
             attackBody.setCollideWithGroups(1)
-            entity.move([0.0, entity.getDeltaMovement().y, 0.5], false)
             if (skill.isActivated()) entity.setCameraLock(true)
             level.playSound(entity.getOnPos().above(), "spirit_of_fight:hard_wield_1", "players")
         })

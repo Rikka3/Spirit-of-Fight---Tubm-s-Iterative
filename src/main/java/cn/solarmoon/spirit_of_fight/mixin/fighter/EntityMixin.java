@@ -40,6 +40,7 @@ public abstract class EntityMixin implements IEntityPatch {
     private boolean canUseItem = true;
     private int stunTicks = 0;
     private long lastDodgeTick = 0;
+    private long lastJumpAttackTick = 0;
     private boolean recoveryStun = false;
     private long switchAttackCooldownUntil = 0;
     private Object activeBlockSkill = null;
@@ -58,6 +59,16 @@ public abstract class EntityMixin implements IEntityPatch {
     @Override
     public void setLastDodgeTick(long lastDodgeTick) {
         this.lastDodgeTick = lastDodgeTick;
+    }
+
+    @Override
+    public long getLastJumpAttackTick() {
+        return lastJumpAttackTick;
+    }
+
+    @Override
+    public void setLastJumpAttackTick(long lastJumpAttackTick) {
+        this.lastJumpAttackTick = lastJumpAttackTick;
     }
 
     @Override
@@ -221,5 +232,60 @@ public abstract class EntityMixin implements IEntityPatch {
                         new cn.solarmoon.spirit_of_fight.sync.ComboCooldownPayload(this.getId(), comboCooldownUntil));
             }
         }
+    }
+
+    private long sprintAttackCooldownUntil = 0;
+
+    @Override
+    public long getSprintAttackCooldownUntil() {
+        return sprintAttackCooldownUntil;
+    }
+
+    @Override
+    public void setSprintAttackCooldownUntil(long sprintAttackCooldownUntil) {
+        this.sprintAttackCooldownUntil = sprintAttackCooldownUntil;
+        if (!this.level().isClientSide) {
+            PacketDistributor.sendToPlayersTrackingEntity((Entity) (Object) this,
+                    new cn.solarmoon.spirit_of_fight.sync.SprintAttackCooldownPayload(this.getId(), sprintAttackCooldownUntil));
+            if ((Object) this instanceof net.minecraft.server.level.ServerPlayer player) {
+                PacketDistributor.sendToPlayer(player,
+                        new cn.solarmoon.spirit_of_fight.sync.SprintAttackCooldownPayload(this.getId(), sprintAttackCooldownUntil));
+            }
+        }
+    }
+
+    // Aerial dive attack fields
+    private boolean aerialDiving = false;
+    private Integer aerialDiveTarget = null;
+    private org.joml.Vector3f aerialDiveDirection = null;
+
+    @Override
+    public boolean isAerialDiving() {
+        return aerialDiving;
+    }
+
+    @Override
+    public void setAerialDiving(boolean aerialDiving) {
+        this.aerialDiving = aerialDiving;
+    }
+
+    @Override
+    public Integer getAerialDiveTarget() {
+        return aerialDiveTarget;
+    }
+
+    @Override
+    public void setAerialDiveTarget(Integer target) {
+        this.aerialDiveTarget = target;
+    }
+
+    @Override
+    public org.joml.Vector3f getAerialDiveDirection() {
+        return aerialDiveDirection;
+    }
+
+    @Override
+    public void setAerialDiveDirection(org.joml.Vector3f direction) {
+        this.aerialDiveDirection = direction;
     }
 }

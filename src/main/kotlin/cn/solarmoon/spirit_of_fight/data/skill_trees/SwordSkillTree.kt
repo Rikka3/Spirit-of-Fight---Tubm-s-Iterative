@@ -8,7 +8,7 @@ import cn.solarmoon.spirit_of_fight.entity.WieldStyle
 import cn.solarmoon.spirit_of_fight.registry.client.SOFKeyMappings
 import cn.solarmoon.spirit_of_fight.registry.common.SOFPreInputs
 import cn.solarmoon.spirit_of_fight.skill.tree.SkillTree
-import cn.solarmoon.spirit_of_fight.skill.tree.condition.JumpingCondition
+import cn.solarmoon.spirit_of_fight.skill.tree.condition.FallingCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.InputDirectionCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.KeyInputCondition
 import cn.solarmoon.spirit_of_fight.skill.tree.condition.OffHandCondition
@@ -141,7 +141,7 @@ object SwordSkillTree {
                 Ingredient.of(ItemTags.SWORDS),
                 listOf(
                     CommonNode(
-                        listOf(JumpingCondition(10), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(FallingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.SWORD_JUMP_ATTACK,
                         SOFPreInputs.ATTACK
                     )
@@ -154,14 +154,16 @@ object SwordSkillTree {
                 Ingredient.of(ItemTags.SWORDS),
                 listOf(
                     CommonNode(
-                        listOf(SprintingCondition(), WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(SprintingCondition(), WieldCondition(WieldStyle.DEFAULT), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.SWORD_DEFAULT_SPRINT_ATTACK,
-                        SOFPreInputs.ATTACK
+                        SOFPreInputs.ATTACK,
+                        cooldown = 60 // 3 seconds = 60 ticks
                     ),
                     CommonNode(
-                        listOf(SprintingCondition(), WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                        listOf(SprintingCondition(), WieldCondition(WieldStyle.SPECIAL), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                         SOFSkillTypes.SWORD_SPECIAL_SPRINT_ATTACK,
-                        SOFPreInputs.ATTACK
+                        SOFPreInputs.ATTACK,
+                        cooldown = 60 // 3 seconds = 60 ticks
                     )
                 ),
                 1

@@ -19,7 +19,8 @@ class FallDistanceCondition(
     }
 
     override val description: Component
-        get() = Component.translatable("skill_tree_condition.${registryKey.namespace}.${registryKey.path}", distance)
+        get() = registryKey?.let { Component.translatable("skill_tree_condition.${it.namespace}.${it.path}", distance) }
+            ?: Component.literal("Fall Distance > $distance")
 
     override val codec: MapCodec<out SkillTreeCondition> = CODEC
 

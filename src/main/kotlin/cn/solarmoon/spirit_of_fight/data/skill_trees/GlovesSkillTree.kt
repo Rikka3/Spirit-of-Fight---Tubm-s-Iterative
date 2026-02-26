@@ -58,9 +58,10 @@ object GlovesSkillTree {
                         listOf(WieldCondition(WieldStyle.DEFAULT)),
                         listOf(
                             CommonNode(
-                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                                 SOFSkillTypes.GLOVES_DEFAULT_SPRINT_ATTACK,
-                                SOFPreInputs.ATTACK
+                                SOFPreInputs.ATTACK,
+                                cooldown = 60 // 3 seconds = 60 ticks
                             ),
                             CommonNode(
                                 listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
@@ -89,9 +90,10 @@ object GlovesSkillTree {
                         listOf(WieldCondition(WieldStyle.SPECIAL)),
                         listOf(
                             CommonNode(
-                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                                 SOFSkillTypes.GLOVES_SPECIAL_SPRINT_ATTACK,
-                                SOFPreInputs.ATTACK
+                                SOFPreInputs.ATTACK,
+                                cooldown = 60 // 3 seconds = 60 ticks
                             ),
                             CommonNode(
                                 listOf(KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE), listOf(Vector2i(0, 3)))),
@@ -127,9 +129,10 @@ object GlovesSkillTree {
                         listOf(WieldCondition(WieldStyle.DEFAULT)),
                         listOf(
                             CommonNode(
-                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                                 SOFSkillTypes.GLOVES_DEFAULT_SPRINT_ATTACK,
-                                SOFPreInputs.ATTACK
+                                SOFPreInputs.ATTACK,
+                                cooldown = 60 // 3 seconds = 60 ticks
                             ),
                         )
                     ),
@@ -137,9 +140,10 @@ object GlovesSkillTree {
                         listOf(WieldCondition(WieldStyle.SPECIAL)),
                         listOf(
                             CommonNode(
-                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.RELEASE))),
+                                listOf(SprintingCondition(), KeyInputCondition(mapOf("key.attack" to KeyEvent.PRESS))),
                                 SOFSkillTypes.GLOVES_SPECIAL_SPRINT_ATTACK,
-                                SOFPreInputs.ATTACK
+                                SOFPreInputs.ATTACK,
+                                cooldown = 60 // 3 seconds = 60 ticks
                             )
                         )
                     )

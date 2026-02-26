@@ -52,6 +52,7 @@ public class SpiritOfFight {
         SOFMolangQueryRegister.register(modEventBus);
         SOFJSApiRegister.register();
         SOFSkills.register();
+        SOFEnchantments.register(modEventBus);
 
     }
 

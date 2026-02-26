@@ -12,7 +12,7 @@
         {
           "type": "spirit_of_fight:key_input",
           "map": {
-            "key.attack": "release"
+            "key.attack": "press"
           }
         }
       ],

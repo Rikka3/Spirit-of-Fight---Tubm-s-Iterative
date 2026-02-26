@@ -53,11 +53,6 @@ Skill.create("spirit_of_fight:sword.special.sprint_attack", builder => {
         })
 
 
-        const moveKF = anim.registerKeyframeRangeStart("move", 0.1)
-        moveKF.onEnter(() => {
-            entity.move([0.0, 0.25, 1.5], false)
-        })
-
         const attackKF = anim.registerKeyframeRange("attack", 0.25, 0.65)
         attackKF.onEnter(() => {
             attackBody.setCollideWithGroups(1)

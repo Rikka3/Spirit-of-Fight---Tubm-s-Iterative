@@ -9,4 +9,7 @@ class SpearItem(
     properties: Properties
 ): SwordItem(tier, properties) {
 
+    override fun getEnchantmentValue(): Int {
+        return 15 // Similar to iron tools, good for weapons
+    }
 }

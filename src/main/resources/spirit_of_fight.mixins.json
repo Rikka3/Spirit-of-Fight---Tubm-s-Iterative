@@ -11,9 +11,11 @@
     "fighter.StunnedAttackPreventionMixin",
     "fighter.MeleeAttackGoalMixin",
     "fighter.PlayerMixin",
+    "fighter.SwimmingMixin",
     "fighter.VindicatorMixin",
     "fighter.WarhammerVindicatorMixin",
     "fighter.ZombieMixin",
+    "fighter.AerialDiveFallDamageMixin",
     "js.EntityMixin",
     "js.IAnimatableMixin",
     "js.SkillMixin"
